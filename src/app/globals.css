@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode driven by the two sage tones requested by the user */
+    --background: 48 22% 97%;
+    --foreground: 69 34% 30%;
+
+    --card: 48 28% 98%;
+    --card-foreground: 69 34% 30%;
+
+    --popover: 48 25% 97%;
+    --popover-foreground: 69 34% 30%;
+
+    --primary: 73 31% 36%;
+    --primary-foreground: 48 22% 96%;
+
+    --secondary: 69 32% 71%;
+    --secondary-foreground: 69 34% 30%;
+
+    --muted: 55 20% 94%;
+    --muted-foreground: 69 16% 45%;
+
+    --accent: 70 27% 83%;
+    --accent-foreground: 69 34% 30%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 66 20% 82%;
+    --input: 52 18% 96%;
+    --ring: 73 31% 36%;
+    --radius: 0.85rem;
+    --chart-1: oklch(0.5 0.04 103);
+    --chart-2: oklch(0.68 0.03 103);
+    --font-sans:
+      var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+      "Segoe UI", sans-serif;
+    --font-display:
+      var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+      "Segoe UI", sans-serif;
+    --font-mono:
+      var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  .dark {
+    /* Dark mode keeps the same olive family, but with inky charcoal surfaces */
+    --background: 72 12% 10%;
+    --foreground: 52 24% 90%;
+
+    --card: 72 11% 13%;
+    --card-foreground: 52 24% 90%;
+
+    --popover: 72 11% 12%;
+    --popover-foreground: 52 24% 90%;
+
+    --primary: 76 26% 61%;
+    --primary-foreground: 72 12% 12%;
+
+    --secondary: 72 9% 18%;
+    --secondary-foreground: 52 20% 88%;
+
+    --muted: 72 8% 17%;
+    --muted-foreground: 58 10% 64%;
+
+    --accent: 74 16% 24%;
+    --accent-foreground: 52 24% 90%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 72 8% 23%;
+    --input: 72 9% 18%;
+    --ring: 76 26% 61%;
+    --chart-1: oklch(0.72 0.03 103);
+    --chart-2: oklch(0.58 0.02 103);
+  }
+
+  * {
+    @apply border-border;
+  }
+  html,
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  body {
+    background-image:
+      radial-gradient(
+        900px 520px at 50% -120px,
+        hsl(var(--accent) / 0.26),
+        transparent 62%
+      ),
+      linear-gradient(
+        180deg,
+        hsl(var(--background)),
+        hsl(var(--background))
+      );
+  }
+
+  html[data-i18n-pending="true"] body {
+    opacity: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+  }
+
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer utilities {
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .glass {
+    @apply bg-background/70 backdrop-blur-md border border-border/60;
+  }
+  .gradient-eco {
+    background: radial-gradient(
+      800px 400px at 50% -100px,
+      hsl(var(--primary) / 0.12),
+      transparent 60%
+    );
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 8px;
+  }
+}
+
+/* AnimatedThemeToggler view-transition styles. The button sets the
+   `data-magicui-theme-vt="active"` flag and the duration variable on <html>
+   only while a toggle is in flight, so the clip-path animation stays in
+   sync with the view-transition group without affecting other view
+   transitions in the app. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html[data-magicui-theme-vt="active"]::view-transition-group(root) {
+  animation-duration: var(--magicui-theme-toggle-vt-duration);
+}
