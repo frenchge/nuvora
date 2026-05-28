@@ -3,9 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
-import { LocaleProvider } from "@/components/i18n/locale-provider";
 import { ThemeProvider } from "@/components/theme-provider";
-import { getRequestLocale } from "@/lib/i18n-server";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,20 +13,17 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const locale = await getRequestLocale();
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider>
       <html
-        lang={locale}
+        lang="en"
         suppressHydrationWarning
         className={`${GeistSans.variable} ${GeistMono.variable}`}
       >
         <body className="min-h-screen bg-background font-sans">
           <ConvexClientProvider>
-            <ThemeProvider>
-              <LocaleProvider initialLocale={locale}>{children}</LocaleProvider>
-            </ThemeProvider>
+            <ThemeProvider>{children}</ThemeProvider>
           </ConvexClientProvider>
         </body>
       </html>

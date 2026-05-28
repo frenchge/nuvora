@@ -12,7 +12,6 @@ import { api } from "@convex/_generated/api";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { getRequestLocale } from "@/lib/i18n-server";
 import { PLAN_DISPLAY, PLAN_ORDER } from "@/lib/plans";
 import {
   fetchAction,
@@ -22,7 +21,6 @@ import {
 import { cn, formatCredits, formatEur } from "@/lib/utils";
 import { CheckoutButton, PortalButton } from "../billing/_buttons";
 import { ContributionChart } from "../contribution/_contribution-chart";
-import { LanguageSelect } from "./_language-select";
 import { SettingsShell } from "./_settings-shell";
 import { savePersonalInfo } from "./actions";
 import type { PlanName } from "@/lib/types";
@@ -91,7 +89,6 @@ export default async function SettingsPage({
     : null;
 
   const token = await getRequiredConvexToken();
-  const requestLocale = await getRequestLocale();
   let syncError: string | null = null;
 
   if (justSucceeded && sessionId) {
@@ -126,7 +123,6 @@ export default async function SettingsPage({
   const currentSubscription = billing.subscription;
   const firstName = clerkUser?.firstName ?? "";
   const lastName = clerkUser?.lastName ?? "";
-  const selectedLanguage = profile.preferred_language ?? requestLocale;
   // The welcome modal is rendered globally by PlanWelcomeWatcher in
   // AppShell — it watches profile.pending_plan_welcome reactively so it
   // pops up the instant either Stripe sync or an admin grant flips the flag,
@@ -197,11 +193,6 @@ export default async function SettingsPage({
                         label="Last name"
                         name="lastName"
                         defaultValue={lastName}
-                      />
-                      <LanguageSelect
-                        label="Language"
-                        name="language"
-                        defaultValue={selectedLanguage}
                       />
                     </div>
 
