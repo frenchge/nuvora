@@ -8,7 +8,6 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Bot, CircleHelp, Coins, House, Leaf } from "lucide-react";
 import { BrandLogo } from "@/components/brand-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { LocaleToggle } from "@/components/marketing/locale-toggle";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
@@ -87,9 +86,6 @@ export function SiteHeader() {
       }
       actions={
         <>
-          <LocaleToggle
-            className={heroTone ? "border-white/24 text-white/82" : undefined}
-          />
           <ThemeToggle
             className={
               heroTone

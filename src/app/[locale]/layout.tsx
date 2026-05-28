@@ -6,6 +6,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
+import { FloatingLocaleSwitcher } from "@/components/floating-locale-switcher";
 import { ThemeProvider } from "@/components/theme-provider";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
@@ -46,7 +47,10 @@ export default async function LocaleLayout({
         <body className="min-h-screen bg-background font-sans">
           <NextIntlClientProvider>
             <ConvexClientProvider>
-              <ThemeProvider>{children}</ThemeProvider>
+              <ThemeProvider>
+                {children}
+                <FloatingLocaleSwitcher />
+              </ThemeProvider>
             </ConvexClientProvider>
           </NextIntlClientProvider>
         </body>
