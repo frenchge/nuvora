@@ -1,0 +1,219 @@
+{
+  "Nav": {
+    "home": "Accueil",
+    "models": "Modèles",
+    "credits": "Crédits",
+    "impact": "Impact",
+    "faq": "FAQ",
+    "signIn": "Se connecter",
+    "startFree": "Commencer gratuitement",
+    "openApp": "Ouvrir l'app",
+    "backHome": "Retour à l'accueil",
+    "language": "Langue"
+  },
+  "Footer": {
+    "tagline": "Les meilleurs modèles d'IA dans un espace de travail apaisé, avec une contribution environnementale intégrée chaque mois pour les plans payants.",
+    "productHeading": "Produit",
+    "companyHeading": "Entreprise",
+    "links": {
+      "models": "Modèles",
+      "pricing": "Tarifs",
+      "credits": "Crédits",
+      "impact": "Impact",
+      "faq": "FAQ",
+      "about": "À propos",
+      "contact": "Contact"
+    },
+    "copyright": "© {year} Vercilio. Tous droits réservés."
+  },
+  "About": {
+    "metaTitle": "À propos — Vercilio",
+    "metaDescription": "Pourquoi nous avons créé Vercilio : un foyer apaisé pour tous les modèles d'IA, avec un impact environnemental réel intégré.",
+    "heroEyebrow": "Pourquoi nous l'avons créé",
+    "heroTitle": "Les outils d'IA ne devraient pas être <accent>extractifs.</accent>",
+    "heroBody": "Nous avons lancé Vercilio parce que nous continuions à payer pour des outils d'IA bruyants, solitaires et avides de nos données — et qui ne rendaient rien au monde sur lequel portaient les conversations.",
+    "storyParagraph1": "La plupart des applis par abonnement vous traitent comme un compteur. Les tableaux de bord crient, les invitations à passer à la version supérieure clignotent, et dès que vous oubliez d'annuler, la facture arrive deux fois. Nous voulions quelque chose de l'inverse — un outil qu'on peut laisser ouvert dans un onglet sans jamais le regretter.",
+    "storyParagraph2": "Vercilio est donc construit autour d'un petit ensemble de convictions : les modèles de pointe doivent cohabiter avec des modèles rapides et bon marché dans la même fenêtre ; les crédits mensuels valent mieux que les calculs de tokens ; une interface calme vaut mieux qu'une interface astucieuse ; et la planète qui supporte la chaleur de ces GPU mérite un retour chaque mois.",
+    "storyParagraph3": "Ce que vous payez, c'est l'accès et le calme. Ce que nous gardons, c'est une marge modeste sur chaque plan. Le reste va à la restauration de mangroves au Brésil et au Kenya et à la plantation d'arbres natifs en Amérique du Nord via des programmes partenaires de long terme. Vous voyez les reçus dans vos paramètres.",
+    "principlesTitle": "Comment nous faisons nos choix",
+    "principlesSubtitle": "Quatre principes auxquels nous nous référons en cas d'arbitrage.",
+    "principles": {
+      "clarity": {
+        "title": "La clarté avant le buzz",
+        "body": "Pas de culpabilisation sur l'usage, pas de factures surprises, pas de fausse urgence. Nous vous disons exactement combien coûte chaque message et où va chaque euro."
+      },
+      "privacy": {
+        "title": "La confidentialité par défaut",
+        "body": "Vos conversations sont rattachées à votre compte et jamais utilisées pour entraîner des modèles. La meilleure politique de confidentialité est celle qu'on n'a pas besoin de lire."
+      },
+      "opinion": {
+        "title": "Discrètement assumé",
+        "body": "Nous faisons de petits choix à votre place — des modèles par défaut sensés, des limites douces, une typographie calme — pour que vous puissiez penser plutôt que bricoler."
+      },
+      "margin": {
+        "title": "Une petite part de chaque paiement, rendue",
+        "body": "Nous gardons une marge fixe sur chaque plan et redirigeons le reste vers nos partenaires de restauration. Même plan, plus de bien."
+      }
+    },
+    "simplerDealTitle": "Un échange plus simple",
+    "simplerDealBody": "Payez pour une IA de qualité, profitez d'un produit plus apaisé, et laissez le même abonnement mensuel aider à financer une vraie plantation d'arbres via des partenaires de confiance.",
+    "ctaTitle": "Essayez-le pour un après-midi.",
+    "ctaBody": "100 crédits gratuits par mois — sans carte, sans engagement.",
+    "ctaPrimary": "Commencer gratuitement",
+    "ctaSecondary": "Nous parler"
+  },
+  "Contact": {
+    "metaTitle": "Contact — Vercilio",
+    "metaDescription": "Parlez à une vraie personne chez Vercilio — questions de facturation, idées de partenariat, ou juste pour dire bonjour.",
+    "heroEyebrow": "On est une petite équipe — des humains répondent.",
+    "heroTitle": "Dites <accent>bonjour.</accent>",
+    "heroBody": "Choisissez la boîte qui correspond, ou utilisez le formulaire ci-dessous. Nous lisons chaque message et essayons de répondre sous un jour ouvré.",
+    "lanes": {
+      "general": {
+        "label": "Général",
+        "helper": "Tout ce qui ne rentre pas ailleurs — nous répondons en général sous un jour."
+      },
+      "support": {
+        "label": "Support",
+        "helper": "Bloqué sur un point précis ? Envoyez l'ID de chat ou une capture si possible."
+      },
+      "partnerships": {
+        "label": "Partenariats",
+        "helper": "Partenaires de restauration, fournisseurs de modèles, organisations durables — parlons-en."
+      }
+    },
+    "openMail": "Ouvrir le mail",
+    "formTitle": "Ou laissez-nous un mot",
+    "formSubtitle": "Dites-nous sur quoi vous travaillez. Nous l'orienterons vers la bonne personne.",
+    "form": {
+      "nameLabel": "Nom",
+      "namePlaceholder": "Avery Hale",
+      "emailLabel": "Email",
+      "emailPlaceholder": "vous@entreprise.com",
+      "subjectLabel": "Sujet",
+      "subjectPlaceholder": "Qu'avez-vous en tête ?",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Dites-nous ce qui se passe…",
+      "privacyNote": "En envoyant, vous acceptez notre <link>politique de confidentialité</link>.",
+      "submit": "Envoyer"
+    }
+  },
+  "Faq": {
+    "metaTitle": "FAQ — Vercilio",
+    "metaDescription": "Réponses sur les tarifs, les crédits, les modèles, les uploads et la contribution environnementale intégrée à Vercilio.",
+    "heroEyebrow": "FAQ",
+    "heroTitle": "Tout ce que les gens demandent avant de basculer.",
+    "heroBody": "Un seul abonnement IA, un seul système de crédits, et une contribution environnementale intégrée. Voici comment ça marche.",
+    "sidebar": {
+      "models": "Un seul endroit pour les meilleurs modèles conversationnels.",
+      "search": "Recherche, fichiers et images intégrés au flux.",
+      "fund": "L'usage payant aide à financer un travail vérifié via nos partenaires.",
+      "tiers": "Les paliers supérieurs augmentent à la fois la marge mensuelle et l'impact mensuel."
+    },
+    "items": {
+      "difference": {
+        "question": "En quoi est-ce différent d'un autre abonnement IA ?",
+        "answer": "L'idée est simple : si vous payez déjà chaque mois pour de l'IA, Vercilio vous offre un seul foyer pour les meilleurs modèles et utilise l'activité payante pour financer un travail environnemental via nos partenaires au passage."
+      },
+      "models": {
+        "question": "Tous les plans payants incluent-ils les mêmes modèles ?",
+        "answer": "Oui. Chaque plan payant inclut le même catalogue payant de modèles conversationnels. Vous ne montez pas en gamme pour un autre ensemble de modèles. Vous montez pour plus de crédits, plus de marge quotidienne et plus d'impact."
+      },
+      "free": {
+        "question": "Que comprend le plan gratuit ?",
+        "answer": "Le plan gratuit vous donne un solde mensuel de crédits plus petit et l'accès à un ensemble de modèles plus léger, pour apprendre le produit avant de décider s'il convient à votre flux de travail."
+      },
+      "uploads": {
+        "question": "Puis-je uploader des documents et des images ?",
+        "answer": "Oui. La lecture de fichiers, la compréhension d'images et la recherche web font partie du produit. Les modèles compatibles peuvent traiter PDF, captures d'écran, photos et autres entrées courantes directement dans le chat."
+      },
+      "contribution": {
+        "question": "Qu'est-ce que la contribution environnementale exactement ?",
+        "answer": "Les abonnements payants financent une plantation d'arbres vérifiée via nos partenaires. Les plans supérieurs plantent plus chaque mois."
+      },
+      "addons": {
+        "question": "Puis-je acheter plus de crédits sans changer de plan ?",
+        "answer": "Oui. Vous pouvez recharger avec des packs de crédits à l'unité dès que vous avez besoin de plus de marge pour un mois chargé."
+      },
+      "rollover": {
+        "question": "Les crédits inutilisés se reportent-ils indéfiniment ?",
+        "answer": "Les crédits mensuels du plan se renouvellent à chaque cycle. Les packs ponctuels achetés restent disponibles tant que votre compte est actif."
+      },
+      "cancel": {
+        "question": "Puis-je annuler à tout moment ?",
+        "answer": "Oui. Vous pouvez gérer votre abonnement depuis la facturation et effectuer des changements quand votre usage évolue."
+      }
+    },
+    "ctaTitle": "Prêt à essayer ?",
+    "ctaBody": "Commencez gratuitement, puis passez à un plan supérieur quand vous voulez plus de crédits et plus de contribution environnementale mensuelle.",
+    "ctaPrimary": "Commencer gratuitement",
+    "ctaSecondary": "Voir les tarifs"
+  },
+  "Pricing": {
+    "metaTitle": "Tarifs — Vercilio",
+    "heroEyebrow": "Tarifs",
+    "heroTitle": "Payez pour de l'IA. Aidez la planète en même temps.",
+    "heroBody": "Si vous dépensez déjà chaque mois en IA, voici un meilleur échange : un espace de travail apaisé pour les meilleurs modèles, et des arbres vérifiés plantés via nos partenaires.",
+    "compareTitle": "Comparer les plans",
+    "compareBody": "Chaque plan payant débloque le catalogue payant complet de modèles. La vraie différence, c'est la marge mensuelle d'IA et le travail environnemental que votre abonnement aide à financer.",
+    "sidebar": {
+      "workspace": "Un espace pour GPT, Claude, Gemini, DeepSeek, Mistral et plus.",
+      "included": "Les plans payants incluent chaque mois une contribution environnementale vérifiée.",
+      "grow": "Les plans supérieurs font plus, donc monter en gamme augmente à la fois votre capacité IA et votre impact."
+    },
+    "rows": {
+      "price": "Prix mensuel",
+      "credits": "Crédits par mois",
+      "models": "Accès aux modèles",
+      "uploads": "Fichiers, images et recherche web",
+      "daily": "Usage quotidien",
+      "contribution": "Contribution environnementale",
+      "bestFor": "Idéal pour",
+      "cta": "Commencer"
+    },
+    "values": {
+      "free": "Gratuit",
+      "perMonth": "{value}/mois",
+      "fastSmallModels": "Modèles plus petits et rapides",
+      "allPaidModels": "Tous les modèles conversationnels payants",
+      "freeUploads": "Inclus avec les limites gratuites",
+      "paidUploads": "Inclus",
+      "freeTrees": "Non inclus",
+      "paidTrees": "{count} arbres",
+      "daily": {
+        "free": "20 / jour",
+        "basic": "150 / jour",
+        "starter": "350 / jour",
+        "pro": "700 / jour"
+      },
+      "bestFor": {
+        "free": "Découvrir le produit",
+        "basic": "Travail solo quotidien",
+        "starter": "Usage hebdomadaire intense",
+        "pro": "Utilisateurs avancés et équipes"
+      }
+    },
+    "startFree": "Commencer gratuitement",
+    "choose": "Choisir {plan}",
+    "popular": "Populaire",
+    "addonsTitle": "Packs de crédits",
+    "addonsBody": "Besoin de plus de marge ce mois-ci ? Rechargez sans changer de plan.",
+    "buyAddon": "Acheter le pack",
+    "questionsTitle": "Des questions avant de basculer ?",
+    "questionsBody": "Lisez la FAQ pour comprendre comment fonctionnent les crédits, ce qui est inclus côté impact, et comment les plans changent quand vous montez en gamme.",
+    "openFaq": "Ouvrir la FAQ"
+  },
+  "Auth": {
+    "signInTitle": "Revenez sur l'espace de travail IA qui fait un peu plus.",
+    "signInSubtitle": "Connectez-vous pour reprendre vos chats, vos crédits, et la contribution environnementale que votre compte aide à financer.",
+    "signUpTitle": "Commencez à utiliser une meilleure IA, avec un impact réel intégré.",
+    "signUpSubtitle": "Créez votre compte pour accéder aux meilleurs modèles en un seul endroit, avec un usage qui peut soutenir un travail environnemental chaque mois.",
+    "eyebrow": "L'IA avec un impact réel",
+    "tagline1": "Utilisez les meilleurs modèles d'IA dans un espace de travail apaisé.",
+    "tagline2": "L'usage payant aide à financer une plantation d'arbres vérifiée.",
+    "tagline3": "Votre compte, vos conversations et votre facturation au même endroit.",
+    "asideEyebrow": "Pourquoi les gens basculent",
+    "asideTitle": "Un seul abonnement pour une grande IA, avec un peu de bien intégré.",
+    "asideBody": "Au lieu de payer pour de l'IA à un endroit et de donner ailleurs, Vercilio laisse votre usage mensuel soutenir un vrai travail environnemental automatiquement."
+  }
+}

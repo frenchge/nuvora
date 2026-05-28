@@ -1,0 +1,219 @@
+{
+  "Nav": {
+    "home": "Home",
+    "models": "Models",
+    "credits": "Credits",
+    "impact": "Impact",
+    "faq": "FAQ",
+    "signIn": "Sign in",
+    "startFree": "Start free",
+    "openApp": "Open app",
+    "backHome": "Back home",
+    "language": "Language"
+  },
+  "Footer": {
+    "tagline": "The best AI models in one calm workspace, with a built-in environmental contribution every paid month.",
+    "productHeading": "Product",
+    "companyHeading": "Company",
+    "links": {
+      "models": "Models",
+      "pricing": "Pricing",
+      "credits": "Credits",
+      "impact": "Impact",
+      "faq": "FAQ",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "copyright": "© {year} Vercilio. All rights reserved."
+  },
+  "About": {
+    "metaTitle": "About — Vercilio",
+    "metaDescription": "Why we built Vercilio: a calm home for every AI model, with real-world environmental impact baked in.",
+    "heroEyebrow": "Why we built this",
+    "heroTitle": "AI tools shouldn't feel <accent>extractive.</accent>",
+    "heroBody": "We started Vercilio because we kept paying for AI tools that felt loud, lonely, and hungry for our data — and gave nothing back to the world the conversations were about.",
+    "storyParagraph1": "Most subscription apps treat you like a meter. The dashboards scream, the upgrade prompts pulse, and the moment you forget to cancel, the bill arrives twice. We wanted something that felt the opposite — a tool you could leave open in a tab and never resent.",
+    "storyParagraph2": "So Vercilio is built around a small set of beliefs: that frontier models should live next to fast, cheap ones in the same window; that monthly credits beat token math; that a calm interface is worth more than a clever one; and that the planet doing the heating of these GPUs deserves a kickback every month.",
+    "storyParagraph3": "What you pay for is the access and the calm. What we keep is a modest margin on each plan. The remainder goes to mangrove restoration in Brazil and Kenya and native-tree planting across North America through long-term partner programs. You see the receipts in your settings.",
+    "principlesTitle": "How we make choices",
+    "principlesSubtitle": "Four principles we reach for when there's a tradeoff.",
+    "principles": {
+      "clarity": {
+        "title": "Clarity over hype",
+        "body": "No usage-shaming, no surprise bills, no fake urgency. We tell you exactly what each message costs and where every dollar goes."
+      },
+      "privacy": {
+        "title": "Privacy as a default",
+        "body": "Your conversations are stored against your account and never used to train models. The simplest privacy policy is one you don't need to read."
+      },
+      "opinion": {
+        "title": "Quietly opinionated",
+        "body": "We make small choices for you — sensible model defaults, gentle limits, calm typography — so you can think instead of fiddle."
+      },
+      "margin": {
+        "title": "A small piece of every payment, returned",
+        "body": "We keep a fixed margin on every plan and route the rest into restoration partners. Same plan, more good."
+      }
+    },
+    "simplerDealTitle": "A simpler deal",
+    "simplerDealBody": "Pay for great AI, get a calmer product, and let the same monthly subscription help fund real tree planting through trusted partners.",
+    "ctaTitle": "Try it for an afternoon.",
+    "ctaBody": "100 free credits a month — no card, no commitment.",
+    "ctaPrimary": "Start free",
+    "ctaSecondary": "Talk to us"
+  },
+  "Contact": {
+    "metaTitle": "Contact — Vercilio",
+    "metaDescription": "Talk to a real person about Vercilio — billing questions, partnership ideas, or just to say hi.",
+    "heroEyebrow": "We're a small team — humans answer.",
+    "heroTitle": "Say <accent>hi.</accent>",
+    "heroBody": "Pick the inbox that fits, or use the form below. We read every message and try to reply within one working day.",
+    "lanes": {
+      "general": {
+        "label": "General",
+        "helper": "Anything that doesn't fit elsewhere — we usually reply within a day."
+      },
+      "support": {
+        "label": "Support",
+        "helper": "Stuck on something specific? Send the chat ID or a screenshot if you can."
+      },
+      "partnerships": {
+        "label": "Partnerships",
+        "helper": "Restoration partners, model providers, sustainability orgs — let's talk."
+      }
+    },
+    "openMail": "Open mail",
+    "formTitle": "Or drop us a note",
+    "formSubtitle": "Tell us what you're working on. We'll route it to the right person.",
+    "form": {
+      "nameLabel": "Name",
+      "namePlaceholder": "Avery Hale",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@company.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "What's on your mind?",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell us what's going on…",
+      "privacyNote": "By sending you accept our <link>privacy policy</link>.",
+      "submit": "Send"
+    }
+  },
+  "Faq": {
+    "metaTitle": "FAQ — Vercilio",
+    "metaDescription": "Answers about pricing, credits, models, uploads, and the environmental contribution built into Vercilio.",
+    "heroEyebrow": "FAQ",
+    "heroTitle": "Everything people ask before they switch.",
+    "heroBody": "One AI subscription, one credit system, and a built-in environmental contribution. Here's how it works.",
+    "sidebar": {
+      "models": "One place for the best conversational models.",
+      "search": "Search, files, and images built into the flow.",
+      "fund": "Paid usage helps fund verified work through our partners.",
+      "tiers": "Higher tiers grow both monthly room and monthly impact."
+    },
+    "items": {
+      "difference": {
+        "question": "How is this different from paying for another AI subscription?",
+        "answer": "The core idea is simple: if you're already paying monthly for AI, Vercilio gives you one home for the best models and uses paid activity to fund environmental work through our partners at the same time."
+      },
+      "models": {
+        "question": "Do all paid plans include the same models?",
+        "answer": "Yes. Every paid plan includes the same paid conversational model catalog. You are not upgrading for a different set of models. You are upgrading for more credits, more daily room, and more impact."
+      },
+      "free": {
+        "question": "What does the free plan include?",
+        "answer": "Free gives you a smaller monthly credit balance and access to a lighter set of models, so you can learn the product before deciding whether it fits your workflow."
+      },
+      "uploads": {
+        "question": "Can I upload documents and images?",
+        "answer": "Yes. File reading, image understanding, and web search are part of the product. Compatible models can work with PDFs, screenshots, photos, and other common inputs directly in chat."
+      },
+      "contribution": {
+        "question": "What exactly is the environmental contribution?",
+        "answer": "Paid subscriptions fund verified tree planting through our partners. Higher plans plant more each month."
+      },
+      "addons": {
+        "question": "Can I buy more credits without changing plans?",
+        "answer": "Yes. You can top up with one-time credit add-ons whenever you need more room for a busy month."
+      },
+      "rollover": {
+        "question": "Do unused credits roll over forever?",
+        "answer": "Monthly plan credits refresh each cycle. One-time purchased add-ons stay available while your account remains active."
+      },
+      "cancel": {
+        "question": "Can I cancel anytime?",
+        "answer": "Yes. You can manage your subscription from billing and make changes when your usage changes."
+      }
+    },
+    "ctaTitle": "Ready to try it?",
+    "ctaBody": "Start free, then upgrade when you want more credits and more monthly environmental contribution.",
+    "ctaPrimary": "Start free",
+    "ctaSecondary": "See pricing"
+  },
+  "Pricing": {
+    "metaTitle": "Pricing — Vercilio",
+    "heroEyebrow": "Pricing",
+    "heroTitle": "Pay for AI. Help the planet at the same time.",
+    "heroBody": "If you're already spending money on AI each month, this is the better trade: one calm workspace for the best models, plus verified trees planted through our partners.",
+    "compareTitle": "Compare plans",
+    "compareBody": "Every paid plan unlocks the full paid model catalog. The real difference is how much AI room you get each month, and how much environmental work your subscription helps fund.",
+    "sidebar": {
+      "workspace": "One workspace for GPT, Claude, Gemini, DeepSeek, Mistral, and more.",
+      "included": "Paid plans include verified environmental contribution every month.",
+      "grow": "Higher plans do more, so upgrading grows both your AI capacity and your impact."
+    },
+    "rows": {
+      "price": "Monthly price",
+      "credits": "Credits each month",
+      "models": "Model access",
+      "uploads": "Files, images, and web search",
+      "daily": "Daily usage",
+      "contribution": "Environmental contribution",
+      "bestFor": "Best for",
+      "cta": "Get started"
+    },
+    "values": {
+      "free": "Free",
+      "perMonth": "{value}/mo",
+      "fastSmallModels": "Fast smaller models",
+      "allPaidModels": "All paid conversational models",
+      "freeUploads": "Included with free limits",
+      "paidUploads": "Included",
+      "freeTrees": "Not included",
+      "paidTrees": "{count} trees",
+      "daily": {
+        "free": "20 / day",
+        "basic": "150 / day",
+        "starter": "350 / day",
+        "pro": "700 / day"
+      },
+      "bestFor": {
+        "free": "Trying the product",
+        "basic": "Daily solo work",
+        "starter": "Heavy weekly use",
+        "pro": "Power users and teams"
+      }
+    },
+    "startFree": "Start free",
+    "choose": "Choose {plan}",
+    "popular": "Popular",
+    "addonsTitle": "Credit add-ons",
+    "addonsBody": "Need more room this month? Top up without changing your plan.",
+    "buyAddon": "Buy add-on",
+    "questionsTitle": "Questions before you switch?",
+    "questionsBody": "Read the FAQ for how credits work, what impact is included, and how plans change when you upgrade.",
+    "openFaq": "Open FAQ"
+  },
+  "Auth": {
+    "signInTitle": "Come back to the AI workspace that does a little more.",
+    "signInSubtitle": "Sign in to pick up your chats, your credits, and the environmental contribution your account helps fund.",
+    "signUpTitle": "Start using better AI with real impact built in.",
+    "signUpSubtitle": "Create your account to access the best models in one place, with usage that can help support environmental work each month.",
+    "eyebrow": "AI with real impact",
+    "tagline1": "Use the best AI models in one calm workspace.",
+    "tagline2": "Paid usage helps fund verified tree planting.",
+    "tagline3": "Your account, conversations, and billing stay in one place.",
+    "asideEyebrow": "Why people switch",
+    "asideTitle": "One subscription for great AI, with a little good built in.",
+    "asideBody": "Instead of paying for AI in one place and donating somewhere else, Vercilio lets your monthly usage help support real environmental work automatically."
+  }
+}

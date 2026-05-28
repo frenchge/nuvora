@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "@convex/_generated/api";
 import type { PlanName } from "@/lib/types";
-import { SubscriptionWelcomeModal } from "@/app/(app)/settings/_subscription-welcome-modal";
+import { SubscriptionWelcomeModal } from "@/app/[locale]/(app)/settings/_subscription-welcome-modal";
 
 const PLAN_KEYS: PlanName[] = ["free", "basic", "starter", "pro"];
 

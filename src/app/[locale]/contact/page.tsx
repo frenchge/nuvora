@@ -1,4 +1,4 @@
-import Link from "next/link";
+import type { Metadata } from "next";
 import {
   ArrowRight,
   HelpCircle,
@@ -7,38 +7,37 @@ import {
   MessageCircle,
   Sparkles,
 } from "lucide-react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
 
-export const metadata = {
-  title: "Contact — Vercilio",
-  description:
-    "Talk to a real person about Vercilio — billing questions, partnership ideas, or just to say hi.",
-};
+const LANES = [
+  { key: "general", icon: Mail, address: "hello@vercilio.ai" },
+  { key: "support", icon: HelpCircle, address: "support@vercilio.ai" },
+  { key: "partnerships", icon: Leaf, address: "partners@vercilio.ai" },
+] as const;
 
-const CONTACT_LANES = [
-  {
-    icon: Mail,
-    label: "General",
-    address: "hello@vercilio.ai",
-    helper: "Anything that doesn't fit elsewhere — we usually reply within a day.",
-  },
-  {
-    icon: HelpCircle,
-    label: "Support",
-    address: "support@vercilio.ai",
-    helper: "Stuck on something specific? Send the chat ID or a screenshot if you can.",
-  },
-  {
-    icon: Leaf,
-    label: "Partnerships",
-    address: "partners@vercilio.ai",
-    helper: "Restoration partners, model providers, sustainability orgs — let's talk.",
-  },
-];
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Contact" });
+  return { title: t("metaTitle"), description: t("metaDescription") };
+}
 
-export default function ContactPage() {
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("Contact");
+
   return (
     <>
       <SiteHeader />
@@ -48,21 +47,22 @@ export default function ContactPage() {
         <div className="container relative pt-24 pb-12 text-center md:pt-32">
           <p className="mx-auto inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
             <MessageCircle className="h-3 w-3 text-primary" />
-            We&apos;re a small team — humans answer.
+            {t("heroEyebrow")}
           </p>
           <h1 className="mx-auto mt-6 max-w-3xl text-balance text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
-            Say <span className="text-primary">hi.</span>
+            {t.rich("heroTitle", {
+              accent: (chunks) => <span className="text-primary">{chunks}</span>,
+            })}
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-balance text-base leading-7 text-muted-foreground md:text-lg">
-            Pick the inbox that fits, or use the form below. We read every
-            message and try to reply within one working day.
+            {t("heroBody")}
           </p>
         </div>
       </section>
 
       <section className="container pb-12">
         <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
-          {CONTACT_LANES.map(({ icon: Icon, label, address, helper }) => (
+          {LANES.map(({ key, icon: Icon, address }) => (
             <a
               key={address}
               href={`mailto:${address}`}
@@ -72,14 +72,14 @@ export default function ContactPage() {
                 <Icon className="h-4 w-4" />
               </div>
               <div className="mt-4 text-xs uppercase tracking-wide text-muted-foreground">
-                {label}
+                {t(`lanes.${key}.label`)}
               </div>
               <div className="mt-1 font-semibold tracking-tight">{address}</div>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                {helper}
+                {t(`lanes.${key}.helper`)}
               </p>
               <div className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                Open mail
+                {t("openMail")}
                 <ArrowRight className="h-3 w-3" />
               </div>
             </a>
@@ -87,63 +87,66 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact form */}
       <section className="container pb-24">
         <div className="mx-auto max-w-2xl rounded-[2rem] border border-border/60 bg-card/40 p-8 sm:p-10">
           <h2 className="text-balance text-2xl font-semibold tracking-tight">
-            Or drop us a note
+            {t("formTitle")}
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Tell us what you&apos;re working on. We&apos;ll route it to the
-            right person.
+            {t("formSubtitle")}
           </p>
 
           <form
             className="mt-8 grid gap-5"
-            // The form posts to a `mailto:` so this works without a backend.
-            // Replace with your own endpoint when one is ready.
             action="mailto:hello@vercilio.ai"
             method="post"
             encType="text/plain"
           >
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Name" name="name" placeholder="Avery Hale" required />
               <Field
-                label="Email"
+                label={t("form.nameLabel")}
+                name="name"
+                placeholder={t("form.namePlaceholder")}
+                required
+              />
+              <Field
+                label={t("form.emailLabel")}
                 name="email"
                 type="email"
-                placeholder="you@company.com"
+                placeholder={t("form.emailPlaceholder")}
                 required
               />
             </div>
             <Field
-              label="Subject"
+              label={t("form.subjectLabel")}
               name="subject"
-              placeholder="What's on your mind?"
+              placeholder={t("form.subjectPlaceholder")}
             />
             <div className="grid gap-1.5">
               <label className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                Message
+                {t("form.messageLabel")}
               </label>
               <textarea
                 name="message"
                 rows={6}
-                placeholder="Tell us what's going on…"
+                placeholder={t("form.messagePlaceholder")}
                 required
                 className="w-full resize-y rounded-2xl border border-border/60 bg-background px-4 py-3 text-sm text-foreground outline-none ring-0 transition-colors focus:border-primary/40 focus:bg-background/95"
               />
             </div>
             <div className="flex items-center justify-between">
               <p className="text-xs text-muted-foreground">
-                By sending you accept our{" "}
-                <Link href="/legal/privacy" className="underline">
-                  privacy policy
-                </Link>
-                .
+                {t.rich("form.privacyNote", {
+                  link: (chunks) => (
+                    <Link href="/legal/privacy" className="underline">
+                      {chunks}
+                    </Link>
+                  ),
+                })}
               </p>
               <Button type="submit" size="lg">
                 <Sparkles className="h-4 w-4" />
-                Send
+                {t("form.submit")}
               </Button>
             </div>
           </form>
