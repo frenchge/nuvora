@@ -166,8 +166,24 @@ const ScrollExpandMedia = ({
   const mediaHeight = 400 + scrollProgress * (isMobileState ? 200 : 400);
   const textTranslateX = scrollProgress * (isMobileState ? 180 : 150);
 
-  const firstWord = title ? title.split(' ')[0] : '';
-  const restOfTitle = title ? title.split(' ').slice(1).join(' ') : '';
+  // Title can be manually split with a "|" — anything before goes on the
+  // top line, anything after goes on the bottom line. Without a "|" we fall
+  // back to splitting at the first whitespace (legacy behavior).
+  const { firstWord, restOfTitle } = (() => {
+    if (!title) return { firstWord: '', restOfTitle: '' };
+    if (title.includes('|')) {
+      const [top, ...rest] = title.split('|');
+      return {
+        firstWord: top.trim(),
+        restOfTitle: rest.join('|').trim(),
+      };
+    }
+    const parts = title.split(' ');
+    return {
+      firstWord: parts[0] ?? '',
+      restOfTitle: parts.slice(1).join(' '),
+    };
+  })();
 
   return (
     <div

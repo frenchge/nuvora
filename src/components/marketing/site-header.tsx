@@ -48,7 +48,7 @@ export function SiteHeader() {
     },
     {
       name: t("models"),
-      link: "/#models",
+      link: "/models",
       icon: <Bot className="h-4 w-4 text-muted-foreground" />,
     },
     {
@@ -58,12 +58,12 @@ export function SiteHeader() {
     },
     {
       name: t("credits"),
-      link: "/#how",
+      link: "/credits",
       icon: <Coins className="h-4 w-4 text-muted-foreground" />,
     },
     {
       name: t("impact"),
-      link: "/#impact",
+      link: "/impact",
       icon: <Leaf className="h-4 w-4 text-muted-foreground" />,
     },
     {

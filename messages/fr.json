@@ -13,9 +13,15 @@
     "language": "Langue"
   },
   "Footer": {
-    "tagline": "Les meilleurs modèles d'IA dans un espace de travail apaisé, avec une contribution environnementale intégrée chaque mois pour les plans payants.",
+    "tagline": "Un seul abonnement pour les meilleurs modèles d'IA au monde. Chaque mois payé finance une reforestation vérifiée via nos partenaires de restauration.",
     "productHeading": "Produit",
     "companyHeading": "Entreprise",
+    "resourcesHeading": "Ressources",
+    "legalHeading": "Mentions légales",
+    "newsletterHeading": "Recevez nos actualités produit",
+    "newsletterBody": "Une courte note mensuelle quand nous sortons quelque chose ou qu'un partenaire signale une étape de plantation. Sans bruit.",
+    "newsletterPlaceholder": "vous@entreprise.com",
+    "newsletterSubmit": "S'abonner",
     "links": {
       "models": "Modèles",
       "pricing": "Tarifs",
@@ -23,9 +29,18 @@
       "impact": "Impact",
       "faq": "FAQ",
       "about": "À propos",
-      "contact": "Contact"
+      "contact": "Contact",
+      "terms": "Conditions",
+      "privacy": "Confidentialité",
+      "cookies": "Politique cookies"
     },
-    "copyright": "© {year} Vercilio. Tous droits réservés."
+    "social": {
+      "twitter": "Suivez sur X",
+      "github": "Open source sur GitHub",
+      "linkedin": "Suivez sur LinkedIn"
+    },
+    "copyright": "© {year} Vercilio. Tous droits réservés.",
+    "credit": "Conçu avec soin · Arbres plantés avec des partenaires partout dans le monde"
   },
   "About": {
     "metaTitle": "À propos — Vercilio",
@@ -366,6 +381,275 @@
     "send": "Envoyer",
     "newChatTitle": "Nouveau chat",
     "inputPlaceholder": "Envoyer un message…"
+  },
+  "Models": {
+    "metaTitle": "Modèles d'IA — Vercilio",
+    "metaDescription": "Tous les modèles de chat qui valent le coup, dans un seul espace : GPT, Claude, Gemini, DeepSeek, Mistral et plus. Routés et prêts, avec une tarification en crédits qui ne dépend pas du calcul de tokens.",
+    "heroEyebrow": "Modèles",
+    "heroTitle": "Chaque modèle qui en vaut la peine. Un seul abonnement.",
+    "heroBody": "Vercilio route à travers les principaux fournisseurs d'IA conversationnelle au monde — OpenAI, Anthropic, Google, Meta, xAI, DeepSeek, Mistral et plus — pour que vous passiez du raisonnement de pointe au travail quotidien rapide dans la même fenêtre.",
+    "heroPrimary": "Commencer gratuitement",
+    "heroSecondary": "Voir les tarifs",
+    "providersTitle": "Les fournisseurs disponibles aujourd'hui",
+    "providersBody": "Nous suivons les nouvelles sorties dès qu'elles arrivent. Chaque modèle ci-dessous est disponible en chat pour les abonnés, avec les bons garde-fous pour la vision, la lecture de fichiers et la recherche web quand c'est supporté.",
+    "providers": {
+      "openai": {
+        "name": "OpenAI",
+        "body": "La gamme GPT complète — minis rapides pour les questions du quotidien, modèles 4o équilibrés, et GPT-5 de pointe pour le raisonnement qui bénéficie d'une fenêtre plus large."
+      },
+      "anthropic": {
+        "name": "Anthropic",
+        "body": "Claude Haiku pour les réécritures rapides, Claude Sonnet comme valeur sûre par défaut, et Claude Opus quand la réponse demande une réflexion longue et soignée."
+      },
+      "google": {
+        "name": "Google",
+        "body": "Gemini Flash pour la vitesse, Gemini Pro pour les questions plus dures, et Gemini Pro Preview pour la dernière sortie de DeepMind — multimodal natif et conscient de la recherche."
+      },
+      "meta": {
+        "name": "Meta",
+        "body": "Les modèles Llama pour les workflows open-weight quand vous voulez un modèle qui fonctionne comme beaucoup d'équipes l'auto-hébergent déjà."
+      },
+      "xai": {
+        "name": "xAI",
+        "body": "Grok pour un autre point de vue, avec des points forts sur l'actualité et un ton conversationnel décontracté."
+      },
+      "deepseek": {
+        "name": "DeepSeek",
+        "body": "Les modèles de raisonnement de pointe de DeepSeek à un coût nettement plus bas — utile pour les longues sessions d'analyse sans surveiller le compteur."
+      },
+      "mistral": {
+        "name": "Mistral",
+        "body": "Mistral et Magistral couvrent de bons modèles entraînés en Europe — rapides, multilingues et ajustés pour le code et l'écriture en production."
+      },
+      "cohere": {
+        "name": "Cohere",
+        "body": "Les modèles Command construits pour la recherche et les workflows entreprise, avec un focus sur le travail documentaire multilingue."
+      },
+      "perplexity": {
+        "name": "Perplexity",
+        "body": "Les modèles Sonar ancrés dans la recherche quand la réponse doit venir avec des citations issues du web en direct."
+      }
+    },
+    "categoriesTitle": "Choisissez par mission, pas par nom",
+    "categoriesBody": "Les noms changent chaque trimestre. Les catégories ci-dessous restent stables — choisissez celle qui correspond au travail, le sélecteur filtre pour vous.",
+    "categories": {
+      "fast": {
+        "title": "Rapide & abordable",
+        "body": "Réponses courtes, réécritures rapides, conversions de format et Q&R du quotidien. Coût par message le plus bas ; idéal pour le gros volume et le plan gratuit."
+      },
+      "balanced": {
+        "title": "Valeur sûre équilibrée",
+        "body": "Les modèles vers lesquels vous iriez sans réfléchir — bonne qualité, latence correcte, coût raisonnable. C'est là que va la majorité du trafic payant."
+      },
+      "advanced": {
+        "title": "Raisonnement avancé",
+        "body": "Problèmes multi-étapes, analyse plus profonde, contexte long. Coût par message plus élevé, réponses nettement meilleures sur les questions difficiles."
+      },
+      "frontier": {
+        "title": "Pointe",
+        "body": "Les dernières sorties d'OpenAI, Anthropic et Google. Utile quand une réponse doit être aussi bonne que ce que la meilleure IA généraliste peut produire aujourd'hui."
+      }
+    },
+    "featuresTitle": "Tout ce que les modèles de chat savent faire, au même endroit",
+    "features": {
+      "vision": {
+        "title": "Vision",
+        "body": "Déposez une capture d'écran, une photo, un schéma ou un tableau blanc. Les modèles compatibles vision lisent les images directement dans la conversation."
+      },
+      "files": {
+        "title": "Fichiers",
+        "body": "Attachez des PDF et d'autres documents. Le modèle les analyse en ligne — pas d'uploader séparé, pas de découpage."
+      },
+      "search": {
+        "title": "Recherche web",
+        "body": "Activez la recherche et le modèle répond avec des citations en direct. Nous affichons les sources sous chaque réponse."
+      },
+      "reasoning": {
+        "title": "Effort de raisonnement",
+        "body": "Sur les modèles capables de raisonner, vous choisissez Faible, Moyen ou Élevé. Plus d'effort = réflexion plus longue et meilleures réponses sur les tâches difficiles."
+      },
+      "auto": {
+        "title": "Routeur automatique",
+        "body": "Laissez Vercilio choisir le bon modèle pour chaque message. Le routeur utilise les évaluations en direct d'OpenRouter pour vous envoyer le meilleur choix par tour."
+      },
+      "tools": {
+        "title": "Utilisation d'outils",
+        "body": "Les modèles compatibles peuvent appeler des outils si nécessaire. Aujourd'hui utilisé pour la recherche web ; les workflows agentiques sont sur la roadmap."
+      }
+    },
+    "ctaTitle": "Essayez tous les modèles sur le plan gratuit.",
+    "ctaBody": "100 crédits par mois, sans carte. Goûtez aux niveaux small, équilibré et raisonnement ; passez à un plan supérieur seulement si vous voulez plus de volume et la contribution environnementale vérifiée.",
+    "ctaPrimary": "Commencer gratuitement",
+    "ctaSecondary": "Comparer les plans"
+  },
+  "Credits": {
+    "metaTitle": "Comment fonctionnent les crédits — Vercilio",
+    "metaDescription": "Un seul système de crédits sur tous les modèles. Pas de calcul de tokens, pas de surfacturation surprise. Découvrez ce que coûte un message sur Vercilio et comment les crédits mensuels se renouvellent.",
+    "heroEyebrow": "Crédits",
+    "heroTitle": "Un seul système de crédits. Sur tous les modèles.",
+    "heroBody": "Les tokens sont une unité pour ingénieurs, pas pour des humains qui réfléchissent. Vercilio facture en crédits clairs — chaque message coûte un petit nombre entier selon le modèle choisi.",
+    "heroPrimary": "Commencer gratuitement",
+    "heroSecondary": "Voir les tarifs",
+    "howTitle": "Comment ça marche",
+    "how": {
+      "monthly": {
+        "title": "Une réserve chaque mois",
+        "body": "Chaque plan renouvelle son solde de crédits au début de chaque cycle. Vous ne reportez pas ce que vous n'avez pas utilisé — le mois suivant ramène la réserve complète."
+      },
+      "perMessage": {
+        "title": "Facturé par message",
+        "body": "Quand vous envoyez un message, le coût en crédits du modèle est déduit. Le coût dépend du niveau du modèle — les small valent 1 crédit, ceux de pointe 12+."
+      },
+      "transparent": {
+        "title": "Affiché à côté de chaque modèle",
+        "body": "Ouvrez le sélecteur de modèles et vous voyez le coût en crédits à côté de chacun. Pas de compteur caché ni de calculs."
+      },
+      "addons": {
+        "title": "Recharger sans changer de plan",
+        "body": "Plus assez en milieu de mois ? Prenez un pack de crédits ponctuel — 5k, 10k, 25k ou 50k — sans toucher à votre abonnement."
+      }
+    },
+    "tiersTitle": "Ce que coûtent les différents modèles",
+    "tiersBody": "Les coûts sont stables pendant au moins un cycle de facturation. Si un fournisseur baisse son prix de façon significative, nous le répercutons ; nous ne montons pas les prix au milieu d'un cycle.",
+    "tiers": {
+      "small": {
+        "label": "Small",
+        "cost": "1 crédit",
+        "body": "Minis rapides de chaque fournisseur — classe GPT-4o-mini, Claude Haiku, Gemini Flash Lite."
+      },
+      "standard": {
+        "label": "Standard",
+        "cost": "3 crédits",
+        "body": "Modèles équilibrés du quotidien — GPT-4.1-mini, Gemini Flash, Mistral milieu de gamme."
+      },
+      "advanced": {
+        "label": "Avancé",
+        "cost": "6 crédits",
+        "body": "Chevaux de trait capables — GPT-4.1, Claude Sonnet, Gemini Pro."
+      },
+      "premium": {
+        "label": "Premium",
+        "cost": "12 crédits",
+        "body": "Raisonnement solide — Claude Opus, GPT-5, DeepSeek R1."
+      },
+      "elite": {
+        "label": "Elite",
+        "cost": "20+ crédits",
+        "body": "Les dernières sorties de pointe à mesure qu'elles arrivent."
+      }
+    },
+    "planPoolTitle": "Ce que chaque plan vous donne",
+    "planPoolBody": "Utilisez le tableau sur la page Tarifs pour la comparaison complète ; la forme générale est ci-dessous.",
+    "examplesTitle": "À quoi ça ressemble en pratique",
+    "examples": {
+      "writer": {
+        "title": "Rédacteur surtout en draft & réécriture",
+        "body": "Environ 80 messages par jour sur un modèle standard. Le plan Basic couvre ça avec de la marge pour utiliser quelques modèles de pointe par session."
+      },
+      "researcher": {
+        "title": "Chercheur qui mène des analyses plus profondes",
+        "body": "Moins de messages mais surtout des modèles avancés ou premium avec recherche web. Starter ou Pro donne la marge nécessaire."
+      },
+      "developer": {
+        "title": "Développeur en mode code intensif",
+        "body": "Beaucoup d'allers-retours sur un modèle équilibré. Pro vous garde sous la limite quotidienne sans avoir à y penser."
+      }
+    },
+    "faqTitle": "Questions courantes",
+    "faqs": {
+      "rollover": {
+        "question": "Les crédits se reportent-ils ?",
+        "answer": "Les crédits mensuels du plan se renouvellent à chaque cycle. Les crédits issus de packs ponctuels restent disponibles tant que votre compte est actif."
+      },
+      "refund": {
+        "question": "Que se passe-t-il si un message échoue à mi-chemin ?",
+        "answer": "Nous finalisons la facturation seulement sur une réponse réussie. Un flux échoué rembourse automatiquement toute déduction partielle."
+      },
+      "fairness": {
+        "question": "Y a-t-il un plafond caché basé sur les tokens ?",
+        "answer": "Les crédits par message sont fixés par niveau, peu importe la longueur. Nous absorbons la variance de notre côté."
+      },
+      "limit": {
+        "question": "Que se passe-t-il si je tombe à court ?",
+        "answer": "Vous pouvez encore discuter avec les modèles du niveau gratuit jusqu'à la fin du cycle, ou acheter un pack. Nous ne débitons jamais votre carte automatiquement en cas de dépassement."
+      }
+    },
+    "ctaTitle": "Crédits prévisibles. Vrais modèles.",
+    "ctaBody": "Commencez avec 100 crédits gratuits par mois. Montez en gamme quand vous voulez la marge — et la contribution environnementale mensuelle qui va avec.",
+    "ctaPrimary": "Commencer gratuitement",
+    "ctaSecondary": "Voir les tarifs"
+  },
+  "Impact": {
+    "metaTitle": "Impact environnemental — Vercilio",
+    "metaDescription": "Chaque abonnement Vercilio payant finance une plantation d'arbres vérifiée via nos partenaires de restauration long terme. Voici comment le flux de contribution fonctionne et ce qui est rapporté.",
+    "heroEyebrow": "Impact",
+    "heroTitle": "Chaque abonnement plante de vrais arbres.",
+    "heroBody": "Vercilio garde une petite marge fixe sur chaque plan. Le reste est routé vers des partenaires de restauration long terme sur trois continents. Vous voyez exactement ce que votre abonnement a financé dans votre compte.",
+    "heroPrimary": "Commencer gratuitement",
+    "heroSecondary": "Voir les partenaires",
+    "summary": {
+      "trees": "3,9M+",
+      "treesLabel": "arbres plantés via notre réseau de partenaires",
+      "species": "150+",
+      "speciesLabel": "espèces d'arbres représentées dans les sites partenaires",
+      "maturity": "85%+",
+      "maturityLabel": "maturité moyenne rapportée par les programmes partenaires",
+      "years": "15+ ans",
+      "yearsLabel": "d'engagements partenaires derrière chaque plantation"
+    },
+    "partnersTitle": "Qui plante vraiment les arbres",
+    "partnersBody": "Nous ne plantons pas nous-mêmes. Nous finançons et rapportons le travail de partenaires avec des programmes vérifiables sur le terrain.",
+    "partners": {
+      "mangrove": {
+        "title": "Restauration de mangrove",
+        "region": "Brésil & Kenya",
+        "body": "Régénération de mangroves côtières avec des équipes de plantation locales. Les mangroves protègent les littoraux, soutiennent la biodiversité et stockent du carbone plus vite que la plupart des forêts terrestres."
+      },
+      "arbor": {
+        "title": "Plantation de forêts natives",
+        "region": "Amérique du Nord",
+        "body": "Reforestation d'espèces natives aux États-Unis et au Canada, en partenariat avec des programmes forestiers de long terme qui suivent la diversité d'espèces et la survie."
+      }
+    },
+    "howTitle": "Comment un paiement devient un arbre",
+    "howBody": "Derrière chaque abonnement, un chemin propre et auditable du débit de carte à l'unité plantée.",
+    "how": {
+      "step1": {
+        "title": "Vous vous abonnez",
+        "body": "Un paiement Stripe réussit. Votre plan est mis à jour et vos crédits mensuels arrivent instantanément."
+      },
+      "step2": {
+        "title": "Un événement de contribution est enregistré",
+        "body": "Vercilio enregistre la contribution par paiement et la convertit en unités de plantation précises (par exemple 12 mangroves + 3 arbres natifs pour le plan Starter)."
+      },
+      "step3": {
+        "title": "Les arbres sont plantés par les partenaires",
+        "body": "Pendant la fenêtre de plantation suivante, les équipes terrain des partenaires plantent les unités correspondantes. Chaque contribution est journalisée sur votre compte."
+      },
+      "step4": {
+        "title": "Vous voyez les preuves",
+        "body": "Votre tableau de bord de contribution montre chaque événement, les arbres attribués à votre compte et le total communautaire."
+      }
+    },
+    "honestyTitle": "Ce que nous ne prétendons pas",
+    "honesty": {
+      "noOffset": {
+        "title": "Ce n'est pas une compensation carbone",
+        "body": "Nous ne vendons pas de crédits carbone et nous ne prétendons pas que l'IA est neutre en carbone. Nous finançons la plantation parce que c'est un bon travail — pas comme un bilan comptable."
+      },
+      "noFarmed": {
+        "title": "De vraies plantations, pas des certificats",
+        "body": "La contribution se transforme en unités réellement plantées via des partenaires qui opèrent sur le terrain. Nous n'achetons pas de certificats de compensation génériques sur un marché."
+      },
+      "noStatistics": {
+        "title": "Nous ne gonflons pas les chiffres",
+        "body": "Les comptes agrégés affichés viennent des rapports partenaires. Quand nous arrondissons, c'est vers le bas, pas vers le haut."
+      }
+    },
+    "ctaTitle": "Abonnez-vous. Plantez des arbres. Utilisez une meilleure IA.",
+    "ctaBody": "Choisissez un plan. Utilisez les meilleurs modèles de chat au même endroit. Regardez les arbres s'accumuler dans votre compte, mois après mois.",
+    "ctaPrimary": "Commencer gratuitement",
+    "ctaSecondary": "Voir les tarifs"
   },
   "Auth": {
     "signInTitle": "Revenez sur l'espace de travail IA qui fait un peu plus.",

@@ -13,9 +13,15 @@
     "language": "Language"
   },
   "Footer": {
-    "tagline": "The best AI models in one calm workspace, with a built-in environmental contribution every paid month.",
+    "tagline": "One subscription for the world's best AI models. Every paid month funds verified reforestation through our restoration partners.",
     "productHeading": "Product",
     "companyHeading": "Company",
+    "resourcesHeading": "Resources",
+    "legalHeading": "Legal",
+    "newsletterHeading": "Get product updates",
+    "newsletterBody": "A short monthly note when we ship something new or a partner reports a planting milestone. No noise.",
+    "newsletterPlaceholder": "you@company.com",
+    "newsletterSubmit": "Subscribe",
     "links": {
       "models": "Models",
       "pricing": "Pricing",
@@ -23,9 +29,18 @@
       "impact": "Impact",
       "faq": "FAQ",
       "about": "About",
-      "contact": "Contact"
+      "contact": "Contact",
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "cookies": "Cookie policy"
     },
-    "copyright": "© {year} Vercilio. All rights reserved."
+    "social": {
+      "twitter": "Follow on X",
+      "github": "Open source on GitHub",
+      "linkedin": "Connect on LinkedIn"
+    },
+    "copyright": "© {year} Vercilio. All rights reserved.",
+    "credit": "Crafted with care · Trees grown with partners worldwide"
   },
   "About": {
     "metaTitle": "About — Vercilio",
@@ -366,6 +381,275 @@
     "send": "Send",
     "newChatTitle": "New chat",
     "inputPlaceholder": "Send a message…"
+  },
+  "Models": {
+    "metaTitle": "AI Models — Vercilio",
+    "metaDescription": "Every chat model worth using, in one workspace: GPT, Claude, Gemini, DeepSeek, Mistral, and more. Routed and ready, with credit pricing that doesn't depend on token math.",
+    "heroEyebrow": "Models",
+    "heroTitle": "Every model worth using. One subscription.",
+    "heroBody": "Vercilio routes across the world's leading conversational AI providers — OpenAI, Anthropic, Google, Meta, xAI, DeepSeek, Mistral, and more — so you can move between frontier reasoning and fast everyday work in the same window.",
+    "heroPrimary": "Start free",
+    "heroSecondary": "See pricing",
+    "providersTitle": "The providers we ship today",
+    "providersBody": "We follow new releases as they ship. Every model below is currently available in chat to subscribers, with appropriate guardrails for vision, file reading, and web search where supported.",
+    "providers": {
+      "openai": {
+        "name": "OpenAI",
+        "body": "The full GPT lineup — fast minis for everyday questions, balanced 4o-class models, and frontier GPT-5 for reasoning that benefits from a wider window."
+      },
+      "anthropic": {
+        "name": "Anthropic",
+        "body": "Claude Haiku for quick rewrites, Claude Sonnet as a dependable default, and Claude Opus when the answer needs careful, long-form thinking."
+      },
+      "google": {
+        "name": "Google",
+        "body": "Gemini Flash for speed, Gemini Pro for harder questions, and Gemini Pro Preview for the very latest from DeepMind — multimodal-native and search-aware."
+      },
+      "meta": {
+        "name": "Meta",
+        "body": "Llama models for open-weight workflows when you want a model that runs the same way many teams already self-host."
+      },
+      "xai": {
+        "name": "xAI",
+        "body": "Grok for a different point of view, with strengths in current events and casual conversational tone."
+      },
+      "deepseek": {
+        "name": "DeepSeek",
+        "body": "DeepSeek's frontier-quality reasoning models at noticeably lower cost — useful for long analysis sessions without watching the meter."
+      },
+      "mistral": {
+        "name": "Mistral",
+        "body": "Mistral and Magistral covers strong European-trained models — fast, multilingual, and tuned for production code and writing tasks."
+      },
+      "cohere": {
+        "name": "Cohere",
+        "body": "Command models built for retrieval and enterprise workflows, with a focus on multilingual document work."
+      },
+      "perplexity": {
+        "name": "Perplexity",
+        "body": "Search-grounded Sonar models when the answer should come with citations from the live web."
+      }
+    },
+    "categoriesTitle": "Pick by job, not by name",
+    "categoriesBody": "Names change every quarter. The categories below stay the same — pick the one that matches the work, and the picker filters down.",
+    "categories": {
+      "fast": {
+        "title": "Fast & affordable",
+        "body": "Short answers, quick rewrites, format conversions, and everyday Q&A. Lowest per-message cost; great for high-volume work and free-plan use."
+      },
+      "balanced": {
+        "title": "Balanced default",
+        "body": "The models you'd reach for without thinking — strong quality, fair latency, sensible cost. This is where most paid traffic goes."
+      },
+      "advanced": {
+        "title": "Advanced reasoning",
+        "body": "Multi-step problems, deeper analysis, long context. Higher per-message cost, noticeably better answers on harder questions."
+      },
+      "frontier": {
+        "title": "Frontier",
+        "body": "The latest releases from OpenAI, Anthropic, and Google. Use when an answer needs to be as good as today's best general-purpose AI can produce."
+      }
+    },
+    "featuresTitle": "Everything chat-models can do, in one place",
+    "features": {
+      "vision": {
+        "title": "Vision",
+        "body": "Drop in a screenshot, photo, diagram, or whiteboard shot. Vision-capable models read images directly inside the conversation."
+      },
+      "files": {
+        "title": "Files",
+        "body": "Attach PDFs and other documents. The model parses them inline — no separate uploader, no chunking dance."
+      },
+      "search": {
+        "title": "Web search",
+        "body": "Toggle search and the model answers with live citations. We surface the sources beneath every reply."
+      },
+      "reasoning": {
+        "title": "Reasoning effort",
+        "body": "On reasoning-capable models you can choose Low, Medium, or High. Higher effort means longer thinking and better answers on hard tasks."
+      },
+      "auto": {
+        "title": "Auto-router",
+        "body": "Let Vercilio pick the right model for each message. The router uses OpenRouter's live evaluations to send you the best fit per turn."
+      },
+      "tools": {
+        "title": "Tool use",
+        "body": "Compatible models can call tools when needed. Currently used for web search; agentic workflows are on the roadmap."
+      }
+    },
+    "ctaTitle": "Try every model on the free plan.",
+    "ctaBody": "100 credits a month, no card needed. Sample the small, balanced, and reasoning tiers; upgrade only when you want more volume and the verified environmental contribution.",
+    "ctaPrimary": "Start free",
+    "ctaSecondary": "Compare plans"
+  },
+  "Credits": {
+    "metaTitle": "How credits work — Vercilio",
+    "metaDescription": "One credit system across every model. No token math, no surprise overage charges. Find out what a chat message costs on Vercilio and how monthly credits refresh.",
+    "heroEyebrow": "Credits",
+    "heroTitle": "One credit system. Across every model.",
+    "heroBody": "Tokens are a unit for engineers, not for people thinking through a problem. Vercilio bills in plain credits — each message costs a small whole number based on the model you picked.",
+    "heroPrimary": "Start free",
+    "heroSecondary": "See pricing",
+    "howTitle": "How credits work",
+    "how": {
+      "monthly": {
+        "title": "A pool every month",
+        "body": "Each plan refreshes its credit balance at the start of every billing cycle. You don't roll over what you didn't use — the next month brings the full pool again."
+      },
+      "perMessage": {
+        "title": "Charged per message",
+        "body": "When you send a message, the model's per-message credit cost is deducted. The cost depends on the model tier — small models are 1 credit, frontier models are 12+."
+      },
+      "transparent": {
+        "title": "Shown next to every model",
+        "body": "Open the model picker and you see the credit cost next to each model. No hidden meter and no calculator math."
+      },
+      "addons": {
+        "title": "Top up without changing plans",
+        "body": "Running low mid-month? Pick a one-time credit add-on — 5k, 10k, 25k, or 50k credits — without touching your subscription tier."
+      }
+    },
+    "tiersTitle": "What different models cost",
+    "tiersBody": "Costs are stable for at least one billing cycle. If a provider drops its price meaningfully we pass that on; we don't auto-raise prices mid-cycle.",
+    "tiers": {
+      "small": {
+        "label": "Small",
+        "cost": "1 credit",
+        "body": "Fast minis from each provider — GPT-4o-mini class, Claude Haiku, Gemini Flash Lite."
+      },
+      "standard": {
+        "label": "Standard",
+        "cost": "3 credits",
+        "body": "Balanced everyday models — GPT-4.1-mini, Gemini Flash, mid-tier Mistral."
+      },
+      "advanced": {
+        "label": "Advanced",
+        "cost": "6 credits",
+        "body": "Capable workhorses — GPT-4.1, Claude Sonnet, Gemini Pro."
+      },
+      "premium": {
+        "label": "Premium",
+        "cost": "12 credits",
+        "body": "Strong reasoning — Claude Opus, GPT-5, DeepSeek R1."
+      },
+      "elite": {
+        "label": "Elite",
+        "cost": "20+ credits",
+        "body": "The latest frontier releases as they arrive."
+      }
+    },
+    "planPoolTitle": "What each plan gives you",
+    "planPoolBody": "Use the table on the pricing page for the full comparison; the rough shape is below.",
+    "examplesTitle": "What that looks like in practice",
+    "examples": {
+      "writer": {
+        "title": "Writer mostly drafting & rewriting",
+        "body": "Maybe 80 messages a day on a standard model. Basic plan covers that with room to use frontier models a couple of times per session."
+      },
+      "researcher": {
+        "title": "Researcher running deeper analyses",
+        "body": "Fewer messages but mostly advanced or premium models with web search on. Starter or Pro gives the headroom needed."
+      },
+      "developer": {
+        "title": "Developer in heavy code mode",
+        "body": "Lots of small back-and-forth on a balanced model. Pro keeps you under the daily message limit without thinking about it."
+      }
+    },
+    "faqTitle": "Common questions",
+    "faqs": {
+      "rollover": {
+        "question": "Do credits roll over?",
+        "answer": "Monthly plan credits reset each cycle. One-time add-on credits stay available while your account is active."
+      },
+      "refund": {
+        "question": "What if a message fails halfway through?",
+        "answer": "We only finalize the charge on a successful response. A failed stream refunds any partial deduction automatically."
+      },
+      "fairness": {
+        "question": "Is there a hidden token-based cap?",
+        "answer": "Credits per message are fixed by tier, regardless of message length. We absorb the variance on our side."
+      },
+      "limit": {
+        "question": "What happens if I run out?",
+        "answer": "You can still chat on free-tier models for the rest of the cycle, or buy an add-on. We never auto-charge your card on overflow."
+      }
+    },
+    "ctaTitle": "Predictable credits. Real models.",
+    "ctaBody": "Start with 100 free credits a month. Upgrade when you want the headroom — and the monthly environmental contribution that comes with it.",
+    "ctaPrimary": "Start free",
+    "ctaSecondary": "See pricing"
+  },
+  "Impact": {
+    "metaTitle": "Environmental impact — Vercilio",
+    "metaDescription": "Every paid Vercilio subscription funds verified tree planting through our long-term restoration partners. Here's how the contribution flow works and what gets reported.",
+    "heroEyebrow": "Impact",
+    "heroTitle": "Every subscription plants real trees.",
+    "heroBody": "Vercilio keeps a small, fixed margin on every plan. The remainder is routed to long-term restoration partners on three continents. You see exactly what your subscription has funded inside your account.",
+    "heroPrimary": "Start free",
+    "heroSecondary": "See partners below",
+    "summary": {
+      "trees": "3.9M+",
+      "treesLabel": "trees planted through our partner network",
+      "species": "150+",
+      "speciesLabel": "tree species represented across project sites",
+      "maturity": "85%+",
+      "maturityLabel": "average tree maturity reported across partner programs",
+      "years": "15+ years",
+      "yearsLabel": "of partner stewardship commitments behind every planting"
+    },
+    "partnersTitle": "Who's actually planting the trees",
+    "partnersBody": "We don't run the planting. We fund and report on the work of partners with verifiable on-the-ground programs.",
+    "partners": {
+      "mangrove": {
+        "title": "Mangrove restoration",
+        "region": "Brazil & Kenya",
+        "body": "Coastal mangrove regeneration with community planting teams. Mangroves protect shorelines, build biodiversity, and store carbon faster than most upland forests."
+      },
+      "arbor": {
+        "title": "Native forest planting",
+        "region": "North America",
+        "body": "Native-species reforestation across the United States and Canada, in partnership with long-running forestry programs that track species diversity and survival."
+      }
+    },
+    "howTitle": "How a payment becomes a tree",
+    "howBody": "Behind every subscription is a clean, auditable path from card charge to planted unit.",
+    "how": {
+      "step1": {
+        "title": "You subscribe",
+        "body": "A successful Stripe payment lands. Your plan upgrades and your monthly credits land instantly."
+      },
+      "step2": {
+        "title": "A contribution event is recorded",
+        "body": "Vercilio records the per-payment contribution and converts it into specific planting units (e.g. 12 mangrove + 3 native trees for the Starter plan)."
+      },
+      "step3": {
+        "title": "Trees are planted by partners",
+        "body": "Within the next planting window, partner field teams plant the corresponding units. Each contribution is logged against your account."
+      },
+      "step4": {
+        "title": "You can see the receipts",
+        "body": "Your contribution dashboard shows every event, the trees attributed to your account, and the running community total."
+      }
+    },
+    "honestyTitle": "What we don't claim",
+    "honesty": {
+      "noOffset": {
+        "title": "This isn't a carbon offset",
+        "body": "We do not sell carbon credits and we do not claim that using AI is carbon-neutral. We fund tree planting because it's good work — not as a balance sheet."
+      },
+      "noFarmed": {
+        "title": "Real planting, not certificates",
+        "body": "The contribution converts into actual planted units through partners with field operations. We do not buy generic offset certificates from an exchange."
+      },
+      "noStatistics": {
+        "title": "We don't inflate the numbers",
+        "body": "The aggregate counts you see come from partner reporting. We round down when we round, not up."
+      }
+    },
+    "ctaTitle": "Subscribe. Plant trees. Use better AI.",
+    "ctaBody": "Pick a plan. Use the best chat models in one place. Watch the trees stack up inside your account, month after month.",
+    "ctaPrimary": "Start free",
+    "ctaSecondary": "See pricing"
   },
   "Auth": {
     "signInTitle": "Come back to the AI workspace that does a little more.",
