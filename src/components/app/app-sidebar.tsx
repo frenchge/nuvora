@@ -292,25 +292,11 @@ export function AppSidebar({
 
           {/* ── New Chat button ── */}
           <div className={cn("px-3 pb-3", collapsed && "flex justify-center")}>
-            {collapsed ? (
-              <Link
-                href="/chat"
-                onClick={onCloseMobile}
-                className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm transition hover:opacity-90"
-                aria-label="New Chat"
-              >
-                <Plus className="h-4 w-4" />
-              </Link>
-            ) : (
-              <Link
-                href="/chat"
-                onClick={onCloseMobile}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90"
-              >
-                <Plus className="h-4 w-4" />
-                New Chat
-              </Link>
-            )}
+            <NewChatButton
+              collapsed={collapsed}
+              pathname={pathname}
+              onAfterClick={onCloseMobile}
+            />
           </div>
 
           {/* ── Search ── */}
@@ -714,6 +700,60 @@ function ModeTabIcon({
       className={cn(baseClasses, active ? activeClasses : idleClasses)}
     >
       <Icon className="h-4 w-4" />
+    </Link>
+  );
+}
+
+function NewChatButton({
+  collapsed,
+  pathname,
+  onAfterClick,
+}: {
+  collapsed: boolean;
+  pathname: string | null;
+  onAfterClick: () => void;
+}) {
+  const router = useRouter();
+
+  // chat-client rewrites the URL to /chat/<id> via history.replaceState after
+  // a new chat is created, which Next's router never learns about. A plain
+  // <Link href="/chat"> then short-circuits as "already there" and nothing
+  // happens. Force a real navigation when we detect that mismatch.
+  function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    onAfterClick();
+    if (pathname?.startsWith("/chat/")) {
+      e.preventDefault();
+      window.location.href = "/chat";
+      return;
+    }
+    // Already on /chat (the new-chat page): refresh state so any in-memory
+    // greeting/draft from the previous visit clears.
+    if (pathname === "/chat") {
+      e.preventDefault();
+      router.refresh();
+    }
+  }
+
+  if (collapsed) {
+    return (
+      <Link
+        href="/chat"
+        onClick={handleClick}
+        className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm transition hover:opacity-90"
+        aria-label="New Chat"
+      >
+        <Plus className="h-4 w-4" />
+      </Link>
+    );
+  }
+  return (
+    <Link
+      href="/chat"
+      onClick={handleClick}
+      className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90"
+    >
+      <Plus className="h-4 w-4" />
+      New Chat
     </Link>
   );
 }
