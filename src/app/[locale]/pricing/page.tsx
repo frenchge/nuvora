@@ -124,14 +124,14 @@ export default async function PricingPage({
 
           <div className="overflow-x-auto">
             <div className="min-w-[860px] border-b border-border/60">
-              <div className="grid grid-cols-[220px_repeat(4,minmax(0,1fr))]">
+              <div className="grid grid-cols-[220px_repeat(4,minmax(0,1fr))] border-b border-border/60">
                 <div aria-hidden />
                 {PLAN_ORDER.map((plan) => {
                   const current = PLAN_DISPLAY[plan];
                   return (
                     <div
                       key={plan}
-                      className="border-b border-l border-t border-border/60 px-5 py-5 text-left"
+                      className="border-l border-border/60 px-5 py-5 text-left"
                     >
                       <div className="flex items-center gap-2">
                         <div className="text-base font-semibold">
