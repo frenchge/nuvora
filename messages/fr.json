@@ -283,6 +283,88 @@
     },
     "readFullFaq": "Lire la FAQ complète"
   },
+  "Sidebar": {
+    "modes": {
+      "chat": "Chat",
+      "canva": "Canva",
+      "code": "Code"
+    },
+    "comingSoon": "Bientôt disponible",
+    "newChat": "Nouveau chat",
+    "newChatAria": "Nouveau chat",
+    "searchPlaceholder": "Rechercher vos conversations...",
+    "loading": "Chargement…",
+    "pinned": "Épinglés",
+    "recent": "Récents",
+    "noMatches": "Aucune conversation correspondante",
+    "noChats": "Aucune conversation",
+    "untitled": "Sans titre",
+    "admin": "Admin",
+    "community": "Communauté",
+    "settings": "Paramètres",
+    "signOut": "Se déconnecter",
+    "closeSidebar": "Fermer la barre latérale",
+    "expandSidebar": "Étendre la barre latérale",
+    "collapseSidebar": "Réduire la barre latérale",
+    "conversationOptions": "Options de la conversation",
+    "pin": "Épingler",
+    "unpin": "Désépingler",
+    "rename": "Renommer",
+    "delete": "Supprimer",
+    "renamePrompt": "Renommer le chat",
+    "deleteDialog": {
+      "title": "Supprimer la conversation ?",
+      "bodyPrefix": "Cela supprimera définitivement",
+      "bodyFallback": "cette conversation",
+      "bodySuffix": ". Cette action est irréversible.",
+      "cancel": "Annuler",
+      "confirm": "Supprimer"
+    }
+  },
+  "Chat": {
+    "greetingHeading": "Comment puis-je vous aider aujourd'hui ?",
+    "greetingCategories": {
+      "create": "Créer",
+      "explore": "Explorer",
+      "code": "Coder",
+      "learn": "Apprendre"
+    },
+    "greetingPrompts": {
+      "create": [
+        "Rédige un email de prospection à froid qui ne ressemble pas à un email de prospection à froid.",
+        "Écris une histoire du soir d'une page qu'un enfant de 6 ans voudra écouter deux fois.",
+        "Aide-moi à nommer un projet — donne-moi 10 options avec le raisonnement.",
+        "Transforme mes notes brutes en un post LinkedIn percutant. Demande-moi d'abord les notes."
+      ],
+      "explore": [
+        "Quelle est une habitude non évidente qui se compose discrètement sur une décennie ?",
+        "Compare vivre à Lisbonne, Mexico et Bali pour un travailleur à distance.",
+        "Explique pourquoi certains pays sont riches et d'autres non — sans simplifier à l'extrême.",
+        "Donne-moi trois opinions à contre-courant sur l'IA que des gens intelligents soutiennent vraiment."
+      ],
+      "code": [
+        "Relis cette fonction et dis-moi ce qu'un ingénieur senior changerait. Je vais la coller.",
+        "Aide-moi à concevoir le modèle de données pour un tracker d'habitudes avec séries et historique.",
+        "Guide-moi pour mettre en place l'auth dans une app Next.js, avec les arbitrages de chaque option.",
+        "J'ai un test instable. Demande-moi ce que je sais et aide-moi à le diagnostiquer."
+      ],
+      "learn": [
+        "Apprends-moi les bases du fonctionnement d'un transformer, avec un exemple concret.",
+        "Donne-moi un plan de 4 semaines pour vraiment savoir lire des états financiers.",
+        "Explique la pensée bayésienne avec une décision concrète que je pourrais avoir cette semaine.",
+        "Décris ce qui se passe vraiment quand je tape une URL et appuie sur Entrée."
+      ]
+    },
+    "copy": "Copier",
+    "copied": "Copié",
+    "retry": "Réessayer",
+    "sources": "Sources",
+    "thinking": "Réflexion…",
+    "stop": "Stop",
+    "send": "Envoyer",
+    "newChatTitle": "Nouveau chat",
+    "inputPlaceholder": "Envoyer un message…"
+  },
   "Auth": {
     "signInTitle": "Revenez sur l'espace de travail IA qui fait un peu plus.",
     "signInSubtitle": "Connectez-vous pour reprendre vos chats, vos crédits, et la contribution environnementale que votre compte aide à financer.",

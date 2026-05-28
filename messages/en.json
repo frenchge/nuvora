@@ -283,6 +283,88 @@
     },
     "readFullFaq": "Read the full FAQ"
   },
+  "Sidebar": {
+    "modes": {
+      "chat": "Chat",
+      "canva": "Canva",
+      "code": "Code"
+    },
+    "comingSoon": "Coming soon",
+    "newChat": "New Chat",
+    "newChatAria": "New Chat",
+    "searchPlaceholder": "Search your threads...",
+    "loading": "Loading…",
+    "pinned": "Pinned",
+    "recent": "Recent",
+    "noMatches": "No matching chats",
+    "noChats": "No chats yet",
+    "untitled": "Untitled",
+    "admin": "Admin",
+    "community": "Community",
+    "settings": "Settings",
+    "signOut": "Sign out",
+    "closeSidebar": "Close sidebar",
+    "expandSidebar": "Expand sidebar",
+    "collapseSidebar": "Collapse sidebar",
+    "conversationOptions": "Conversation options",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "rename": "Rename",
+    "delete": "Delete",
+    "renamePrompt": "Rename chat",
+    "deleteDialog": {
+      "title": "Delete conversation?",
+      "bodyPrefix": "This will permanently remove",
+      "bodyFallback": "this conversation",
+      "bodySuffix": ". This action can't be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete"
+    }
+  },
+  "Chat": {
+    "greetingHeading": "How can I help you today?",
+    "greetingCategories": {
+      "create": "Create",
+      "explore": "Explore",
+      "code": "Code",
+      "learn": "Learn"
+    },
+    "greetingPrompts": {
+      "create": [
+        "Draft a cold outreach email that doesn't feel like a cold outreach email.",
+        "Write a one-page bedtime story a 6-year-old will ask to hear twice.",
+        "Help me name a side project — give me 10 options with the reasoning.",
+        "Turn my rough notes into a tight LinkedIn post. Ask me for the notes first."
+      ],
+      "explore": [
+        "What's a non-obvious habit that quietly compounds over a decade?",
+        "Compare living in Lisbon, Mexico City, and Bali for a remote worker.",
+        "Explain why some countries are rich and others aren't — without oversimplifying.",
+        "Give me three contrarian takes on AI that smart people actually hold."
+      ],
+      "code": [
+        "Review this function and tell me what a senior engineer would change. I'll paste it.",
+        "Help me design the data model for a habit tracker that supports streaks and history.",
+        "Walk me through setting up auth in a Next.js app, with the trade-offs of each option.",
+        "I'm getting a flaky test. Ask me what I know and help me diagnose it."
+      ],
+      "learn": [
+        "Teach me the basics of how a transformer model actually works, with one running example.",
+        "Give me a 4-week plan to get genuinely comfortable reading financial statements.",
+        "Explain Bayesian thinking using a concrete decision I might face this week.",
+        "Walk me through what actually happens when I type a URL and hit enter."
+      ]
+    },
+    "copy": "Copy",
+    "copied": "Copied",
+    "retry": "Retry",
+    "sources": "Sources",
+    "thinking": "Thinking…",
+    "stop": "Stop",
+    "send": "Send",
+    "newChatTitle": "New chat",
+    "inputPlaceholder": "Send a message…"
+  },
   "Auth": {
     "signInTitle": "Come back to the AI workspace that does a little more.",
     "signInSubtitle": "Sign in to pick up your chats, your credits, and the environmental contribution your account helps fund.",

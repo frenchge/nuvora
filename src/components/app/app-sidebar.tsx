@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { SignOutButton } from "@clerk/nextjs";
 import * as Dialog from "@radix-ui/react-dialog";
 import { usePathname, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useConvexAuth, useMutation, useQuery } from "convex/react";
 import {
   ChevronDown,
@@ -52,6 +53,7 @@ function ChatRow({
   onDelete: (id: string) => void;
   onTogglePin: (id: string) => void;
 }) {
+  const t = useTranslations("Sidebar");
   return (
     <div
       className={cn(
@@ -68,7 +70,7 @@ function ChatRow({
         title={chat.title}
       >
         <span className="block truncate text-sm text-foreground/85">
-          {chat.title || "Untitled"}
+          {chat.title || t("untitled")}
         </span>
       </Link>
 
@@ -77,7 +79,7 @@ function ChatRow({
           <button
             type="button"
             className="mr-1.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-muted-foreground opacity-0 transition hover:bg-accent group-hover:opacity-100 focus-visible:opacity-100"
-            aria-label="Conversation options"
+            aria-label={t("conversationOptions")}
           >
             <MoreHorizontal className="h-3.5 w-3.5" />
           </button>
@@ -87,23 +89,23 @@ function ChatRow({
             {chat.pinned ? (
               <>
                 <PinOff className="mr-2 h-3.5 w-3.5" />
-                Unpin
+                {t("unpin")}
               </>
             ) : (
               <>
                 <Pin className="mr-2 h-3.5 w-3.5" />
-                Pin
+                {t("pin")}
               </>
             )}
           </DropdownMenuItem>
           <DropdownMenuItem onSelect={() => onRename(chat.id)}>
-            Rename
+            {t("rename")}
           </DropdownMenuItem>
           <DropdownMenuItem
             onSelect={() => onDelete(chat.id)}
             className="text-destructive focus:text-destructive"
           >
-            Delete
+            {t("delete")}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -126,6 +128,7 @@ export function AppSidebar({
 }) {
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations("Sidebar");
   const { isLoading, isAuthenticated } = useConvexAuth();
   const chats = useQuery(api.chats.listRecent, isAuthenticated ? {} : "skip");
   const profile = useQuery(api.users.me, isAuthenticated ? {} : "skip");
@@ -164,7 +167,7 @@ export function AppSidebar({
   }, [recentChats, searchQuery]);
 
   async function onRename(chatId: string) {
-    const next = window.prompt("Rename chat", "");
+    const next = window.prompt(t("renamePrompt"), "");
     if (!next || !next.trim()) return;
     await renameChat({ chatId: chatId as never, title: next.trim() });
   }
@@ -223,7 +226,7 @@ export function AppSidebar({
                 "rounded-lg p-1.5 text-muted-foreground hover:bg-accent/50 md:hidden",
                 !collapsed && "ml-auto",
               )}
-              aria-label="Close sidebar"
+              aria-label={t("closeSidebar")}
             >
               <X className="h-4 w-4" />
             </button>
@@ -235,7 +238,7 @@ export function AppSidebar({
                 "hidden rounded-lg p-1.5 text-muted-foreground hover:bg-accent/50 md:inline-flex",
                 !collapsed && "ml-auto",
               )}
-              aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+              aria-label={collapsed ? t("expandSidebar") : t("collapseSidebar")}
             >
               {collapsed ? (
                 <PanelLeftOpen className="h-4 w-4" />
@@ -251,40 +254,40 @@ export function AppSidebar({
               <>
                 <ModeTabIcon
                   icon={MessageSquare}
-                  label="Chat"
+                  label={t("modes.chat")}
                   active={pathname.startsWith("/chat")}
                   href="/chat"
                   onCloseMobile={onCloseMobile}
                 />
                 <ModeTabIcon
                   icon={ImageIcon}
-                  label="Canva"
-                  disabledTooltip="Coming soon"
+                  label={t("modes.canva")}
+                  disabledTooltip={t("comingSoon")}
                 />
                 <ModeTabIcon
                   icon={Code2}
-                  label="Code"
-                  disabledTooltip="Coming soon"
+                  label={t("modes.code")}
+                  disabledTooltip={t("comingSoon")}
                 />
               </>
             ) : (
               <div className="grid grid-cols-3 gap-1.5">
                 <ModeTabPill
                   icon={MessageSquare}
-                  label="Chat"
+                  label={t("modes.chat")}
                   active={pathname.startsWith("/chat")}
                   href="/chat"
                   onCloseMobile={onCloseMobile}
                 />
                 <ModeTabPill
                   icon={ImageIcon}
-                  label="Canva"
-                  disabledTooltip="Coming soon"
+                  label={t("modes.canva")}
+                  disabledTooltip={t("comingSoon")}
                 />
                 <ModeTabPill
                   icon={Code2}
-                  label="Code"
-                  disabledTooltip="Coming soon"
+                  label={t("modes.code")}
+                  disabledTooltip={t("comingSoon")}
                 />
               </div>
             )}
@@ -308,7 +311,7 @@ export function AppSidebar({
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search your threads..."
+                  placeholder={t("searchPlaceholder")}
                   className="min-w-0 flex-1 bg-transparent text-xs text-foreground outline-none placeholder:text-muted-foreground"
                 />
                 {searchQuery && (
@@ -328,7 +331,7 @@ export function AppSidebar({
           <div className="flex-1 overflow-y-auto px-2 pb-2 scrollbar-thin">
             {(isLoading || chats === undefined) && !collapsed && (
               <div className="px-2 py-2 text-xs text-muted-foreground">
-                Loading…
+                {t("loading")}
               </div>
             )}
 
@@ -344,7 +347,7 @@ export function AppSidebar({
                     >
                       <Pin className="h-3 w-3 shrink-0 text-muted-foreground" />
                       <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                        Pinned
+                        {t("pinned")}
                       </span>
                       <ChevronDown
                         className={cn(
@@ -367,7 +370,7 @@ export function AppSidebar({
                                 id,
                                 title:
                                   allChats.find((chat) => chat.id === id)?.title ??
-                                  "Untitled",
+                                  t("untitled"),
                               })
                             }
                             onTogglePin={onTogglePin}
@@ -382,7 +385,7 @@ export function AppSidebar({
                 {filteredPinned.length > 0 && filteredRecent.length > 0 && (
                   <div className="px-3 pb-1 pt-0.5">
                     <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                      Recent
+                      {t("recent")}
                     </span>
                   </div>
                 )}
@@ -399,7 +402,7 @@ export function AppSidebar({
                           id,
                           title:
                             allChats.find((chat) => chat.id === id)?.title ??
-                            "Untitled",
+                            t("untitled"),
                         })
                       }
                       onTogglePin={onTogglePin}
@@ -411,7 +414,7 @@ export function AppSidebar({
                   filteredPinned.length === 0 &&
                   filteredRecent.length === 0 && (
                     <div className="px-3 py-2 text-xs text-muted-foreground">
-                      {searchQuery ? "No matching chats" : "No chats yet"}
+                      {searchQuery ? t("noMatches") : t("noChats")}
                     </div>
                   )}
               </>
@@ -452,7 +455,7 @@ export function AppSidebar({
                       "mx-auto flex h-9 w-9 items-center justify-center rounded-xl text-muted-foreground transition hover:bg-accent/50 hover:text-foreground",
                       pathname === "/admin" && "bg-accent/70 text-foreground",
                     )}
-                    aria-label="Admin"
+                    aria-label={t("admin")}
                   >
                     <Shield className="h-4 w-4" />
                   </Link>
@@ -466,7 +469,7 @@ export function AppSidebar({
                     pathname === "/contribution" &&
                       "bg-accent/70 text-foreground",
                   )}
-                  aria-label="Community"
+                  aria-label={t("community")}
                 >
                   <Leaf className="h-4 w-4" />
                 </Link>
@@ -478,7 +481,7 @@ export function AppSidebar({
                     "mx-auto flex h-9 w-9 items-center justify-center rounded-xl text-muted-foreground transition hover:bg-accent/50 hover:text-foreground",
                     pathname === "/settings" && "bg-accent/70 text-foreground",
                   )}
-                  aria-label="Settings"
+                  aria-label={t("settings")}
                 >
                   <Settings className="h-4 w-4" />
                 </Link>
@@ -486,7 +489,7 @@ export function AppSidebar({
                   <button
                     type="button"
                     className="mx-auto flex h-9 w-9 items-center justify-center rounded-xl text-muted-foreground transition hover:bg-accent/50 hover:text-foreground"
-                    aria-label="Sign out"
+                    aria-label={t("signOut")}
                   >
                     <LogOut className="h-4 w-4" />
                   </button>
@@ -505,7 +508,7 @@ export function AppSidebar({
                     )}
                   >
                     <Shield className="h-4 w-4" />
-                    Admin
+                    {t("admin")}
                   </Link>
                 )}
                 <Link
@@ -519,7 +522,7 @@ export function AppSidebar({
                   )}
                 >
                   <Leaf className="h-4 w-4" />
-                  Community
+                  {t("community")}
                 </Link>
                 <Link
                   href="/settings"
@@ -532,7 +535,7 @@ export function AppSidebar({
                   )}
                 >
                   <Settings className="h-4 w-4" />
-                  Settings
+                  {t("settings")}
                 </Link>
                 <SignOutButton redirectUrl="/">
                   <button
@@ -540,7 +543,7 @@ export function AppSidebar({
                     className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground transition hover:bg-accent/50 hover:text-foreground"
                   >
                     <LogOut className="h-4 w-4" />
-                    Sign out
+                    {t("signOut")}
                   </button>
                 </SignOutButton>
               </>
@@ -560,14 +563,14 @@ export function AppSidebar({
           <Dialog.Overlay className="fixed inset-0 z-[70] bg-black/35 backdrop-blur-sm" />
           <Dialog.Content className="fixed left-1/2 top-1/2 z-[71] w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-[1.75rem] border border-border/60 bg-background p-6 shadow-2xl">
             <Dialog.Title className="text-xl font-semibold tracking-tight">
-              Delete conversation?
+              {t("deleteDialog.title")}
             </Dialog.Title>
             <Dialog.Description className="mt-2 text-sm leading-6 text-muted-foreground">
-              This will permanently remove{" "}
+              {t("deleteDialog.bodyPrefix")}{" "}
               <span className="font-medium text-foreground">
-                {deleteTarget?.title || "this conversation"}
+                {deleteTarget?.title || t("deleteDialog.bodyFallback")}
               </span>
-              . This action can’t be undone.
+              {t("deleteDialog.bodySuffix")}
             </Dialog.Description>
 
             <div className="mt-6 flex items-center justify-end gap-3">
@@ -576,7 +579,7 @@ export function AppSidebar({
                   type="button"
                   className="rounded-full border border-border/60 px-4 py-2 text-sm font-medium text-muted-foreground transition hover:bg-accent/50 hover:text-foreground"
                 >
-                  Cancel
+                  {t("deleteDialog.cancel")}
                 </button>
               </Dialog.Close>
               <button
@@ -587,7 +590,7 @@ export function AppSidebar({
                 }}
                 className="rounded-full bg-destructive px-4 py-2 text-sm font-medium text-destructive-foreground transition hover:opacity-90"
               >
-                Delete
+                {t("deleteDialog.confirm")}
               </button>
             </div>
           </Dialog.Content>
@@ -714,6 +717,7 @@ function NewChatButton({
   onAfterClick: () => void;
 }) {
   const router = useRouter();
+  const t = useTranslations("Sidebar");
 
   // chat-client rewrites the URL to /chat/<id> via history.replaceState after
   // a new chat is created, which Next's router never learns about. A plain
@@ -740,7 +744,7 @@ function NewChatButton({
         href="/chat"
         onClick={handleClick}
         className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm transition hover:opacity-90"
-        aria-label="New Chat"
+        aria-label={t("newChatAria")}
       >
         <Plus className="h-4 w-4" />
       </Link>
@@ -753,7 +757,7 @@ function NewChatButton({
       className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90"
     >
       <Plus className="h-4 w-4" />
-      New Chat
+      {t("newChat")}
     </Link>
   );
 }

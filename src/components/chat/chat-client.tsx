@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { api } from "@convex/_generated/api";
 import { useConvexAuth, useQuery } from "convex/react";
+import { useTranslations } from "next-intl";
 import * as Dialog from "@radix-ui/react-dialog";
 import {
   Send,
@@ -86,41 +87,14 @@ type GreetingCategoryKey = "create" | "explore" | "code" | "learn";
 
 const GREETING_CATEGORIES: ReadonlyArray<{
   key: GreetingCategoryKey;
-  label: string;
   icon: typeof Wand2;
 }> = [
-  { key: "create", label: "Create", icon: Wand2 },
-  { key: "explore", label: "Explore", icon: Compass },
-  { key: "code", label: "Code", icon: Code2 },
-  { key: "learn", label: "Learn", icon: BookOpen },
+  { key: "create", icon: Wand2 },
+  { key: "explore", icon: Compass },
+  { key: "code", icon: Code2 },
+  { key: "learn", icon: BookOpen },
 ];
 
-const GREETING_PROMPTS: Record<GreetingCategoryKey, string[]> = {
-  create: [
-    "Draft a cold outreach email that doesn't feel like a cold outreach email.",
-    "Write a one-page bedtime story a 6-year-old will ask to hear twice.",
-    "Help me name a side project — give me 10 options with the reasoning.",
-    "Turn my rough notes into a tight LinkedIn post. Ask me for the notes first.",
-  ],
-  explore: [
-    "What's a non-obvious habit that quietly compounds over a decade?",
-    "Compare living in Lisbon, Mexico City, and Bali for a remote worker.",
-    "Explain why some countries are rich and others aren't — without oversimplifying.",
-    "Give me three contrarian takes on AI that smart people actually hold.",
-  ],
-  code: [
-    "Review this function and tell me what a senior engineer would change. I'll paste it.",
-    "Help me design the data model for a habit tracker that supports streaks and history.",
-    "Walk me through setting up auth in a Next.js app, with the trade-offs of each option.",
-    "I'm getting a flaky test. Ask me what I know and help me diagnose it.",
-  ],
-  learn: [
-    "Teach me the basics of how a transformer model actually works, with one running example.",
-    "Give me a 4-week plan to get genuinely comfortable reading financial statements.",
-    "Explain Bayesian thinking using a concrete decision I might face this week.",
-    "Walk me through what actually happens when I type a URL and hit enter.",
-  ],
-};
 const AUTO_SCROLL_THRESHOLD_PX = 120;
 const MAX_ATTACHMENT_SIZE_BYTES = 8 * 1024 * 1024;
 
@@ -171,6 +145,7 @@ export function ChatClient({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const shouldAutoScrollRef = useRef(true);
   const { isAuthenticated } = useConvexAuth();
+  const chatT = useTranslations("Chat");
   const creditsStatus = useQuery(
     api.credits.getCreditsStatus,
     isAuthenticated ? {} : "skip",
@@ -705,10 +680,10 @@ export function ChatClient({
               aria-hidden={input.trim().length > 0}
             >
               <h2 className="text-4xl font-semibold tracking-tight">
-                How can I help you today?
+                {chatT("greetingHeading")}
               </h2>
               <div className="mt-6 flex flex-wrap gap-2">
-                {GREETING_CATEGORIES.map(({ key, label, icon: Icon }) => {
+                {GREETING_CATEGORIES.map(({ key, icon: Icon }) => {
                   const active = greetingCategory === key;
                   return (
                     <button
@@ -723,13 +698,13 @@ export function ChatClient({
                       )}
                     >
                       <Icon className="h-4 w-4" />
-                      {label}
+                      {chatT(`greetingCategories.${key}`)}
                     </button>
                   );
                 })}
               </div>
               <div className="mt-6 flex flex-col">
-                {GREETING_PROMPTS[greetingCategory].map((suggestion) => (
+                {(chatT.raw(`greetingPrompts.${greetingCategory}`) as string[]).map((suggestion) => (
                   <button
                     key={suggestion}
                     type="button"
