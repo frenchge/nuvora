@@ -203,6 +203,86 @@
     "questionsBody": "Lisez la FAQ pour comprendre comment fonctionnent les crédits, ce qui est inclus côté impact, et comment les plans changent quand vous montez en gamme.",
     "openFaq": "Ouvrir la FAQ"
   },
+  "Home": {
+    "scrollMediaTitle": "Une IA qui fait plus avec chaque abonnement.",
+    "scrollMediaDate": "Vercilio",
+    "scrollMediaCue": "Faites défiler pour explorer",
+    "heroBadge": "Un abonnement IA. Impact environnemental intégré.",
+    "heroTitle": "Les meilleurs modèles d'IA, <accent>avec un impact réel intégré.</accent>",
+    "heroBody": "Utilisez GPT, Claude, Gemini, DeepSeek, Mistral et bien d'autres dans un espace de travail apaisé qui transforme l'usage payant en arbres réellement plantés.",
+    "heroPrimary": "Commencer gratuitement",
+    "heroSecondary": "Voir les tarifs",
+    "heroFootnote": "100 crédits gratuits par mois · Sans carte",
+    "providersEyebrow": "Routés à travers les meilleurs modèles du monde",
+    "valuesTitle": "Plus à chaque abonnement IA.",
+    "valuesBody": "Si vous payez déjà pour de l'IA, votre facture mensuelle peut faire plus que débloquer des messages.",
+    "values": {
+      "best": {
+        "title": "Utilisez les meilleures IA au même endroit.",
+        "body": "Passez d'un modèle de pointe à un modèle rapide sans casser votre flux ni jongler avec les abonnements."
+      },
+      "good": {
+        "title": "Chaque prompt peut faire un peu de bien.",
+        "body": "L'usage payant aide à financer une vraie plantation d'arbres via des partenaires environnementaux vérifiés."
+      },
+      "yours": {
+        "title": "Votre travail reste le vôtre.",
+        "body": "Les conversations restent liées à votre compte. Nous n'entraînons pas sur votre travail privé."
+      },
+      "calm": {
+        "title": "Une façon plus calme de payer l'IA.",
+        "body": "Un abonnement clair, des crédits mensuels prévisibles, et un produit qui ne cherche pas à vous crier dessus."
+      }
+    },
+    "impactEyebrow": "Impact réel",
+    "impactTitle": "Utilisez l'IA chaque jour. Aidez la planète discrètement.",
+    "impactBody": "Nos partenaires environnementaux rapportent actuellement plus de 3,9 millions d'arbres plantés, plus de 150 espèces représentées, 85 %+ de maturité moyenne, et plus de 15 ans d'engagements partenaires. L'activité payante dans Vercilio aide à financer le même type de travail vérifié et traçable.",
+    "impactPoints": {
+      "verified": "Plantation d'arbres vérifiée à partir de 0,43 $ par arbre",
+      "history": "Historique des contributions par paiement dans votre compte",
+      "longTerm": "Partenaires de plantation long terme avec diversité des espèces et suivi de survie"
+    },
+    "impactStats": {
+      "trees": "arbres plantés via nos partenaires",
+      "species": "espèces d'arbres représentées dans les projets partenaires",
+      "maturity": "maturité moyenne rapportée par les partenaires",
+      "stewardship": "engagements partenaires de gestion long terme"
+    },
+    "plansTitle": "Un plan. Tous les modèles. Plus d'impact à mesure que vous grandissez.",
+    "plansBody": "Commencez gratuitement, puis faites évoluer votre usage IA et votre contribution environnementale ensemble.",
+    "planDescFree": "Un point de départ plus léger pour un usage occasionnel.",
+    "planDescPaid": "Tous les modèles IA payants inclus dans chaque plan payant.",
+    "planPopular": "Populaire",
+    "planPerMonth": "/mois",
+    "planCreditsLine": "{credits} crédits / mois",
+    "planTreesLine": "{trees} arbres plantés chaque mois",
+    "planEcoBadge": "Contribution environnementale incluse",
+    "seeFullPricing": "Voir les tarifs complets",
+    "ctaTitle": "L'abonnement IA qui rend quelque chose en retour.",
+    "ctaBody": "Essayez Vercilio gratuitement, puis passez à un plan supérieur quand vous voulez plus de crédits et une contribution mensuelle plus grande à la plantation d'arbres.",
+    "ctaPrimary": "Commencer gratuitement",
+    "faqTitle": "Les questions qu'on nous pose.",
+    "faqBody": "En résumé : ça fonctionne comme l'abonnement IA que vous connaissez déjà, sauf que votre usage payant aide aussi à financer un vrai travail environnemental.",
+    "faqItems": {
+      "models": {
+        "question": "Est-ce que je perds l'accès aux grands modèles sur les plans payants moins chers ?",
+        "answer": "Non. Chaque plan payant inclut le même catalogue payant de modèles conversationnels. La différence porte sur les crédits, la marge quotidienne et la contribution environnementale."
+      },
+      "free": {
+        "question": "Qu'est-ce qui se passe avec le plan gratuit ?",
+        "answer": "Vous avez un solde mensuel de crédits plus petit et l'accès à un mix de modèles gratuits plus léger, pour essayer le produit avant de vous engager."
+      },
+      "fund": {
+        "question": "Que finance exactement mon abonnement ?",
+        "answer": "Chaque plan payant aide à financer une plantation d'arbres via nos partenaires de restauration. Les paliers supérieurs plantent simplement plus chaque mois."
+      },
+      "uploads": {
+        "question": "Puis-je uploader des fichiers, des images et faire des recherches web ?",
+        "answer": "Oui. Vercilio est construit autour du travail conversationnel : recherche, lecture de fichiers et compréhension d'images font partie de l'expérience principale."
+      }
+    },
+    "readFullFaq": "Lire la FAQ complète"
+  },
   "Auth": {
     "signInTitle": "Revenez sur l'espace de travail IA qui fait un peu plus.",
     "signInSubtitle": "Connectez-vous pour reprendre vos chats, vos crédits, et la contribution environnementale que votre compte aide à financer.",

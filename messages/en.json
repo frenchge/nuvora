@@ -203,6 +203,86 @@
     "questionsBody": "Read the FAQ for how credits work, what impact is included, and how plans change when you upgrade.",
     "openFaq": "Open FAQ"
   },
+  "Home": {
+    "scrollMediaTitle": "AI that does more with every subscription.",
+    "scrollMediaDate": "Vercilio",
+    "scrollMediaCue": "Scroll to explore",
+    "heroBadge": "One AI subscription. Built-in environmental impact.",
+    "heroTitle": "The best AI models, <accent>with real impact built in.</accent>",
+    "heroBody": "Use GPT, Claude, Gemini, DeepSeek, Mistral, and more in one calm workspace that turns paid usage into verified trees planted.",
+    "heroPrimary": "Start free",
+    "heroSecondary": "See pricing",
+    "heroFootnote": "100 free credits a month · No card required",
+    "providersEyebrow": "Routed across the world's leading models",
+    "valuesTitle": "More from every AI subscription.",
+    "valuesBody": "If you already pay for AI, your monthly bill can do more than just unlock messages.",
+    "values": {
+      "best": {
+        "title": "Use the best AI in one place.",
+        "body": "Move between frontier and fast models without breaking your flow or juggling subscriptions."
+      },
+      "good": {
+        "title": "Every prompt can do some good.",
+        "body": "Paid usage helps fund real tree planting through vetted environmental partners."
+      },
+      "yours": {
+        "title": "Your work stays yours.",
+        "body": "Conversations stay tied to your account. We do not train on your private work."
+      },
+      "calm": {
+        "title": "A calmer way to pay for AI.",
+        "body": "One clear subscription, predictable monthly credits, and a product that doesn't try to shout at you."
+      }
+    },
+    "impactEyebrow": "Real impact",
+    "impactTitle": "Use AI daily. Help the planet quietly.",
+    "impactBody": "Our environmental partners currently report more than 3.9 million trees planted, 150+ species represented, 85%+ average tree maturity, and 15+ year partner commitments. Paid activity inside Vercilio helps fund the same kind of verified, trackable work.",
+    "impactPoints": {
+      "verified": "Verified tree planting from $0.43 per tree",
+      "history": "Per-payment contribution history inside your account",
+      "longTerm": "Long-term planting partners with species diversity and survival tracking"
+    },
+    "impactStats": {
+      "trees": "trees planted through our partners",
+      "species": "tree species represented across partner projects",
+      "maturity": "average tree maturity reported by partners",
+      "stewardship": "partner stewardship commitments"
+    },
+    "plansTitle": "One plan. Every model. More impact as you grow.",
+    "plansBody": "Start free, then scale your AI usage and your environmental contribution together.",
+    "planDescFree": "A lighter starting point for occasional use.",
+    "planDescPaid": "All paid AI models included on every paid plan.",
+    "planPopular": "Popular",
+    "planPerMonth": "/mo",
+    "planCreditsLine": "{credits} credits / month",
+    "planTreesLine": "{trees} trees planted each month",
+    "planEcoBadge": "Environmental contribution included",
+    "seeFullPricing": "See full pricing",
+    "ctaTitle": "The AI subscription that gives something back.",
+    "ctaBody": "Try Vercilio for free, then upgrade when you want more credits and a bigger monthly contribution to tree planting.",
+    "ctaPrimary": "Start free",
+    "faqTitle": "Questions people usually ask.",
+    "faqBody": "The short version: it works like the AI subscription you already know, except your paid usage also helps fund real environmental work.",
+    "faqItems": {
+      "models": {
+        "question": "Do I lose access to the big models on cheaper paid plans?",
+        "answer": "No. Every paid plan includes the same paid conversational model catalog. The differences are credits, daily room, and environmental contribution."
+      },
+      "free": {
+        "question": "What happens on the free plan?",
+        "answer": "You get a smaller monthly credit pool and access to a lighter free-model mix, so you can try the product before committing."
+      },
+      "fund": {
+        "question": "What exactly does my subscription fund?",
+        "answer": "Every paid plan helps fund tree planting through our restoration partners. Higher tiers simply plant more each month."
+      },
+      "uploads": {
+        "question": "Can I upload files, images, and search the web?",
+        "answer": "Yes. Vercilio is built around conversational work, so search, file reading, and image understanding are part of the core experience."
+      }
+    },
+    "readFullFaq": "Read the full FAQ"
+  },
   "Auth": {
     "signInTitle": "Come back to the AI workspace that does a little more.",
     "signInSubtitle": "Sign in to pick up your chats, your credits, and the environmental contribution your account helps fund.",
