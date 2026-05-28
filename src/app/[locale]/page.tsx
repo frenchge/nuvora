@@ -46,6 +46,7 @@ export default async function LandingPage({
         posterSrc="https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg"
         bgImageSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYMNjMlBUYHaeYpxduXPVNwf8mnFA61L7rkcoS"
         title={t("scrollMediaTitle")}
+        subtitle={t("scrollMediaSubtitle")}
         date={t("scrollMediaDate")}
         scrollToExpand={t("scrollMediaCue")}
         textBlend

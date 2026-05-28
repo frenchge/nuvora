@@ -17,6 +17,7 @@ interface ScrollExpandMediaProps {
   posterSrc?: string;
   bgImageSrc: string;
   title?: string;
+  subtitle?: string;
   date?: string;
   scrollToExpand?: string;
   textBlend?: boolean;
@@ -29,6 +30,7 @@ const ScrollExpandMedia = ({
   posterSrc,
   bgImageSrc,
   title,
+  subtitle,
   date,
   scrollToExpand,
   textBlend,
@@ -314,6 +316,16 @@ const ScrollExpandMedia = ({
                 >
                   {restOfTitle}
                 </motion.h2>
+                {subtitle && (
+                  <motion.p
+                    className='mt-2 max-w-xl text-balance text-center text-base font-medium text-blue-200/85 md:text-lg lg:text-xl'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 - scrollProgress }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {subtitle}
+                  </motion.p>
+                )}
               </div>
             </div>
 

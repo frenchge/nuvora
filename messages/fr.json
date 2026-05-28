@@ -205,12 +205,13 @@
     "openFaq": "Ouvrir la FAQ"
   },
   "Home": {
-    "scrollMediaTitle": "Une IA qui fait plus avec chaque abonnement.",
+    "scrollMediaTitle": "L'avenir de l'IA peut aussi être durable.",
+    "scrollMediaSubtitle": "Chaque abonnement finance la reforestation.",
     "scrollMediaDate": "Vercilio",
     "scrollMediaCue": "Faites défiler pour explorer",
     "heroBadge": "Un abonnement IA. Impact environnemental intégré.",
-    "heroTitle": "La plateforme d'IA qui <accent>plante des arbres.</accent>",
-    "heroBody": "Discutez avec les meilleurs modèles du monde et financez la reforestation à chaque abonnement.",
+    "heroTitle": "Les meilleurs modèles d'IA, <accent>avec un impact réel intégré.</accent>",
+    "heroBody": "Utilisez GPT, Claude, Gemini, DeepSeek, Mistral et bien d'autres dans un espace de travail apaisé qui transforme l'usage payant en arbres réellement plantés.",
     "heroPrimary": "Commencer gratuitement",
     "heroSecondary": "Voir les tarifs",
     "heroFootnote": "100 crédits gratuits par mois · Sans carte",
