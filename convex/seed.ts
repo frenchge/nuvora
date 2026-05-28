@@ -1,4 +1,4 @@
-import { mutation } from "./_generated/server";
+import { internalMutation, mutation } from "./_generated/server";
 import { requireAdmin } from "./helpers";
 import { DEFAULT_MODELS, defaultPlanConfigs } from "./defaults";
 
@@ -59,6 +59,46 @@ export const run = mutation({
     return {
       plansSeeded: defaultPlanConfigs().length,
       modelsSeeded: DEFAULT_MODELS.length,
+    };
+  },
+});
+
+// Drops every row in `models` and reinserts the full DEFAULT_MODELS catalog.
+// Use after a partial sync (OpenRouter catalog import or an earlier seed run)
+// has left the table out of sync with what's defined in defaults.ts.
+// Internal so it can only be invoked from `npx convex run` / the dashboard.
+export const resyncModels = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    const existing = await ctx.db.query("models").collect();
+    for (const row of existing) {
+      await ctx.db.delete(row._id);
+    }
+    for (const model of DEFAULT_MODELS) {
+      await ctx.db.insert("models", {
+        model_id: model.model_id,
+        display_name: model.display_name,
+        provider: model.provider,
+        category: model.category,
+        credit_cost_per_message: model.credit_cost_per_message,
+        enabled: model.enabled,
+        supports_streaming: model.supports_streaming,
+        supports_files: model.supports_files,
+        supports_vision: model.supports_vision ?? false,
+        supports_reasoning: model.supports_reasoning ?? false,
+        supports_tools: model.supports_tools ?? false,
+        supports_web_search: model.supports_web_search ?? false,
+        context_length: model.context_length,
+        context_description: model.context_description,
+        admin_notes: model.admin_notes,
+        free_plan_allowed: model.free_plan_allowed,
+        estimated_cost_per_message_usd: model.estimated_cost_per_message_usd,
+        sort_order: model.sort_order,
+      });
+    }
+    return {
+      deleted: existing.length,
+      inserted: DEFAULT_MODELS.length,
     };
   },
 });
