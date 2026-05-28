@@ -1,6 +1,6 @@
 import Image from "next/image";
-import logoBlack from "../../public/nuvoralogoblack.png";
-import logoWhite from "../../public/nuvoralogowhite.png";
+import logoBlack from "../../public/verciliologoblack.png";
+import logoWhite from "../../public/verciliologowhite.png";
 import { cn } from "@/lib/utils";
 
 export function BrandLogo({
@@ -14,13 +14,13 @@ export function BrandLogo({
     <span className={cn("relative inline-flex h-10 w-10 shrink-0 items-center", className)}>
       <Image
         src={logoBlack}
-        alt="Nuvora"
+        alt="Vercilio"
         priority={priority}
         className="h-full w-full object-contain dark:hidden"
       />
       <Image
         src={logoWhite}
-        alt="Nuvora"
+        alt="Vercilio"
         priority={priority}
         className="hidden h-full w-full object-contain dark:block"
       />

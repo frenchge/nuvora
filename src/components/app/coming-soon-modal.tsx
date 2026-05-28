@@ -30,7 +30,7 @@ const META: Record<
     eyebrow: "Coming soon",
     title: "Generate full apps, live in your chat.",
     description:
-      "Tell Nuvora what to build. Watch components stream in next to working code, ready to ship.",
+      "Tell Vercilio what to build. Watch components stream in next to working code, ready to ship.",
   },
 };
 

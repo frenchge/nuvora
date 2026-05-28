@@ -65,8 +65,8 @@ function headers(): HeadersInit {
   return {
     Authorization: `Bearer ${key}`,
     "Content-Type": "application/json",
-    "HTTP-Referer": process.env.OPENROUTER_SITE_URL ?? "https://nuvora.ai",
-    "X-OpenRouter-Title": process.env.OPENROUTER_APP_NAME ?? "Nuvora",
+    "HTTP-Referer": process.env.OPENROUTER_SITE_URL ?? "https://vercilio.ai",
+    "X-OpenRouter-Title": process.env.OPENROUTER_APP_NAME ?? "Vercilio",
   };
 }
 

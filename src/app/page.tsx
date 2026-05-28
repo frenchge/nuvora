@@ -51,7 +51,7 @@ export default function LandingPage() {
         posterSrc="https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg"
         bgImageSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYMNjMlBUYHaeYpxduXPVNwf8mnFA61L7rkcoS"
         title="AI that does more with every subscription."
-        date="Nuvora"
+        date="Vercilio"
         scrollToExpand="Scroll to explore"
         textBlend
       >
@@ -140,7 +140,7 @@ export default function LandingPage() {
               Our environmental partners currently report more than 3.9
               million trees planted, 150+ species represented, 85%+ average
               tree maturity, and 15+ year partner commitments. Paid activity
-              inside Nuvora helps fund the same kind of verified, trackable
+              inside Vercilio helps fund the same kind of verified, trackable
               work.
             </p>
             <ul className="mt-6 space-y-3 text-sm">
@@ -262,7 +262,7 @@ export default function LandingPage() {
             The AI subscription that gives something back.
           </h3>
           <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
-            Try Nuvora for free, then upgrade when you want more credits and a
+            Try Vercilio for free, then upgrade when you want more credits and a
             bigger monthly contribution to tree planting.
           </p>
           <div className="mt-8">
@@ -310,7 +310,7 @@ export default function LandingPage() {
               {
                 question: "Can I upload files, images, and search the web?",
                 answer:
-                  "Yes. Nuvora is built around conversational work, so search, file reading, and image understanding are part of the core experience.",
+                  "Yes. Vercilio is built around conversational work, so search, file reading, and image understanding are part of the core experience.",
               },
             ].map((item) => (
               <div key={item.question} className="py-6">

@@ -20,7 +20,7 @@ export function AuthShell({
             <Link href="/" className="flex items-center gap-3">
               <BrandLogo className="h-10 w-10" priority />
               <span className="text-sm font-medium text-foreground/70">
-                Nuvora
+                Vercilio
               </span>
             </Link>
             <Link
@@ -84,7 +84,7 @@ export function AuthShell({
               </h2>
               <p className="mt-4 max-w-md text-base leading-7 text-white/78">
                 Instead of paying for AI in one place and donating somewhere
-                else, Nuvora lets your monthly usage help support real
+                else, Vercilio lets your monthly usage help support real
                 environmental work automatically.
               </p>
             </div>

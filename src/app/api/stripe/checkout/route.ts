@@ -148,10 +148,10 @@ export async function POST(req: NextRequest) {
                   await stripe.coupons.create({
                     percent_off: adminDiscountPercent,
                     duration: mode === "subscription" ? "forever" : "once",
-                    name: `Nuvora admin discount (${adminDiscountPercent}% off)`,
+                    name: `Vercilio admin discount (${adminDiscountPercent}% off)`,
                     metadata: {
                       clerk_user_id: profile.user_id,
-                      source: "nuvora_admin_discount",
+                      source: "vercilio_admin_discount",
                     },
                   })
                 ).id,

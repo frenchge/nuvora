@@ -39,7 +39,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="container border-t border-border/60 py-6 text-xs text-muted-foreground flex justify-between">
-        <span>&copy; {new Date().getFullYear()} Nuvora</span>
+        <span>&copy; {new Date().getFullYear()} Vercilio</span>
         <span>Supports verified environmental work · not a carbon offset claim</span>
       </div>
     </footer>

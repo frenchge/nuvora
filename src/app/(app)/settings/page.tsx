@@ -427,8 +427,8 @@ export default async function SettingsPage({
                     />
                     <div className="text-sm text-muted-foreground">
                       To delete your account, contact{" "}
-                      <a className="underline" href="mailto:support@nuvora.ai">
-                        support@nuvora.ai
+                      <a className="underline" href="mailto:support@vercilio.ai">
+                        support@vercilio.ai
                       </a>
                       .
                     </div>

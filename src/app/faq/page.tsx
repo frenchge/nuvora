@@ -5,16 +5,16 @@ import { SiteHeader } from "@/components/marketing/site-header";
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
-  title: "FAQ — Nuvora",
+  title: "FAQ — Vercilio",
   description:
-    "Answers about pricing, credits, models, uploads, and the environmental contribution built into Nuvora.",
+    "Answers about pricing, credits, models, uploads, and the environmental contribution built into Vercilio.",
 };
 
 const FAQS = [
   {
     question: "How is this different from paying for another AI subscription?",
     answer:
-      "The core idea is simple: if you're already paying monthly for AI, Nuvora gives you one home for the best models and uses paid activity to fund environmental work through our partners at the same time.",
+      "The core idea is simple: if you're already paying monthly for AI, Vercilio gives you one home for the best models and uses paid activity to fund environmental work through our partners at the same time.",
   },
   {
     question: "Do all paid plans include the same models?",

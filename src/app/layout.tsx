@@ -9,7 +9,7 @@ import { getRequestLocale } from "@/lib/i18n-server";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nuvora — The best AI, with real impact built in.",
+  title: "Vercilio — The best AI, with real impact built in.",
   description:
     "Use the best AI models in one calm app, and let your paid usage help fund verified tree planting through our partners.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),

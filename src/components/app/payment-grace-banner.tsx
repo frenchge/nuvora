@@ -6,7 +6,7 @@ import { useConvexAuth, useQuery } from "convex/react";
 import { AlertTriangle, X } from "lucide-react";
 import { api } from "@convex/_generated/api";
 
-const DISMISSED_KEY = "nuvora.paymentGraceBanner.dismissedUntil";
+const DISMISSED_KEY = "vercilio.paymentGraceBanner.dismissedUntil";
 
 function hoursUntil(iso: string): number {
   const ms = new Date(iso).getTime() - Date.now();

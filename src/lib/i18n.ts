@@ -1,4 +1,4 @@
-export const LOCALE_COOKIE_NAME = "nuvora-locale";
+export const LOCALE_COOKIE_NAME = "vercilio-locale";
 
 export const LANGUAGE_OPTIONS = [
   { code: "en", label: "English" },

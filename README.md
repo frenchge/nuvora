@@ -1,4 +1,4 @@
-# Nuvora
+# Vercilio
 
 Multi-model chat with Clerk auth, Convex data, Stripe billing, and OpenRouter streaming.
 

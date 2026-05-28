@@ -21,7 +21,7 @@ const LocaleContext = createContext<LocaleContextValue | null>(null);
 
 const textOriginals = new WeakMap<Text, string>();
 const attrOriginals = new WeakMap<Element, Map<string, string>>();
-const CACHE_KEY = "nuvora.i18n.cache.v2";
+const CACHE_KEY = "vercilio.i18n.cache.v2";
 
 function shouldSkipElement(element: Element | null) {
   if (!element) return true;

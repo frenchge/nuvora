@@ -23,7 +23,7 @@ import { getProviderMeta, getProviderSortRank } from "@/lib/model-providers";
 import { cn } from "@/lib/utils";
 import type { AppModel, ModelCategory } from "@/lib/types";
 
-const FAVORITE_MODELS_KEY = "nuvora.favoriteModels";
+const FAVORITE_MODELS_KEY = "vercilio.favoriteModels";
 
 const CATEGORY_ORDER: ModelCategory[] = [
   "small",

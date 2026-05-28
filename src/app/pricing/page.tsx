@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CREDIT_ADDONS, PLAN_DISPLAY, PLAN_ORDER } from "@/lib/plans";
 import { formatCredits, formatEur } from "@/lib/utils";
 
-export const metadata = { title: "Pricing — Nuvora" };
+export const metadata = { title: "Pricing — Vercilio" };
 
 const DAILY_MESSAGES: Record<(typeof PLAN_ORDER)[number], string> = {
   free: "20 / day",

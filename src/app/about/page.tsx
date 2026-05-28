@@ -12,9 +12,9 @@ import { SiteFooter } from "@/components/marketing/site-footer";
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
-  title: "About — Nuvora",
+  title: "About — Vercilio",
   description:
-    "Why we built Nuvora: a calm home for every AI model, with real-world environmental impact baked in.",
+    "Why we built Vercilio: a calm home for every AI model, with real-world environmental impact baked in.",
 };
 
 const PRINCIPLES = [
@@ -58,7 +58,7 @@ export default function AboutPage() {
             <span className="text-primary">extractive.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-balance text-base leading-7 text-muted-foreground md:text-lg">
-            We started Nuvora because we kept paying for AI tools that felt
+            We started Vercilio because we kept paying for AI tools that felt
             loud, lonely, and hungry for our data — and gave nothing back to
             the world the conversations were about.
           </p>
@@ -75,7 +75,7 @@ export default function AboutPage() {
             opposite — a tool you could leave open in a tab and never resent.
           </p>
           <p>
-            So Nuvora is built around a small set of beliefs: that frontier
+            So Vercilio is built around a small set of beliefs: that frontier
             models should live next to fast, cheap ones in the same window;
             that monthly credits beat token math; that a calm interface is
             worth more than a clever one; and that the planet doing the

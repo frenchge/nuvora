@@ -77,10 +77,10 @@ interface PendingAttachment {
   dataUrl: string;
 }
 
-const STORAGE_MODEL_KEY = "nuvora.selectedModel";
-const STORAGE_REASONING_KEY = "nuvora.reasoningEffort";
-const STORAGE_AUTO_KEY = "nuvora.autoRouter";
-const STORAGE_WEBSEARCH_KEY = "nuvora.webSearch";
+const STORAGE_MODEL_KEY = "vercilio.selectedModel";
+const STORAGE_REASONING_KEY = "vercilio.reasoningEffort";
+const STORAGE_AUTO_KEY = "vercilio.autoRouter";
+const STORAGE_WEBSEARCH_KEY = "vercilio.webSearch";
 
 type GreetingCategoryKey = "create" | "explore" | "code" | "learn";
 

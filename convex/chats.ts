@@ -155,8 +155,8 @@ export const generateChatTitle = internalAction({
           Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json",
           "HTTP-Referer":
-            process.env.OPENROUTER_SITE_URL ?? "https://nuvora.ai",
-          "X-OpenRouter-Title": process.env.OPENROUTER_APP_NAME ?? "Nuvora",
+            process.env.OPENROUTER_SITE_URL ?? "https://vercilio.ai",
+          "X-OpenRouter-Title": process.env.OPENROUTER_APP_NAME ?? "Vercilio",
         },
         body: JSON.stringify({
           model: "openai/gpt-4o-mini",

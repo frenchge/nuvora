@@ -12,28 +12,28 @@ import { SiteFooter } from "@/components/marketing/site-footer";
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Contact — Nuvora",
+  title: "Contact — Vercilio",
   description:
-    "Talk to a real person about Nuvora — billing questions, partnership ideas, or just to say hi.",
+    "Talk to a real person about Vercilio — billing questions, partnership ideas, or just to say hi.",
 };
 
 const CONTACT_LANES = [
   {
     icon: Mail,
     label: "General",
-    address: "hello@nuvora.ai",
+    address: "hello@vercilio.ai",
     helper: "Anything that doesn't fit elsewhere — we usually reply within a day.",
   },
   {
     icon: HelpCircle,
     label: "Support",
-    address: "support@nuvora.ai",
+    address: "support@vercilio.ai",
     helper: "Stuck on something specific? Send the chat ID or a screenshot if you can.",
   },
   {
     icon: Leaf,
     label: "Partnerships",
-    address: "partners@nuvora.ai",
+    address: "partners@vercilio.ai",
     helper: "Restoration partners, model providers, sustainability orgs — let's talk.",
   },
 ];
@@ -102,7 +102,7 @@ export default function ContactPage() {
             className="mt-8 grid gap-5"
             // The form posts to a `mailto:` so this works without a backend.
             // Replace with your own endpoint when one is ready.
-            action="mailto:hello@nuvora.ai"
+            action="mailto:hello@vercilio.ai"
             method="post"
             encType="text/plain"
           >

@@ -84,7 +84,7 @@ export async function POST(request: Request) {
         {
           role: "system",
           content:
-            "You are a professional software localization engine. Translate UI copy from English into the requested language. Preserve brand names like Nuvora, OpenAI, GPT, Claude, Gemini, DeepSeek, Mistral, Stripe, and Clerk. Preserve emails, URLs, placeholders, punctuation, whitespace intent, and strings that should remain unchanged. Return only a JSON array of translated strings in the same order as the input.",
+            "You are a professional software localization engine. Translate UI copy from English into the requested language. Preserve brand names like Vercilio, OpenAI, GPT, Claude, Gemini, DeepSeek, Mistral, Stripe, and Clerk. Preserve emails, URLs, placeholders, punctuation, whitespace intent, and strings that should remain unchanged. Return only a JSON array of translated strings in the same order as the input.",
         },
         {
           role: "user",
