@@ -5,7 +5,7 @@ import { usePathname as useRawPathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { Bot, CircleHelp, Coins, House, Leaf } from "lucide-react";
+import { Bot, CircleHelp, Coins, House, Leaf, Tag } from "lucide-react";
 import { BrandLogo } from "@/components/brand-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { FloatingNav } from "@/components/ui/floating-navbar";
@@ -50,6 +50,11 @@ export function SiteHeader() {
       name: t("models"),
       link: "/#models",
       icon: <Bot className="h-4 w-4 text-muted-foreground" />,
+    },
+    {
+      name: t("pricing"),
+      link: "/pricing",
+      icon: <Tag className="h-4 w-4 text-muted-foreground" />,
     },
     {
       name: t("credits"),

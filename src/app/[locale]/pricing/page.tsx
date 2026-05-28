@@ -80,7 +80,7 @@ export default async function PricingPage({
       <SiteHeader />
 
       <section className="border-b border-border/60">
-        <div className="container py-20 md:py-24">
+        <div className="container pb-20 pt-32 md:pb-24 md:pt-40">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               {t("heroEyebrow")}
@@ -123,15 +123,15 @@ export default async function PricingPage({
           </div>
 
           <div className="overflow-x-auto">
-            <div className="min-w-[860px] border-y border-border/60">
-              <div className="grid grid-cols-[220px_repeat(4,minmax(0,1fr))] border-b border-border/60">
-                <div className="py-5" />
+            <div className="min-w-[860px] border-b border-border/60">
+              <div className="grid grid-cols-[220px_repeat(4,minmax(0,1fr))]">
+                <div aria-hidden />
                 {PLAN_ORDER.map((plan) => {
                   const current = PLAN_DISPLAY[plan];
                   return (
                     <div
                       key={plan}
-                      className="border-l border-border/60 px-5 py-5 text-left"
+                      className="border-b border-l border-t border-border/60 px-5 py-5 text-left"
                     >
                       <div className="flex items-center gap-2">
                         <div className="text-base font-semibold">
