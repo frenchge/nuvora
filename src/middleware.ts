@@ -102,6 +102,21 @@ function isApiPath(pathname: string): boolean {
   return pathname.startsWith("/api/") || pathname.startsWith("/trpc/");
 }
 
+// Routes that must stay locale-agnostic — Google fetches them at the exact
+// paths configured in Search Console, and prefixing /fr/ would break the
+// crawl. Add the canonical sitemap + robots and the SEO helper files Google
+// also probes at the root.
+function isSeoBypassPath(pathname: string): boolean {
+  return (
+    pathname === "/sitemap.xml" ||
+    pathname === "/robots.txt" ||
+    pathname === "/manifest.json" ||
+    pathname === "/site.webmanifest" ||
+    pathname === "/icon.png" ||
+    pathname === "/favicon.ico"
+  );
+}
+
 function hasExplicitLocalePrefix(pathname: string): boolean {
   return routing.locales.some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
@@ -191,6 +206,12 @@ export default clerkMiddleware(async (auth, req: NextRequest) => {
     return NextResponse.next();
   }
 
+  // Same for sitemap, robots, and the other root-level SEO endpoints —
+  // serving /fr/sitemap.xml would break Search Console's verified URL.
+  if (isSeoBypassPath(path)) {
+    return NextResponse.next();
+  }
+
   const hasLocalePrefix = hasExplicitLocalePrefix(path);
   const existingLocaleCookie = req.cookies.get(LOCALE_COOKIE_NAME)?.value;
   const preferredLocale = getPreferredLocale(req);
@@ -215,8 +236,11 @@ export default clerkMiddleware(async (auth, req: NextRequest) => {
 });
 
 export const config = {
+  // The negative-lookahead at the start now also excludes .xml and .txt so
+  // /sitemap.xml and /robots.txt are served straight by Next without ever
+  // entering the locale-redirect path.
   matcher: [
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    "/((?!_next|sitemap\\.xml|robots\\.txt|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest|xml|txt)).*)",
     "/(api|trpc)(.*)",
   ],
 };
