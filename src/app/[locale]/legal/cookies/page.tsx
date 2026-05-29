@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LegalPage } from "../_legal-page";
+import { buildPageMetadata } from "@/lib/seo";
+import type { Locale } from "@/i18n/routing";
 
 export async function generateMetadata({
   params,
@@ -9,7 +11,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "LegalCookies" });
-  return { title: t("metaTitle"), description: t("metaDescription") };
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: "/legal/cookies",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+  });
 }
 
 export default async function CookiesPage({

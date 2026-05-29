@@ -15,7 +15,10 @@ export function UpgradeBadge({ className }: { className?: string }) {
     <Link
       href="/settings?tab=billing"
       className={cn(
-        "inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90",
+        // h-9 + leading-none keeps the pill the same height as the round
+        // ThemeToggle (h-9 w-9). items-center on the flex centers the
+        // sparkle and label so the baseline matches across both controls.
+        "inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full bg-primary px-4 text-sm font-semibold leading-none text-primary-foreground shadow-sm transition hover:bg-primary/90",
         className,
       )}
     >

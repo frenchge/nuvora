@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { ArrowRight, Leaf, Search, Sparkles } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { buildPageMetadata, faqPageJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
+import type { Locale } from "@/i18n/routing";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { Button } from "@/components/ui/button";
@@ -24,7 +27,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Faq" });
-  return { title: t("metaTitle"), description: t("metaDescription") };
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: "/faq",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+  });
 }
 
 export default async function FaqPage({
@@ -35,9 +43,16 @@ export default async function FaqPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Faq");
+  const faqJsonLd = faqPageJsonLd(
+    FAQ_KEYS.map((key) => ({
+      question: t(`items.${key}.question`),
+      answer: t(`items.${key}.answer`),
+    })),
+  );
 
   return (
     <>
+      <JsonLd data={faqJsonLd} />
       <SiteHeader />
 
       <section className="border-b border-border/60">

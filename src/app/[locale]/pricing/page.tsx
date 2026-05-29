@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { ArrowRight, Check, Leaf } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { buildPageMetadata } from "@/lib/seo";
+import type { Locale } from "@/i18n/routing";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { Button } from "@/components/ui/button";
@@ -15,7 +17,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Pricing" });
-  return { title: t("metaTitle") };
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: "/pricing",
+    title: t("metaTitle"),
+    description: t("heroBody"),
+  });
 }
 
 export default async function PricingPage({

@@ -6,9 +6,11 @@ import { api } from "@convex/_generated/api";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { fetchQuery } from "@/lib/convex-server";
-import type { Locale } from "@/i18n/routing";
+import { routing, type Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
-import { getAbsoluteUrl } from "@/lib/site";
+import { getAbsoluteUrl, getLocaleAlternates } from "@/lib/site";
+
+export const dynamic = "force-dynamic";
 
 const BLOG_COPY = {
   en: {
@@ -105,8 +107,20 @@ export async function generateMetadata({
   return {
     title: copy.title,
     description: copy.description,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
     alternates: {
       canonical: getAbsoluteUrl(locale as Locale, "/blog"),
+      languages: getLocaleAlternates("/blog"),
     },
     openGraph: {
       title: copy.title,
@@ -137,15 +151,27 @@ export default async function BlogIndexPage({
 
   const itemListSchema = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: copy.title,
-    itemListElement: posts.map((post, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      url: getAbsoluteUrl(typedLocale, `/blog/${post.slug}`),
-      name: post.title,
-      description: post.metaDescription,
-    })),
+    "@graph": [
+      {
+        "@type": "Blog",
+        "@id": getAbsoluteUrl(typedLocale, "/blog"),
+        url: getAbsoluteUrl(typedLocale, "/blog"),
+        name: copy.title,
+        description: copy.description,
+        inLanguage: typedLocale,
+      },
+      {
+        "@type": "ItemList",
+        name: copy.title,
+        itemListElement: posts.map((post, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: getAbsoluteUrl(typedLocale, `/blog/${post.slug}`),
+          name: post.title,
+          description: post.metaDescription,
+        })),
+      },
+    ],
   };
 
   return (

@@ -9,7 +9,10 @@ import Script from "next/script";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
 import { FloatingLocaleSwitcher } from "@/components/floating-locale-switcher";
 import { ThemeProvider } from "@/components/theme-provider";
-import { routing } from "@/i18n/routing";
+import { JsonLd } from "@/components/seo/json-ld";
+import { routing, type Locale } from "@/i18n/routing";
+import { getSiteUrl } from "@/lib/site";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import "../globals.css";
 
 // Google Analytics 4 measurement ID. Server-rendered into a Script tag so the
@@ -17,12 +20,43 @@ import "../globals.css";
 const GA_MEASUREMENT_ID = "G-YSJ69KZKK9";
 
 export const metadata: Metadata = {
-  title: "Vercilio — The best AI, with real impact built in.",
+  title: {
+    default: "Vercilio — The AI platform that plants trees.",
+    template: "%s · Vercilio",
+  },
   description:
-    "Use the best AI models in one place, and let your paid usage help fund verified tree planting through our partners.",
+    "Chat with the world's leading AI models in one workspace, and fund verified reforestation with every paid subscription.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
   ),
+  applicationName: "Vercilio",
+  authors: [{ name: "Vercilio" }],
+  generator: "Next.js",
+  keywords: [
+    "AI",
+    "chatbot",
+    "GPT",
+    "Claude",
+    "Gemini",
+    "AI subscription",
+    "reforestation",
+    "tree planting",
+    "environmental impact",
+    "OpenRouter",
+  ],
+  openGraph: {
+    type: "website",
+    siteName: "Vercilio",
+    images: [`${getSiteUrl()}/verciliologoblack.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@vercilio_ai",
+    creator: "@vercilio_ai",
+  },
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export function generateStaticParams() {
@@ -43,6 +77,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   const messages = await getMessages();
 
+  const typedLocale = locale as Locale;
   return (
     <ClerkProvider>
       <html
@@ -59,6 +94,8 @@ export default async function LocaleLayout({
               </ThemeProvider>
             </ConvexClientProvider>
           </NextIntlClientProvider>
+          <JsonLd data={organizationJsonLd()} />
+          <JsonLd data={websiteJsonLd(typedLocale)} />
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
             strategy="afterInteractive"

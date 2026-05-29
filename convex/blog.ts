@@ -34,6 +34,7 @@ type TranslationFields = {
 function serializeTranslation(
   post: Doc<"blog_posts">,
   locale: BlogLocale,
+  availableLocales: BlogLocale[],
   translation?: TranslationDoc | null,
 ) {
   const bodyMarkdown = translation?.body_markdown ?? post.body_markdown;
@@ -55,6 +56,7 @@ function serializeTranslation(
     updatedAt: Math.max(post.updated_at, translation?.updated_at ?? 0),
     readingMinutes: estimateReadingMinutes(bodyMarkdown),
     isFallback: !translation && locale !== post.locale,
+    availableLocales,
   };
 }
 
@@ -175,20 +177,30 @@ export const listPublished = query({
     ]);
 
     const translationsByKey = new Map<string, TranslationDoc>();
+    const localesByPost = new Map<Id<"blog_posts">, Set<BlogLocale>>();
     for (const translation of translations) {
       translationsByKey.set(
         `${String(translation.post_id)}:${translation.locale}`,
         translation,
       );
+      const locales = localesByPost.get(translation.post_id) ?? new Set<BlogLocale>();
+      locales.add(translation.locale as BlogLocale);
+      localesByPost.set(translation.post_id, locales);
     }
 
-    return posts.map((post) =>
-      serializeTranslation(
+    return posts.map((post) => {
+      const availableLocales = [
+        post.locale as BlogLocale,
+        ...Array.from(localesByPost.get(post._id) ?? []),
+      ].filter((value, index, array) => array.indexOf(value) === index);
+
+      return serializeTranslation(
         post,
         args.locale,
+        availableLocales,
         translationsByKey.get(`${String(post._id)}:${args.locale}`) ?? null,
-      ),
-    );
+      );
+    });
   },
 });
 
@@ -208,17 +220,20 @@ export const getPublishedBySlug = query({
       return null;
     }
 
+    const translations = await ctx.db.query("blog_post_translations").collect();
+    const postTranslations = translations.filter(
+      (translation) => translation.post_id === post._id,
+    );
     const translation =
       args.locale === post.locale
         ? null
-        : await ctx.db
-            .query("blog_post_translations")
-            .withIndex("by_post_id_and_locale", (q) =>
-              q.eq("post_id", post._id).eq("locale", args.locale),
-            )
-            .unique();
+        : (postTranslations.find((entry) => entry.locale === args.locale) ?? null);
+    const availableLocales = [
+      post.locale as BlogLocale,
+      ...postTranslations.map((entry) => entry.locale as BlogLocale),
+    ].filter((value, index, array) => array.indexOf(value) === index);
 
-    return serializeTranslation(post, args.locale, translation);
+    return serializeTranslation(post, args.locale, availableLocales, translation);
   },
 });
 
@@ -248,10 +263,20 @@ export const listForAdmin = query({
 export const listPublishedForSitemap = query({
   args: {},
   handler: async (ctx) => {
-    const rows = await ctx.db
-      .query("blog_posts")
-      .withIndex("by_status_and_published_at", (q) => q.eq("status", "published"))
-      .collect();
+    const [rows, translations] = await Promise.all([
+      ctx.db
+        .query("blog_posts")
+        .withIndex("by_status_and_published_at", (q) => q.eq("status", "published"))
+        .collect(),
+      ctx.db.query("blog_post_translations").collect(),
+    ]);
+
+    const localesByPost = new Map<Id<"blog_posts">, Set<BlogLocale>>();
+    for (const translation of translations) {
+      const locales = localesByPost.get(translation.post_id) ?? new Set<BlogLocale>();
+      locales.add(translation.locale as BlogLocale);
+      localesByPost.set(translation.post_id, locales);
+    }
 
     return rows
       .filter((row) => row.published_at)
@@ -260,6 +285,11 @@ export const listPublishedForSitemap = query({
         slug: row.slug,
         updatedAt: row.updated_at,
         publishedAt: row.published_at ?? row.updated_at,
+        coverImageUrl: row.cover_image_url ?? "",
+        availableLocales: [
+          row.locale as BlogLocale,
+          ...Array.from(localesByPost.get(row._id) ?? []),
+        ].filter((value, index, array) => array.indexOf(value) === index),
       }));
   },
 });

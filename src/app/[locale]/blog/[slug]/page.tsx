@@ -9,9 +9,9 @@ import { SiteFooter } from "@/components/marketing/site-footer";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { fetchQuery } from "@/lib/convex-server";
 import { extractBlogHeadings } from "@/lib/blog";
-import type { Locale } from "@/i18n/routing";
+import { routing, type Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
-import { getAbsoluteUrl } from "@/lib/site";
+import { getAbsoluteUrl, getLocaleAlternates, getSiteUrl } from "@/lib/site";
 
 const ARTICLE_COPY = {
   en: {
@@ -157,15 +157,37 @@ export async function generateMetadata({
     };
   }
 
-  const canonicalUrl = getAbsoluteUrl(typedLocale, `/blog/${post.slug}`);
+  const canonicalLocale = post.isFallback
+    ? ((post.sourceLocale as Locale) ?? typedLocale)
+    : typedLocale;
+  const canonicalUrl = getAbsoluteUrl(canonicalLocale, `/blog/${post.slug}`);
+  const availableLocales = post.availableLocales as readonly Locale[];
 
   return {
     title: post.seoTitle,
     description: post.metaDescription,
     keywords: post.tags,
     authors: [{ name: post.authorName }],
+    robots: {
+      index: !post.isFallback,
+      follow: true,
+      googleBot: {
+        index: !post.isFallback,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
     alternates: {
       canonical: canonicalUrl,
+      languages: getLocaleAlternates(
+        `/blog/${post.slug}`,
+        availableLocales,
+        availableLocales.includes(routing.defaultLocale)
+          ? routing.defaultLocale
+          : canonicalLocale,
+      ),
     },
     openGraph: {
       title: post.seoTitle,
@@ -173,6 +195,7 @@ export async function generateMetadata({
       url: canonicalUrl,
       siteName: "Vercilio",
       type: "article",
+      locale: canonicalLocale,
       publishedTime: post.publishedAt
         ? new Date(post.publishedAt).toISOString()
         : undefined,
@@ -210,20 +233,26 @@ export default async function BlogPostPage({
     .filter((entry) => entry.slug !== post.slug)
     .slice(0, 3);
   const headings = extractBlogHeadings(post.bodyMarkdown);
-  const canonicalUrl = getAbsoluteUrl(typedLocale, `/blog/${post.slug}`);
+  const canonicalLocale = post.isFallback
+    ? ((post.sourceLocale as Locale) ?? typedLocale)
+    : typedLocale;
+  const canonicalUrl = getAbsoluteUrl(canonicalLocale, `/blog/${post.slug}`);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Article",
+        "@type": "BlogPosting",
         headline: post.title,
         description: post.metaDescription,
         url: canonicalUrl,
+        mainEntityOfPage: canonicalUrl,
+        inLanguage: canonicalLocale,
         datePublished: post.publishedAt
           ? new Date(post.publishedAt).toISOString()
           : new Date(post.updatedAt).toISOString(),
         dateModified: new Date(post.updatedAt).toISOString(),
+        isAccessibleForFree: true,
         author: {
           "@type": "Person",
           name: post.authorName,
@@ -231,7 +260,11 @@ export default async function BlogPostPage({
         publisher: {
           "@type": "Organization",
           name: "Vercilio",
-          url: getAbsoluteUrl(typedLocale, "/"),
+          url: getAbsoluteUrl(canonicalLocale, "/"),
+          logo: {
+            "@type": "ImageObject",
+            url: `${getSiteUrl()}/icon.png`,
+          },
         },
         articleSection: post.tags[0] ?? "Blog",
         keywords: post.tags.join(", "),

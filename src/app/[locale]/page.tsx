@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   ArrowRight,
   Check,
@@ -16,6 +17,23 @@ import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
 import { Link } from "@/i18n/navigation";
 import { PLAN_DISPLAY, PLAN_ORDER } from "@/lib/plans";
 import { formatCredits, formatEur } from "@/lib/utils";
+import { buildPageMetadata } from "@/lib/seo";
+import type { Locale } from "@/i18n/routing";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Home" });
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: "/",
+    title: t("scrollMediaTitle"),
+    description: t("scrollMediaSubtitle"),
+  });
+}
 
 const VALUE_KEYS = ["best", "good", "yours", "calm"] as const;
 const VALUE_ICONS = {
