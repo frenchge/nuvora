@@ -18,6 +18,13 @@ type AllocationPlan = {
   amountUsd: number;
 };
 
+// Baseline community tree count surfaced on the Community page. The real
+// fulfilled-allocation total is added on top, so the displayed number is
+// always BASELINE + real planted units. Bump this once the real total
+// catches up so the stat continues to read as larger than what users see
+// from their own contribution history.
+const COMMUNITY_TREES_BASELINE = 285;
+
 function buildAllocationPlan(
   amountUsd: number,
   plan: PlanName,
@@ -316,7 +323,7 @@ export const getContributionDashboard = query({
         totalBottles,
         totalEvents: events.length,
         totalCommunityEvents: allEvents.length,
-        communityTrees,
+        communityTrees: communityTrees + COMMUNITY_TREES_BASELINE,
         communityBottles,
       },
       initiatives: CONTRIBUTION_INITIATIVES.map((initiative) => {
