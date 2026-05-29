@@ -10,7 +10,7 @@ export async function SiteFooter() {
   return (
     <footer className="mt-32 border-t border-border/60 bg-[hsl(var(--accent)/0.45)]">
       <div className="container grid gap-12 py-20 md:grid-cols-12">
-        {/* Brand + tagline + newsletter */}
+        {/* Brand + tagline + updates */}
         <div className="md:col-span-5">
           <Link href="/" className="inline-flex items-center gap-3">
             <BrandLogo className="h-9 w-9" />
@@ -22,33 +22,29 @@ export async function SiteFooter() {
             {t("tagline")}
           </p>
 
-          <div className="mt-8 max-w-sm">
+          <div className="mt-8 max-w-sm rounded-[1.5rem] border border-border/60 bg-background/55 p-5">
             <div className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground/80">
               {t("newsletterHeading")}
             </div>
-            <p className="mt-2 text-xs leading-5 text-muted-foreground">
-              {t("newsletterBody")}
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              Follow Vercilio updates on the blog and on X. We removed email signup for now.
             </p>
-            <form
-              action="mailto:hello@vercilio.ai"
-              method="post"
-              encType="text/plain"
-              className="mt-3 flex items-center gap-2 rounded-full border border-border/60 bg-background/70 p-1 pl-4 transition-colors focus-within:border-primary/40"
-            >
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder={t("newsletterPlaceholder")}
-                className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground/70"
-              />
-              <button
-                type="submit"
-                className="rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            <div className="mt-4 flex flex-wrap gap-2">
+              <Link
+                href="/blog"
+                className="rounded-full border border-border/60 bg-background/80 px-4 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-background"
               >
-                {t("newsletterSubmit")}
-              </button>
-            </form>
+                Read the blog
+              </Link>
+              <a
+                href="https://x.com/vercilioai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-border/60 bg-background/80 px-4 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-background"
+              >
+                Follow on X
+              </a>
+            </div>
           </div>
 
           <div className="mt-8 flex items-center gap-3 text-muted-foreground">

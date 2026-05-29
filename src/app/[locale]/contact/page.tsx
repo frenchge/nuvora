@@ -8,9 +8,9 @@ import { SiteFooter } from "@/components/marketing/site-footer";
 import { ContactForm } from "./_contact-form";
 
 const LANES = [
-  { key: "general", icon: Mail, address: "hello@vercilio.ai" },
-  { key: "support", icon: HelpCircle, address: "support@vercilio.ai" },
-  { key: "partnerships", icon: Leaf, address: "partners@vercilio.ai" },
+  { key: "general", icon: Mail },
+  { key: "support", icon: HelpCircle },
+  { key: "partnerships", icon: Leaf },
 ] as const;
 
 export async function generateMetadata({
@@ -61,11 +61,10 @@ export default async function ContactPage({
 
       <section className="container pb-12">
         <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
-          {LANES.map(({ key, icon: Icon, address }) => (
-            <a
-              key={address}
-              href={`mailto:${address}`}
-              className="group rounded-3xl border border-border/60 bg-card/60 p-6 transition-colors hover:border-primary/40 hover:bg-card"
+          {LANES.map(({ key, icon: Icon }) => (
+            <div
+              key={key}
+              className="rounded-3xl border border-border/60 bg-card/60 p-6"
             >
               <div className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/12 text-primary">
                 <Icon className="h-4 w-4" />
@@ -73,15 +72,14 @@ export default async function ContactPage({
               <div className="mt-4 text-xs uppercase tracking-wide text-muted-foreground">
                 {t(`lanes.${key}.label`)}
               </div>
-              <div className="mt-1 font-semibold tracking-tight">{address}</div>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
                 {t(`lanes.${key}.helper`)}
               </p>
-              <div className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                {t("openMail")}
+              <div className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-primary">
+                {t("formTitle")}
                 <ArrowRight className="h-3 w-3" />
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </section>
@@ -128,4 +126,3 @@ export default async function ContactPage({
     </>
   );
 }
-

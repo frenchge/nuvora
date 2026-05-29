@@ -1,13 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 
-// The contact form opens the user's default mail client. We do it from JS
-// instead of a literal action="mailto:" because Lighthouse treats the
-// latter as an insecure request on an HTTPS page and surfaces a Mixed
-// Content warning. The behavior the user sees is otherwise identical.
 export function ContactForm({
   copy,
 }: {
@@ -26,20 +23,11 @@ export function ContactForm({
     submit: string;
   };
 }) {
+  const [submitted, setSubmitted] = useState(false);
+
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const subject = encodeURIComponent(
-      String(data.get("subject") ?? "Vercilio contact form"),
-    );
-    const body = encodeURIComponent(
-      [
-        `From: ${data.get("name") ?? ""} <${data.get("email") ?? ""}>`,
-        "",
-        String(data.get("message") ?? ""),
-      ].join("\n"),
-    );
-    window.location.href = `mailto:hello@vercilio.ai?subject=${subject}&body=${body}`;
+    setSubmitted(true);
   }
 
   return (
@@ -84,10 +72,17 @@ export function ContactForm({
           </Link>
           {copy.privacySuffix}
         </p>
-        <Button type="submit" size="lg">
-          <Sparkles className="h-4 w-4" />
-          {copy.submit}
-        </Button>
+        <div className="flex flex-col items-end gap-2">
+          <Button type="submit" size="lg">
+            <Sparkles className="h-4 w-4" />
+            {copy.submit}
+          </Button>
+          {submitted && (
+            <p className="text-xs text-muted-foreground">
+              Contact by email is currently unavailable.
+            </p>
+          )}
+        </div>
       </div>
     </form>
   );
