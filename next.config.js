@@ -15,21 +15,11 @@ const nextConfig = {
       { protocol: "https", hostname: "me7aitdbxq.ufs.sh" },
     ],
   },
-  async redirects() {
-    return [
-      // Force the apex host as the canonical origin. Without this the
-      // www. variant and the apex are both indexable, which makes the
-      // canonical tag (always pointing at the apex) point at a "different
-      // hreflang location" from the visitor's POV — Lighthouse flags it
-      // and Google can split rankings between the two hosts.
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.vercilio.com" }],
-        destination: "https://vercilio.com/:path*",
-        permanent: true,
-      },
-    ];
-  },
+  // The www → apex redirect needs to be done at the Vercel domain level
+  // (Settings → Domains → ⋯ on www.vercilio.com → Redirect to vercilio.com).
+  // Doing it here at the Next layer creates a redirect loop because Vercel
+  // can also be configured to route www and apex through the same Next
+  // deployment — Next then keeps redirecting back to itself.
 };
 
 module.exports = withNextIntl(nextConfig);
