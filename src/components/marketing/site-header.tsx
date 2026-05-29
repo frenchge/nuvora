@@ -133,7 +133,7 @@ export function SiteHeader() {
             >
               <Link href="/chat">{t("openApp")}</Link>
             </Button>
-            <UserButton afterSignOutUrl="/" />
+            <UserButton />
           </SignedIn>
         </>
       }

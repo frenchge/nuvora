@@ -35,7 +35,7 @@ const ARTICLE_COPY = {
 } as const;
 
 async function getBlogPost(locale: Locale, slug: string) {
-  return await fetchQuery(api.blog.getPublishedBySlug, { locale, slug });
+  return await fetchQuery(api.blog.getPublishedBySlug, { slug });
 }
 
 export async function generateMetadata({
@@ -101,9 +101,7 @@ export default async function BlogPostPage({
     notFound();
   }
 
-  const allPosts = await fetchQuery(api.blog.listPublishedByLocale, {
-    locale: typedLocale,
-  });
+  const allPosts = await fetchQuery(api.blog.listPublished, {});
   const relatedPosts = allPosts
     .filter((entry) => entry.slug !== post.slug)
     .slice(0, 3);

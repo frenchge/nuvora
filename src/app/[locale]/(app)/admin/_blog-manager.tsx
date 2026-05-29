@@ -3,23 +3,19 @@
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { useMutation } from "convex/react";
 import { Loader2, Plus, Trash2 } from "lucide-react";
+import { useLocale } from "next-intl";
 import { api } from "@convex/_generated/api";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  BLOG_BODY_TEMPLATE,
-  normalizeBlogSlug,
-  type BlogLocale,
-} from "@/lib/blog";
+import { BLOG_BODY_TEMPLATE, normalizeBlogSlug } from "@/lib/blog";
 import { getLocalizedPath } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/i18n/routing";
 
 type BlogPostRow = {
   id: string;
-  locale: string;
   status: string;
   slug: string;
   title: string;
@@ -36,7 +32,6 @@ type BlogPostRow = {
 };
 
 type BlogFormState = {
-  locale: BlogLocale;
   status: "draft" | "published";
   title: string;
   slug: string;
@@ -51,7 +46,6 @@ type BlogFormState = {
 
 function emptyForm(): BlogFormState {
   return {
-    locale: "en",
     status: "draft",
     title: "",
     slug: "",
@@ -67,7 +61,6 @@ function emptyForm(): BlogFormState {
 
 function toFormState(post: BlogPostRow): BlogFormState {
   return {
-    locale: post.locale as BlogLocale,
     status: post.status as "draft" | "published",
     title: post.title,
     slug: post.slug,
@@ -88,6 +81,7 @@ function lengthTone(length: number, min: number, max: number) {
 }
 
 export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
+  const currentLocale = useLocale() as Locale;
   const upsertPost = useMutation(api.blog.upsert);
   const removePost = useMutation(api.blog.remove);
   const [isPending, startTransition] = useTransition();
@@ -130,7 +124,6 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
       try {
         const saved = await upsertPost({
           postId: selectedId ? (selectedId as never) : undefined,
-          locale: form.locale,
           status: form.status,
           title: form.title,
           slug: form.slug,
@@ -187,7 +180,7 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
           <h2 className="text-xl font-semibold">Blog publishing</h2>
           <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
             The form below is intentionally structured for SEO: separate slug,
-            search title, meta description, excerpt, tags, locale, and body.
+            search title, meta description, excerpt, tags, and body.
             If you leave some fields blank, the backend fills sensible defaults
             from the post title and content before saving.
           </p>
@@ -233,9 +226,7 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
                       {post.status}
                     </Badge>
                   </div>
-                  <div className="mt-1 text-xs text-muted-foreground">
-                    {post.locale.toUpperCase()} / {post.slug}
-                  </div>
+                  <div className="mt-1 text-xs text-muted-foreground">{post.slug}</div>
                   <div className="mt-1 text-xs text-muted-foreground">
                     Updated {new Date(post.updatedAt).toLocaleString()}
                   </div>
@@ -247,20 +238,6 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
 
         <div className="rounded-[1.75rem] border border-border/60 bg-card/40 p-5 md:p-6">
           <div className="grid gap-4 md:grid-cols-2">
-            <label className="space-y-2">
-              <span className="text-sm font-medium">Locale</span>
-              <select
-                value={form.locale}
-                onChange={(event) =>
-                  updateForm("locale", event.target.value as BlogLocale)
-                }
-                className="flex h-10 w-full rounded-md border border-border/60 bg-background px-3 text-sm"
-              >
-                <option value="en">English</option>
-                <option value="fr">French</option>
-              </select>
-            </label>
-
             <label className="space-y-2">
               <span className="text-sm font-medium">Status</span>
               <select
@@ -439,7 +416,7 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
             {selectedPost?.status === "published" && (
               <a
                 href={getLocalizedPath(
-                  selectedPost.locale as Locale,
+                  currentLocale,
                   `/blog/${selectedPost.slug}`,
                 )}
                 target="_blank"

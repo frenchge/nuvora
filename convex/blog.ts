@@ -9,13 +9,11 @@ import {
   normalizeBlogTags,
 } from "../src/lib/blog";
 
-const blogLocaleValidator = v.union(v.literal("en"), v.literal("fr"));
 const blogStatusValidator = v.union(v.literal("draft"), v.literal("published"));
 
 function serializePost(post: Doc<"blog_posts">) {
   return {
     id: String(post._id),
-    locale: post.locale,
     status: post.status,
     slug: post.slug,
     title: post.title,
@@ -32,42 +30,36 @@ function serializePost(post: Doc<"blog_posts">) {
   };
 }
 
-async function getPostByLocaleAndSlug(ctx: QueryCtx, locale: string, slug: string) {
-  return await ctx.db
-    .query("blog_posts")
-    .withIndex("by_locale_and_slug", (q) => q.eq("locale", locale).eq("slug", slug))
-    .unique();
+async function getPublishedPostBySlug(ctx: QueryCtx, slug: string) {
+  const rows = await ctx.db.query("blog_posts").collect();
+  return rows
+    .filter(
+      (row) => row.status === "published" && row.slug === normalizeBlogSlug(slug),
+    )
+    .sort((a, b) => b.updated_at - a.updated_at)[0] ?? null;
 }
 
-export const listPublishedByLocale = query({
-  args: {
-    locale: blogLocaleValidator,
-  },
-  handler: async (ctx, args) => {
+export const listPublished = query({
+  args: {},
+  handler: async (ctx) => {
     const rows = await ctx.db
       .query("blog_posts")
-      .withIndex("by_locale_and_status_and_published_at", (q) =>
-        q.eq("locale", args.locale).eq("status", "published"),
-      )
-      .order("desc")
       .collect();
 
-    return rows.map(serializePost);
+    return rows
+      .filter((row) => row.status === "published")
+      .sort((a, b) => (b.published_at ?? 0) - (a.published_at ?? 0))
+      .map(serializePost);
   },
 });
 
 export const getPublishedBySlug = query({
   args: {
-    locale: blogLocaleValidator,
     slug: v.string(),
   },
   handler: async (ctx, args) => {
-    const row = await getPostByLocaleAndSlug(
-      ctx,
-      args.locale,
-      normalizeBlogSlug(args.slug),
-    );
-    if (!row || row.status !== "published") {
+    const row = await getPublishedPostBySlug(ctx, args.slug);
+    if (!row) {
       return null;
     }
 
@@ -95,7 +87,6 @@ export const listPublishedForSitemap = query({
       .filter((row) => row.status === "published" && row.published_at)
       .sort((a, b) => (b.published_at ?? 0) - (a.published_at ?? 0))
       .map((row) => ({
-        locale: row.locale,
         slug: row.slug,
         updatedAt: row.updated_at,
         publishedAt: row.published_at ?? row.updated_at,
@@ -106,7 +97,6 @@ export const listPublishedForSitemap = query({
 export const upsert = mutation({
   args: {
     postId: v.optional(v.id("blog_posts")),
-    locale: blogLocaleValidator,
     status: blogStatusValidator,
     title: v.string(),
     slug: v.string(),
@@ -144,15 +134,12 @@ export const upsert = mutation({
       throw new Error("Post body is required");
     }
 
-    const existingWithSlug = await ctx.db
-      .query("blog_posts")
-      .withIndex("by_locale_and_slug", (q) =>
-        q.eq("locale", args.locale).eq("slug", slug),
-      )
-      .unique();
+    const existingWithSlug = (await ctx.db.query("blog_posts").collect()).find(
+      (row) => row.slug === slug && row._id !== args.postId,
+    );
 
-    if (existingWithSlug && existingWithSlug._id !== args.postId) {
-      throw new Error("A post with this slug already exists for that locale");
+    if (existingWithSlug) {
+      throw new Error("A post with this slug already exists");
     }
 
     const existing = args.postId ? await ctx.db.get(args.postId) : null;
@@ -162,7 +149,7 @@ export const upsert = mutation({
         : undefined;
 
     const payload = {
-      locale: args.locale,
+      locale: existing?.locale ?? "en",
       status: args.status,
       slug,
       title,

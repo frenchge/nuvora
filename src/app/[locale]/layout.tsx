@@ -3,7 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
@@ -41,6 +41,7 @@ export default async function LocaleLayout({
     notFound();
   }
   setRequestLocale(locale);
+  const messages = await getMessages();
 
   return (
     <ClerkProvider>
@@ -50,7 +51,7 @@ export default async function LocaleLayout({
         className={`${GeistSans.variable} ${GeistMono.variable}`}
       >
         <body className="min-h-screen bg-background font-sans">
-          <NextIntlClientProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
             <ConvexClientProvider>
               <ThemeProvider>
                 {children}

@@ -13,7 +13,7 @@ export default async function SignInPage({
   const t = await getTranslations("Auth");
   return (
     <AuthShell title={t("signInTitle")} subtitle={t("signInSubtitle")}>
-      <SignIn appearance={clerkAuthAppearance} />
+      <SignIn appearance={clerkAuthAppearance} fallbackRedirectUrl="/chat" />
     </AuthShell>
   );
 }

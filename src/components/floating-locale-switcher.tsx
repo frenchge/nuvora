@@ -18,6 +18,10 @@ const LOCALE_META: Record<
   en: { label: "English", flag: "🇺🇸" },
   fr: { label: "Français", flag: "🇫🇷" },
 };
+const LOCALE_COOKIE_NAME =
+  typeof routing.localeCookie === "object"
+    ? routing.localeCookie.name
+    : "NEXT_LOCALE";
 
 export function FloatingLocaleSwitcher() {
   const locale = useLocale() as keyof typeof LOCALE_META;
@@ -54,6 +58,7 @@ export function FloatingLocaleSwitcher() {
     setOpen(false);
     if (next === locale) return;
     startTransition(() => {
+      document.cookie = `${LOCALE_COOKIE_NAME}=${next}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
       router.replace(pathname, { locale: next });
     });
   }

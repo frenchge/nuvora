@@ -7,6 +7,12 @@ import { defineRouting } from "next-intl/routing";
 export const routing = defineRouting({
   locales: ["en", "fr"],
   defaultLocale: "en",
+  localeCookie: {
+    name: "NEXT_LOCALE",
+    path: "/",
+    sameSite: "lax",
+    maxAge: 60 * 60 * 24 * 365,
+  },
   // The default locale lives at the root: vercilio.com/about (not /en/about).
   // French is exposed as a prefixed path: vercilio.com/fr/about.
   // Search engines see two distinct, indexable URLs per page.
