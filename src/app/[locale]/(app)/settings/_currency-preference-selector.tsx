@@ -74,31 +74,28 @@ export function CurrencyPreferenceSelector({
               type="button"
               onClick={() => setSelectedCurrency(value)}
               className={cn(
-                "rounded-[1.35rem] border px-4 py-4 text-left transition",
+                "flex items-center justify-between gap-4 rounded-[1.2rem] border px-4 py-3.5 text-left transition",
                 active
                   ? "border-primary bg-primary/8 shadow-sm"
                   : "border-border/60 bg-background hover:border-primary/40 hover:bg-primary/5",
               )}
             >
-              <div className="flex items-start justify-between gap-3">
-                <span />
-                <span
-                  className={cn(
-                    "inline-flex h-6 w-6 items-center justify-center rounded-full border transition",
-                    active
-                      ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border/70 text-transparent",
-                  )}
-                >
-                  <Check className="h-3.5 w-3.5" />
-                </span>
-              </div>
-              <div className="mt-4 flex items-center gap-2 text-base font-semibold text-foreground">
+              <div className="flex items-center gap-2 text-base font-semibold text-foreground">
                 <span className="text-lg leading-none text-primary">
                   {currencySymbol(value)}
                 </span>
                 <span>{value}</span>
               </div>
+              <span
+                className={cn(
+                  "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition",
+                  active
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border/70 text-transparent",
+                )}
+              >
+                <Check className="h-3.5 w-3.5" />
+              </span>
             </button>
           );
         })}

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useTransition } from "react";
 import { ChevronUp } from "lucide-react";
+import { usePathname as useRawPathname } from "next/navigation";
 import {
   CURRENCIES,
   CURRENCY_COOKIE_NAME,
@@ -26,10 +27,28 @@ export function FloatingCurrencySwitcher({
   initialCurrency: Currency;
 }) {
   const router = useRouter();
+  const rawPathname = useRawPathname();
   const [open, setOpen] = useState(false);
   const [pending, startTransition] = useTransition();
   const [selectedCurrency, setSelectedCurrency] = useState<Currency>(initialCurrency);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const pathnameWithoutLocale = rawPathname.replace(/^\/[a-z]{2}(?=\/|$)/, "") || "/";
+  const isAppRoute = [
+    "/admin",
+    "/billing",
+    "/chat",
+    "/contribution",
+    "/settings",
+    "/trees",
+    "/usage",
+  ].some((prefix) =>
+    pathnameWithoutLocale === prefix || pathnameWithoutLocale.startsWith(`${prefix}/`),
+  );
+
+  if (isAppRoute) {
+    return null;
+  }
 
   useEffect(() => {
     setSelectedCurrency(initialCurrency);
