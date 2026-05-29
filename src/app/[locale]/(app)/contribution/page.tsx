@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { ArrowUpRight, Leaf } from "lucide-react";
 import { api } from "@convex/_generated/api";
+import { Link } from "@/i18n/navigation";
 import { fetchQuery, getRequiredConvexToken } from "@/lib/convex-server";
 import { ContributionChart } from "./_contribution-chart";
 

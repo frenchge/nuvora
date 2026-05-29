@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "@convex/_generated/api";
 import { AppSidebar } from "@/components/app/app-sidebar";
@@ -10,6 +9,7 @@ import { PaymentGraceBanner } from "@/components/app/payment-grace-banner";
 import { PlanWelcomeWatcher } from "@/components/app/plan-welcome-watcher";
 import { UpgradeBadge } from "@/components/app/upgrade-badge";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useRouter } from "@/i18n/navigation";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();

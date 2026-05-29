@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { api } from "@convex/_generated/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "@/i18n/navigation";
 import { PLAN_DISPLAY } from "@/lib/plans";
 import { fetchQuery, getRequiredConvexToken } from "@/lib/convex-server";
 import { formatCredits } from "@/lib/utils";

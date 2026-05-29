@@ -46,13 +46,13 @@
   },
   "About": {
     "metaTitle": "About — Vercilio",
-    "metaDescription": "Why we built Vercilio: a calm home for every AI model, with real-world environmental impact baked in.",
+    "metaDescription": "Why we built Vercilio: a better home for every AI model, with real-world environmental impact built in.",
     "heroEyebrow": "Why we built this",
     "heroTitle": "AI tools shouldn't feel <accent>extractive.</accent>",
     "heroBody": "We started Vercilio because we kept paying for AI tools that felt loud, lonely, and hungry for our data — and gave nothing back to the world the conversations were about.",
     "storyParagraph1": "Most subscription apps treat you like a meter. The dashboards scream, the upgrade prompts pulse, and the moment you forget to cancel, the bill arrives twice. We wanted something that felt the opposite — a tool you could leave open in a tab and never resent.",
-    "storyParagraph2": "So Vercilio is built around a small set of beliefs: that frontier models should live next to fast, cheap ones in the same window; that monthly credits beat token math; that a calm interface is worth more than a clever one; and that the planet doing the heating of these GPUs deserves a kickback every month.",
-    "storyParagraph3": "What you pay for is the access and the calm. What we keep is a modest margin on each plan. The remainder goes to mangrove restoration in Brazil and Kenya and native-tree planting across North America through long-term partner programs. You see the receipts in your settings.",
+    "storyParagraph2": "So Vercilio is built around a small set of beliefs: that frontier models should live next to fast, cheap ones in the same window; that monthly credits beat token math; that a focused interface is worth more than a clever one; and that the planet doing the heating of these GPUs deserves a kickback every month.",
+    "storyParagraph3": "What you pay for is the access and the simplicity. What we keep is a modest margin on each plan. The remainder goes to mangrove restoration in Brazil and Kenya and native-tree planting across North America through long-term partner programs. You see the receipts in your settings.",
     "principlesTitle": "How we make choices",
     "principlesSubtitle": "Four principles we reach for when there's a tradeoff.",
     "principles": {
@@ -66,7 +66,7 @@
       },
       "opinion": {
         "title": "Quietly opinionated",
-        "body": "We make small choices for you — sensible model defaults, gentle limits, calm typography — so you can think instead of fiddle."
+        "body": "We make small choices for you — sensible model defaults, gentle limits, and clear typography — so you can think instead of fiddle."
       },
       "margin": {
         "title": "A small piece of every payment, returned",
@@ -74,7 +74,7 @@
       }
     },
     "simplerDealTitle": "A simpler deal",
-    "simplerDealBody": "Pay for great AI, get a calmer product, and let the same monthly subscription help fund real tree planting through trusted partners.",
+    "simplerDealBody": "Pay for great AI, get a clearer product, and let the same monthly subscription help fund real tree planting through trusted partners.",
     "ctaTitle": "Try it for an afternoon.",
     "ctaBody": "100 free credits a month — no card, no commitment.",
     "ctaPrimary": "Start free",
@@ -171,7 +171,7 @@
     "metaTitle": "Pricing — Vercilio",
     "heroEyebrow": "Pricing",
     "heroTitle": "Pay for AI. Help the planet at the same time.",
-    "heroBody": "If you're already spending money on AI each month, this is the better trade: one calm workspace for the best models, plus verified trees planted through our partners.",
+    "heroBody": "If you're already spending money on AI each month, this is the better trade: one place for the best models, plus verified trees planted through our partners.",
     "compareTitle": "Compare plans",
     "compareBody": "Every paid plan unlocks the full paid model catalog. The real difference is how much AI room you get each month, and how much environmental work your subscription helps fund.",
     "sidebar": {
@@ -228,7 +228,7 @@
     "scrollMediaCue": "Scroll to explore",
     "heroBadge": "One AI subscription. Built-in environmental impact.",
     "heroTitle": "The best AI models, <accent>with real impact built in.</accent>",
-    "heroBody": "Use GPT, Claude, Gemini, DeepSeek, Mistral, and more in one calm workspace that turns paid usage into verified trees planted.",
+    "heroBody": "Use GPT, Claude, Gemini, DeepSeek, Mistral, and more in one place that turns paid usage into verified trees planted.",
     "heroPrimary": "Start free",
     "heroSecondary": "See pricing",
     "heroFootnote": "100 free credits a month · No card required",
@@ -249,7 +249,7 @@
         "body": "Conversations stay tied to your account. We do not train on your private work."
       },
       "calm": {
-        "title": "A calmer way to pay for AI.",
+        "title": "A clearer way to pay for AI.",
         "body": "One clear subscription, predictable monthly credits, and a product that doesn't try to shout at you."
       }
     },
@@ -845,12 +845,12 @@
     ]
   },
   "Auth": {
-    "signInTitle": "Come back to the AI workspace that does a little more.",
+    "signInTitle": "Come back to the AI workspace that gives something back.",
     "signInSubtitle": "Sign in to pick up your chats, your credits, and the environmental contribution your account helps fund.",
     "signUpTitle": "Start using better AI with real impact built in.",
     "signUpSubtitle": "Create your account to access the best models in one place, with usage that can help support environmental work each month.",
     "eyebrow": "AI with real impact",
-    "tagline1": "Use the best AI models in one calm workspace.",
+    "tagline1": "Use the best AI models in one place.",
     "tagline2": "Paid usage helps fund verified tree planting.",
     "tagline3": "Your account, conversations, and billing stay in one place.",
     "asideEyebrow": "Why people switch",

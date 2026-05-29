@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { SignOutButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 import {
@@ -12,6 +11,7 @@ import { api } from "@convex/_generated/api";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Link } from "@/i18n/navigation";
 import { PLAN_DISPLAY, PLAN_ORDER } from "@/lib/plans";
 import {
   fetchAction,

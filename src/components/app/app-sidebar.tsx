@@ -1,11 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import { SignOutButton } from "@clerk/nextjs";
 import * as Dialog from "@radix-ui/react-dialog";
-import { usePathname, useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useConvexAuth, useMutation, useQuery } from "convex/react";
 import {
   ChevronDown,
@@ -34,6 +32,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { BrandLogo } from "@/components/brand-logo";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
 // ── Chat row sub-component ──────────────────────────────────────────────────
@@ -717,7 +717,10 @@ function NewChatButton({
   onAfterClick: () => void;
 }) {
   const router = useRouter();
+  const locale = useLocale();
   const t = useTranslations("Sidebar");
+  const localizedChatPath =
+    locale === routing.defaultLocale ? "/chat" : `/${locale}/chat`;
 
   // chat-client rewrites the URL to /chat/<id> via history.replaceState after
   // a new chat is created, which Next's router never learns about. A plain
@@ -727,7 +730,7 @@ function NewChatButton({
     onAfterClick();
     if (pathname?.startsWith("/chat/")) {
       e.preventDefault();
-      window.location.href = "/chat";
+      window.location.href = localizedChatPath;
       return;
     }
     // Already on /chat (the new-chat page): refresh state so any in-memory

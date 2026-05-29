@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useConvexAuth, useQuery } from "convex/react";
 import { AlertTriangle, X } from "lucide-react";
 import { api } from "@convex/_generated/api";
+import { Link } from "@/i18n/navigation";
 
 const DISMISSED_KEY = "vercilio.paymentGraceBanner.dismissedUntil";
 

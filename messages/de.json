@@ -1,0 +1,860 @@
+{
+  "Nav": {
+    "home": "Startseite",
+    "models": "Modelle",
+    "pricing": "Preise",
+    "blog": "Blog",
+    "credits": "Credits",
+    "impact": "Auswirkung",
+    "faq": "FAQ",
+    "signIn": "Anmelden",
+    "startFree": "Kostenlos starten",
+    "openApp": "App öffnen",
+    "backHome": "Zurück zur Startseite",
+    "language": "Sprache"
+  },
+  "Footer": {
+    "tagline": "Ein Abonnement für die besten KI-Modelle der Welt. Jeder bezahlte Monat finanziert verifizierte Wiederaufforstung durch unsere Wiederherstellungspartner.",
+    "productHeading": "Produkt",
+    "companyHeading": "Unternehmen",
+    "resourcesHeading": "Ressourcen",
+    "legalHeading": "Rechtliches",
+    "newsletterHeading": "Produktupdates erhalten",
+    "newsletterBody": "Eine kurze monatliche Nachricht, wenn wir etwas Neues veröffentlichen oder ein Partner einen Pflanzmeilenstein meldet. Kein Lärm.",
+    "newsletterPlaceholder": "du@firma.com",
+    "newsletterSubmit": "Abonnieren",
+    "links": {
+      "models": "Modelle",
+      "pricing": "Preise",
+      "credits": "Credits",
+      "impact": "Auswirkung",
+      "blog": "Blog",
+      "faq": "FAQ",
+      "about": "Über uns",
+      "contact": "Kontakt",
+      "terms": "AGB",
+      "privacy": "Datenschutz",
+      "cookies": "Cookie-Richtlinie"
+    },
+    "social": {
+      "twitter": "Folgen auf X",
+      "github": "Open Source auf GitHub",
+      "linkedin": "Vernetzen auf LinkedIn"
+    },
+    "copyright": "© {year} Vercilio. Alle Rechte vorbehalten.",
+    "credit": "Mit Sorgfalt gefertigt · Bäume weltweit mit Partnern gepflanzt"
+  },
+  "About": {
+    "metaTitle": "Über — Vercilio",
+    "metaDescription": "Warum wir Vercilio gebaut haben: ein besseres Zuhause für jedes KI-Modell, mit echtem Umwelteinfluss integriert.",
+    "heroEyebrow": "Warum wir das gebaut haben",
+    "heroTitle": "KI-Tools sollten sich nicht <accent>ausbeuterisch</accent> anfühlen.",
+    "heroBody": "Wir haben Vercilio gestartet, weil wir immer wieder für KI-Tools zahlten, die laut, einsam und gierig nach unseren Daten waren – und der Welt, über die die Gespräche liefen, nichts zurückgaben.",
+    "storyParagraph1": "Die meisten Abo-Apps behandeln dich wie einen Zähler. Die Dashboards schreien, die Upgrade-Aufforderungen pulsieren, und sobald du vergisst zu kündigen, kommt die Rechnung doppelt. Wir wollten etwas, das das Gegenteil ist – ein Tool, das du in einem Tab offenlassen kannst, ohne es jemals zu bereuen.",
+    "storyParagraph2": "Vercilio basiert auf einer kleinen Reihe von Überzeugungen: dass Spitzenmodelle neben schnellen, günstigen im selben Fenster leben sollten; dass monatliche Credits besser sind als Token-Rechnerei; dass eine fokussierte Oberfläche mehr wert ist als eine clevere; und dass der Planet, der diese GPUs beheizt, jeden Monat eine Gegenleistung verdient.",
+    "storyParagraph3": "Wofür du zahlst, ist der Zugang und die Einfachheit. Was wir behalten, ist eine bescheidene Marge bei jedem Plan. Der Rest fließt in Mangrovenwiederherstellung in Brasilien und Kenia sowie in die Pflanzung einheimischer Bäume in Nordamerika über langfristige Partnerprogramme. Die Belege siehst du in deinen Einstellungen.",
+    "principlesTitle": "Wie wir Entscheidungen treffen",
+    "principlesSubtitle": "Vier Prinzipien, an denen wir uns orientieren, wenn es Kompromisse gibt.",
+    "principles": {
+      "clarity": {
+        "title": "Klarheit statt Hype",
+        "body": "Kein Nutzungsscham, keine Überraschungsrechnungen, keine falsche Dringlichkeit. Wir sagen dir genau, was jede Nachricht kostet und wohin jeder Dollar fließt."
+      },
+      "privacy": {
+        "title": "Privatsphäre als Standard",
+        "body": "Deine Gespräche werden deinem Konto zugeordnet und niemals zum Trainieren von Modellen verwendet. Die einfachste Datenschutzrichtlinie ist die, die du nicht lesen musst."
+      },
+      "opinion": {
+        "title": "Leise meinungsstark",
+        "body": "Wir treffen kleine Entscheidungen für dich – sinnvolle Model-Standardeinstellungen, sanfte Limits und klare Typografie – damit du denken kannst, statt zu fummeln."
+      },
+      "margin": {
+        "title": "Ein kleiner Teil jeder Zahlung, zurückgegeben",
+        "body": "Wir behalten bei jedem Plan eine feste Marge und leiten den Rest an Wiederherstellungspartner weiter. Gleicher Plan, mehr Gutes."
+      }
+    },
+    "simplerDealTitle": "Ein einfacheres Angebot",
+    "simplerDealBody": "Zahle für großartige KI, erhalte ein klareres Produkt und lass dasselbe monatliche Abo echte Baumpflanzungen über vertrauenswürdige Partner finanzieren.",
+    "ctaTitle": "Probier es einen Nachmittag lang aus.",
+    "ctaBody": "100 kostenlose Credits pro Monat – keine Karte, keine Verpflichtung.",
+    "ctaPrimary": "Kostenlos starten",
+    "ctaSecondary": "Sprich mit uns"
+  },
+  "Contact": {
+    "metaTitle": "Kontakt — Vercilio",
+    "metaDescription": "Sprechen Sie mit einer echten Person über Vercilio — Abrechnungsfragen, Partnerschaftsideen oder einfach nur, um Hallo zu sagen.",
+    "heroEyebrow": "Wir sind ein kleines Team — Menschen antworten.",
+    "heroTitle": "Sag <accent>hallo.</accent>",
+    "heroBody": "Wähle den passenden Posteingang oder nutze das untenstehende Formular. Wir lesen jede Nachricht und versuchen, innerhalb eines Arbeitstages zu antworten.",
+    "lanes": {
+      "general": {
+        "label": "Allgemein",
+        "helper": "Alles, was sonst nirgendwo reinpasst — wir antworten meist innerhalb eines Tages."
+      },
+      "support": {
+        "label": "Support",
+        "helper": "Bei einem konkreten Problem? Sende die Chat-ID oder einen Screenshot, wenn möglich."
+      },
+      "partnerships": {
+        "label": "Partnerschaften",
+        "helper": "Restaurationspartner, Modellanbieter, Nachhaltigkeitsorganisationen — lass uns sprechen."
+      }
+    },
+    "openMail": "Mail öffnen",
+    "formTitle": "Oder schreib uns eine Nachricht",
+    "formSubtitle": "Erzähl uns, woran du arbeitest. Wir leiten es an die richtige Person weiter.",
+    "form": {
+      "nameLabel": "Name",
+      "namePlaceholder": "Avery Hale",
+      "emailLabel": "E-Mail",
+      "emailPlaceholder": "du@firma.com",
+      "subjectLabel": "Betreff",
+      "subjectPlaceholder": "Was liegt dir auf dem Herzen?",
+      "messageLabel": "Nachricht",
+      "messagePlaceholder": "Erzähl uns, was los ist…",
+      "privacyNote": "Mit dem Absenden akzeptierst du unsere <link>Datenschutzerklärung</link>.",
+      "submit": "Senden"
+    }
+  },
+  "Faq": {
+    "metaTitle": "FAQ — Vercilio",
+    "metaDescription": "Antworten zu Preisen, Credits, Modellen, Uploads und dem in Vercilio integrierten Umweltbeitrag.",
+    "heroEyebrow": "FAQ",
+    "heroTitle": "Alles, was Menschen fragen, bevor sie wechseln.",
+    "heroBody": "Ein KI-Abonnement, ein Credit-System und ein integrierter Umweltbeitrag. So funktioniert es.",
+    "sidebar": {
+      "models": "Ein Ort für die besten Konversationsmodelle.",
+      "search": "Suche, Dateien und Bilder sind in den Ablauf integriert.",
+      "fund": "Bezahlte Nutzung unterstützt verifizierte Projekte über unsere Partner.",
+      "tiers": "Höhere Stufen erhöhen sowohl den monatlichen Spielraum als auch die monatliche Wirkung."
+    },
+    "items": {
+      "difference": {
+        "question": "Worin unterscheidet sich das von der Bezahlung eines anderen KI-Abonnements?",
+        "answer": "Die Kernidee ist einfach: Wenn Sie bereits monatlich für KI zahlen, bietet Vercilio Ihnen ein Zuhause für die besten Modelle und nutzt bezahlte Aktivitäten gleichzeitig, um Umweltprojekte über unsere Partner zu finanzieren."
+      },
+      "models": {
+        "question": "Sind in allen kostenpflichtigen Plänen dieselben Modelle enthalten?",
+        "answer": "Ja. Jeder kostenpflichtige Plan enthält denselben Katalog bezahlter Konversationsmodelle. Sie upgraden nicht für ein anderes Modellset, sondern für mehr Credits, mehr täglichen Spielraum und mehr Wirkung."
+      },
+      "free": {
+        "question": "Was beinhaltet der kostenlose Plan?",
+        "answer": "Der kostenlose Plan bietet ein kleineres monatliches Credit-Guthaben und Zugang zu einer leichteren Modellauswahl, damit Sie das Produkt kennenlernen können, bevor Sie entscheiden, ob es zu Ihrem Workflow passt."
+      },
+      "uploads": {
+        "question": "Kann ich Dokumente und Bilder hochladen?",
+        "answer": "Ja. Dateilesen, Bildverständnis und Websuche sind Teil des Produkts. Kompatible Modelle können PDFs, Screenshots, Fotos und andere gängige Eingaben direkt im Chat verarbeiten."
+      },
+      "contribution": {
+        "question": "Was genau ist der Umweltbeitrag?",
+        "answer": "Bezahlte Abonnements finanzieren verifizierte Baumpflanzungen über unsere Partner. Höhere Pläne pflanzen jeden Monat mehr Bäume."
+      },
+      "addons": {
+        "question": "Kann ich mehr Credits kaufen, ohne den Plan zu wechseln?",
+        "answer": "Ja. Sie können jederzeit mit einmaligen Credit-Zusatzpaketen aufstocken, wenn Sie in einem geschäftigen Monat mehr Spielraum benötigen."
+      },
+      "rollover": {
+        "question": "Verfallen ungenutzte Credits nie?",
+        "answer": "Credits aus monatlichen Plänen werden mit jedem Zyklus erneuert. Einmal gekaufte Zusatzpakete bleiben verfügbar, solange Ihr Konto aktiv ist."
+      },
+      "cancel": {
+        "question": "Kann ich jederzeit kündigen?",
+        "answer": "Ja. Sie können Ihr Abonnement über die Abrechnung verwalten und Änderungen vornehmen, wenn sich Ihre Nutzung ändert."
+      }
+    },
+    "ctaTitle": "Bereit, es auszuprobieren?",
+    "ctaBody": "Starten Sie kostenlos und upgraden Sie, wenn Sie mehr Credits und einen höheren monatlichen Umweltbeitrag wünschen.",
+    "ctaPrimary": "Kostenlos starten",
+    "ctaSecondary": "Preise ansehen"
+  },
+  "Pricing": {
+    "metaTitle": "Preise — Vercilio",
+    "heroEyebrow": "Preise",
+    "heroTitle": "Für KI bezahlen. Gleichzeitig dem Planeten helfen.",
+    "heroBody": "Wenn Sie bereits jeden Monat Geld für KI ausgeben, ist dies der bessere Deal: ein Ort für die besten Modelle plus verifizierte gepflanzte Bäume durch unsere Partner.",
+    "compareTitle": "Pläne vergleichen",
+    "compareBody": "Jeder kostenpflichtige Plan schaltet den vollständigen Katalog kostenpflichtiger Modelle frei. Der wirkliche Unterschied liegt darin, wie viel KI-Kapazität Sie jeden Monat erhalten und wie viel Umweltarbeit Ihr Abonnement unterstützt.",
+    "sidebar": {
+      "workspace": "Ein Arbeitsbereich für GPT, Claude, Gemini, DeepSeek, Mistral und mehr.",
+      "included": "Kostenpflichtige Pläne beinhalten jeden Monat verifizierte Umweltbeiträge.",
+      "grow": "Höhere Pläne leisten mehr, daher steigert ein Upgrade sowohl Ihre KI-Kapazität als auch Ihre Wirkung."
+    },
+    "rows": {
+      "price": "Monatlicher Preis",
+      "credits": "Credits pro Monat",
+      "models": "Modellzugang",
+      "uploads": "Dateien, Bilder und Websuche",
+      "daily": "Tägliche Nutzung",
+      "contribution": "Umweltbeitrag",
+      "bestFor": "Am besten geeignet für",
+      "cta": "Loslegen"
+    },
+    "values": {
+      "free": "Kostenlos",
+      "perMonth": "{value}/Monat",
+      "fastSmallModels": "Schnelle kleinere Modelle",
+      "allPaidModels": "Alle kostenpflichtigen Konversationsmodelle",
+      "freeUploads": "Inklusive bei kostenlosen Limits",
+      "paidUploads": "Inklusive",
+      "freeTrees": "Nicht enthalten",
+      "paidTrees": "{count} Bäume",
+      "daily": {
+        "free": "20 / Tag",
+        "basic": "150 / Tag",
+        "starter": "350 / Tag",
+        "pro": "700 / Tag"
+      },
+      "bestFor": {
+        "free": "Produkt ausprobieren",
+        "basic": "Tägliche Einzelarbeit",
+        "starter": "Starke wöchentliche Nutzung",
+        "pro": "Power-User und Teams"
+      }
+    },
+    "startFree": "Kostenlos starten",
+    "choose": "{plan} wählen",
+    "popular": "Beliebt",
+    "addonsTitle": "Credit-Erweiterungen",
+    "addonsBody": "Brauchen Sie diesen Monat mehr Kapazität? Laden Sie Credits auf, ohne Ihren Plan zu ändern.",
+    "buyAddon": "Erweiterung kaufen",
+    "questionsTitle": "Fragen vor dem Wechsel?",
+    "questionsBody": "Lesen Sie die FAQ, um zu erfahren, wie Credits funktionieren, welche Auswirkungen enthalten sind und wie sich Pläne beim Upgrade ändern.",
+    "openFaq": "FAQ öffnen"
+  },
+  "Home": {
+    "scrollMediaTitle": "Die KI-Plattform, die Bäume pflanzt.",
+    "scrollMediaSubtitle": "Chatten Sie mit den weltweit führenden Modellen und finanzieren Sie mit jeder Mitgliedschaft Wiederaufforstung.",
+    "scrollMediaDate": "Vercilio",
+    "scrollMediaCue": "Scrollen zum Entdecken",
+    "heroBadge": "Ein KI-Abo. Eingebauter Umwelteinfluss.",
+    "heroTitle": "Die besten KI-Modelle, <accent>mit echtem Impact inklusive.</accent>",
+    "heroBody": "Nutzen Sie GPT, Claude, Gemini, DeepSeek, Mistral und mehr an einem Ort, der bezahlte Nutzung in verifizierte gepflanzte Bäume verwandelt.",
+    "heroPrimary": "Kostenlos starten",
+    "heroSecondary": "Preise ansehen",
+    "heroFootnote": "100 kostenlose Credits pro Monat · Keine Karte erforderlich",
+    "providersEyebrow": "Verknüpft mit den weltweit führenden Modellen",
+    "valuesTitle": "Mehr aus jedem KI-Abo.",
+    "valuesBody": "Wenn Sie bereits für KI zahlen, kann Ihre monatliche Rechnung mehr als nur Nachrichten freischalten.",
+    "values": {
+      "best": {
+        "title": "Nutzen Sie die beste KI an einem Ort.",
+        "body": "Wechseln Sie nahtlos zwischen Spitzen- und schnellen Modellen, ohne Ihren Workflow zu unterbrechen oder Abos zu jonglieren."
+      },
+      "good": {
+        "title": "Jede Eingabe kann Gutes bewirken.",
+        "body": "Bezahlte Nutzung unterstützt die Finanzierung echter Baumpflanzungen durch geprüfte Umweltpartner."
+      },
+      "yours": {
+        "title": "Ihre Arbeit bleibt Ihre.",
+        "body": "Gespräche sind an Ihr Konto gebunden. Wir trainieren nicht mit Ihren privaten Daten."
+      },
+      "calm": {
+        "title": "Eine klarere Art, KI zu bezahlen.",
+        "body": "Ein klares Abo, vorhersehbare monatliche Credits und ein Produkt, das nicht laut schreit."
+      }
+    },
+    "impactEyebrow": "Echter Impact",
+    "impactTitle": "Nutzen Sie KI täglich. Helfen Sie der Erde leise.",
+    "impactBody": "Unsere Umweltpartner berichten aktuell von über 3,9 Millionen gepflanzten Bäumen, mehr als 150 vertretenen Arten, durchschnittlich über 85 % Baumreife und Partnerverpflichtungen von über 15 Jahren. Bezahlte Aktivitäten in Vercilio unterstützen dieselbe Art von verifizierter, nachvollziehbarer Arbeit.",
+    "impactPoints": {
+      "verified": "Verifizierte Baumpflanzung ab 0,43 $ pro Baum",
+      "history": "Beitragsverlauf pro Zahlung in Ihrem Konto",
+      "longTerm": "Langfristige Pflanzpartner mit Artenvielfalt und Überlebens-Tracking"
+    },
+    "impactStats": {
+      "trees": "Bäume, die durch unsere Partner gepflanzt wurden",
+      "species": "Baumarten, die in Partnerprojekten vertreten sind",
+      "maturity": "durchschnittliche Baumreife laut Partnerangaben",
+      "stewardship": "Verpflichtungen der Partner zur Pflege"
+    },
+    "plansTitle": "Ein Plan. Alle Modelle. Mehr Impact mit Wachstum.",
+    "plansBody": "Starten Sie kostenlos und skalieren Sie Ihre KI-Nutzung und Ihren Umweltbeitrag gemeinsam.",
+    "planDescFree": "Ein leichter Einstieg für gelegentliche Nutzung.",
+    "planDescPaid": "Alle bezahlten KI-Modelle in jedem kostenpflichtigen Plan enthalten.",
+    "planPopular": "Beliebt",
+    "planPerMonth": "/Monat",
+    "planCreditsLine": "{credits} Credits / Monat",
+    "planTreesLine": "{trees} Bäume werden jeden Monat gepflanzt",
+    "planEcoBadge": "Umweltbeitrag inklusive",
+    "seeFullPricing": "Preise vollständig ansehen",
+    "ctaTitle": "Das KI-Abo, das etwas zurückgibt.",
+    "ctaBody": "Testen Sie Vercilio kostenlos und wechseln Sie dann, wenn Sie mehr Credits und einen größeren monatlichen Beitrag zur Baumpflanzung wünschen.",
+    "ctaPrimary": "Kostenlos starten",
+    "faqTitle": "Häufig gestellte Fragen.",
+    "faqBody": "Kurz gesagt: Es funktioniert wie das KI-Abo, das Sie bereits kennen, nur dass Ihre bezahlte Nutzung auch echte Umweltarbeit unterstützt.",
+    "faqItems": {
+      "models": {
+        "question": "Verliere ich bei günstigeren kostenpflichtigen Plänen den Zugang zu den großen Modellen?",
+        "answer": "Nein. Jeder kostenpflichtige Plan enthält denselben Katalog bezahlter Konversationsmodelle. Unterschiede gibt es bei Credits, täglichem Raum und Umweltbeitrag."
+      },
+      "free": {
+        "question": "Was passiert im kostenlosen Plan?",
+        "answer": "Sie erhalten ein kleineres monatliches Credit-Kontingent und Zugang zu einer leichteren kostenlosen Modellmischung, damit Sie das Produkt vor einer Verpflichtung testen können."
+      },
+      "fund": {
+        "question": "Was genau finanziert mein Abo?",
+        "answer": "Jeder kostenpflichtige Plan unterstützt die Baumpflanzung über unsere Wiederherstellungspartner. Höhere Stufen pflanzen einfach mehr pro Monat."
+      },
+      "uploads": {
+        "question": "Kann ich Dateien, Bilder hochladen und im Web suchen?",
+        "answer": "Ja. Vercilio ist auf konversationelle Arbeit ausgelegt, daher sind Suche, Dateilesen und Bildverständnis Teil der Kernfunktionalität."
+      }
+    },
+    "readFullFaq": "Gesamte FAQ lesen"
+  },
+  "Sidebar": {
+    "modes": {
+      "chat": "Chat",
+      "canva": "Canva",
+      "code": "Code"
+    },
+    "comingSoon": "Demnächst verfügbar",
+    "newChat": "Neuer Chat",
+    "newChatAria": "Neuer Chat",
+    "searchPlaceholder": "Durchsuche deine Unterhaltungen...",
+    "loading": "Lädt…",
+    "pinned": "Angepinnt",
+    "recent": "Kürzlich",
+    "noMatches": "Keine passenden Chats",
+    "noChats": "Noch keine Chats",
+    "untitled": "Ohne Titel",
+    "admin": "Admin",
+    "community": "Community",
+    "settings": "Einstellungen",
+    "signOut": "Abmelden",
+    "closeSidebar": "Seitenleiste schließen",
+    "expandSidebar": "Seitenleiste erweitern",
+    "collapseSidebar": "Seitenleiste reduzieren",
+    "conversationOptions": "Konversationsoptionen",
+    "pin": "Anpinnen",
+    "unpin": "Lösen",
+    "rename": "Umbenennen",
+    "delete": "Löschen",
+    "renamePrompt": "Chat umbenennen",
+    "deleteDialog": {
+      "title": "Konversation löschen?",
+      "bodyPrefix": "Dies wird dauerhaft entfernen",
+      "bodyFallback": "diese Konversation",
+      "bodySuffix": ". Diese Aktion kann nicht rückgängig gemacht werden.",
+      "cancel": "Abbrechen",
+      "confirm": "Löschen"
+    }
+  },
+  "Chat": {
+    "greetingHeading": "Wie kann ich Ihnen heute helfen?",
+    "greetingCategories": {
+      "create": "Erstellen",
+      "explore": "Entdecken",
+      "code": "Programmieren",
+      "learn": "Lernen"
+    },
+    "greetingPrompts": {
+      "create": [
+        "Verfassen Sie eine Kaltakquise-E-Mail, die sich nicht wie eine Kaltakquise-E-Mail anfühlt.",
+        "Schreiben Sie eine einseitige Gutenachtgeschichte, die ein 6-Jähriger gerne zweimal hören möchte.",
+        "Hilf mir, ein Nebenprojekt zu benennen – gib mir 10 Optionen mit Begründung.",
+        "Verwandle meine groben Notizen in einen prägnanten LinkedIn-Beitrag. Frag mich zuerst nach den Notizen."
+      ],
+      "explore": [
+        "Was ist eine nicht offensichtliche Gewohnheit, die sich über ein Jahrzehnt still und leise auszahlt?",
+        "Vergleiche das Leben in Lissabon, Mexiko-Stadt und Bali für einen Remote-Arbeiter.",
+        "Erkläre, warum einige Länder reich sind und andere nicht – ohne zu vereinfachen.",
+        "Gib mir drei konträre Ansichten zu KI, die tatsächlich kluge Menschen vertreten."
+      ],
+      "code": [
+        "Überprüfe diese Funktion und sag mir, was ein Senior Engineer ändern würde. Ich werde sie einfügen.",
+        "Hilf mir, das Datenmodell für einen Gewohnheitstracker zu entwerfen, der Streaks und Historie unterstützt.",
+        "Führe mich durch die Einrichtung der Authentifizierung in einer Next.js-App, mit den Vor- und Nachteilen jeder Option.",
+        "Ich habe einen instabilen Test. Frag mich, was ich weiß, und hilf mir bei der Diagnose."
+      ],
+      "learn": [
+        "Erkläre mir die Grundlagen, wie ein Transformer-Modell tatsächlich funktioniert, mit einem laufenden Beispiel.",
+        "Gib mir einen 4-Wochen-Plan, um mich wirklich sicher im Lesen von Finanzberichten zu fühlen.",
+        "Erkläre Bayessches Denken anhand einer konkreten Entscheidung, die ich diese Woche treffen könnte.",
+        "Führe mich durch, was tatsächlich passiert, wenn ich eine URL eingebe und Enter drücke."
+      ]
+    },
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "retry": "Erneut versuchen",
+    "sources": "Quellen",
+    "thinking": "Denke…",
+    "stop": "Stopp",
+    "send": "Senden",
+    "newChatTitle": "Neuer Chat",
+    "inputPlaceholder": "Nachricht senden…"
+  },
+  "Models": {
+    "metaTitle": "KI-Modelle — Vercilio",
+    "metaDescription": "Jedes Chatmodell, das sich lohnt, in einem Workspace: GPT, Claude, Gemini, DeepSeek, Mistral und mehr. Geroutet und einsatzbereit, mit Kreditpreisen, die nicht von Token-Mathematik abhängen.",
+    "heroEyebrow": "Modelle",
+    "heroTitle": "200+ Chatmodelle. Ein Abo.",
+    "heroBody": "Vercilio verbindet die weltweit führenden Anbieter konversationaler KI — OpenAI, Anthropic, Google, Meta, xAI, DeepSeek, Mistral und mehr — sodass Sie zwischen fortschrittlichem Denken und schnellem Alltagsworkflow im selben Fenster wechseln können.",
+    "heroPrimary": "Kostenlos starten",
+    "heroSecondary": "Preise ansehen",
+    "providersTitle": "Die Anbieter, die wir heute ausliefern",
+    "providersBody": "Wir verfolgen neue Veröffentlichungen, sobald sie erscheinen. Jedes untenstehende Modell ist derzeit für Abonnenten im Chat verfügbar, mit passenden Schutzmechanismen für Vision, Dateilesen und Websuche, wo unterstützt.",
+    "providers": {
+      "openai": {
+        "name": "OpenAI",
+        "body": "Die komplette GPT-Reihe — schnelle Minis für Alltagsfragen, ausgewogene 4o-Klassen-Modelle und das fortschrittliche GPT-5 für komplexes Denken mit erweitertem Kontextfenster."
+      },
+      "anthropic": {
+        "name": "Anthropic",
+        "body": "Claude Haiku für schnelle Umschreibungen, Claude Sonnet als verlässlicher Standard und Claude Opus, wenn die Antwort sorgfältiges, langes Nachdenken erfordert."
+      },
+      "google": {
+        "name": "Google",
+        "body": "Gemini Flash für Geschwindigkeit, Gemini Pro für schwierigere Fragen und Gemini Pro Preview für das Neueste von DeepMind — multimodal-nativ und suchbewusst."
+      },
+      "meta": {
+        "name": "Meta",
+        "body": "Llama-Modelle für Open-Weight-Workflows, wenn Sie ein Modell wollen, das viele Teams bereits selbst hosten."
+      },
+      "xai": {
+        "name": "xAI",
+        "body": "Grok für eine andere Perspektive, mit Stärken bei aktuellen Ereignissen und lockerem Gesprächston."
+      },
+      "deepseek": {
+        "name": "DeepSeek",
+        "body": "DeepSeeks fortschrittliche Denkmodelle zu deutlich geringeren Kosten — ideal für lange Analysesitzungen ohne Kostenkontrolle."
+      },
+      "mistral": {
+        "name": "Mistral",
+        "body": "Mistral und Magistral bieten starke, in Europa trainierte Modelle — schnell, mehrsprachig und optimiert für produktiven Code und Schreibaufgaben."
+      },
+      "cohere": {
+        "name": "Cohere",
+        "body": "Command-Modelle für Retrieval- und Enterprise-Workflows, mit Fokus auf mehrsprachige Dokumentenarbeit."
+      },
+      "perplexity": {
+        "name": "Perplexity",
+        "body": "Suchbasierte Sonar-Modelle, wenn die Antwort mit Zitaten aus dem Live-Web versehen sein soll."
+      }
+    },
+    "categoriesTitle": "Nach Aufgabe wählen, nicht nach Namen",
+    "categoriesBody": "Namen ändern sich jedes Quartal. Die Kategorien unten bleiben gleich — wählen Sie die, die zur Arbeit passt, und der Filter verfeinert die Auswahl.",
+    "categories": {
+      "fast": {
+        "title": "Schnell & erschwinglich",
+        "body": "Kurze Antworten, schnelle Umschreibungen, Formatkonvertierungen und tägliche Q&A. Geringste Kosten pro Nachricht; ideal für hohes Volumen und Gratis-Nutzung."
+      },
+      "balanced": {
+        "title": "Ausgewogener Standard",
+        "body": "Modelle, zu denen Sie greifen, ohne nachzudenken — starke Qualität, faire Latenz, vernünftige Kosten. Hier fließt der Großteil des bezahlten Traffics hin."
+      },
+      "advanced": {
+        "title": "Fortgeschrittenes Denken",
+        "body": "Mehrstufige Probleme, tiefere Analysen, langer Kontext. Höhere Kosten pro Nachricht, deutlich bessere Antworten bei komplexen Fragen."
+      },
+      "frontier": {
+        "title": "Spitzenklasse",
+        "body": "Die neuesten Veröffentlichungen von OpenAI, Anthropic und Google. Nutzen Sie sie, wenn eine Antwort so gut sein muss, wie es die beste KI von heute leisten kann."
+      }
+    },
+    "featuresTitle": "Alles, was Chatmodelle können, an einem Ort",
+    "features": {
+      "vision": {
+        "title": "Vision",
+        "body": "Fügen Sie einen Screenshot, ein Foto, ein Diagramm oder ein Whiteboard-Bild ein. Vision-fähige Modelle lesen Bilder direkt im Gespräch."
+      },
+      "files": {
+        "title": "Dateien",
+        "body": "Fügen Sie PDFs und andere Dokumente an. Das Modell analysiert sie inline — kein separater Upload, kein Chunking."
+      },
+      "search": {
+        "title": "Websuche",
+        "body": "Schalten Sie die Suche ein und das Modell antwortet mit Live-Zitaten. Wir zeigen die Quellen unter jeder Antwort an."
+      },
+      "reasoning": {
+        "title": "Denkaufwand",
+        "body": "Bei denkfähigen Modellen können Sie Niedrig, Mittel oder Hoch wählen. Höherer Aufwand bedeutet längeres Nachdenken und bessere Antworten bei schwierigen Aufgaben."
+      },
+      "auto": {
+        "title": "Auto-Router",
+        "body": "Lassen Sie Vercilio für jede Nachricht das passende Modell wählen. Der Router nutzt OpenRouter-Livebewertungen, um Ihnen pro Runde die beste Option zu senden."
+      },
+      "tools": {
+        "title": "Werkzeugnutzung",
+        "body": "Kompatible Modelle können bei Bedarf Werkzeuge aufrufen. Derzeit für Websuche genutzt; agentenbasierte Workflows sind in Planung."
+      }
+    },
+    "ctaTitle": "Kostenlos starten. Für stärkere Modelle upgraden.",
+    "ctaBody": "Der Gratisplan enthält 100 Credits pro Monat für die kleinen Modelle — perfekt, um das Produkt kennenzulernen. Steigen Sie auf einen kostenpflichtigen Plan um, wenn Sie fortschrittliches Denken, Vision, Websuche und den monatlichen Umweltbeitrag wünschen.",
+    "ctaPrimary": "Kostenlos starten",
+    "ctaSecondary": "Pläne vergleichen"
+  },
+  "Impact": {
+    "metaTitle": "Umweltauswirkung — Vercilio",
+    "metaDescription": "Jedes bezahlte Vercilio-Abonnement finanziert verifizierte Baumpflanzungen durch unsere langfristigen Wiederherstellungspartner. So funktioniert der Beitragsfluss und das, was berichtet wird.",
+    "heroEyebrow": "Auswirkung",
+    "heroTitle": "Jedes Abonnement pflanzt echte Bäume.",
+    "heroBody": "Vercilio behält bei jedem Plan eine kleine, feste Marge. Der Rest wird an langfristige Wiederherstellungspartner auf drei Kontinenten weitergeleitet. Sie sehen genau, was Ihr Abonnement in Ihrem Konto finanziert hat.",
+    "heroPrimary": "Kostenlos starten",
+    "heroSecondary": "Partner unten ansehen",
+    "summary": {
+      "trees": "3,9 Mio.+",
+      "treesLabel": "Bäume, die durch unser Partnernetzwerk gepflanzt wurden",
+      "species": "150+",
+      "speciesLabel": "Baumarten, die an den Projektstandorten vertreten sind",
+      "maturity": "85%+",
+      "maturityLabel": "durchschnittliche Baumreife, die in den Partnerprogrammen gemeldet wird",
+      "years": "15+ Jahre",
+      "yearsLabel": "an Partnerbetreuungsverpflichtungen hinter jeder Pflanzung"
+    },
+    "partnersTitle": "Wer pflanzt die Bäume tatsächlich",
+    "partnersBody": "Wir führen die Pflanzungen nicht selbst durch. Wir finanzieren und berichten über die Arbeit von Partnern mit verifizierbaren Programmen vor Ort.",
+    "partners": {
+      "mangrove": {
+        "title": "Mangrovenwiederherstellung",
+        "region": "Brasilien & Kenia",
+        "body": "Küstennahe Mangrovenregeneration mit gemeinschaftlichen Pflanzteams. Mangroven schützen Küstenlinien, fördern die Biodiversität und speichern Kohlenstoff schneller als die meisten Binnenwälder."
+      },
+      "arbor": {
+        "title": "Einheimische Waldpflanzung",
+        "region": "Nordamerika",
+        "body": "Wiederaufforstung mit einheimischen Arten in den USA und Kanada, in Partnerschaft mit langjährigen Forstprogrammen, die Artenvielfalt und Überlebensraten verfolgen."
+      }
+    },
+    "howTitle": "Wie eine Zahlung zum Baum wird",
+    "howBody": "Hinter jedem Abonnement steht ein sauberer, prüfbarer Weg von der Kartenbelastung bis zur gepflanzten Einheit.",
+    "how": {
+      "step1": {
+        "title": "Sie abonnieren",
+        "body": "Eine erfolgreiche Stripe-Zahlung wird verbucht. Ihr Plan wird sofort aktualisiert und Ihre monatlichen Credits werden gutgeschrieben."
+      },
+      "step2": {
+        "title": "Ein Beitragsereignis wird erfasst",
+        "body": "Vercilio erfasst den Beitrag pro Zahlung und wandelt ihn in spezifische Pflanzeinheiten um (z. B. 12 Mangroven + 3 einheimische Bäume für den Starter-Plan)."
+      },
+      "step3": {
+        "title": "Bäume werden von Partnern gepflanzt",
+        "body": "Innerhalb des nächsten Pflanzfensters pflanzen die Partner-Teams vor Ort die entsprechenden Einheiten. Jeder Beitrag wird Ihrem Konto zugeordnet."
+      },
+      "step4": {
+        "title": "Sie können die Belege einsehen",
+        "body": "Ihr Beitrags-Dashboard zeigt jedes Ereignis, die Ihrem Konto zugeordneten Bäume und die laufende Community-Gesamtzahl."
+      }
+    },
+    "honestyTitle": "Was wir nicht behaupten",
+    "honesty": {
+      "noOffset": {
+        "title": "Dies ist kein CO₂-Ausgleich",
+        "body": "Wir verkaufen keine CO₂-Zertifikate und behaupten nicht, dass die Nutzung von KI klimaneutral ist. Wir finanzieren Baumpflanzungen, weil es gute Arbeit ist – nicht als Bilanzposten."
+      },
+      "noFarmed": {
+        "title": "Echte Pflanzungen, keine Zertifikate",
+        "body": "Der Beitrag wird durch Partner mit Feldoperationen in tatsächliche gepflanzte Einheiten umgewandelt. Wir kaufen keine generischen Ausgleichszertifikate an einer Börse."
+      },
+      "noStatistics": {
+        "title": "Wir blähen die Zahlen nicht auf",
+        "body": "Die aggregierten Zahlen stammen aus den Berichten der Partner. Beim Runden runden wir ab, nicht auf."
+      }
+    },
+    "ctaTitle": "Abonnieren. Bäume pflanzen. Bessere KI nutzen.",
+    "ctaBody": "Wählen Sie einen Plan. Nutzen Sie die besten Chat-Modelle an einem Ort. Sehen Sie, wie die Bäume Monat für Monat in Ihrem Konto wachsen.",
+    "ctaPrimary": "Kostenlos starten",
+    "ctaSecondary": "Preise ansehen"
+  },
+  "Legal": {
+    "lastUpdatedLabel": "Zuletzt aktualisiert",
+    "lastUpdatedValue": "2026-05-29",
+    "contactLabel": "Kontakt",
+    "controllerLabel": "Datenverantwortlicher",
+    "controllerValue": "Vercilio — betrieben aus Frankreich. Für Datenschutzanfragen kontaktieren Sie bitte privacy@vercilio.ai.",
+    "supervisoryLabel": "Aufsichtsbehörde",
+    "supervisoryValue": "Wenn Sie sich in der Europäischen Union oder im Vereinigten Königreich befinden, können Sie eine Beschwerde bei Ihrer örtlichen Datenschutzbehörde einreichen. In Frankreich ist dies die CNIL (cnil.fr).",
+    "disclaimerLabel": "Einfache Zusammenfassung",
+    "disclaimerValue": "Diese Seite ist so geschrieben, dass sie gut lesbar ist. Die Überschriften und Absätze sind die tatsächlichen verbindlichen Bedingungen. Wenn etwas unklar ist, schreiben Sie bitte an legal@vercilio.ai, bevor Sie sich darauf verlassen."
+  },
+  "LegalTerms": {
+    "metaTitle": "Terms of Service — Vercilio",
+    "metaDescription": "The terms of service that govern your use of Vercilio. Plain English where possible.",
+    "heroEyebrow": "Legal",
+    "heroTitle": "Allgemeine Geschäftsbedingungen",
+    "heroBody": "These terms govern your use of Vercilio. By creating an account or paying for a subscription you accept them. If you don't agree, please stop using the service.",
+    "sections": [
+      {
+        "title": "1. Wer wir sind",
+        "paragraphs": [
+          "Vercilio ist ein KI-Arbeitsbereich, der es Ihnen ermöglicht, mit führenden konversationellen KI-Modellen zu chatten und einen Anteil jedes bezahlten Abonnements an verifizierte Wiederaufforstungspartner weiterzuleiten. Wir bezeichnen den Dienst in diesen Bedingungen durchgehend als „Vercilio“, „wir“, „uns“ oder „den Dienst“.\nSie – der Kontoinhaber – werden als „Sie“ bezeichnet.",
+          "Vercilio wird von der in Frankreich registrierten Gesellschaft betrieben. Unser Hauptkontakt für rechtliche Angelegenheiten ist legal@vercilio.ai."
+        ]
+      },
+      {
+        "title": "2. Berechtigung",
+        "paragraphs": [
+          "Sie müssen mindestens 16 Jahre alt sein, um ein Vercilio-Konto zu erstellen (oder das Alter der digitalen Einwilligung in Ihrem Land, je nachdem, welcher Wert höher ist). Der Dienst ist nicht für Kinder unter 13 Jahren konzipiert, und wir erheben wissentlich keine Daten von ihnen.",
+          "Wenn Sie ein Konto im Namen eines Unternehmens erstellen, bestätigen Sie, dass Sie befugt sind, dieses Unternehmen an diese Bedingungen zu binden."
+        ]
+      },
+      {
+        "title": "3. Ihr Konto",
+        "paragraphs": [
+          "Sie sind dafür verantwortlich, Ihre Anmeldedaten sicher zu verwahren und für alle Aktivitäten, die unter Ihrem Konto stattfinden. Wenn Sie den Verdacht haben, dass Ihr Konto kompromittiert wurde, kontaktieren Sie umgehend support@vercilio.ai.",
+          "Wir behalten uns das Recht vor, Konten zu sperren oder zu kündigen, die gegen diese Bedingungen verstoßen, von denen wir vernünftigerweise annehmen, dass sie missbräuchlich genutzt werden, oder wenn wir gesetzlich dazu verpflichtet sind."
+        ]
+      },
+      {
+        "title": "4. Zulässige Nutzung",
+        "paragraphs": [
+          "Sie stimmen zu, Vercilio nicht zu verwenden, um: (a) Inhalte zu erzeugen, die die Rechte Dritter verletzen; (b) sexuelle Inhalte mit Minderjährigen zu generieren; (c) illegale Waffen, Malware oder Anleitungen zur Schädigung von Personen zu erstellen; (d) Inhalte zu produzieren, die darauf abzielen, eine identifizierbare Person zu belästigen, zu bedrohen oder zu diffamieren; (e) Spam, Scraping oder großflächigen Missbrauch des Dienstes zu automatisieren; (f) zu versuchen, unsere zugrundeliegenden Modellanbieter zu extrahieren, zu reverse-engineeren oder zu imitieren.",
+          "Wir können Inhalte entfernen, die gegen diese Regeln verstoßen, und Konten sperren, die wiederholt oder schwerwiegend gegen diese verstoßen."
+        ]
+      },
+      {
+        "title": "5. Die KI-Modelle",
+        "paragraphs": [
+          "Vercilio gibt Ihnen Zugang zu KI-Modellen von Drittanbietern (wie denen von OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity und anderen) über OpenRouter. Diese Modelle können Fehler machen, Dinge erfinden und Ergebnisse liefern, die Sie nicht erwarten würden. Sie sollten sich nicht auf die Ausgabe eines Modells als Ersatz für professionelle Beratung (rechtlich, medizinisch, finanziell oder anderweitig) verlassen.",
+          "Einige Anfragen, die Sie senden, können an den zugrundeliegenden Modellanbieter weitergeleitet werden, damit dieser eine Antwort generiert. Wir übermitteln ihnen die Nachricht und alle Anhänge, die Sie beifügen; Ihre Abrechnungsinformationen oder Ihre E-Mail-Adresse teilen wir nicht."
+        ]
+      },
+      {
+        "title": "6. Abonnements, Guthaben und Zahlungen",
+        "paragraphs": [
+          "Vercilio bietet einen kostenlosen Plan sowie kostenpflichtige Abonnements (Basic, Starter, Pro) an. Kostenpflichtige Pläne verlängern sich automatisch jeden Monat, bis Sie kündigen. Jeder Plan erneuert sein Guthaben zu Beginn jedes Abrechnungszeitraums; nicht genutzte Guthaben verfallen. Einmalige Guthabenzusätze bleiben verfügbar, bis sie verwendet werden.",
+          "Zahlungen werden von Stripe, Inc. (bzw. deren EU-Tochtergesellschaft, falls zutreffend) abgewickelt. Mit der Zahlung stimmen Sie auch den Nutzungsbedingungen von Stripe zu. Alle Preise verstehen sich inklusive der jeweils geltenden Mehrwertsteuer, sofern die Abrechnung in EUR erfolgt.",
+          "Sie können ein Abonnement jederzeit über Ihre Einstellungsseite kündigen. Kündigungen werden zum Ende des aktuellen Abrechnungszeitraums wirksam – bis dahin behalten Sie den Zugriff. Wir erstatten keine anteiligen Beträge für den ungenutzten Teil eines bezahlten Zyklus, außer wenn dies gesetzlich vorgeschrieben ist."
+        ]
+      },
+      {
+        "title": "7. Der Umweltbeitrag",
+        "paragraphs": [
+          "Ein Teil jedes bezahlten Abonnements wird über die Partnerprogramme von Vercilio für verifizierte Wiederaufforstungsprojekte verwendet (derzeit Mangrovenwiederherstellung in Brasilien und Kenia sowie Pflanzung einheimischer Baumarten in Nordamerika). Die Anzahl der Bäume, die einer Zahlung zugeordnet wird, wird in Ihrem Konto angezeigt.",
+          "Der Beitrag ist kein CO₂-Ausgleich, und wir erheben keinen Anspruch auf CO₂-Neutralität. Die Bäume werden von unseren Partnern gepflanzt; wir berichten über aggregierte Zahlen basierend auf den Meldungen der Partner."
+        ]
+      },
+      {
+        "title": "8. Geistiges Eigentum",
+        "paragraphs": [
+          "Sie behalten alle Rechte an den Eingaben, die Sie senden, und den Antworten, die Sie über Vercilio generieren (vorbehaltlich der jeweiligen Nutzungsbedingungen der zugrunde liegenden Modellanbieter bezüglich der Eigentumsrechte an den Ergebnissen). Wir verwenden Ihre Gespräche nicht zum Training von KI-Modellen.",
+          "Die Marke, der Name, das Design und der Code von Vercilio sind unser geistiges Eigentum. Sie dürfen diese außerhalb des Dienstes ohne unsere schriftliche Erlaubnis weder kopieren noch reproduzieren."
+        ]
+      },
+      {
+        "title": "9. Serviceverfügbarkeit",
+        "paragraphs": [
+          "Wir bemühen uns, Vercilio rund um die Uhr verfügbar zu halten, können jedoch keine ununterbrochene Verfügbarkeit garantieren. Geplante Wartungen, dringende Fehlerbehebungen oder andere Änderungen können den Dienst vorübergehend unterbrechen. Für Ausfallzeiten, die nicht durch grobe Fahrlässigkeit unsererseits verursacht wurden, haften wir nicht.",
+          "Wir können im Laufe der Zeit Funktionen und die Verfügbarkeit von Modellen hinzufügen, entfernen oder ändern."
+        ]
+      },
+      {
+        "title": "10. Haftungsausschluss und Haftungsbeschränkung",
+        "paragraphs": [
+          "Vercilio wird \"wie besehen\" ohne jegliche Gewährleistungen bereitgestellt, außer dort, wo zwingendes Verbraucherschutzrecht etwas anderes vorschreibt (insbesondere für Verbraucher in der Europäischen Union und im Vereinigten Königreich).",
+          "Soweit gesetzlich zulässig, ist unsere Gesamthaftung Ihnen gegenüber für jegliche Ansprüche aus diesen Bedingungen auf den Betrag beschränkt, den Sie uns in den zwölf Monaten vor dem Anspruch gezahlt haben. Wir haften nicht für indirekte, Folgeschäden oder besondere Schäden, einschließlich entgangener Gewinne, Datenverluste oder Rufschädigung."
+        ]
+      },
+      {
+        "title": "11. Kündigung",
+        "paragraphs": [
+          "Sie können Ihr Konto jederzeit über Einstellungen → Sicherheit → Konto löschen schließen. Dadurch wird jedes aktive Abonnement sofort beendet und Ihre Daten gelöscht.",
+          "Wir können Ihr Konto kündigen, wenn Sie diese Bedingungen wesentlich verletzen, wobei wir, wenn möglich, eine angemessene Frist einhalten."
+        ]
+      },
+      {
+        "title": "12. Anwendbares Recht und Streitigkeiten",
+        "paragraphs": [
+          "Diese Bedingungen unterliegen dem französischen Recht. Die zuständigen Gerichte in Paris, Frankreich, sind für alle Streitigkeiten aus diesen Bedingungen zuständig, vorbehaltlich zwingender Verbraucherschutzvorschriften, die eine abweichende Zuständigkeit vorsehen.",
+          "Verbraucher in der Europäischen Union können auch die Online-Streitbeilegungsplattform der Europäischen Kommission unter https://ec.europa.eu/consumers/odr/ nutzen."
+        ]
+      },
+      {
+        "title": "13. Änderungen dieser Bedingungen",
+        "paragraphs": [
+          "Wir können diese Bedingungen von Zeit zu Zeit aktualisieren. Wesentliche Änderungen werden mindestens 30 Tage vor Inkrafttreten per E-Mail an die hinterlegte Adresse angekündigt. Die fortgesetzte Nutzung des Dienstes nach einer Änderung bedeutet, dass Sie die neuen Bedingungen akzeptieren."
+        ]
+      },
+      {
+        "title": "14. Kontakt",
+        "paragraphs": [
+          "Fragen zu diesen Bedingungen: legal@vercilio.ai. Allgemeiner Support: support@vercilio.ai. Datenschutz- und Datenanfragen: privacy@vercilio.ai."
+        ]
+      }
+    ]
+  },
+  "LegalPrivacy": {
+    "metaTitle": "Datenschutzerklärung — Vercilio",
+    "metaDescription": "How Vercilio collects, uses, and protects your personal data. Built around GDPR, French law, and US state privacy laws including CCPA.",
+    "heroEyebrow": "Legal",
+    "heroTitle": "Datenschutzerklärung",
+    "heroBody": "This page explains what personal data Vercilio collects, why, who we share it with, and the rights you have over it. We've tried to keep it readable. If anything is unclear, write to privacy@vercilio.ai.",
+    "sections": [
+      {
+        "title": "1. Wer ist der Verantwortliche",
+        "paragraphs": [
+          "Für die Zwecke der EU-Datenschutz-Grundverordnung (DSGVO), des französischen Datenschutzgesetzes und der UK-DSGVO ist Vercilio der Verantwortliche für die personenbezogenen Daten, die über den Dienst verarbeitet werden.",
+          "Unser Ansprechpartner für Datenschutz ist privacy@vercilio.ai."
+        ]
+      },
+      {
+        "title": "2. Was wir sammeln",
+        "paragraphs": [
+          "Kontodaten: Ihre E-Mail-Adresse, Ihr Name (sofern Sie ihn angeben möchten) und Ihr Anmeldekennzeichen von unserem Authentifizierungsanbieter (Clerk).",
+          "Nutzungsdaten: die Chats und Nachrichten, die Sie mit KI-Modellen auf Vercilio austauschen, die von Ihnen genutzten Modelle, Guthabenstände und Beitragsereignisse im Zusammenhang mit Ihren Zahlungen.",
+          "Abrechnungsdaten: Wenn Sie auf einen kostenpflichtigen Plan upgraden, erhebt Stripe in unserem Auftrag Ihre Zahlungsmethode und Rechnungsdetails. Wir erhalten eine Kennung und Metadaten auf hoher Ebene (Plan, Betrag, Status), jedoch nicht Ihre vollständige Kartennummer.",
+          "Technische Daten: IP-Adresse, Browser-User-Agent, Gerätetyp, Spracheinstellung und ungefähre Standortdaten, die aus Ihrer IP-Adresse abgeleitet werden, verwendet für Sicherheit und Missbrauchsprävention.",
+          "Analysedaten: aggregierte Nutzungsmetriken, die über Google Analytics gesammelt werden (Ereigniszählungen, Seitenaufrufe, anonymisierte IP)."
+        ]
+      },
+      {
+        "title": "3. Warum wir es verarbeiten (rechtliche Grundlage)",
+        "paragraphs": [
+          "Erfüllung des Vertrags (Art. 6 Abs. 1 lit. b DSGVO): zur Erstellung Ihres Kontos, zur Bereitstellung von Chat-Antworten, zur Verwaltung Ihres Abonnements und zur Bereitstellung der Funktion für den Umweltbeitrag.",
+          "Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO): um den Dienst sicher zu halten, Missbrauch zu verhindern, Probleme zu beheben und aggregierte Produktanalysen zu erstellen. Wir wägen unser Interesse gegen Ihre Grundrechte ab.",
+          "Rechtliche Verpflichtung (Art. 6 Abs. 1 lit. c DSGVO): zur Führung von Buchhaltungsunterlagen gemäß französischem Steuerrecht (in der Regel zehn Jahre) und zur Beantwortung rechtmäßiger Anfragen von Behörden.",
+          "Einwilligung (Art. 6 Abs. 1 lit. a DSGVO): für optionale Analyse-Cookies, sofern dies nach lokalem Cookie-Recht erforderlich ist. Sie können die Einwilligung jederzeit widerrufen, ohne die vorherige Verarbeitung zu beeinträchtigen."
+        ]
+      },
+      {
+        "title": "4. Mit wem wir Daten teilen",
+        "paragraphs": [
+          "Wir teilen die minimal notwendigen Daten mit den folgenden Dienstleistern, die auf Grundlage schriftlicher Vereinbarungen für uns tätig sind:",
+          "Clerk (USA) — Authentifizierung und Sitzungsverwaltung.",
+          "Convex (USA) — Hosting der Anwendungsdatenbank.",
+          "Vercel (USA) — Anwendungs-Hosting und Edge-Delivery.",
+          "OpenRouter (USA) und die KI-Modell-Anbieter, zu denen es weiterleitet (dazu können OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity usw. gehören) — zur Generierung von Antworten auf die von Ihnen gesendeten Nachrichten.",
+          "Stripe (USA / EU) — Zahlungsabwicklung.",
+          "Google (USA) — aggregierte Analysen über Google Analytics 4.",
+          "Wir verkaufen Ihre persönlichen Daten nicht. Wir teilen sie nicht mit Werbetreibenden."
+        ]
+      },
+      {
+        "title": "5. Internationale Übermittlungen",
+        "paragraphs": [
+          "Die meisten unserer Dienstleister haben ihren Sitz in den Vereinigten Staaten. Wenn personenbezogene Daten den Europäischen Wirtschaftsraum verlassen, stützen wir uns auf die Standardvertragsklauseln der EU (oder eine Angemessenheitsentscheidung, sofern eine solche vorliegt), um ein vergleichbares Schutzniveau zu gewährleisten.",
+          "Sie können bei uns eine Kopie der relevanten Schutzmaßnahmen anfordern, indem Sie an privacy@vercilio.ai schreiben."
+        ]
+      },
+      {
+        "title": "6. Wie lange wir Ihre Daten aufbewahren",
+        "paragraphs": [
+          "Konto- und Chat-Daten: so lange, wie Sie ein Konto haben. Wenn Sie Ihr Konto über die Einstellungen löschen, werden Ihr Profil, Chats, Nachrichten, Beitragszuweisungen und Guthabensverlauf innerhalb von 30 Tagen entfernt.",
+          "Abrechnungs- und Steuerunterlagen: werden gemäß französischem Steuerrecht für 10 Jahre ab Ende des jeweiligen Geschäftsjahres aufbewahrt. Diese Unterlagen werden auf die gesetzlich erforderlichen Daten minimiert.",
+          "Anonymisierte Analyseaggregate können unbegrenzt aufbewahrt werden; sie können nicht auf Sie zurückgeführt werden."
+        ]
+      },
+      {
+        "title": "7. Ihre Rechte",
+        "paragraphs": [
+          "Nach der DSGVO, dem französischen Datenschutzgesetz, der UK DSGVO und vergleichbaren US-Bundesstaatengesetzen (einschließlich des California Consumer Privacy Act / CPRA) haben Sie das Recht:",
+          "Zugriff — eine Kopie der personenbezogenen Daten zu erhalten, die wir über Sie gespeichert haben.",
+          "Berichtigung — ungenaue Daten zu korrigieren.",
+          "Löschung — uns zu bitten, Ihre Daten zu löschen (\"Recht auf Vergessenwerden\"); Sie können dies auch selbst unter Einstellungen → Sicherheit → Konto löschen tun.",
+          "Einschränkung oder Widerspruch — die Verarbeitung aus berechtigtem Interesse einzuschränken oder ihr zu widersprechen.",
+          "Datenübertragbarkeit — Ihre Daten in einem strukturierten, maschinenlesbaren Format zu erhalten.",
+          "Widerruf der Einwilligung — wenn die Verarbeitung auf Einwilligung beruht, können Sie diese jederzeit widerrufen.",
+          "Speziell für kalifornische Einwohner: Rechte auf Auskunft, Löschung, Berichtigung und Einschränkung der Nutzung sensibler personenbezogener Daten. Wir verkaufen oder \"teilen\" keine personenbezogenen Daten für kontextübergreifende Verhaltenswerbung im Sinne des CCPA/CPRA.",
+          "Um eines dieser Rechte auszuüben, senden Sie eine E-Mail an privacy@vercilio.ai. Wir antworten innerhalb von 30 Tagen."
+        ]
+      },
+      {
+        "title": "8. Cookies und ähnliche Technologien",
+        "paragraphs": [
+          "Wir verwenden eine kleine Auswahl an Cookies und ähnlichen Technologien. Siehe unsere Cookie-Richtlinie für die spezifischen Cookies, deren Zweck und wie Sie diese verwalten können."
+        ]
+      },
+      {
+        "title": "9. Sicherheit",
+        "paragraphs": [
+          "Wir schützen personenbezogene Daten mit branchenüblichen Maßnahmen: HTTPS für den gesamten Datenverkehr, verschlüsselte Speicherung bei unseren Hosting-Anbietern, eingeschränkter Zugriff für unser Team, regelmäßiger Schlüsselwechsel und Audit-Logging.",
+          "Kein System ist vollkommen sicher. Sollten wir eine Sicherheitsverletzung entdecken, die Ihre personenbezogenen Daten betrifft, informieren wir Sie und die zuständige Aufsichtsbehörde, sofern dies gesetzlich vorgeschrieben ist."
+        ]
+      },
+      {
+        "title": "10. Automatisierte Entscheidungsfindung und Profiling",
+        "paragraphs": [
+          "Wir verwenden Ihre personenbezogenen Daten nicht für automatisierte Entscheidungen, die rechtliche oder ähnlich bedeutende Auswirkungen auf Sie haben. Die Antworten des KI-Modells werden von Drittanbietern basierend auf der von Ihnen gesendeten Nachricht generiert; es handelt sich dabei nicht um personalisierte Entscheidungen über Sie."
+        ]
+      },
+      {
+        "title": "11. Kinder",
+        "paragraphs": [
+          "Vercilio ist nicht für Nutzer unter 16 Jahren (oder dem Alter der digitalen Einwilligung in Ihrem Land, je nachdem, welches höher ist) bestimmt. Sollten wir erfahren, dass wir versehentlich personenbezogene Daten eines Kindes unter diesem Alter erhoben haben, werden wir diese löschen."
+        ]
+      },
+      {
+        "title": "12. Aufsichtsbehörde",
+        "paragraphs": [
+          "Wenn Sie sich in Frankreich, im Vereinigten Königreich oder in einem Land des Europäischen Wirtschaftsraums befinden, können Sie eine Beschwerde über unsere Verarbeitung bei Ihrer örtlichen Datenschutzbehörde einreichen. In Frankreich ist dies die CNIL (cnil.fr); im Vereinigten Königreich ist dies die ICO (ico.org.uk)."
+        ]
+      },
+      {
+        "title": "13. Änderungen dieser Richtlinie",
+        "paragraphs": [
+          "Wir können diese Richtlinie von Zeit zu Zeit aktualisieren. Wesentliche Änderungen werden mindestens 30 Tage vor Inkrafttreten per E-Mail an die hinterlegte Adresse angekündigt."
+        ]
+      },
+      {
+        "title": "14. Kontakt",
+        "paragraphs": [
+          "Fragen, Beschwerden oder Anfragen: privacy@vercilio.ai."
+        ]
+      }
+    ]
+  },
+  "LegalCookies": {
+    "metaTitle": "Cookie-Richtlinie — Vercilio",
+    "metaDescription": "Welche Cookies Vercilio verwendet, warum und wie Sie diese steuern können. Im Einklang mit der französischen ePrivacy-Richtlinie und der EU-DSGVO.",
+    "heroEyebrow": "Rechtliches",
+    "heroTitle": "Cookie-Richtlinie",
+    "heroBody": "Diese Seite beschreibt die Cookies und ähnliche Technologien, die Vercilio verwendet, was jedes einzelne bewirkt und wie Sie diese steuern können. Für alle weiteren Informationen siehe unsere Datenschutzerklärung.",
+    "sections": [
+      {
+        "title": "1. Was sind Cookies",
+        "paragraphs": [
+          "Cookies sind kleine Textdateien, die auf Ihrem Gerät abgelegt werden, wenn Sie eine Website besuchen. Sie werden verwendet, um Websites funktionsfähig zu machen, Präferenzen zu speichern und aggregierte Analysen zu erstellen."
+        ]
+      },
+      {
+        "title": "2. Kategorien, die wir verwenden",
+        "paragraphs": [
+          "Unbedingt notwendige Cookies (keine Einwilligung erforderlich): Halten Sie angemeldet und ermöglichen die Funktion des Dienstes. Beinhaltet das Clerk-Session-Cookie und das CSRF-Schutz-Cookie, das von unserer Hosting-Ebene gesetzt wird.",
+          "Funktionale Cookies (keine Einwilligung erforderlich, wenn sie nur Ihre eigenen Präferenzen speichern): Merken Ihr Theme (Hell/Dunkel), Ihre Sprachwahl und das ausgewählte KI-Modell.",
+          "Analyse-Cookies (Einwilligung erforderlich, sofern lokale Cookie-Gesetze gelten): Aggregierte und pseudonymisierte Messung, welche Seiten besucht werden und wie das Produkt genutzt wird. Derzeit bereitgestellt von Google Analytics 4 mit aktivierter IP-Anonymisierung."
+        ]
+      },
+      {
+        "title": "3. Spezifische heute verwendete Cookies",
+        "paragraphs": [
+          "__session, __client (Clerk): Authentifizierung. Unbedingt notwendig. Sitzungsgebunden.",
+          "vercilio.theme, vercilio.selectedModel, vercilio.reasoningEffort, vercilio.autoRouter, vercilio.webSearch (Vercilio): Benutzerpräferenzen. Funktional. Werden in localStorage statt in HTTP-Cookies gespeichert; Sie können diese über Ihre Browsereinstellungen löschen.",
+          "_ga, _ga_<id> (Google Analytics): Aggregierte Analysen. 13 Monate. Sie können sich über eine Browser-Erweiterung (tools.google.com/dlpage/gaoptout) abmelden oder die Analyse-Einwilligung auf dieser Seite verwalten, sofern dies in Ihrer Jurisdiktion gilt.",
+          "__stripe_mid, __stripe_sid (Stripe): Betrugsprävention während des Bezahlvorgangs. Unbedingt notwendig, wenn Sie eine Zahlungsseite besuchen."
+        ]
+      },
+      {
+        "title": "4. Wie Sie Cookies steuern",
+        "paragraphs": [
+          "Ihr Browser ermöglicht es Ihnen, Cookies zu blockieren oder zu löschen (siehe Hilfe Ihres Browsers). Das Blockieren der unbedingt notwendigen Cookies führt dazu, dass der Dienst nicht mehr funktioniert.",
+          "In Rechtsgebieten, die eine ausdrückliche Einwilligung für Analyse-Cookies verlangen, fragen wir vor dem Setzen dieser Cookies um Erlaubnis. Wenn Sie Ihre Meinung ändern, kontaktieren Sie uns unter privacy@vercilio.ai und wir passen Ihre Präferenz an."
+        ]
+      },
+      {
+        "title": "5. Do Not Track",
+        "paragraphs": [
+          "Wir respektieren Browser-basierte Global Privacy Control (GPC)-Signale als Widerruf der Analyse-Einwilligung. Das veraltete DNT-Header-Flag honorieren wir derzeit nicht separat."
+        ]
+      },
+      {
+        "title": "6. Aktualisierungen",
+        "paragraphs": [
+          "Wenn wir ein Cookie hinzufügen oder entfernen, aktualisieren wir diese Seite. Wesentliche Änderungen werden zusammen mit Aktualisierungen der Datenschutzerklärung bekanntgegeben."
+        ]
+      }
+    ]
+  },
+  "Auth": {
+    "signInTitle": "Kehren Sie zurück zum KI-Arbeitsbereich, der etwas zurückgibt.",
+    "signInSubtitle": "Melden Sie sich an, um Ihre Chats, Ihre Credits und den Umweltschutzbeitrag, den Ihr Konto unterstützt, wieder aufzunehmen.",
+    "signUpTitle": "Beginnen Sie, bessere KI mit echtem Impact zu nutzen.",
+    "signUpSubtitle": "Erstellen Sie Ihr Konto, um die besten Modelle an einem Ort zu nutzen – mit einer Nutzung, die jeden Monat Umweltprojekte unterstützt.",
+    "eyebrow": "KI mit echtem Impact",
+    "tagline1": "Nutzen Sie die besten KI-Modelle an einem Ort.",
+    "tagline2": "Bezahlte Nutzung unterstützt verifizierte Baumpflanzungen.",
+    "tagline3": "Ihr Konto, Ihre Gespräche und Abrechnung bleiben an einem Ort.",
+    "asideEyebrow": "Warum Menschen wechseln",
+    "asideTitle": "Ein Abo für großartige KI – mit einem kleinen Mehrwert.",
+    "asideBody": "Anstatt KI an einem Ort zu bezahlen und woanders zu spenden, lässt Vercilio Ihre monatliche Nutzung automatisch echte Umweltprojekte unterstützen."
+  }
+}

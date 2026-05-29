@@ -19,7 +19,7 @@ const GA_MEASUREMENT_ID = "G-YSJ69KZKK9";
 export const metadata: Metadata = {
   title: "Vercilio — The best AI, with real impact built in.",
   description:
-    "Use the best AI models in one calm app, and let your paid usage help fund verified tree planting through our partners.",
+    "Use the best AI models in one place, and let your paid usage help fund verified tree planting through our partners.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
   ),

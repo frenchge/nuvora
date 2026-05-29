@@ -40,7 +40,7 @@ export async function savePersonalInfo(formData: FormData) {
   await fetchMutation(
     api.users.syncCurrentUserIdentity,
     {
-      email,
+      email: email ?? undefined,
       fullName: fullName || undefined,
     },
     { token },
