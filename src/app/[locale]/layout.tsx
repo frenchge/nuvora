@@ -95,9 +95,6 @@ export default async function LocaleLayout({
       className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
       <head>
-        {/* Keep third-party warmups short and relevant to the marketing shell. */}
-        <link rel="preconnect" href="https://me7aitdbxq.ufs.sh" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://cdn.simpleicons.org" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
       </head>
       <body className="min-h-screen bg-background font-sans">

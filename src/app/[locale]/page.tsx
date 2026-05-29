@@ -105,11 +105,8 @@ export default async function LandingPage({
         <ScrollExpandMedia
           mediaType="video"
           mediaSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1"
-          // Re-use the background image as the video poster: the previous
-          // Pexels URL was returning 404 in the wild and a missing poster
-          // shows up as a white flash before the video paints.
-          posterSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYMNjMlBUYHaeYpxduXPVNwf8mnFA61L7rkcoS"
-          bgImageSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYMNjMlBUYHaeYpxduXPVNwf8mnFA61L7rkcoS"
+          posterSrc="/hero/hero-poster-1600.jpg"
+          bgImageSrc="/hero/hero-bg-1600.jpg"
           title={t("scrollMediaTitle")}
           subtitle={t("scrollMediaSubtitle")}
           date={t("scrollMediaDate")}

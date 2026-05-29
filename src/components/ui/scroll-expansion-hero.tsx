@@ -111,16 +111,9 @@ const ScrollExpandMedia = ({
       setTouchStartY(0);
     };
 
-    const handleScroll = (): void => {
-      if (!mediaFullyExpanded) {
-        window.scrollTo(0, 0);
-      }
-    };
-
     window.addEventListener('wheel', handleWheel as unknown as EventListener, {
       passive: false,
     });
-    window.addEventListener('scroll', handleScroll as EventListener);
     window.addEventListener(
       'touchstart',
       handleTouchStart as unknown as EventListener,
@@ -138,7 +131,6 @@ const ScrollExpandMedia = ({
         'wheel',
         handleWheel as unknown as EventListener,
       );
-      window.removeEventListener('scroll', handleScroll as EventListener);
       window.removeEventListener(
         'touchstart',
         handleTouchStart as unknown as EventListener,
@@ -150,6 +142,22 @@ const ScrollExpandMedia = ({
       window.removeEventListener('touchend', handleTouchEnd as EventListener);
     };
   }, [scrollProgress, mediaFullyExpanded, touchStartY]);
+
+  useEffect(() => {
+    const shouldLockScroll = !isMobileState && !mediaFullyExpanded;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+
+    if (shouldLockScroll) {
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+    };
+  }, [isMobileState, mediaFullyExpanded]);
 
   useEffect(() => {
     const checkIfMobile = (): void => {
@@ -177,6 +185,11 @@ const ScrollExpandMedia = ({
       return;
     }
 
+    if (scrollProgress < 0.08 && !mediaFullyExpanded) {
+      setShowDesktopVideo(false);
+      return;
+    }
+
     let cancelled = false;
     const schedule = () => {
       if (cancelled) return;
@@ -192,9 +205,9 @@ const ScrollExpandMedia = ({
     let idleId: number | null = null;
 
     if (typeof idleWindow.requestIdleCallback === 'function') {
-      idleId = idleWindow.requestIdleCallback(schedule, { timeout: 1800 });
+      idleId = idleWindow.requestIdleCallback(schedule, { timeout: 1200 });
     } else {
-      timeoutId = window.setTimeout(schedule, 1200);
+      timeoutId = window.setTimeout(schedule, 900);
     }
 
     return () => {
@@ -206,7 +219,7 @@ const ScrollExpandMedia = ({
         window.clearTimeout(timeoutId);
       }
     };
-  }, [isMobileState, mediaType]);
+  }, [isMobileState, mediaFullyExpanded, mediaType, scrollProgress]);
 
   const mediaWidth = 300 + scrollProgress * (isMobileState ? 650 : 1250);
   const mediaHeight = 400 + scrollProgress * (isMobileState ? 200 : 400);
@@ -311,8 +324,9 @@ const ScrollExpandMedia = ({
                           <img
                             src={posterSrc}
                             alt={title || 'Hero background'}
-                            fetchPriority={isMobileState ? 'high' : 'auto'}
-                            decoding='async'
+                            fetchPriority='high'
+                            loading='eager'
+                            decoding='sync'
                             className='h-full w-full rounded-xl object-cover'
                           />
                         ) : null

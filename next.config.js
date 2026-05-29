@@ -8,11 +8,41 @@ const nextConfig = {
   experimental: {
     serverActions: { bodySizeLimit: "2mb" },
   },
+  async headers() {
+    return [
+      {
+        source: "/providers/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/optimized/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/hero/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "images.pexels.com" },
-      { protocol: "https", hostname: "me7aitdbxq.ufs.sh" },
     ],
   },
   // The www → apex redirect needs to be done at the Vercel domain level

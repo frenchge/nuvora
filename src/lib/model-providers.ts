@@ -2,16 +2,14 @@
  * Provider metadata for the model selector and chat UI.
  *
  * Logos:
- *   - SimpleIcons CDN (`cdn.simpleicons.org/<slug>/black`) when the brand is on
- *     SimpleIcons. We render in black and use `dark:invert` to flip to white.
- *   - Local monochrome SVGs in `/public/providers/*.svg` for brands SimpleIcons
- *     doesn't carry (OpenAI, Cohere, Microsoft, Amazon). Same `dark:invert` flip.
+ *   - Local monochrome SVGs in `/public/providers/*.svg` for every provider we
+ *     show on the public site. This keeps the homepage fully first-party so we
+ *     get long-lived immutable caching instead of SimpleIcons' short TTL.
  *
  * If you add a model from a provider that isn't listed here, it falls back
  * to a 2-letter glyph badge — still readable, but add an entry for polish.
  */
 
-const si = (slug: string): string => `https://cdn.simpleicons.org/${slug}/black`;
 const local = (file: string): string => `/providers/${file}.svg`;
 
 export const POPULAR_PROVIDER_ORDER = [
@@ -59,19 +57,17 @@ export const PROVIDER_META: Record<
   Cohere:    { label: "Cohere",    logoUrl: local("cohere"),    glyph: "Co", className: "" },
   Microsoft: { label: "Microsoft", logoUrl: local("microsoft"), glyph: "MS", className: "" },
   Amazon:    { label: "Amazon",    logoUrl: local("amazon"),    glyph: "Az", className: "" },
-
-  // ── SimpleIcons (brand-on-CDN) ────────────────────────────────────────────
-  Anthropic:  { label: "Anthropic",  logoUrl: si("anthropic"),    glyph: "An", className: "" },
-  Google:     { label: "Google",     logoUrl: si("google"),       glyph: "G",  className: "" },
-  Meta:       { label: "Meta",       logoUrl: si("meta"),         glyph: "∞",  className: "" },
-  xAI:        { label: "xAI",        logoUrl: si("x"),            glyph: "𝕏", className: "" },
-  DeepSeek:   { label: "DeepSeek",   logoUrl: si("deepseek"),     glyph: "DS", className: "" },
-  Mistral:    { label: "Mistral",    logoUrl: si("mistralai"),    glyph: "M",  className: "" },
-  Perplexity: { label: "Perplexity", logoUrl: si("perplexity"),   glyph: "P",  className: "" },
-  Alibaba:    { label: "Alibaba",    logoUrl: si("alibabacloud"), glyph: "A",  className: "" },
-  NVIDIA:     { label: "NVIDIA",     logoUrl: si("nvidia"),       glyph: "NV", className: "" },
-  Moonshot:   { label: "Moonshot",   logoUrl: si("moonrepo"),     glyph: "M",  className: "" },
-  Xiaomi:     { label: "Xiaomi",     logoUrl: si("xiaomi"),       glyph: "Mi", className: "" },
+  Anthropic:  { label: "Anthropic",  logoUrl: local("anthropic"),    glyph: "An", className: "" },
+  Google:     { label: "Google",     logoUrl: local("google"),       glyph: "G",  className: "" },
+  Meta:       { label: "Meta",       logoUrl: local("meta"),         glyph: "∞",  className: "" },
+  xAI:        { label: "xAI",        logoUrl: local("x"),            glyph: "𝕏", className: "" },
+  DeepSeek:   { label: "DeepSeek",   logoUrl: local("deepseek"),     glyph: "DS", className: "" },
+  Mistral:    { label: "Mistral",    logoUrl: local("mistralai"),    glyph: "M",  className: "" },
+  Perplexity: { label: "Perplexity", logoUrl: local("perplexity"),   glyph: "P",  className: "" },
+  Alibaba:    { label: "Alibaba",    logoUrl: local("alibabacloud"), glyph: "A",  className: "" },
+  NVIDIA:     { label: "NVIDIA",     logoUrl: local("nvidia"),       glyph: "NV", className: "" },
+  Moonshot:   { label: "Moonshot",   logoUrl: local("moonrepo"),     glyph: "M",  className: "" },
+  Xiaomi:     { label: "Xiaomi",     logoUrl: local("xiaomi"),       glyph: "Mi", className: "" },
 
   // ── Glyph-only (no clean monochrome mark available) ──────────────────────
   "01.AI":     { label: "01.AI",       logoUrl: local("01ai"),        glyph: "01", className: "" },
