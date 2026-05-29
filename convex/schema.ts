@@ -205,4 +205,26 @@ export default defineSchema({
     key: v.string(),
     value: v.any(),
   }).index("by_key", ["key"]),
+
+  blog_posts: defineTable({
+    locale: v.string(),
+    status: v.string(), // draft | published
+    slug: v.string(),
+    title: v.string(),
+    seo_title: v.string(),
+    meta_description: v.string(),
+    excerpt: v.string(),
+    body_markdown: v.string(),
+    author_name: v.string(),
+    tags: v.array(v.string()),
+    cover_image_url: v.optional(v.string()),
+    published_at: v.optional(v.number()),
+    updated_at: v.number(),
+  })
+    .index("by_locale_and_slug", ["locale", "slug"])
+    .index("by_locale_and_status_and_published_at", [
+      "locale",
+      "status",
+      "published_at",
+    ]),
 });

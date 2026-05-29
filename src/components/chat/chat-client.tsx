@@ -842,10 +842,10 @@ export function ChatClient({
 
       {insufficient && (
         <div className="mx-auto w-full max-w-4xl px-6">
-          <div className="flex flex-col gap-3 rounded-2xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-amber-900 dark:text-amber-200 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-3 rounded-2xl border border-primary/40 bg-primary/10 px-4 py-3 text-sm text-foreground sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="font-medium">You're out of credits.</div>
-              <div className="mt-1 text-xs leading-5 text-amber-800/90 dark:text-amber-200/80">
+              <div className="mt-1 text-xs leading-5 text-foreground/80">
                 {resetDateLabel
                   ? `Your monthly credits reset on ${resetDateLabel}.`
                   : planName === "free"
@@ -869,7 +869,7 @@ export function ChatClient({
             </div>
             <a
               href="/settings?tab=billing"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-amber-500 px-4 py-1.5 text-xs font-semibold text-amber-950 shadow-sm transition hover:bg-amber-400"
+              className="inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full bg-primary px-4 text-xs font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90"
             >
               <Sparkles className="h-3.5 w-3.5" />
               Upgrade now

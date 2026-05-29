@@ -54,23 +54,17 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 }
 
 // Theme toggle + (conditional) Upgrade pill in the top-right corner.
-// On free users the Upgrade pill sits to the right of the theme toggle so
-// the user reads "[sun][Upgrade]" at the edge of the screen. On paid users
-// the Upgrade pill is hidden and the theme toggle snaps to the rightmost
-// slot so we never leave dead space.
+// Free users see the Upgrade pill first, then the theme toggle, inside one
+// shared flex row so both controls stay perfectly aligned.
 function TopRightControls() {
   const { isAuthenticated } = useConvexAuth();
   const profile = useQuery(api.users.me, isAuthenticated ? {} : "skip");
   const showUpgrade = profile?.plan_name === "free" || profile?.plan_name == null;
 
   return (
-    <>
-      <ThemeToggle
-        className={`fixed top-3 z-50 h-9 w-9 rounded-full border border-border/60 bg-background/85 shadow-sm backdrop-blur transition hover:bg-muted ${
-          showUpgrade ? "right-28" : "right-4"
-        }`}
-      />
+    <div className="fixed right-4 top-3 z-50 flex items-center gap-2">
       {showUpgrade && <UpgradeBadge />}
-    </>
+      <ThemeToggle className="h-9 w-9 shrink-0 rounded-full border border-border/60 bg-background/85 shadow-sm backdrop-blur transition hover:bg-muted" />
+    </div>
   );
 }

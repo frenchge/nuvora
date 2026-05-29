@@ -91,7 +91,10 @@ export async function SiteFooter() {
         <FooterColumn
           heading={t("resourcesHeading")}
           className="md:col-span-2"
-          links={[{ href: "/faq", label: t("links.faq") }]}
+          links={[
+            { href: "/blog", label: t("links.blog") },
+            { href: "/faq", label: t("links.faq") },
+          ]}
         />
         <FooterColumn
           heading={t("legalHeading")}

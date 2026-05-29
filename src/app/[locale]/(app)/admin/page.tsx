@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { api } from "@convex/_generated/api";
 import { fetchQuery, getRequiredConvexToken } from "@/lib/convex-server";
 import { AdminDashboard } from "./_admin-dashboard";
+import { BlogManager } from "./_blog-manager";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,10 @@ export default async function AdminPage() {
     redirect("/chat");
   }
 
-  const data = await fetchQuery(api.admin.overview, {}, { token });
+  const [data, blogPosts] = await Promise.all([
+    fetchQuery(api.admin.overview, {}, { token }),
+    fetchQuery(api.blog.listForAdmin, {}, { token }),
+  ]);
 
   return (
     <div className="h-full min-h-0 flex-1 overflow-y-auto">
@@ -32,6 +36,7 @@ export default async function AdminPage() {
             initialContributions={data.contributions}
             plans={data.plans}
           />
+          <BlogManager initialPosts={blogPosts} />
         </div>
       </div>
     </div>
