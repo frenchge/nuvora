@@ -58,49 +58,84 @@ export default async function LandingPage({
     <>
       <SiteHeader />
 
-      <ScrollExpandMedia
-        mediaType="video"
-        mediaSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1"
-        // Re-use the background image as the video poster: the previous
-        // Pexels URL was returning 404 in the wild and a missing poster
-        // shows up as a white flash before the video paints.
-        posterSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYMNjMlBUYHaeYpxduXPVNwf8mnFA61L7rkcoS"
-        bgImageSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYMNjMlBUYHaeYpxduXPVNwf8mnFA61L7rkcoS"
-        title={t("scrollMediaTitle")}
-        subtitle={t("scrollMediaSubtitle")}
-        date={t("scrollMediaDate")}
-        scrollToExpand={t("scrollMediaCue")}
-        textBlend
-      >
-        <div className="flex flex-col items-center text-center">
-          <p className="mx-auto inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
-            <Leaf className="h-3 w-3 text-primary" />
-            {t("heroBadge")}
+      {/* Mobile hero — plain background, no video, no scroll-expand effects.
+          ScrollExpandMedia loads ~1.8 MB of video plus all of Framer Motion's
+          runtime, which crushed phone LCP. Below md we render a static
+          version with the same copy on the page's normal background. */}
+      <section className="border-b border-black/8 bg-white md:hidden">
+        <div className="container flex flex-col items-center px-6 pb-14 pt-28 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+            {t("scrollMediaDate")}
           </p>
-          <h1 className="mx-auto mt-6 max-w-3xl text-balance text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl">
-            {t.rich("heroTitle", {
-              accent: (chunks) => <span className="text-primary"> {chunks}</span>,
-            })}
+          <h1 className="mt-5 max-w-2xl text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-[#1f2718]">
+            {t("scrollMediaTitle")}
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-balance text-base leading-7 text-muted-foreground md:text-lg">
-            {t("heroBody")}
+          <p className="mt-5 max-w-md text-balance text-base leading-7 text-[#5f6658]">
+            {t("scrollMediaSubtitle")}
           </p>
-          <div className="mt-9 flex items-center justify-center gap-3">
-            <Button size="lg" asChild>
+          <div className="mt-8 flex w-full max-w-sm flex-col gap-3">
+            <Button size="lg" className="w-full" asChild>
               <Link href="/sign-up">
                 {t("heroPrimary")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild>
+            <Button size="lg" variant="outline" className="w-full" asChild>
               <Link href="/pricing">{t("heroSecondary")}</Link>
             </Button>
           </div>
-          <p className="mt-3 text-xs text-muted-foreground">
+          <p className="mt-4 text-xs text-[#6d7366]">
             {t("heroFootnote")}
           </p>
         </div>
-      </ScrollExpandMedia>
+      </section>
+
+      {/* Desktop hero — the original ScrollExpandMedia treatment. */}
+      <div className="hidden md:block">
+        <ScrollExpandMedia
+          mediaType="video"
+          mediaSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1"
+          // Re-use the background image as the video poster: the previous
+          // Pexels URL was returning 404 in the wild and a missing poster
+          // shows up as a white flash before the video paints.
+          posterSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYMNjMlBUYHaeYpxduXPVNwf8mnFA61L7rkcoS"
+          bgImageSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYMNjMlBUYHaeYpxduXPVNwf8mnFA61L7rkcoS"
+          title={t("scrollMediaTitle")}
+          subtitle={t("scrollMediaSubtitle")}
+          date={t("scrollMediaDate")}
+          scrollToExpand={t("scrollMediaCue")}
+          textBlend
+        >
+          <div className="flex flex-col items-center text-center">
+            <p className="mx-auto inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
+              <Leaf className="h-3 w-3 text-primary" />
+              {t("heroBadge")}
+            </p>
+            <h1 className="mx-auto mt-6 max-w-3xl text-balance text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl">
+              {t.rich("heroTitle", {
+                accent: (chunks) => <span className="text-primary"> {chunks}</span>,
+              })}
+            </h1>
+            <p className="mx-auto mt-6 max-w-xl text-balance text-base leading-7 text-muted-foreground md:text-lg">
+              {t("heroBody")}
+            </p>
+            <div className="mt-9 flex items-center justify-center gap-3">
+              <Button size="lg" asChild>
+                <Link href="/sign-up">
+                  {t("heroPrimary")}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link href="/pricing">{t("heroSecondary")}</Link>
+              </Button>
+            </div>
+            <p className="mt-3 text-xs text-muted-foreground">
+              {t("heroFootnote")}
+            </p>
+          </div>
+        </ScrollExpandMedia>
+      </div>
 
       <section
         id="models"
