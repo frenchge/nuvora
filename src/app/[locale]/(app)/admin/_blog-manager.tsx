@@ -9,68 +9,70 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { BLOG_BODY_TEMPLATE, normalizeBlogSlug } from "@/lib/blog";
+import {
+  BLOG_BODY_TEMPLATE,
+  BLOG_LOCALE_LABELS,
+  BLOG_LOCALES,
+  normalizeBlogSlug,
+  type BlogLocale,
+} from "@/lib/blog";
 import { getLocalizedPath } from "@/lib/site";
 import { cn } from "@/lib/utils";
-import type { Locale } from "@/i18n/routing";
+
+type BlogTranslationFields = {
+  title: string;
+  seoTitle: string;
+  metaDescription: string;
+  excerpt: string;
+  bodyMarkdown: string;
+  tags: string[];
+};
 
 type BlogPostRow = {
   id: string;
+  sourceLocale: string;
   status: string;
   slug: string;
-  title: string;
-  seoTitle: string;
-  metaDescription: string;
-  excerpt: string;
-  bodyMarkdown: string;
   authorName: string;
-  tags: string[];
   coverImageUrl: string;
   publishedAt: number | null;
   updatedAt: number;
-  readingMinutes: number;
+  translations: Record<BlogLocale, BlogTranslationFields>;
+  translatedLocales: string[];
 };
 
-type BlogFormState = {
+type SharedFormState = {
+  sourceLocale: BlogLocale;
   status: "draft" | "published";
-  title: string;
   slug: string;
-  seoTitle: string;
-  metaDescription: string;
-  excerpt: string;
   authorName: string;
   coverImageUrl: string;
-  tagsText: string;
-  bodyMarkdown: string;
 };
 
-function emptyForm(): BlogFormState {
+function emptyTranslation(seed = false): BlogTranslationFields {
   return {
-    status: "draft",
     title: "",
-    slug: "",
     seoTitle: "",
     metaDescription: "",
     excerpt: "",
-    authorName: "Vercilio Team",
-    coverImageUrl: "",
-    tagsText: "",
-    bodyMarkdown: BLOG_BODY_TEMPLATE,
+    bodyMarkdown: seed ? BLOG_BODY_TEMPLATE : "",
+    tags: [],
   };
 }
 
-function toFormState(post: BlogPostRow): BlogFormState {
+function createEmptyTranslations(sourceLocale: BlogLocale) {
+  return Object.fromEntries(
+    BLOG_LOCALES.map((locale) => [locale, emptyTranslation(locale === sourceLocale)]),
+  ) as Record<BlogLocale, BlogTranslationFields>;
+}
+
+function toSharedState(post: BlogPostRow): SharedFormState {
   return {
+    sourceLocale: post.sourceLocale as BlogLocale,
     status: post.status as "draft" | "published",
-    title: post.title,
     slug: post.slug,
-    seoTitle: post.seoTitle,
-    metaDescription: post.metaDescription,
-    excerpt: post.excerpt,
     authorName: post.authorName,
     coverImageUrl: post.coverImageUrl,
-    tagsText: post.tags.join(", "),
-    bodyMarkdown: post.bodyMarkdown,
   };
 }
 
@@ -81,14 +83,28 @@ function lengthTone(length: number, min: number, max: number) {
 }
 
 export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
-  const currentLocale = useLocale() as Locale;
+  const locale = useLocale() as BlogLocale;
   const upsertPost = useMutation(api.blog.upsert);
   const removePost = useMutation(api.blog.remove);
   const [isPending, startTransition] = useTransition();
   const [posts, setPosts] = useState(initialPosts);
   const [selectedId, setSelectedId] = useState<string | null>(initialPosts[0]?.id ?? null);
-  const [form, setForm] = useState<BlogFormState>(
-    initialPosts[0] ? toFormState(initialPosts[0]) : emptyForm(),
+  const [sharedForm, setSharedForm] = useState<SharedFormState>(
+    initialPosts[0]
+      ? toSharedState(initialPosts[0])
+      : {
+          sourceLocale: locale,
+          status: "draft",
+          slug: "",
+          authorName: "Vercilio Team",
+          coverImageUrl: "",
+        },
+  );
+  const [translationDrafts, setTranslationDrafts] = useState<
+    Record<BlogLocale, BlogTranslationFields>
+  >(initialPosts[0] ? initialPosts[0].translations : createEmptyTranslations(locale));
+  const [activeLocale, setActiveLocale] = useState<BlogLocale>(
+    (initialPosts[0]?.sourceLocale as BlogLocale | undefined) ?? locale,
   );
   const [slugTouched, setSlugTouched] = useState(Boolean(initialPosts[0]));
 
@@ -99,44 +115,73 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
 
   useEffect(() => {
     if (!selectedPost) return;
-    setForm(toFormState(selectedPost));
+    setSharedForm(toSharedState(selectedPost));
+    setTranslationDrafts(selectedPost.translations);
+    setActiveLocale(selectedPost.sourceLocale as BlogLocale);
     setSlugTouched(true);
   }, [selectedPost]);
 
-  function updateForm<K extends keyof BlogFormState>(key: K, value: BlogFormState[K]) {
-    setForm((current) => {
-      const next = { ...current, [key]: value };
-      if (key === "title" && !slugTouched) {
-        next.slug = normalizeBlogSlug(String(value));
-      }
-      return next;
-    });
+  const activeTranslation = translationDrafts[activeLocale];
+
+  function updateShared<K extends keyof SharedFormState>(
+    key: K,
+    value: SharedFormState[K],
+  ) {
+    setSharedForm((current) => ({ ...current, [key]: value }));
+  }
+
+  function updateTranslation<K extends keyof BlogTranslationFields>(
+    key: K,
+    value: BlogTranslationFields[K],
+  ) {
+    setTranslationDrafts((current) => ({
+      ...current,
+      [activeLocale]: {
+        ...current[activeLocale],
+        [key]: value,
+      },
+    }));
+
+    if (key === "title" && !slugTouched && activeLocale === sharedForm.sourceLocale) {
+      setSharedForm((current) => ({
+        ...current,
+        slug: normalizeBlogSlug(String(value)),
+      }));
+    }
   }
 
   function createNew() {
     setSelectedId(null);
-    setForm(emptyForm());
+    setActiveLocale(locale);
+    setSharedForm({
+      sourceLocale: locale,
+      status: "draft",
+      slug: "",
+      authorName: "Vercilio Team",
+      coverImageUrl: "",
+    });
+    setTranslationDrafts(createEmptyTranslations(locale));
     setSlugTouched(false);
   }
 
   function savePost() {
     startTransition(async () => {
       try {
+        const draft = translationDrafts[activeLocale];
         const saved = await upsertPost({
           postId: selectedId ? (selectedId as never) : undefined,
-          status: form.status,
-          title: form.title,
-          slug: form.slug,
-          seoTitle: form.seoTitle || undefined,
-          metaDescription: form.metaDescription || undefined,
-          excerpt: form.excerpt || undefined,
-          bodyMarkdown: form.bodyMarkdown,
-          authorName: form.authorName || undefined,
-          coverImageUrl: form.coverImageUrl || undefined,
-          tags: form.tagsText
-            .split(",")
-            .map((tag) => tag.trim())
-            .filter(Boolean),
+          sourceLocale: sharedForm.sourceLocale,
+          locale: activeLocale,
+          status: sharedForm.status,
+          slug: sharedForm.slug,
+          authorName: sharedForm.authorName || undefined,
+          coverImageUrl: sharedForm.coverImageUrl || undefined,
+          title: draft.title,
+          seoTitle: draft.seoTitle || undefined,
+          metaDescription: draft.metaDescription || undefined,
+          excerpt: draft.excerpt || undefined,
+          bodyMarkdown: draft.bodyMarkdown,
+          tags: draft.tags,
         });
 
         setPosts((current) => {
@@ -145,7 +190,9 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
           return next.sort((a, b) => b.updatedAt - a.updatedAt);
         });
         setSelectedId(saved.id);
-        setForm(toFormState(saved));
+        setSharedForm(toSharedState(saved));
+        setTranslationDrafts(saved.translations);
+        setActiveLocale(activeLocale);
         setSlugTouched(true);
       } catch (error) {
         alert((error as Error).message);
@@ -155,7 +202,7 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
 
   function deletePost() {
     if (!selectedId) return;
-    if (!window.confirm("Delete this blog post? This cannot be undone.")) {
+    if (!window.confirm("Delete this blog post and all translations? This cannot be undone.")) {
       return;
     }
 
@@ -164,14 +211,23 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
         await removePost({ postId: selectedId as never });
         const remaining = posts.filter((post) => post.id !== selectedId);
         setPosts(remaining);
-        setSelectedId(remaining[0]?.id ?? null);
-        setForm(remaining[0] ? toFormState(remaining[0]) : emptyForm());
-        setSlugTouched(Boolean(remaining[0]));
+        if (remaining[0]) {
+          setSelectedId(remaining[0].id);
+          setSharedForm(toSharedState(remaining[0]));
+          setTranslationDrafts(remaining[0].translations);
+          setActiveLocale(remaining[0].sourceLocale as BlogLocale);
+          setSlugTouched(true);
+        } else {
+          setSelectedId(null);
+          createNew();
+        }
       } catch (error) {
         alert((error as Error).message);
       }
     });
   }
+
+  const translatedCount = selectedPost?.translatedLocales.length ?? 1;
 
   return (
     <section className="space-y-4">
@@ -179,10 +235,9 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
         <div>
           <h2 className="text-xl font-semibold">Blog publishing</h2>
           <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
-            The form below is intentionally structured for SEO: separate slug,
-            search title, meta description, excerpt, tags, and body.
-            If you leave some fields blank, the backend fills sensible defaults
-            from the post title and content before saving.
+            Each blog post can now carry multiple translations. Shared fields
+            like slug, status, author, and cover image live once, while each
+            locale gets its own title, SEO metadata, excerpt, tags, and body.
           </p>
         </div>
         <Button type="button" variant="secondary" onClick={createNew}>
@@ -215,7 +270,10 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
                   )}
                 >
                   <div className="flex items-center gap-2">
-                    <span className="line-clamp-1 font-medium">{post.title}</span>
+                    <span className="line-clamp-1 font-medium">
+                      {post.translations[post.sourceLocale as BlogLocale].title ||
+                        post.slug}
+                    </span>
                     <Badge
                       variant="secondary"
                       className={cn(
@@ -226,9 +284,13 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
                       {post.status}
                     </Badge>
                   </div>
-                  <div className="mt-1 text-xs text-muted-foreground">{post.slug}</div>
                   <div className="mt-1 text-xs text-muted-foreground">
-                    Updated {new Date(post.updatedAt).toLocaleString()}
+                    {post.slug}
+                  </div>
+                  <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
+                    <span>{translatedCount} translations</span>
+                    <span>/</span>
+                    <span>Source: {post.sourceLocale.toUpperCase()}</span>
                   </div>
                 </button>
               ))
@@ -239,14 +301,38 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
         <div className="rounded-[1.75rem] border border-border/60 bg-card/40 p-5 md:p-6">
           <div className="grid gap-4 md:grid-cols-2">
             <label className="space-y-2">
+              <span className="text-sm font-medium">Source language</span>
+              <select
+                value={sharedForm.sourceLocale}
+                onChange={(event) => {
+                  const nextLocale = event.target.value as BlogLocale;
+                  updateShared("sourceLocale", nextLocale);
+                  setActiveLocale(nextLocale);
+                  setTranslationDrafts((current) => ({
+                    ...current,
+                    [nextLocale]:
+                      current[nextLocale].bodyMarkdown || current[nextLocale].title
+                        ? current[nextLocale]
+                        : emptyTranslation(true),
+                  }));
+                }}
+                disabled={Boolean(selectedPost)}
+                className="flex h-10 w-full rounded-md border border-border/60 bg-background px-3 text-sm disabled:opacity-60"
+              >
+                {BLOG_LOCALES.map((entry) => (
+                  <option key={entry} value={entry}>
+                    {BLOG_LOCALE_LABELS[entry]}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="space-y-2">
               <span className="text-sm font-medium">Status</span>
               <select
-                value={form.status}
+                value={sharedForm.status}
                 onChange={(event) =>
-                  updateForm(
-                    "status",
-                    event.target.value as "draft" | "published",
-                  )
+                  updateShared("status", event.target.value as "draft" | "published")
                 }
                 className="flex h-10 w-full rounded-md border border-border/60 bg-background px-3 text-sm"
               >
@@ -257,15 +343,6 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
           </div>
 
           <div className="mt-4 grid gap-4 md:grid-cols-2">
-            <label className="space-y-2 md:col-span-2">
-              <span className="text-sm font-medium">Post title</span>
-              <Input
-                value={form.title}
-                onChange={(event) => updateForm("title", event.target.value)}
-                placeholder="How to choose the right AI model for your team"
-              />
-            </label>
-
             <label className="space-y-2">
               <div className="flex items-center justify-between gap-3">
                 <span className="text-sm font-medium">Slug</span>
@@ -273,7 +350,12 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
                   type="button"
                   onClick={() => {
                     setSlugTouched(false);
-                    updateForm("slug", normalizeBlogSlug(form.title));
+                    updateShared(
+                      "slug",
+                      normalizeBlogSlug(
+                        translationDrafts[sharedForm.sourceLocale].title,
+                      ),
+                    );
                   }}
                   className="text-xs font-medium text-primary"
                 >
@@ -281,10 +363,10 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
                 </button>
               </div>
               <Input
-                value={form.slug}
+                value={sharedForm.slug}
                 onChange={(event) => {
                   setSlugTouched(true);
-                  updateForm("slug", normalizeBlogSlug(event.target.value));
+                  updateShared("slug", normalizeBlogSlug(event.target.value));
                 }}
                 placeholder="choose-the-right-ai-model"
               />
@@ -293,104 +375,168 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
             <label className="space-y-2">
               <span className="text-sm font-medium">Author</span>
               <Input
-                value={form.authorName}
-                onChange={(event) =>
-                  updateForm("authorName", event.target.value)
-                }
+                value={sharedForm.authorName}
+                onChange={(event) => updateShared("authorName", event.target.value)}
                 placeholder="Vercilio Team"
               />
             </label>
 
             <label className="space-y-2 md:col-span-2">
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-sm font-medium">SEO title</span>
-                <span className={cn("text-xs", lengthTone(form.seoTitle.length, 45, 70))}>
-                  {form.seoTitle.length || form.title.length} / 45-70 chars
-                </span>
-              </div>
-              <Input
-                value={form.seoTitle}
-                onChange={(event) => updateForm("seoTitle", event.target.value)}
-                placeholder="Best AI models for teams in 2026 | Vercilio"
-              />
-            </label>
-
-            <label className="space-y-2 md:col-span-2">
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-sm font-medium">Meta description</span>
-                <span
-                  className={cn(
-                    "text-xs",
-                    lengthTone(form.metaDescription.length, 140, 160),
-                  )}
-                >
-                  {form.metaDescription.length} / 140-160 chars
-                </span>
-              </div>
-              <Textarea
-                value={form.metaDescription}
-                onChange={(event) =>
-                  updateForm("metaDescription", event.target.value)
-                }
-                className="min-h-[92px]"
-                placeholder="What the article covers, why it matters, and the result the reader should expect."
-              />
-            </label>
-
-            <label className="space-y-2 md:col-span-2">
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-sm font-medium">Excerpt</span>
-                <span className={cn("text-xs", lengthTone(form.excerpt.length, 110, 180))}>
-                  {form.excerpt.length} / 110-180 chars
-                </span>
-              </div>
-              <Textarea
-                value={form.excerpt}
-                onChange={(event) => updateForm("excerpt", event.target.value)}
-                className="min-h-[92px]"
-                placeholder="A short summary for cards, previews, and social snippets."
-              />
-            </label>
-
-            <label className="space-y-2">
-              <span className="text-sm font-medium">Tags</span>
-              <Input
-                value={form.tagsText}
-                onChange={(event) => updateForm("tagsText", event.target.value)}
-                placeholder="ai models, prompt engineering, team workflows"
-              />
-            </label>
-
-            <label className="space-y-2">
               <span className="text-sm font-medium">Cover image URL</span>
               <Input
-                value={form.coverImageUrl}
+                value={sharedForm.coverImageUrl}
                 onChange={(event) =>
-                  updateForm("coverImageUrl", event.target.value)
+                  updateShared("coverImageUrl", event.target.value)
                 }
                 placeholder="https://..."
               />
             </label>
+          </div>
 
-            <label className="space-y-2 md:col-span-2">
-              <span className="text-sm font-medium">Body (Markdown)</span>
-              <Textarea
-                value={form.bodyMarkdown}
-                onChange={(event) =>
-                  updateForm("bodyMarkdown", event.target.value)
-                }
-                className="min-h-[420px] font-mono text-[13px] leading-6"
-                placeholder="Use H2s, H3s, bullet lists, and short paragraphs."
-              />
-            </label>
+          <div className="mt-6">
+            <div className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+              Translation editor
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {BLOG_LOCALES.map((entry) => {
+                const hasContent =
+                  translationDrafts[entry].title.trim().length > 0 &&
+                  translationDrafts[entry].bodyMarkdown.trim().length > 0;
+                return (
+                  <button
+                    key={entry}
+                    type="button"
+                    onClick={() => setActiveLocale(entry)}
+                    className={cn(
+                      "rounded-full border px-3 py-1.5 text-xs font-medium transition",
+                      activeLocale === entry
+                        ? "border-primary/35 bg-primary/10 text-primary"
+                        : "border-border/60 bg-background/70 text-muted-foreground hover:border-primary/20 hover:text-foreground",
+                    )}
+                  >
+                    {BLOG_LOCALE_LABELS[entry]}
+                    {entry === sharedForm.sourceLocale ? " (Source)" : ""}
+                    {hasContent ? " *" : ""}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="mt-4 rounded-2xl bg-background/45 p-4">
+            <div className="text-sm font-medium">
+              Editing {BLOG_LOCALE_LABELS[activeLocale]}
+            </div>
+
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
+              <label className="space-y-2 md:col-span-2">
+                <span className="text-sm font-medium">Post title</span>
+                <Input
+                  value={activeTranslation.title}
+                  onChange={(event) => updateTranslation("title", event.target.value)}
+                  placeholder="How to choose the right AI model for your team"
+                />
+              </label>
+
+              <label className="space-y-2 md:col-span-2">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm font-medium">SEO title</span>
+                  <span
+                    className={cn(
+                      "text-xs",
+                      lengthTone(activeTranslation.seoTitle.length, 45, 70),
+                    )}
+                  >
+                    {activeTranslation.seoTitle.length || activeTranslation.title.length} / 45-70 chars
+                  </span>
+                </div>
+                <Input
+                  value={activeTranslation.seoTitle}
+                  onChange={(event) =>
+                    updateTranslation("seoTitle", event.target.value)
+                  }
+                  placeholder="Best AI models for teams in 2026 | Vercilio"
+                />
+              </label>
+
+              <label className="space-y-2 md:col-span-2">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm font-medium">Meta description</span>
+                  <span
+                    className={cn(
+                      "text-xs",
+                      lengthTone(activeTranslation.metaDescription.length, 140, 160),
+                    )}
+                  >
+                    {activeTranslation.metaDescription.length} / 140-160 chars
+                  </span>
+                </div>
+                <Textarea
+                  value={activeTranslation.metaDescription}
+                  onChange={(event) =>
+                    updateTranslation("metaDescription", event.target.value)
+                  }
+                  className="min-h-[92px]"
+                  placeholder="What the article covers, why it matters, and the result the reader should expect."
+                />
+              </label>
+
+              <label className="space-y-2 md:col-span-2">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm font-medium">Excerpt</span>
+                  <span
+                    className={cn(
+                      "text-xs",
+                      lengthTone(activeTranslation.excerpt.length, 110, 180),
+                    )}
+                  >
+                    {activeTranslation.excerpt.length} / 110-180 chars
+                  </span>
+                </div>
+                <Textarea
+                  value={activeTranslation.excerpt}
+                  onChange={(event) => updateTranslation("excerpt", event.target.value)}
+                  className="min-h-[92px]"
+                  placeholder="A short summary for cards, previews, and social snippets."
+                />
+              </label>
+
+              <label className="space-y-2 md:col-span-2">
+                <span className="text-sm font-medium">Tags</span>
+                <Input
+                  value={activeTranslation.tags.join(", ")}
+                  onChange={(event) =>
+                    updateTranslation(
+                      "tags",
+                      event.target.value
+                        .split(",")
+                        .map((tag) => tag.trim())
+                        .filter(Boolean),
+                    )
+                  }
+                  placeholder="ai models, prompt engineering, team workflows"
+                />
+              </label>
+
+              <label className="space-y-2 md:col-span-2">
+                <span className="text-sm font-medium">Body (Markdown)</span>
+                <Textarea
+                  value={activeTranslation.bodyMarkdown}
+                  onChange={(event) =>
+                    updateTranslation("bodyMarkdown", event.target.value)
+                  }
+                  className="min-h-[420px] font-mono text-[13px] leading-6"
+                  placeholder="Use H2s, H3s, bullet lists, and short paragraphs."
+                />
+              </label>
+            </div>
           </div>
 
           <div className="mt-5 rounded-2xl border border-border/60 bg-background/55 px-4 py-3 text-sm text-muted-foreground">
             SEO checklist:
             Keep one clear topic per post, use the page title as the only H1,
-            start the body with `##` headings, and include internal links to
-            pricing, models, impact, or relevant posts when they help the
-            reader.
+            start the body with `##` headings, and localize the excerpt, tags,
+            and metadata for each language instead of copying the source text.
           </div>
 
           <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -398,7 +544,9 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
               {isPending ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               ) : null}
-              {form.status === "published" ? "Save published post" : "Save draft"}
+              {sharedForm.status === "published"
+                ? `Save ${BLOG_LOCALE_LABELS[activeLocale]} translation`
+                : `Save ${BLOG_LOCALE_LABELS[activeLocale]} draft`}
             </Button>
 
             {selectedPost && (
@@ -415,10 +563,7 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
 
             {selectedPost?.status === "published" && (
               <a
-                href={getLocalizedPath(
-                  currentLocale,
-                  `/blog/${selectedPost.slug}`,
-                )}
+                href={getLocalizedPath(activeLocale, `/blog/${selectedPost.slug}`)}
                 target="_blank"
                 rel="noreferrer"
                 className="text-sm font-medium text-primary"

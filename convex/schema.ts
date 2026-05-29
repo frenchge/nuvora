@@ -221,10 +221,18 @@ export default defineSchema({
     published_at: v.optional(v.number()),
     updated_at: v.number(),
   })
-    .index("by_locale_and_slug", ["locale", "slug"])
-    .index("by_locale_and_status_and_published_at", [
-      "locale",
-      "status",
-      "published_at",
-    ]),
+    .index("by_slug", ["slug"])
+    .index("by_status_and_published_at", ["status", "published_at"]),
+
+  blog_post_translations: defineTable({
+    post_id: v.id("blog_posts"),
+    locale: v.string(),
+    title: v.string(),
+    seo_title: v.string(),
+    meta_description: v.string(),
+    excerpt: v.string(),
+    body_markdown: v.string(),
+    tags: v.array(v.string()),
+    updated_at: v.number(),
+  }).index("by_post_id_and_locale", ["post_id", "locale"]),
 });

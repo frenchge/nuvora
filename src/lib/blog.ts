@@ -1,5 +1,13 @@
-export const BLOG_LOCALES = ["en", "fr"] as const;
+export const BLOG_LOCALES = ["en", "fr", "es", "de", "it", "pt"] as const;
 export type BlogLocale = (typeof BLOG_LOCALES)[number];
+export const BLOG_LOCALE_LABELS: Record<BlogLocale, string> = {
+  en: "English",
+  fr: "Francais",
+  es: "Espanol",
+  de: "Deutsch",
+  it: "Italiano",
+  pt: "Portugues",
+};
 
 export type BlogHeading = {
   id: string;

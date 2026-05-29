@@ -124,7 +124,7 @@ export default async function BlogIndexPage({
 
   const typedLocale = locale as Locale;
   const copy = BLOG_COPY[typedLocale] ?? BLOG_COPY.en;
-  const posts = await fetchQuery(api.blog.listPublished, {});
+  const posts = await fetchQuery(api.blog.listPublished, { locale: typedLocale });
 
   const itemListSchema = {
     "@context": "https://schema.org",
