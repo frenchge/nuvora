@@ -17,6 +17,10 @@ const LOCALE_META: Record<
 > = {
   en: { label: "English", flag: "🇺🇸" },
   fr: { label: "Français", flag: "🇫🇷" },
+  es: { label: "Español", flag: "🇪🇸" },
+  de: { label: "Deutsch", flag: "🇩🇪" },
+  it: { label: "Italiano", flag: "🇮🇹" },
+  pt: { label: "Português", flag: "🇵🇹" },
 };
 const LOCALE_COOKIE_NAME =
   typeof routing.localeCookie === "object"

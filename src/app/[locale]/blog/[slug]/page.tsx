@@ -32,6 +32,42 @@ const ARTICLE_COPY = {
     readNext: "Lire ensuite",
     blogName: "Blog",
   },
+  es: {
+    back: "Volver al blog",
+    minRead: "min de lectura",
+    contents: "En esta pagina",
+    more: "Mas del blog",
+    quickRead: "Este articulo es breve y no necesita saltos de seccion.",
+    readNext: "Seguir leyendo",
+    blogName: "Blog",
+  },
+  de: {
+    back: "Zuruck zum Blog",
+    minRead: "Min. Lesezeit",
+    contents: "Auf dieser Seite",
+    more: "Mehr aus dem Blog",
+    quickRead: "Dieser Artikel ist kurz und braucht keine Abschnittssprunge.",
+    readNext: "Weiterlesen",
+    blogName: "Blog",
+  },
+  it: {
+    back: "Torna al blog",
+    minRead: "min di lettura",
+    contents: "In questa pagina",
+    more: "Altri articoli del blog",
+    quickRead: "Questo articolo e breve e non richiede salti tra sezioni.",
+    readNext: "Continua a leggere",
+    blogName: "Blog",
+  },
+  pt: {
+    back: "Voltar ao blog",
+    minRead: "min de leitura",
+    contents: "Nesta pagina",
+    more: "Mais do blog",
+    quickRead: "Este artigo e curto e nao precisa de saltos de secao.",
+    readNext: "Ler a seguir",
+    blogName: "Blog",
+  },
 } as const;
 
 async function getBlogPost(locale: Locale, slug: string) {

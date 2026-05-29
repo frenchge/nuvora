@@ -10,7 +10,70 @@ const LOCALE_COOKIE_NAME: string =
   typeof routing.localeCookie === "object"
     ? (routing.localeCookie.name ?? "NEXT_LOCALE")
     : "NEXT_LOCALE";
-const FRENCH_REGION_CODES = new Set(["be", "bj", "bf", "bi", "cd", "cg", "ch", "ci", "cm", "dj", "dz", "fr", "ga", "gf", "gn", "gp", "ht", "km", "lu", "ma", "mc", "mq", "mu", "nc", "ne", "pf", "pm", "re", "rw", "sc", "sn", "td", "tg", "tn", "vu", "wf", "yt"]);
+const REGION_LOCALE_MAP: Record<string, AppLocale> = {
+  at: "de",
+  ar: "es",
+  be: "fr",
+  bf: "fr",
+  bi: "fr",
+  bj: "fr",
+  bo: "es",
+  br: "pt",
+  cd: "fr",
+  cg: "fr",
+  ch: "fr",
+  ci: "fr",
+  cm: "fr",
+  co: "es",
+  cr: "es",
+  de: "de",
+  dj: "fr",
+  dz: "fr",
+  ec: "es",
+  es: "es",
+  fr: "fr",
+  ga: "fr",
+  gf: "fr",
+  gn: "fr",
+  gp: "fr",
+  gq: "es",
+  gt: "es",
+  hn: "es",
+  ht: "fr",
+  it: "it",
+  km: "fr",
+  li: "de",
+  lu: "fr",
+  ma: "fr",
+  mc: "fr",
+  ml: "fr",
+  mq: "fr",
+  mu: "fr",
+  mx: "es",
+  nc: "fr",
+  ne: "fr",
+  ni: "es",
+  pa: "es",
+  pe: "es",
+  pf: "fr",
+  pm: "fr",
+  pt: "pt",
+  py: "es",
+  re: "fr",
+  rw: "fr",
+  sc: "fr",
+  sn: "fr",
+  sv: "es",
+  td: "fr",
+  tg: "fr",
+  tn: "fr",
+  uy: "es",
+  va: "it",
+  ve: "es",
+  vu: "fr",
+  wf: "fr",
+  yt: "fr",
+};
 
 // Matches the locale prefix when present so the auth check can look at the
 // underlying app path. /en/chat and /fr/chat both protect /chat.
@@ -76,14 +139,27 @@ function getPreferredLocale(req: NextRequest): AppLocale {
     if (entry.tag === "fr" || entry.tag.startsWith("fr-")) {
       return "fr";
     }
+    if (entry.tag === "es" || entry.tag.startsWith("es-")) {
+      return "es";
+    }
+    if (entry.tag === "de" || entry.tag.startsWith("de-")) {
+      return "de";
+    }
+    if (entry.tag === "it" || entry.tag.startsWith("it-")) {
+      return "it";
+    }
+    if (entry.tag === "pt" || entry.tag.startsWith("pt-")) {
+      return "pt";
+    }
     if (entry.tag === "en" || entry.tag.startsWith("en-")) {
       return "en";
     }
   }
 
   const country = (req.headers.get("x-vercel-ip-country") ?? "").toLowerCase();
-  if (FRENCH_REGION_CODES.has(country)) {
-    return "fr";
+  const regionLocale = REGION_LOCALE_MAP[country];
+  if (regionLocale) {
+    return regionLocale;
   }
 
   return routing.defaultLocale;

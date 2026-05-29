@@ -5,7 +5,7 @@ import { defineRouting } from "next-intl/routing";
 //   1. Append the code here.
 //   2. Add a corresponding messages/<locale>.json dictionary.
 export const routing = defineRouting({
-  locales: ["en", "fr"],
+  locales: ["en", "fr", "es", "de", "it", "pt"],
   defaultLocale: "en",
   localeCookie: {
     name: "NEXT_LOCALE",

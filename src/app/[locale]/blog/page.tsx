@@ -35,6 +35,54 @@ const BLOG_COPY = {
     readArticle: "Lire l'article",
     minRead: "min de lecture",
   },
+  es: {
+    title: "Blog — Vercilio",
+    description:
+      "Guías, notas de producto y flujos de trabajo prácticos sobre IA del equipo de Vercilio.",
+    eyebrow: "El blog de Vercilio",
+    heading: "Textos claros para un trabajo con IA más tranquilo.",
+    body:
+      "Notas de producto, guías de compra, flujos de prompts y consejos prácticos para equipos que quieren usar IA sin tanto ruido.",
+    empty: "Todavía no hay publicaciones. La primera está en camino.",
+    readArticle: "Leer artículo",
+    minRead: "min de lectura",
+  },
+  de: {
+    title: "Blog — Vercilio",
+    description:
+      "Leitfäden, Produktnotizen und praktische KI-Workflows vom Vercilio-Team.",
+    eyebrow: "Der Vercilio-Blog",
+    heading: "Klare Texte für ruhigeres Arbeiten mit KI.",
+    body:
+      "Produktnotizen, Kaufhilfen, Prompt-Workflows und praktische Ratschläge für Teams, die KI ohne Lärm nutzen wollen.",
+    empty: "Noch sind keine Beiträge veröffentlicht. Der erste kommt bald.",
+    readArticle: "Artikel lesen",
+    minRead: "Min. Lesezeit",
+  },
+  it: {
+    title: "Blog — Vercilio",
+    description:
+      "Guide, note di prodotto e flussi di lavoro pratici sull'IA dal team di Vercilio.",
+    eyebrow: "Il blog di Vercilio",
+    heading: "Scrittura chiara per un lavoro con l'IA piu tranquillo.",
+    body:
+      "Note di prodotto, guide all'acquisto, workflow di prompt e consigli pratici per team che vogliono usare l'IA senza rumore.",
+    empty: "Nessun post pubblicato per ora. Il primo sta arrivando.",
+    readArticle: "Leggi l'articolo",
+    minRead: "min di lettura",
+  },
+  pt: {
+    title: "Blog — Vercilio",
+    description:
+      "Guias, notas de produto e fluxos praticos de IA da equipe da Vercilio.",
+    eyebrow: "O blog da Vercilio",
+    heading: "Textos claros para um trabalho com IA mais calmo.",
+    body:
+      "Notas de produto, guias de compra, fluxos de prompt e conselhos práticos para equipes que querem usar IA sem ruído.",
+    empty: "Ainda nao ha posts publicados. O primeiro esta a caminho.",
+    readArticle: "Ler artigo",
+    minRead: "min de leitura",
+  },
 } as const;
 
 export async function generateMetadata({
