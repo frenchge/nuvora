@@ -69,22 +69,44 @@ function sseEvent(obj: unknown) {
   return `data: ${JSON.stringify(obj)}\n\n`;
 }
 
+// Server-side context injected as the first message of every request to
+// any provider. Tells the underlying model what platform it's being served
+// through and the basic "we plant trees" angle, while explicitly drawing
+// a line so it doesn't impersonate Vercilio or color answers to unrelated
+// questions. Kept short on purpose — long system prompts subtly shift
+// tone on every reply.
+//
+// Never written to the messages table and never streamed back to the
+// client; it only lives in the outbound request to OpenRouter.
+const VERCILIO_SYSTEM_PROMPT =
+  "You are an AI assistant being accessed through Vercilio (vercilio.com), a platform that lets users chat with leading AI models in one place. A portion of every paid Vercilio subscription funds verified tree planting through Vercilio's restoration partners. You are not Vercilio itself — you are the underlying model the user selected from Vercilio's catalog (such as GPT, Claude, Gemini, etc.). Answer the user's questions normally and stay in your own voice. Only mention Vercilio when the user asks about the platform, the company, billing, the environmental contribution, or otherwise directly invites it.";
+
 function buildOpenRouterMessages(
   turns: Array<{ role: "system" | "user" | "assistant"; content: string }>,
   prompt: string,
   attachments: Array<z.infer<typeof Attachment>>,
 ) {
+  // Strip any system turns coming back from the DB so we always own the
+  // system layer and there's no risk of double-injection if the schema ever
+  // starts persisting a system row.
+  const conversation = turns.filter((turn) => turn.role !== "system");
+  const systemMessage = {
+    role: "system" as const,
+    content: VERCILIO_SYSTEM_PROMPT,
+  };
+
   if (attachments.length === 0) {
-    return turns;
+    return [systemMessage, ...conversation];
   }
 
-  const prefix = turns.slice(0, -1);
-  const lastTurn = turns[turns.length - 1];
+  const prefix = conversation.slice(0, -1);
+  const lastTurn = conversation[conversation.length - 1];
   if (!lastTurn || lastTurn.role !== "user") {
-    return turns;
+    return [systemMessage, ...conversation];
   }
 
   return [
+    systemMessage,
     ...prefix,
     {
       ...lastTurn,
