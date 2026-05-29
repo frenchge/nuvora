@@ -32,6 +32,7 @@ import {
   ResumeSubscriptionButton,
 } from "../billing/_buttons";
 import { DeleteAccountButton } from "./_delete-account-button";
+import { CurrencyPreferenceSelector } from "./_currency-preference-selector";
 import { ContributionChart } from "../contribution/_contribution-chart";
 import { SettingsShell } from "./_settings-shell";
 import { savePersonalInfo } from "./actions";
@@ -265,6 +266,8 @@ export default async function SettingsPage({
                       hint="Successful paid charges"
                     />
                   </div>
+
+                  <CurrencyPreferenceSelector currentCurrency={billingCurrency} />
 
                   <div className="space-y-4">
                     <div className="flex flex-wrap items-center justify-between gap-3">
