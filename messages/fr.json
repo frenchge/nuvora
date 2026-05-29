@@ -554,6 +554,294 @@
     "ctaPrimary": "Commencer gratuitement",
     "ctaSecondary": "Voir les tarifs"
   },
+  "Legal": {
+    "lastUpdatedLabel": "Dernière mise à jour",
+    "lastUpdatedValue": "2026-05-29",
+    "contactLabel": "Contact",
+    "controllerLabel": "Responsable du traitement",
+    "controllerValue": "Vercilio — exploité depuis la France. Pour toute demande relative à la protection des données, écrivez à privacy@vercilio.ai.",
+    "supervisoryLabel": "Autorité de contrôle",
+    "supervisoryValue": "Si vous résidez dans l'Union européenne ou au Royaume-Uni, vous pouvez introduire une réclamation auprès de votre autorité locale de protection des données. En France, il s'agit de la CNIL (cnil.fr).",
+    "disclaimerLabel": "Résumé en langage clair",
+    "disclaimerValue": "Cette page est rédigée pour être lisible. Les titres et paragraphes ci-dessous constituent les conditions effectivement en vigueur. Si un point n'est pas clair, écrivez à legal@vercilio.ai avant de vous y fier."
+  },
+  "LegalTerms": {
+    "metaTitle": "Conditions générales — Vercilio",
+    "metaDescription": "Les conditions générales qui encadrent votre utilisation de Vercilio. Rédigées de manière lisible quand c'est possible.",
+    "heroEyebrow": "Mentions légales",
+    "heroTitle": "Conditions générales d'utilisation",
+    "heroBody": "Ces conditions encadrent votre utilisation de Vercilio. En créant un compte ou en souscrivant un abonnement payant, vous les acceptez. Si vous n'êtes pas d'accord, n'utilisez pas le service.",
+    "sections": [
+      {
+        "title": "1. Qui nous sommes",
+        "paragraphs": [
+          "Vercilio est un espace de travail IA qui vous permet de discuter avec les principaux modèles d'IA conversationnels et qui reverse une part de chaque abonnement payant à des partenaires de reforestation vérifiés. Le service est désigné dans ces conditions par « Vercilio », « nous », ou « le service ». Vous — le titulaire du compte — êtes désigné par « vous ».",
+          "Vercilio est exploité par l'entité enregistrée en France. Notre contact principal pour les questions juridiques est legal@vercilio.ai."
+        ]
+      },
+      {
+        "title": "2. Éligibilité",
+        "paragraphs": [
+          "Vous devez avoir au moins 16 ans pour créer un compte Vercilio (ou l'âge du consentement numérique de votre pays, si supérieur). Le service n'est pas conçu pour les enfants de moins de 13 ans et nous ne collectons pas sciemment leurs données.",
+          "Si vous créez un compte au nom d'une société, vous confirmez avoir le pouvoir d'engager cette société dans le respect de ces conditions."
+        ]
+      },
+      {
+        "title": "3. Votre compte",
+        "paragraphs": [
+          "Vous êtes responsable de la confidentialité de vos identifiants et de tout ce qui se passe sur votre compte. Si vous pensez que votre compte a été compromis, contactez support@vercilio.ai immédiatement.",
+          "Nous pouvons suspendre ou résilier un compte qui enfreint ces conditions, dont nous estimons raisonnablement qu'il est utilisé pour abuser du service, ou lorsque la loi nous y oblige."
+        ]
+      },
+      {
+        "title": "4. Usage acceptable",
+        "paragraphs": [
+          "Vous vous engagez à ne pas utiliser Vercilio pour : (a) générer du contenu qui porte atteinte aux droits d'un tiers ; (b) générer du contenu sexuel impliquant des mineurs ; (c) concevoir des armes illégales, des logiciels malveillants ou des instructions pour nuire à autrui ; (d) produire du contenu visant à harceler, menacer ou diffamer une personne identifiable ; (e) automatiser du spam, du scraping ou tout abus à grande échelle ; (f) tenter d'extraire, de désosser ou d'usurper l'identité de nos fournisseurs de modèles.",
+          "Nous pouvons retirer le contenu qui viole ces règles et suspendre les comptes responsables de violations répétées ou graves."
+        ]
+      },
+      {
+        "title": "5. Les modèles d'IA",
+        "paragraphs": [
+          "Vercilio vous donne accès à des modèles d'IA tiers (par exemple ceux fournis par OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity et d'autres) via OpenRouter. Ces modèles peuvent se tromper, inventer des informations et produire des réponses inattendues. Une réponse de modèle ne saurait remplacer un conseil professionnel (juridique, médical, financier, etc.).",
+          "Certaines requêtes que vous envoyez peuvent être transmises au fournisseur de modèle sous-jacent pour qu'il génère une réponse. Nous lui transmettons le message et les pièces jointes que vous incluez ; nous ne partageons ni vos informations de facturation ni votre email."
+        ]
+      },
+      {
+        "title": "6. Abonnements, crédits et paiements",
+        "paragraphs": [
+          "Vercilio propose un plan gratuit et des abonnements payants (Basic, Starter, Pro). Les plans payants se renouvellent automatiquement chaque mois jusqu'à résiliation. Chaque plan renouvelle son solde de crédits au début de chaque cycle ; les crédits inutilisés ne se reportent pas. Les packs ponctuels restent disponibles jusqu'à utilisation.",
+          "Les paiements sont traités par Stripe, Inc. (ou sa filiale européenne le cas échéant). En payant, vous acceptez également les conditions de Stripe. Tous les prix incluent la TVA applicable lorsqu'ils sont facturés en EUR.",
+          "Vous pouvez résilier un abonnement à tout moment depuis la page Paramètres. La résiliation prend effet à la fin du cycle de facturation en cours — vous conservez l'accès jusque-là. Nous n'effectuons pas de remboursement au prorata pour la partie non utilisée d'un cycle payé, sauf obligation légale."
+        ]
+      },
+      {
+        "title": "7. La contribution environnementale",
+        "paragraphs": [
+          "Une partie de chaque abonnement payant est allouée à des travaux de reforestation vérifiés via les programmes partenaires de Vercilio (actuellement la restauration de mangroves au Brésil et au Kenya et la plantation d'espèces natives en Amérique du Nord). Le nombre d'arbres attribués à un paiement est affiché dans votre compte.",
+          "Cette contribution n'est pas une compensation carbone et nous ne revendiquons pas la neutralité carbone. Les arbres sont plantés par nos partenaires ; nous rapportons les chiffres agrégés sur la base de leurs rapports."
+        ]
+      },
+      {
+        "title": "8. Propriété intellectuelle",
+        "paragraphs": [
+          "Vous conservez l'ensemble des droits sur les prompts que vous envoyez et les réponses que vous générez via Vercilio (sous réserve des conditions propres des fournisseurs de modèles concernant la propriété des sorties). Nous n'utilisons pas vos conversations pour entraîner des modèles d'IA.",
+          "La marque Vercilio, son nom, son design et son code sont notre propriété intellectuelle. Vous ne pouvez pas les copier ou les reproduire en dehors du service sans notre autorisation écrite."
+        ]
+      },
+      {
+        "title": "9. Disponibilité du service",
+        "paragraphs": [
+          "Nous nous efforçons de maintenir Vercilio disponible 24h/24 mais nous ne garantissons pas une disponibilité ininterrompue. Nous pouvons effectuer de la maintenance programmée, des correctifs urgents ou d'autres changements qui interrompent brièvement le service. Nous ne serons pas responsables des interruptions qui ne résultent pas d'une négligence grave de notre part.",
+          "Nous pouvons ajouter, retirer ou modifier des fonctionnalités et la disponibilité des modèles dans le temps."
+        ]
+      },
+      {
+        "title": "10. Limitation de responsabilité",
+        "paragraphs": [
+          "Vercilio est fourni « en l'état » sans garantie d'aucune sorte, sauf lorsque le droit impératif de la consommation l'exige (notamment pour les consommateurs dans l'Union européenne et au Royaume-Uni).",
+          "Dans toute la mesure permise par la loi, notre responsabilité globale envers vous pour toute réclamation découlant des présentes est limitée au montant que vous nous avez versé au cours des douze mois précédant la réclamation. Nous ne sommes pas responsables des dommages indirects, consécutifs ou spéciaux, y compris la perte de profits, de données ou de réputation."
+        ]
+      },
+      {
+        "title": "11. Résiliation",
+        "paragraphs": [
+          "Vous pouvez fermer votre compte à tout moment depuis Paramètres → Sécurité → Supprimer le compte. Cela annule immédiatement tout abonnement actif et supprime vos données.",
+          "Nous pouvons résilier votre compte en cas de violation substantielle de ces conditions, avec un préavis raisonnable lorsque c'est possible."
+        ]
+      },
+      {
+        "title": "12. Droit applicable et litiges",
+        "paragraphs": [
+          "Ces conditions sont régies par le droit français. Les tribunaux compétents de Paris, France, auront compétence pour tout litige découlant des présentes, sous réserve des règles impératives de protection des consommateurs qui accorderaient une autre juridiction compétente.",
+          "Les consommateurs de l'Union européenne peuvent également utiliser la plateforme de Règlement en Ligne des Litiges de la Commission européenne sur https://ec.europa.eu/consumers/odr/."
+        ]
+      },
+      {
+        "title": "13. Modifications de ces conditions",
+        "paragraphs": [
+          "Nous pouvons mettre à jour ces conditions de temps à autre. Les modifications substantielles seront annoncées par email à l'adresse enregistrée au moins 30 jours avant leur entrée en vigueur. La poursuite de l'utilisation du service après une modification vaut acceptation des nouvelles conditions."
+        ]
+      },
+      {
+        "title": "14. Contact",
+        "paragraphs": [
+          "Questions sur ces conditions : legal@vercilio.ai. Support général : support@vercilio.ai. Demandes liées à la vie privée et aux données : privacy@vercilio.ai."
+        ]
+      }
+    ]
+  },
+  "LegalPrivacy": {
+    "metaTitle": "Politique de confidentialité — Vercilio",
+    "metaDescription": "Comment Vercilio collecte, utilise et protège vos données personnelles. Conforme au RGPD, à la loi française et aux lois américaines comme le CCPA.",
+    "heroEyebrow": "Mentions légales",
+    "heroTitle": "Politique de confidentialité",
+    "heroBody": "Cette page explique quelles données personnelles Vercilio collecte, pourquoi, à qui nous les transmettons et quels droits vous avez sur elles. Nous nous sommes efforcés d'être lisibles. Si un point n'est pas clair, écrivez à privacy@vercilio.ai.",
+    "sections": [
+      {
+        "title": "1. Qui est responsable du traitement",
+        "paragraphs": [
+          "Au sens du Règlement général sur la protection des données (RGPD), de la loi Informatique et Libertés et du UK GDPR, Vercilio est le responsable du traitement des données personnelles collectées via le service.",
+          "Notre contact pour les questions de confidentialité est privacy@vercilio.ai."
+        ]
+      },
+      {
+        "title": "2. Données collectées",
+        "paragraphs": [
+          "Données de compte : votre adresse email, votre nom (si vous le fournissez) et votre identifiant d'authentification de notre fournisseur (Clerk).",
+          "Données d'usage : les chats et messages que vous échangez avec les modèles d'IA via Vercilio, les modèles utilisés, le solde de crédits et les événements de contribution liés à vos paiements.",
+          "Données de facturation : lorsque vous passez à un plan payant, Stripe collecte votre moyen de paiement et vos coordonnées de facturation pour notre compte. Nous recevons un identifiant et des métadonnées de haut niveau (plan, montant, statut) mais pas votre numéro de carte complet.",
+          "Données techniques : adresse IP, agent utilisateur du navigateur, type d'appareil, langue préférée et localisation approximative dérivée de l'IP, utilisées pour la sécurité et la prévention des abus.",
+          "Données analytiques : mesures d'usage agrégées collectées via Google Analytics (comptes d'événements, vues de pages, IP anonymisées)."
+        ]
+      },
+      {
+        "title": "3. Pourquoi nous les traitons (base légale)",
+        "paragraphs": [
+          "Exécution d'un contrat (art. 6.1.b RGPD) : pour créer votre compte, livrer les réponses du modèle, gérer votre abonnement et fournir la fonction de contribution environnementale.",
+          "Intérêt légitime (art. 6.1.f RGPD) : pour sécuriser le service, prévenir les abus, déboguer et produire des analyses produit agrégées. Nous mettons en balance notre intérêt et vos droits fondamentaux.",
+          "Obligation légale (art. 6.1.c RGPD) : pour tenir les registres comptables exigés par le droit fiscal français (typiquement dix ans) et répondre aux demandes légales des autorités.",
+          "Consentement (art. 6.1.a RGPD) : pour les cookies analytiques optionnels lorsque la loi locale sur les cookies l'exige. Vous pouvez retirer votre consentement à tout moment sans affecter les traitements antérieurs."
+        ]
+      },
+      {
+        "title": "4. Avec qui nous partageons les données",
+        "paragraphs": [
+          "Nous partageons le minimum de données nécessaires avec les sous-traitants suivants, qui agissent dans le cadre d'accords écrits avec nous :",
+          "Clerk (US) — authentification et gestion de session.",
+          "Convex (US) — hébergement de la base de données applicative.",
+          "Vercel (US) — hébergement applicatif et diffusion en périphérie.",
+          "OpenRouter (US) et les fournisseurs de modèles vers lesquels il route (pouvant inclure OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity, etc.) — pour générer les réponses aux messages que vous envoyez.",
+          "Stripe (US / EU) — traitement des paiements.",
+          "Google (US) — analytics agrégés via Google Analytics 4.",
+          "Nous ne vendons pas vos informations personnelles. Nous ne les partageons pas avec des annonceurs."
+        ]
+      },
+      {
+        "title": "5. Transferts internationaux",
+        "paragraphs": [
+          "La plupart de nos sous-traitants sont basés aux États-Unis. Lorsque les données personnelles quittent l'Espace économique européen, nous nous appuyons sur les Clauses Contractuelles Types de l'UE (ou une décision d'adéquation lorsqu'elle s'applique) pour maintenir un niveau de protection comparable.",
+          "Vous pouvez nous demander une copie des garanties en écrivant à privacy@vercilio.ai."
+        ]
+      },
+      {
+        "title": "6. Durée de conservation",
+        "paragraphs": [
+          "Données de compte et de chat : aussi longtemps que vous avez un compte. Lorsque vous supprimez votre compte depuis les paramètres, votre profil, vos chats, vos messages, vos attributions de contribution et votre historique de crédits sont supprimés dans un délai de 30 jours.",
+          "Registres de facturation et fiscaux : conservés pendant 10 ans à compter de la clôture de l'exercice comptable concerné, comme l'exige le droit fiscal français. Ces registres sont réduits aux données strictement nécessaires.",
+          "Les agrégats analytiques anonymisés peuvent être conservés indéfiniment ; ils ne peuvent pas vous être rattachés."
+        ]
+      },
+      {
+        "title": "7. Vos droits",
+        "paragraphs": [
+          "En vertu du RGPD, de la loi Informatique et Libertés, du UK GDPR et des lois américaines équivalentes (notamment le California Consumer Privacy Act / CPRA), vous avez le droit de :",
+          "Accès — obtenir une copie des données personnelles que nous détenons sur vous.",
+          "Rectification — corriger des données inexactes.",
+          "Effacement — demander la suppression de vos données (« droit à l'oubli ») ; vous pouvez aussi le faire vous-même depuis Paramètres → Sécurité → Supprimer le compte.",
+          "Restriction ou opposition — limiter ou vous opposer à certains traitements fondés sur l'intérêt légitime.",
+          "Portabilité — recevoir vos données dans un format structuré et lisible par machine.",
+          "Retrait du consentement — pour les traitements fondés sur le consentement, vous pouvez le retirer à tout moment.",
+          "Résidents de Californie : droits de savoir, supprimer, corriger et limiter l'usage des informations personnelles sensibles. Nous ne vendons pas et ne « partageons » pas d'informations personnelles à des fins de publicité comportementale inter-contexte au sens du CCPA/CPRA.",
+          "Pour exercer ces droits, écrivez à privacy@vercilio.ai. Nous répondrons dans un délai de 30 jours."
+        ]
+      },
+      {
+        "title": "8. Cookies et technologies similaires",
+        "paragraphs": [
+          "Nous utilisons un petit ensemble de cookies et de technologies similaires. Consultez notre Politique cookies pour le détail des cookies, leur finalité et la manière de les gérer."
+        ]
+      },
+      {
+        "title": "9. Sécurité",
+        "paragraphs": [
+          "Nous protégeons les données personnelles avec des mesures conformes aux standards de l'industrie : HTTPS sur tout le trafic, stockage chiffré chez nos hébergeurs, accès restreint pour notre équipe, rotation des secrets et journalisation d'audit.",
+          "Aucun système n'est parfaitement sécurisé. Si nous découvrons une violation affectant vos données personnelles, nous vous en informerons ainsi que l'autorité de contrôle concernée lorsque la loi l'exige."
+        ]
+      },
+      {
+        "title": "10. Décisions automatisées et profilage",
+        "paragraphs": [
+          "Nous n'utilisons pas vos données personnelles pour des décisions automatisées produisant des effets juridiques ou similaires significatifs à votre égard. Les réponses des modèles d'IA sont générées par des fournisseurs tiers sur la base du message que vous envoyez ; elles ne constituent pas des décisions personnalisées vous concernant."
+        ]
+      },
+      {
+        "title": "11. Mineurs",
+        "paragraphs": [
+          "Vercilio n'est pas destiné aux utilisateurs de moins de 16 ans (ou de l'âge du consentement numérique de votre pays, si supérieur). Si nous découvrons avoir collecté par inadvertance des données personnelles d'un enfant en dessous de cet âge, nous les supprimerons."
+        ]
+      },
+      {
+        "title": "12. Autorité de contrôle",
+        "paragraphs": [
+          "Si vous résidez en France, au Royaume-Uni ou dans un pays de l'Espace économique européen, vous pouvez introduire une réclamation concernant nos traitements auprès de votre autorité locale de protection des données. En France, il s'agit de la CNIL (cnil.fr) ; au Royaume-Uni, de l'ICO (ico.org.uk)."
+        ]
+      },
+      {
+        "title": "13. Modifications de cette politique",
+        "paragraphs": [
+          "Nous pouvons mettre à jour cette politique de temps à autre. Les modifications substantielles seront annoncées par email à l'adresse enregistrée au moins 30 jours avant leur entrée en vigueur."
+        ]
+      },
+      {
+        "title": "14. Contact",
+        "paragraphs": [
+          "Questions, réclamations ou demandes : privacy@vercilio.ai."
+        ]
+      }
+    ]
+  },
+  "LegalCookies": {
+    "metaTitle": "Politique cookies — Vercilio",
+    "metaDescription": "Quels cookies Vercilio utilise, pourquoi et comment vous pouvez les contrôler. Conforme à la directive ePrivacy française et au RGPD européen.",
+    "heroEyebrow": "Mentions légales",
+    "heroTitle": "Politique cookies",
+    "heroBody": "Cette page décrit les cookies et technologies similaires utilisés par Vercilio, leur finalité et la manière de les contrôler. Pour le reste, consultez notre Politique de confidentialité.",
+    "sections": [
+      {
+        "title": "1. Que sont les cookies",
+        "paragraphs": [
+          "Les cookies sont de petits fichiers texte placés sur votre appareil lorsque vous visitez un site. Ils servent à faire fonctionner le site, à mémoriser des préférences et à produire des analytics agrégés."
+        ]
+      },
+      {
+        "title": "2. Catégories utilisées",
+        "paragraphs": [
+          "Cookies strictement nécessaires (sans consentement) : maintiennent votre session et le bon fonctionnement du service. Comprend le cookie de session Clerk et le cookie de protection CSRF posé par notre couche d'hébergement.",
+          "Cookies fonctionnels (sans consentement lorsqu'ils ne stockent que vos préférences) : mémorisent votre thème (clair/sombre), votre langue et le modèle d'IA sélectionné.",
+          "Cookies analytiques (consentement requis lorsque la loi locale l'exige) : mesure agrégée et pseudonymisée des pages visitées et de l'usage du produit. Actuellement fournis par Google Analytics 4 avec anonymisation de l'IP activée."
+        ]
+      },
+      {
+        "title": "3. Cookies spécifiques utilisés aujourd'hui",
+        "paragraphs": [
+          "__session, __client (Clerk) : authentification. Strictement nécessaires. Durée de session.",
+          "vercilio.theme, vercilio.selectedModel, vercilio.reasoningEffort, vercilio.autoRouter, vercilio.webSearch (Vercilio) : préférences utilisateur. Fonctionnels. Stockés dans le localStorage plutôt que dans des cookies HTTP ; vous pouvez les effacer depuis les paramètres de votre navigateur.",
+          "_ga, _ga_<id> (Google Analytics) : analytics agrégés. 13 mois. Vous pouvez vous désinscrire via l'extension navigateur (tools.google.com/dlpage/gaoptout) ou via le contrôle de consentement analytique présent sur cette page lorsqu'il s'applique dans votre juridiction.",
+          "__stripe_mid, __stripe_sid (Stripe) : prévention de la fraude lors du paiement. Strictement nécessaires lorsque vous visitez une page de paiement."
+        ]
+      },
+      {
+        "title": "4. Comment contrôler les cookies",
+        "paragraphs": [
+          "Votre navigateur vous permet de bloquer ou de supprimer des cookies (voir l'aide de votre navigateur). Bloquer les cookies strictement nécessaires empêchera le service de fonctionner.",
+          "Dans les juridictions exigeant un consentement explicite pour les cookies analytiques, nous le demandons avant de les déposer. Si vous changez d'avis, contactez privacy@vercilio.ai et nous ajusterons votre préférence."
+        ]
+      },
+      {
+        "title": "5. Do Not Track",
+        "paragraphs": [
+          "Nous traitons les signaux Global Privacy Control (GPC) émis par le navigateur comme un retrait du consentement aux analytics. Nous n'honorons pas séparément l'en-tête DNT, désormais déprécié."
+        ]
+      },
+      {
+        "title": "6. Mises à jour",
+        "paragraphs": [
+          "Lorsque nous ajoutons ou retirons un cookie, nous mettons à jour cette page. Les modifications substantielles sont annoncées en même temps que les mises à jour de la Politique de confidentialité."
+        ]
+      }
+    ]
+  },
   "Auth": {
     "signInTitle": "Revenez sur l'espace de travail IA qui fait un peu plus.",
     "signInSubtitle": "Connectez-vous pour reprendre vos chats, vos crédits, et la contribution environnementale que votre compte aide à financer.",

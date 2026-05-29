@@ -25,6 +25,7 @@ import {
   PortalButton,
   ResumeSubscriptionButton,
 } from "../billing/_buttons";
+import { DeleteAccountButton } from "./_delete-account-button";
 import { ContributionChart } from "../contribution/_contribution-chart";
 import { SettingsShell } from "./_settings-shell";
 import { savePersonalInfo } from "./actions";
@@ -440,13 +441,6 @@ export default async function SettingsPage({
                       label="Signed in as"
                       value={profile.email ?? "Unknown email"}
                     />
-                    <div className="text-sm text-muted-foreground">
-                      To delete your account, contact{" "}
-                      <a className="underline" href="mailto:support@vercilio.ai">
-                        support@vercilio.ai
-                      </a>
-                      .
-                    </div>
                   </div>
 
                   <SignOutButton redirectUrl="/">
@@ -455,6 +449,21 @@ export default async function SettingsPage({
                       Sign out
                     </Button>
                   </SignOutButton>
+
+                  <div className="mt-12 rounded-2xl border border-destructive/40 bg-destructive/5 p-6">
+                    <h3 className="text-base font-semibold text-destructive">
+                      Delete account
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      Permanently delete your Vercilio account, your chat
+                      history, your contribution records, and your sign-in.
+                      Any active subscription is canceled immediately. This
+                      cannot be undone.
+                    </p>
+                    <div className="mt-4">
+                      <DeleteAccountButton />
+                    </div>
+                  </div>
                 </section>
           ),
         }}

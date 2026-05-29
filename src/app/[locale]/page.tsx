@@ -127,7 +127,7 @@ export default async function LandingPage({
 
       <section
         id="impact"
-        className="border-y border-border/60 bg-[hsl(var(--secondary))]"
+        className="border-y border-border/60 bg-[hsl(var(--accent)/0.55)]"
       >
         <div className="container grid gap-12 py-24 md:grid-cols-2 md:items-center">
           <div>
