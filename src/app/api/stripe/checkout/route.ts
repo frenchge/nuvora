@@ -72,6 +72,24 @@ function missingPriceResponse(check: Extract<PriceCheck, { ok: false }>) {
   return NextResponse.json({ error: check.reason }, { status: 500 });
 }
 
+function friendlyStripeCheckoutMessage(
+  error: Stripe.errors.StripeError,
+  isAdmin: boolean,
+): string {
+  if (error.message.includes("You cannot combine currencies on a single customer")) {
+    return "You already have an active subscription in another currency. Please contact support if you want to switch currencies.";
+  }
+
+  if (isAdmin) {
+    const details = [error.message, error.code, "param" in error ? error.param : null]
+      .filter(Boolean)
+      .join(" · ");
+    return `Stripe checkout failed: ${details}`;
+  }
+
+  return "We couldn't start the checkout. Please try again or contact support if the problem persists.";
+}
+
 const Body = z.discriminatedUnion("type", [
   z.object({
     type: z.literal("subscription"),
@@ -214,14 +232,9 @@ export async function POST(req: NextRequest) {
           param: "param" in e ? e.param : undefined,
           message: e.message,
         });
-        const details = [e.message, e.code, "param" in e ? e.param : null]
-          .filter(Boolean)
-          .join(" · ");
         return NextResponse.json(
           {
-            error: profile.is_admin
-              ? `Stripe checkout failed: ${details}`
-              : "We couldn't start the checkout. Please try again or contact support if the problem persists.",
+            error: friendlyStripeCheckoutMessage(e, profile.is_admin),
           },
           { status: 400 }
         );

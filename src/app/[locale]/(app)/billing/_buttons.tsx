@@ -21,26 +21,36 @@ export function CheckoutButton(
     | { kind: "addon"; addonKey: string }
 ) {
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   return (
-    <Button
-      className="w-full"
-      disabled={busy}
-      onClick={async () => {
-        setBusy(true);
-        try {
-          await startCheckout(
-            props.kind === "subscription"
-              ? { type: "subscription", plan: props.planName }
-              : { type: "addon", addon: props.addonKey }
-          );
-        } catch (e) {
-          alert((e as Error).message);
-          setBusy(false);
-        }
-      }}
-    >
-      {busy ? "Redirecting…" : props.kind === "subscription" ? "Choose plan" : "Buy"}
-    </Button>
+    <div className="w-full space-y-2">
+      <Button
+        className="w-full"
+        disabled={busy}
+        onClick={async () => {
+          setBusy(true);
+          setError(null);
+          try {
+            await startCheckout(
+              props.kind === "subscription"
+                ? { type: "subscription", plan: props.planName }
+                : { type: "addon", addon: props.addonKey }
+            );
+          } catch (e) {
+            setError((e as Error).message);
+            setBusy(false);
+          }
+        }}
+      >
+        {busy ? "Redirecting…" : props.kind === "subscription" ? "Choose plan" : "Buy"}
+      </Button>
+      {error && (
+        <p className="text-sm leading-5 text-destructive">
+          {error}
+        </p>
+      )}
+    </div>
   );
 }
 
