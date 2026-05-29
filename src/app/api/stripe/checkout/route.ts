@@ -24,6 +24,14 @@ export const runtime = "nodejs";
  */
 type PriceCheck = { ok: true; value: string } | { ok: false; reason: string };
 
+function isMissingCustomerError(error: unknown): error is Stripe.errors.StripeInvalidRequestError {
+  return (
+    error instanceof Stripe.errors.StripeInvalidRequestError &&
+    error.code === "resource_missing" &&
+    error.param === "customer"
+  );
+}
+
 function readPriceEnv(envVar: string): PriceCheck {
   const raw = process.env[envVar];
   if (raw === undefined) {
@@ -86,6 +94,25 @@ export async function POST(req: NextRequest) {
 
     // Ensure a Stripe customer exists.
     let customerId = profile.stripe_customer_id;
+    if (customerId) {
+      try {
+        const customer = await stripe.customers.retrieve(customerId);
+        if ("deleted" in customer && customer.deleted) {
+          customerId = null;
+        }
+      } catch (error) {
+        if (isMissingCustomerError(error)) {
+          console.warn("[checkout] stored Stripe customer missing, recreating", {
+            staleCustomerId: customerId,
+            clerkUserId: profile.user_id,
+          });
+          customerId = null;
+        } else {
+          throw error;
+        }
+      }
+    }
+
     if (!customerId) {
       const customer = await stripe.customers.create({
         email: profile.email ?? undefined,
@@ -181,6 +208,10 @@ export async function POST(req: NextRequest) {
         // error is logged server-side for diagnostics only.
         console.error("[checkout] payment provider rejected", {
           priceId,
+          customerId,
+          currency: checkoutCurrency,
+          code: e.code,
+          param: "param" in e ? e.param : undefined,
           message: e.message,
         });
         return NextResponse.json(
