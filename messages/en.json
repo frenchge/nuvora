@@ -11,7 +11,8 @@
     "startFree": "Start free",
     "openApp": "Open app",
     "backHome": "Back home",
-    "language": "Language"
+    "language": "Language",
+    "downloadApp": "Download app"
   },
   "Footer": {
     "tagline": "One subscription for the world's best AI models. Every paid month funds verified reforestation through our restoration partners.",
@@ -300,7 +301,9 @@
         "answer": "Yes. Vercilio is built around conversational work, so search, file reading, and image understanding are part of the core experience."
       }
     },
-    "readFullFaq": "Read the full FAQ"
+    "readFullFaq": "Read the full FAQ",
+    "downloadForMac": "Download for Mac",
+    "downloadForWindows": "Download for Windows"
   },
   "Sidebar": {
     "modes": {

@@ -11,7 +11,8 @@
     "startFree": "Inizia gratis",
     "openApp": "Apri app",
     "backHome": "Torna alla home",
-    "language": "Lingua"
+    "language": "Lingua",
+    "downloadApp": "Scarica l'app"
   },
   "Footer": {
     "tagline": "Un abbonamento per i migliori modelli di intelligenza artificiale al mondo. Ogni mese a pagamento finanzia la riforestazione verificata attraverso i nostri partner di restauro.",
@@ -300,7 +301,9 @@
         "answer": "Sì. Vercilio è costruito attorno al lavoro conversazionale, quindi ricerca, lettura di file e comprensione delle immagini fanno parte dell’esperienza base."
       }
     },
-    "readFullFaq": "Leggi tutte le FAQ"
+    "readFullFaq": "Leggi tutte le FAQ",
+    "downloadForMac": "Scarica per Mac",
+    "downloadForWindows": "Scarica per Windows"
   },
   "Sidebar": {
     "modes": {

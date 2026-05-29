@@ -23,6 +23,29 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+## Desktop app
+
+This repo now includes a Tauri desktop shell under [src-tauri](./src-tauri) for macOS and Windows.
+The desktop app opens the authenticated Vercilio app directly at `/chat` instead of bundling the marketing website.
+
+For desktop development:
+
+```bash
+npm run desktop:dev
+```
+
+For desktop builds:
+
+```bash
+npm run desktop:build
+```
+
+Notes:
+
+- `desktop:dev` starts Next.js on port `3000` so Tauri can attach to `http://localhost:3000/chat`.
+- Production desktop builds point at `https://www.vercilio.com/chat`, which keeps the shell focused on the app experience and avoids trying to bundle the full server-side Next.js stack into Tauri.
+- To show website download buttons for the desktop app, set `NEXT_PUBLIC_DESKTOP_DOWNLOAD_MAC_URL` and `NEXT_PUBLIC_DESKTOP_DOWNLOAD_WINDOWS_URL` to your hosted installer URLs.
+
 ## Required setup
 
 ### Clerk

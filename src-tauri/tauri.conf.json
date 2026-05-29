@@ -1,0 +1,42 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "Vercilio",
+  "version": "0.1.0",
+  "identifier": "ai.vercilio.desktop",
+  "build": {
+    "frontendDist": "https://www.vercilio.com/chat",
+    "devUrl": "http://localhost:3000/chat",
+    "beforeDevCommand": "npm run dev:desktop:web"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Vercilio",
+        "width": 1440,
+        "height": 920,
+        "minWidth": 1180,
+        "minHeight": 760,
+        "center": true,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "android": {
+      "debugApplicationIdSuffix": ".debug"
+    }
+  }
+}

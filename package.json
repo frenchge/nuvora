@@ -11,10 +11,14 @@
   ],
   "scripts": {
     "dev": "next dev",
+    "dev:desktop:web": "next dev --port 3000",
     "convex:dev": "convex dev",
     "convex:codegen": "convex codegen",
     "convex:deploy": "convex deploy",
     "build": "next build",
+    "tauri": "tauri",
+    "desktop:dev": "tauri dev",
+    "desktop:build": "tauri build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
@@ -55,6 +59,7 @@
   "devDependencies": {
     "@edge-runtime/vm": "^5.0.0",
     "@tailwindcss/typography": "^0.5.15",
+    "@tauri-apps/cli": "^2.11.2",
     "@types/node": "^22.9.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

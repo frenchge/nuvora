@@ -11,7 +11,8 @@
     "startFree": "Kostenlos starten",
     "openApp": "App öffnen",
     "backHome": "Zurück zur Startseite",
-    "language": "Sprache"
+    "language": "Sprache",
+    "downloadApp": "App herunterladen"
   },
   "Footer": {
     "tagline": "Ein Abonnement für die besten KI-Modelle der Welt. Jeder bezahlte Monat finanziert verifizierte Wiederaufforstung durch unsere Wiederherstellungspartner.",
@@ -300,7 +301,9 @@
         "answer": "Ja. Vercilio ist auf konversationelle Arbeit ausgelegt, daher sind Suche, Dateilesen und Bildverständnis Teil der Kernfunktionalität."
       }
     },
-    "readFullFaq": "Gesamte FAQ lesen"
+    "readFullFaq": "Gesamte FAQ lesen",
+    "downloadForMac": "Für Mac herunterladen",
+    "downloadForWindows": "Für Windows herunterladen"
   },
   "Sidebar": {
     "modes": {

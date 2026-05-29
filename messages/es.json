@@ -11,7 +11,8 @@
     "startFree": "Comenzar gratis",
     "openApp": "Abrir aplicación",
     "backHome": "Volver al inicio",
-    "language": "Idioma"
+    "language": "Idioma",
+    "downloadApp": "Descargar la app"
   },
   "Footer": {
     "tagline": "Una suscripción para los mejores modelos de IA del mundo. Cada mes pagado financia la reforestación verificada a través de nuestros socios de restauración.",
@@ -300,7 +301,9 @@
         "answer": "Sí. Vercilio está diseñado para trabajo conversacional, por lo que la búsqueda, lectura de archivos y comprensión de imágenes son parte de la experiencia central."
       }
     },
-    "readFullFaq": "Leer las preguntas frecuentes completas"
+    "readFullFaq": "Leer las preguntas frecuentes completas",
+    "downloadForMac": "Descargar para Mac",
+    "downloadForWindows": "Descargar para Windows"
   },
   "Sidebar": {
     "modes": {

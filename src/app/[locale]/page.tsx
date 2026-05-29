@@ -10,6 +10,7 @@ import {
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { MarketingMoney } from "@/components/marketing/marketing-money";
+import { DesktopDownloadButtons } from "@/components/marketing/desktop-downloads";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { ProviderLogoMarquee } from "@/components/marketing/app-mockup";
 import { ImpactMap } from "@/components/marketing/impact-map";
@@ -85,6 +86,10 @@ export default async function LandingPage({
               <Link href="/pricing">{t("heroSecondary")}</Link>
             </Button>
           </div>
+          <DesktopDownloadButtons
+            className="mt-3 w-full max-w-md"
+            buttonClassName="w-full bg-white"
+          />
           <p className="mt-4 text-xs text-[#6d7366]">
             {t("heroFootnote")}
           </p>
@@ -128,6 +133,7 @@ export default async function LandingPage({
                 <Link href="/pricing">{t("heroSecondary")}</Link>
               </Button>
             </div>
+            <DesktopDownloadButtons className="mt-4" />
             <p className="mt-3 text-xs text-muted-foreground">
               {t("heroFootnote")}
             </p>
@@ -322,6 +328,7 @@ export default async function LandingPage({
                 </Link>
               </Button>
             </div>
+            <DesktopDownloadButtons className="mt-4" />
           </div>
         </div>
       </section>

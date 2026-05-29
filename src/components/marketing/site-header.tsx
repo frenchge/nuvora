@@ -16,6 +16,7 @@ import {
   X,
 } from "lucide-react";
 import { BrandLogo } from "@/components/brand-logo";
+import { DesktopDownloadMenu } from "@/components/marketing/desktop-downloads";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { Button } from "@/components/ui/button";
@@ -122,6 +123,7 @@ export function SiteHeader() {
                     : undefined
                 }
               />
+              <DesktopDownloadMenu tone={heroTone ? "hero" : "default"} />
               <Button
                 variant="ghost"
                 className={
@@ -235,6 +237,7 @@ export function SiteHeader() {
 
         <div className="mt-5 border-t border-border/60 pt-5">
           <div className="grid gap-3">
+            <DesktopDownloadMenu className="w-full justify-start px-0 text-left" />
             <Button variant="ghost" className="w-full" asChild>
               <Link href="/chat" onClick={() => setMobileMenuOpen(false)}>
                 {t("openApp")}
