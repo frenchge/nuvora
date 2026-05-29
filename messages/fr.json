@@ -386,7 +386,7 @@
     "metaTitle": "Modèles d'IA — Vercilio",
     "metaDescription": "Tous les modèles de chat qui valent le coup, dans un seul espace : GPT, Claude, Gemini, DeepSeek, Mistral et plus. Routés et prêts, avec une tarification en crédits qui ne dépend pas du calcul de tokens.",
     "heroEyebrow": "Modèles",
-    "heroTitle": "Chaque modèle qui en vaut la peine. Un seul abonnement.",
+    "heroTitle": "200+ modèles de chat. Un seul abonnement.",
     "heroBody": "Vercilio route à travers les principaux fournisseurs d'IA conversationnelle au monde — OpenAI, Anthropic, Google, Meta, xAI, DeepSeek, Mistral et plus — pour que vous passiez du raisonnement de pointe au travail quotidien rapide dans la même fenêtre.",
     "heroPrimary": "Commencer gratuitement",
     "heroSecondary": "Voir les tarifs",
@@ -477,107 +477,10 @@
         "body": "Les modèles compatibles peuvent appeler des outils si nécessaire. Aujourd'hui utilisé pour la recherche web ; les workflows agentiques sont sur la roadmap."
       }
     },
-    "ctaTitle": "Essayez tous les modèles sur le plan gratuit.",
-    "ctaBody": "100 crédits par mois, sans carte. Goûtez aux niveaux small, équilibré et raisonnement ; passez à un plan supérieur seulement si vous voulez plus de volume et la contribution environnementale vérifiée.",
+    "ctaTitle": "Commencez gratuitement. Montez en gamme pour les gros modèles.",
+    "ctaBody": "Le plan gratuit inclut 100 crédits par mois sur les modèles de niveau small — parfait pour découvrir le produit. Passez à un plan payant quand vous voulez le raisonnement de pointe, la vision, la recherche web et la contribution environnementale mensuelle.",
     "ctaPrimary": "Commencer gratuitement",
     "ctaSecondary": "Comparer les plans"
-  },
-  "Credits": {
-    "metaTitle": "Comment fonctionnent les crédits — Vercilio",
-    "metaDescription": "Un seul système de crédits sur tous les modèles. Pas de calcul de tokens, pas de surfacturation surprise. Découvrez ce que coûte un message sur Vercilio et comment les crédits mensuels se renouvellent.",
-    "heroEyebrow": "Crédits",
-    "heroTitle": "Un seul système de crédits. Sur tous les modèles.",
-    "heroBody": "Les tokens sont une unité pour ingénieurs, pas pour des humains qui réfléchissent. Vercilio facture en crédits clairs — chaque message coûte un petit nombre entier selon le modèle choisi.",
-    "heroPrimary": "Commencer gratuitement",
-    "heroSecondary": "Voir les tarifs",
-    "howTitle": "Comment ça marche",
-    "how": {
-      "monthly": {
-        "title": "Une réserve chaque mois",
-        "body": "Chaque plan renouvelle son solde de crédits au début de chaque cycle. Vous ne reportez pas ce que vous n'avez pas utilisé — le mois suivant ramène la réserve complète."
-      },
-      "perMessage": {
-        "title": "Facturé par message",
-        "body": "Quand vous envoyez un message, le coût en crédits du modèle est déduit. Le coût dépend du niveau du modèle — les small valent 1 crédit, ceux de pointe 12+."
-      },
-      "transparent": {
-        "title": "Affiché à côté de chaque modèle",
-        "body": "Ouvrez le sélecteur de modèles et vous voyez le coût en crédits à côté de chacun. Pas de compteur caché ni de calculs."
-      },
-      "addons": {
-        "title": "Recharger sans changer de plan",
-        "body": "Plus assez en milieu de mois ? Prenez un pack de crédits ponctuel — 5k, 10k, 25k ou 50k — sans toucher à votre abonnement."
-      }
-    },
-    "tiersTitle": "Ce que coûtent les différents modèles",
-    "tiersBody": "Les coûts sont stables pendant au moins un cycle de facturation. Si un fournisseur baisse son prix de façon significative, nous le répercutons ; nous ne montons pas les prix au milieu d'un cycle.",
-    "tiers": {
-      "small": {
-        "label": "Small",
-        "cost": "1 crédit",
-        "body": "Minis rapides de chaque fournisseur — classe GPT-4o-mini, Claude Haiku, Gemini Flash Lite."
-      },
-      "standard": {
-        "label": "Standard",
-        "cost": "3 crédits",
-        "body": "Modèles équilibrés du quotidien — GPT-4.1-mini, Gemini Flash, Mistral milieu de gamme."
-      },
-      "advanced": {
-        "label": "Avancé",
-        "cost": "6 crédits",
-        "body": "Chevaux de trait capables — GPT-4.1, Claude Sonnet, Gemini Pro."
-      },
-      "premium": {
-        "label": "Premium",
-        "cost": "12 crédits",
-        "body": "Raisonnement solide — Claude Opus, GPT-5, DeepSeek R1."
-      },
-      "elite": {
-        "label": "Elite",
-        "cost": "20+ crédits",
-        "body": "Les dernières sorties de pointe à mesure qu'elles arrivent."
-      }
-    },
-    "planPoolTitle": "Ce que chaque plan vous donne",
-    "planPoolBody": "Utilisez le tableau sur la page Tarifs pour la comparaison complète ; la forme générale est ci-dessous.",
-    "examplesTitle": "À quoi ça ressemble en pratique",
-    "examples": {
-      "writer": {
-        "title": "Rédacteur surtout en draft & réécriture",
-        "body": "Environ 80 messages par jour sur un modèle standard. Le plan Basic couvre ça avec de la marge pour utiliser quelques modèles de pointe par session."
-      },
-      "researcher": {
-        "title": "Chercheur qui mène des analyses plus profondes",
-        "body": "Moins de messages mais surtout des modèles avancés ou premium avec recherche web. Starter ou Pro donne la marge nécessaire."
-      },
-      "developer": {
-        "title": "Développeur en mode code intensif",
-        "body": "Beaucoup d'allers-retours sur un modèle équilibré. Pro vous garde sous la limite quotidienne sans avoir à y penser."
-      }
-    },
-    "faqTitle": "Questions courantes",
-    "faqs": {
-      "rollover": {
-        "question": "Les crédits se reportent-ils ?",
-        "answer": "Les crédits mensuels du plan se renouvellent à chaque cycle. Les crédits issus de packs ponctuels restent disponibles tant que votre compte est actif."
-      },
-      "refund": {
-        "question": "Que se passe-t-il si un message échoue à mi-chemin ?",
-        "answer": "Nous finalisons la facturation seulement sur une réponse réussie. Un flux échoué rembourse automatiquement toute déduction partielle."
-      },
-      "fairness": {
-        "question": "Y a-t-il un plafond caché basé sur les tokens ?",
-        "answer": "Les crédits par message sont fixés par niveau, peu importe la longueur. Nous absorbons la variance de notre côté."
-      },
-      "limit": {
-        "question": "Que se passe-t-il si je tombe à court ?",
-        "answer": "Vous pouvez encore discuter avec les modèles du niveau gratuit jusqu'à la fin du cycle, ou acheter un pack. Nous ne débitons jamais votre carte automatiquement en cas de dépassement."
-      }
-    },
-    "ctaTitle": "Crédits prévisibles. Vrais modèles.",
-    "ctaBody": "Commencez avec 100 crédits gratuits par mois. Montez en gamme quand vous voulez la marge — et la contribution environnementale mensuelle qui va avec.",
-    "ctaPrimary": "Commencer gratuitement",
-    "ctaSecondary": "Voir les tarifs"
   },
   "Impact": {
     "metaTitle": "Impact environnemental — Vercilio",

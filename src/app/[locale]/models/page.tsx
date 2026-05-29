@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import {
   ArrowRight,
-  Bot,
   Brain,
   Compass,
   Eye,
@@ -18,17 +17,21 @@ import { SiteFooter } from "@/components/marketing/site-footer";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
+import { getProviderMeta } from "@/lib/model-providers";
 
-const PROVIDER_KEYS = [
-  "openai",
-  "anthropic",
-  "google",
-  "meta",
-  "xai",
-  "deepseek",
-  "mistral",
-  "cohere",
-  "perplexity",
+// Provider key in the dictionary ↔ canonical provider label used in the
+// logo metadata. Keep these in sync; adding a provider means appending
+// here and adding a Models.providers.<key> dictionary entry.
+const PROVIDERS = [
+  { key: "openai", label: "OpenAI" },
+  { key: "anthropic", label: "Anthropic" },
+  { key: "google", label: "Google" },
+  { key: "meta", label: "Meta" },
+  { key: "xai", label: "xAI" },
+  { key: "deepseek", label: "DeepSeek" },
+  { key: "mistral", label: "Mistral" },
+  { key: "cohere", label: "Cohere" },
+  { key: "perplexity", label: "Perplexity" },
 ] as const;
 
 const CATEGORY_KEYS = ["fast", "balanced", "advanced", "frontier"] as const;
@@ -114,23 +117,36 @@ export default async function ModelsPage({
           <p className="mt-4 text-muted-foreground">{t("providersBody")}</p>
         </div>
 
-        <div className="mt-14 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
-          {PROVIDER_KEYS.map((key) => (
-            <div
-              key={key}
-              className="rounded-3xl border border-border/60 bg-card/50 p-6 transition-colors hover:border-primary/40 hover:bg-card"
-            >
-              <div className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/12 text-primary">
-                <Bot className="h-4 w-4" />
+        <div className="mt-16 grid gap-x-12 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+          {PROVIDERS.map(({ key, label }) => {
+            const meta = getProviderMeta(label);
+            return (
+              <div key={key} className="flex gap-5">
+                <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center">
+                  {meta.logoUrl ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={meta.logoUrl}
+                      alt={`${meta.label} logo`}
+                      className="h-7 w-7 object-contain dark:invert"
+                    />
+                  ) : (
+                    <span className="text-sm font-semibold text-foreground/70">
+                      {meta.glyph}
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold tracking-tight">
+                    {t(`providers.${key}.name`)}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    {t(`providers.${key}.body`)}
+                  </p>
+                </div>
               </div>
-              <h3 className="mt-4 text-lg font-semibold tracking-tight">
-                {t(`providers.${key}.name`)}
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                {t(`providers.${key}.body`)}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

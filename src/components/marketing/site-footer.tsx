@@ -77,7 +77,6 @@ export async function SiteFooter() {
           links={[
             { href: "/models", label: t("links.models") },
             { href: "/pricing", label: t("links.pricing") },
-            { href: "/credits", label: t("links.credits") },
             { href: "/impact", label: t("links.impact") },
           ]}
         />

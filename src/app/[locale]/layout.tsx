@@ -5,11 +5,16 @@ import { GeistSans } from "geist/font/sans";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
 import { FloatingLocaleSwitcher } from "@/components/floating-locale-switcher";
 import { ThemeProvider } from "@/components/theme-provider";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
+
+// Google Analytics 4 measurement ID. Server-rendered into a Script tag so the
+// gtag.js loader and the `config` call ship on every locale's pages.
+const GA_MEASUREMENT_ID = "G-YSJ69KZKK9";
 
 export const metadata: Metadata = {
   title: "Vercilio — The best AI, with real impact built in.",
@@ -53,6 +58,16 @@ export default async function LocaleLayout({
               </ThemeProvider>
             </ConvexClientProvider>
           </NextIntlClientProvider>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script id="ga-init" strategy="afterInteractive">
+            {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');`}
+          </Script>
         </body>
       </html>
     </ClerkProvider>

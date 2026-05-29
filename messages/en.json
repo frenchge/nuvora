@@ -386,7 +386,7 @@
     "metaTitle": "AI Models — Vercilio",
     "metaDescription": "Every chat model worth using, in one workspace: GPT, Claude, Gemini, DeepSeek, Mistral, and more. Routed and ready, with credit pricing that doesn't depend on token math.",
     "heroEyebrow": "Models",
-    "heroTitle": "Every model worth using. One subscription.",
+    "heroTitle": "200+ chat models. One subscription.",
     "heroBody": "Vercilio routes across the world's leading conversational AI providers — OpenAI, Anthropic, Google, Meta, xAI, DeepSeek, Mistral, and more — so you can move between frontier reasoning and fast everyday work in the same window.",
     "heroPrimary": "Start free",
     "heroSecondary": "See pricing",
@@ -477,107 +477,10 @@
         "body": "Compatible models can call tools when needed. Currently used for web search; agentic workflows are on the roadmap."
       }
     },
-    "ctaTitle": "Try every model on the free plan.",
-    "ctaBody": "100 credits a month, no card needed. Sample the small, balanced, and reasoning tiers; upgrade only when you want more volume and the verified environmental contribution.",
+    "ctaTitle": "Start free. Upgrade for the heavier models.",
+    "ctaBody": "The free plan ships with 100 credits a month on the small-tier models — perfect for learning the product. Upgrade to a paid plan when you want frontier reasoning, vision, web search, and the monthly environmental contribution.",
     "ctaPrimary": "Start free",
     "ctaSecondary": "Compare plans"
-  },
-  "Credits": {
-    "metaTitle": "How credits work — Vercilio",
-    "metaDescription": "One credit system across every model. No token math, no surprise overage charges. Find out what a chat message costs on Vercilio and how monthly credits refresh.",
-    "heroEyebrow": "Credits",
-    "heroTitle": "One credit system. Across every model.",
-    "heroBody": "Tokens are a unit for engineers, not for people thinking through a problem. Vercilio bills in plain credits — each message costs a small whole number based on the model you picked.",
-    "heroPrimary": "Start free",
-    "heroSecondary": "See pricing",
-    "howTitle": "How credits work",
-    "how": {
-      "monthly": {
-        "title": "A pool every month",
-        "body": "Each plan refreshes its credit balance at the start of every billing cycle. You don't roll over what you didn't use — the next month brings the full pool again."
-      },
-      "perMessage": {
-        "title": "Charged per message",
-        "body": "When you send a message, the model's per-message credit cost is deducted. The cost depends on the model tier — small models are 1 credit, frontier models are 12+."
-      },
-      "transparent": {
-        "title": "Shown next to every model",
-        "body": "Open the model picker and you see the credit cost next to each model. No hidden meter and no calculator math."
-      },
-      "addons": {
-        "title": "Top up without changing plans",
-        "body": "Running low mid-month? Pick a one-time credit add-on — 5k, 10k, 25k, or 50k credits — without touching your subscription tier."
-      }
-    },
-    "tiersTitle": "What different models cost",
-    "tiersBody": "Costs are stable for at least one billing cycle. If a provider drops its price meaningfully we pass that on; we don't auto-raise prices mid-cycle.",
-    "tiers": {
-      "small": {
-        "label": "Small",
-        "cost": "1 credit",
-        "body": "Fast minis from each provider — GPT-4o-mini class, Claude Haiku, Gemini Flash Lite."
-      },
-      "standard": {
-        "label": "Standard",
-        "cost": "3 credits",
-        "body": "Balanced everyday models — GPT-4.1-mini, Gemini Flash, mid-tier Mistral."
-      },
-      "advanced": {
-        "label": "Advanced",
-        "cost": "6 credits",
-        "body": "Capable workhorses — GPT-4.1, Claude Sonnet, Gemini Pro."
-      },
-      "premium": {
-        "label": "Premium",
-        "cost": "12 credits",
-        "body": "Strong reasoning — Claude Opus, GPT-5, DeepSeek R1."
-      },
-      "elite": {
-        "label": "Elite",
-        "cost": "20+ credits",
-        "body": "The latest frontier releases as they arrive."
-      }
-    },
-    "planPoolTitle": "What each plan gives you",
-    "planPoolBody": "Use the table on the pricing page for the full comparison; the rough shape is below.",
-    "examplesTitle": "What that looks like in practice",
-    "examples": {
-      "writer": {
-        "title": "Writer mostly drafting & rewriting",
-        "body": "Maybe 80 messages a day on a standard model. Basic plan covers that with room to use frontier models a couple of times per session."
-      },
-      "researcher": {
-        "title": "Researcher running deeper analyses",
-        "body": "Fewer messages but mostly advanced or premium models with web search on. Starter or Pro gives the headroom needed."
-      },
-      "developer": {
-        "title": "Developer in heavy code mode",
-        "body": "Lots of small back-and-forth on a balanced model. Pro keeps you under the daily message limit without thinking about it."
-      }
-    },
-    "faqTitle": "Common questions",
-    "faqs": {
-      "rollover": {
-        "question": "Do credits roll over?",
-        "answer": "Monthly plan credits reset each cycle. One-time add-on credits stay available while your account is active."
-      },
-      "refund": {
-        "question": "What if a message fails halfway through?",
-        "answer": "We only finalize the charge on a successful response. A failed stream refunds any partial deduction automatically."
-      },
-      "fairness": {
-        "question": "Is there a hidden token-based cap?",
-        "answer": "Credits per message are fixed by tier, regardless of message length. We absorb the variance on our side."
-      },
-      "limit": {
-        "question": "What happens if I run out?",
-        "answer": "You can still chat on free-tier models for the rest of the cycle, or buy an add-on. We never auto-charge your card on overflow."
-      }
-    },
-    "ctaTitle": "Predictable credits. Real models.",
-    "ctaBody": "Start with 100 free credits a month. Upgrade when you want the headroom — and the monthly environmental contribution that comes with it.",
-    "ctaPrimary": "Start free",
-    "ctaSecondary": "See pricing"
   },
   "Impact": {
     "metaTitle": "Environmental impact — Vercilio",
