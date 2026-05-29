@@ -2,6 +2,13 @@
   "name": "vercilio",
   "version": "0.1.0",
   "private": true,
+  "browserslist": [
+    "Chrome >= 90",
+    "Edge >= 90",
+    "Safari >= 14.5",
+    "Firefox >= 90",
+    "iOS >= 14.5"
+  ],
   "scripts": {
     "dev": "next dev",
     "convex:dev": "convex dev",

@@ -61,7 +61,10 @@ export default async function LandingPage({
       <ScrollExpandMedia
         mediaType="video"
         mediaSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1"
-        posterSrc="https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg"
+        // Re-use the background image as the video poster: the previous
+        // Pexels URL was returning 404 in the wild and a missing poster
+        // shows up as a white flash before the video paints.
+        posterSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYMNjMlBUYHaeYpxduXPVNwf8mnFA61L7rkcoS"
         bgImageSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYMNjMlBUYHaeYpxduXPVNwf8mnFA61L7rkcoS"
         title={t("scrollMediaTitle")}
         subtitle={t("scrollMediaSubtitle")}

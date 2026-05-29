@@ -85,6 +85,16 @@ export default async function LocaleLayout({
         suppressHydrationWarning
         className={`${GeistSans.variable} ${GeistMono.variable}`}
       >
+        <head>
+          {/* Preconnect to the third-party origins we load early on every
+              page so the browser can warm up DNS + TLS in parallel with
+              the first HTML chunk. Keep the list short — too many
+              preconnects compete with the actual page bytes. */}
+          <link rel="preconnect" href="https://me7aitdbxq.ufs.sh" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://cdn.simpleicons.org" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://www.googletagmanager.com" />
+          <link rel="dns-prefetch" href="https://clerk.vercilio.com" />
+        </head>
         <body className="min-h-screen bg-background font-sans">
           <NextIntlClientProvider locale={locale} messages={messages}>
             <ConvexClientProvider>
