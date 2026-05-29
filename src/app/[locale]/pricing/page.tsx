@@ -129,7 +129,13 @@ export default async function PricingPage({
             </div>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto -mx-4 px-4 lg:mx-0 lg:px-0">
+            <p
+              className="mb-2 text-xs text-muted-foreground lg:hidden"
+              aria-hidden
+            >
+              ← Swipe to compare plans →
+            </p>
             <div className="min-w-[860px] border-b border-border/60">
               <div className="grid grid-cols-[220px_repeat(4,minmax(0,1fr))] border-b border-border/60">
                 <div aria-hidden />
