@@ -214,10 +214,14 @@ export async function POST(req: NextRequest) {
           param: "param" in e ? e.param : undefined,
           message: e.message,
         });
+        const details = [e.message, e.code, "param" in e ? e.param : null]
+          .filter(Boolean)
+          .join(" · ");
         return NextResponse.json(
           {
-            error:
-              "We couldn't start the checkout. Please try again or contact support if the problem persists.",
+            error: profile.is_admin
+              ? `Stripe checkout failed: ${details}`
+              : "We couldn't start the checkout. Please try again or contact support if the problem persists.",
           },
           { status: 400 }
         );
