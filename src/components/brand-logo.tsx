@@ -1,12 +1,11 @@
 import Image from "next/image";
-import logoBlack from "../../public/verciliologoblack.png";
-import logoWhite from "../../public/verciliologowhite.png";
+import logoBlack from "../../public/optimized/verciliologoblack-192.png";
+import logoWhite from "../../public/optimized/verciliologowhite-192.png";
 import { cn } from "@/lib/utils";
 
-// Source PNGs are 3840 × 3840. Without a `sizes` hint next/image generates
-// the full-res variant — Lighthouse measured 108 KiB downloaded for a logo
-// rendered at 70 × 70. Cap the served width at 80px (covers Retina 2× for
-// our largest 40px display) so the optimizer ships ~3 KiB instead.
+// The original logo sources are 6250 × 6250 PNGs. We ship 192px variants
+// instead so the navbar/footer logo stops pulling an oversized source for a
+// 28–40px render.
 const LOGO_SIZES = "80px";
 
 export function BrandLogo({

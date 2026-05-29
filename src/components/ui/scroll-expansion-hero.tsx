@@ -41,6 +41,7 @@ const ScrollExpandMedia = ({
   const [mediaFullyExpanded, setMediaFullyExpanded] = useState<boolean>(false);
   const [touchStartY, setTouchStartY] = useState<number>(0);
   const [isMobileState, setIsMobileState] = useState<boolean>(false);
+  const [showDesktopVideo, setShowDesktopVideo] = useState<boolean>(false);
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
@@ -162,6 +163,52 @@ const ScrollExpandMedia = ({
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
+  useEffect(() => {
+    if (mediaType !== 'video' || isMobileState) {
+      setShowDesktopVideo(false);
+      return;
+    }
+
+    const connection = (
+      navigator as Navigator & {
+        connection?: { saveData?: boolean };
+      }
+    ).connection;
+    if (connection?.saveData) {
+      return;
+    }
+
+    let cancelled = false;
+    const schedule = () => {
+      if (cancelled) return;
+      setShowDesktopVideo(true);
+    };
+
+    const idleWindow = window as Window & {
+      requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+
+    let timeoutId: number | null = null;
+    let idleId: number | null = null;
+
+    if (typeof idleWindow.requestIdleCallback === 'function') {
+      idleId = idleWindow.requestIdleCallback(schedule, { timeout: 1800 });
+    } else {
+      timeoutId = window.setTimeout(schedule, 1200);
+    }
+
+    return () => {
+      cancelled = true;
+      if (idleId !== null && typeof idleWindow.cancelIdleCallback === 'function') {
+        idleWindow.cancelIdleCallback(idleId);
+      }
+      if (timeoutId !== null) {
+        window.clearTimeout(timeoutId);
+      }
+    };
+  }, [isMobileState, mediaType]);
+
   const mediaWidth = 300 + scrollProgress * (isMobileState ? 650 : 1250);
   const mediaHeight = 400 + scrollProgress * (isMobileState ? 200 : 400);
   const textTranslateX = scrollProgress * (isMobileState ? 180 : 150);
@@ -212,7 +259,7 @@ const ScrollExpandMedia = ({
               // Let Next/Image serve a viewport-sized variant from its
               // optimizer instead of a 1280×2560 master at every breakpoint.
               sizes='100vw'
-              quality={70}
+              quality={52}
             />
             <div className='absolute inset-0 bg-black/10' />
           </motion.div>
@@ -263,13 +310,13 @@ const ScrollExpandMedia = ({
                           poster image. The full clip is ~1.8 MB and pushed
                           LCP past 17s on phones; the poster covers the same
                           design surface for ~50 KB. */}
-                      {isMobileState ? (
+                      {isMobileState || !showDesktopVideo ? (
                         posterSrc ? (
                           /* eslint-disable-next-line @next/next/no-img-element */
                           <img
                             src={posterSrc}
                             alt={title || 'Hero background'}
-                            fetchPriority='high'
+                            fetchPriority={isMobileState ? 'high' : 'auto'}
                             decoding='async'
                             className='h-full w-full rounded-xl object-cover'
                           />
@@ -282,10 +329,10 @@ const ScrollExpandMedia = ({
                           muted
                           loop
                           playsInline
-                          // preload="metadata" keeps the header parse cost
-                          // tiny — the full bytes only fetch once the user
-                          // is actually here and the autoplay kicks in.
-                          preload='metadata'
+                          // The poster handles first paint; we defer loading
+                          // the actual desktop video until idle so it doesn't
+                          // compete with LCP text + CSS.
+                          preload='none'
                           className='h-full w-full rounded-xl object-cover'
                           controls={false}
                           disablePictureInPicture

@@ -149,7 +149,7 @@ export function CurrencyOnboardingWatcher() {
 
           <div className="space-y-5 px-7 py-6">
             <div className="grid gap-3">
-              {options.map(({ currency, Icon }) => {
+              {options.map(({ currency }) => {
                 const active = selectedCurrency === currency;
                 return (
                   <button
@@ -164,9 +164,6 @@ export function CurrencyOnboardingWatcher() {
                     )}
                   >
                     <span className="flex items-center gap-4">
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/12 text-primary">
-                        <Icon className="h-4 w-4" />
-                      </span>
                       <span className="flex items-center gap-2 text-base font-semibold text-foreground">
                         <span className="text-lg leading-none text-primary">
                           {currencySymbol(currency)}
@@ -206,6 +203,7 @@ export function CurrencyOnboardingWatcher() {
                 try {
                   document.cookie = `${CURRENCY_COOKIE_NAME}=${selectedCurrency}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
                   await setPreferredCurrency({ currency: selectedCurrency });
+                  setSaving(false);
                 } catch (mutationError) {
                   setError(
                     mutationError instanceof Error
