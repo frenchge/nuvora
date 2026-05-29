@@ -422,25 +422,27 @@ export default async function BlogPostPage({
                       />
                     </div>
                   ) : null}
-                  <div className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-                    {new Date(entry.publishedAt ?? entry.updatedAt).toLocaleDateString(
-                      locale,
-                      {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      },
-                    )}
-                  </div>
-                  <div className="mt-3 text-lg font-semibold tracking-tight px-4">
-                    {entry.title}
-                  </div>
-                  <p className="mt-2 px-4 text-sm leading-6 text-muted-foreground">
-                    {entry.excerpt}
-                  </p>
-                  <div className="mt-4 px-4 inline-flex items-center gap-2 text-sm font-medium group-hover:text-primary">
-                    {copy.readNext}
-                    <ArrowRight className="h-4 w-4" />
+                  <div className="px-4 pt-4">
+                    <div className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                      {new Date(entry.publishedAt ?? entry.updatedAt).toLocaleDateString(
+                        locale,
+                        {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                        },
+                      )}
+                    </div>
+                    <div className="mt-3 text-lg font-semibold tracking-tight">
+                      {entry.title}
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      {entry.excerpt}
+                    </p>
+                    <div className="mt-4 inline-flex items-center gap-2 text-sm font-medium group-hover:text-primary">
+                      {copy.readNext}
+                      <ArrowRight className="h-4 w-4" />
+                    </div>
                   </div>
                 </Link>
               ))}
