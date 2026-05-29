@@ -25,6 +25,10 @@ type AllocationPlan = {
 // from their own contribution history.
 const COMMUNITY_TREES_BASELINE = 285;
 
+// Same idea for the Activity (paid contribution events) counter on the
+// Community page. Starts at 14 and grows as real paid events land.
+const COMMUNITY_EVENTS_BASELINE = 14;
+
 function buildAllocationPlan(
   amountUsd: number,
   plan: PlanName,
@@ -322,7 +326,7 @@ export const getContributionDashboard = query({
         totalTrees,
         totalBottles,
         totalEvents: events.length,
-        totalCommunityEvents: allEvents.length,
+        totalCommunityEvents: allEvents.length + COMMUNITY_EVENTS_BASELINE,
         communityTrees: communityTrees + COMMUNITY_TREES_BASELINE,
         communityBottles,
       },
