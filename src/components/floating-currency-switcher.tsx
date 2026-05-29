@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, useTransition } from "react";
-import { ChevronUp } from "lucide-react";
 import { usePathname as useRawPathname } from "next/navigation";
 import {
   CURRENCIES,
@@ -97,7 +96,7 @@ export function FloatingCurrencySwitcher({
   return (
     <div
       ref={containerRef}
-      className="fixed bottom-[4.9rem] right-5 z-50 flex flex-col items-end gap-2 print:hidden"
+      className="fixed bottom-[3.75rem] right-5 z-50 flex flex-col items-end gap-2 print:hidden"
     >
       {open &&
         options.map((currency) => {
@@ -130,12 +129,6 @@ export function FloatingCurrencySwitcher({
           {currencySymbol(selectedCurrency)}
         </span>
         <span>{current.code}</span>
-        <ChevronUp
-          className={cn(
-            "h-3.5 w-3.5 text-muted-foreground transition-transform",
-            open && "rotate-180",
-          )}
-        />
       </button>
     </div>
   );

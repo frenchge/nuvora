@@ -185,41 +185,21 @@ const ScrollExpandMedia = ({
       return;
     }
 
-    if (scrollProgress < 0.08 && !mediaFullyExpanded) {
-      setShowDesktopVideo(false);
-      return;
-    }
-
     let cancelled = false;
     const schedule = () => {
       if (cancelled) return;
       setShowDesktopVideo(true);
     };
 
-    const idleWindow = window as Window & {
-      requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
-      cancelIdleCallback?: (id: number) => void;
-    };
-
-    let timeoutId: number | null = null;
-    let idleId: number | null = null;
-
-    if (typeof idleWindow.requestIdleCallback === 'function') {
-      idleId = idleWindow.requestIdleCallback(schedule, { timeout: 1200 });
-    } else {
-      timeoutId = window.setTimeout(schedule, 900);
-    }
+    let frameId = window.requestAnimationFrame(() => {
+      frameId = window.requestAnimationFrame(schedule);
+    });
 
     return () => {
       cancelled = true;
-      if (idleId !== null && typeof idleWindow.cancelIdleCallback === 'function') {
-        idleWindow.cancelIdleCallback(idleId);
-      }
-      if (timeoutId !== null) {
-        window.clearTimeout(timeoutId);
-      }
+      window.cancelAnimationFrame(frameId);
     };
-  }, [isMobileState, mediaFullyExpanded, mediaType, scrollProgress]);
+  }, [isMobileState, mediaType]);
 
   const mediaWidth = 300 + scrollProgress * (isMobileState ? 650 : 1250);
   const mediaHeight = 400 + scrollProgress * (isMobileState ? 200 : 400);
