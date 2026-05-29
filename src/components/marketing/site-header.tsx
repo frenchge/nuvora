@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useAuth } from "@clerk/nextjs";
 import { usePathname as useRawPathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
@@ -22,6 +23,7 @@ import { Link } from "@/i18n/navigation";
 
 export function SiteHeader() {
   const rawPathname = useRawPathname();
+  const { isSignedIn } = useAuth();
   const { resolvedTheme } = useTheme();
   const t = useTranslations("Nav");
   const [heroTone, setHeroTone] = useState(false);
@@ -131,27 +133,31 @@ export function SiteHeader() {
               >
                 <Link href="/chat">{t("openApp")}</Link>
               </Button>
-              <Button
-                variant="ghost"
-                className={
-                  heroTone
-                    ? "text-white/82 hover:bg-white/8 hover:text-white"
-                    : undefined
-                }
-                asChild
-              >
-                <Link href="/sign-in">{t("signIn")}</Link>
-              </Button>
-              <Button
-                className={
-                  heroTone
-                    ? "bg-[rgba(247,243,231,0.92)] text-[#1f2718] hover:bg-[rgba(247,243,231,1)]"
-                    : undefined
-                }
-                asChild
-              >
-                <Link href="/sign-up">{t("startFree")}</Link>
-              </Button>
+              {!isSignedIn ? (
+                <>
+                  <Button
+                    variant="ghost"
+                    className={
+                      heroTone
+                        ? "text-white/82 hover:bg-white/8 hover:text-white"
+                        : undefined
+                    }
+                    asChild
+                  >
+                    <Link href="/sign-in">{t("signIn")}</Link>
+                  </Button>
+                  <Button
+                    className={
+                      heroTone
+                        ? "bg-[rgba(247,243,231,0.92)] text-[#1f2718] hover:bg-[rgba(247,243,231,1)]"
+                        : undefined
+                    }
+                    asChild
+                  >
+                    <Link href="/sign-up">{t("startFree")}</Link>
+                  </Button>
+                </>
+              ) : null}
             </div>
 
             <div className="flex items-center gap-2 md:hidden">
@@ -234,16 +240,20 @@ export function SiteHeader() {
                 {t("openApp")}
               </Link>
             </Button>
-            <Button variant="outline" className="w-full" asChild>
-              <Link href="/sign-in" onClick={() => setMobileMenuOpen(false)}>
-                {t("signIn")}
-              </Link>
-            </Button>
-            <Button className="w-full" asChild>
-              <Link href="/sign-up" onClick={() => setMobileMenuOpen(false)}>
-                {t("startFree")}
-              </Link>
-            </Button>
+            {!isSignedIn ? (
+              <>
+                <Button variant="outline" className="w-full" asChild>
+                  <Link href="/sign-in" onClick={() => setMobileMenuOpen(false)}>
+                    {t("signIn")}
+                  </Link>
+                </Button>
+                <Button className="w-full" asChild>
+                  <Link href="/sign-up" onClick={() => setMobileMenuOpen(false)}>
+                    {t("startFree")}
+                  </Link>
+                </Button>
+              </>
+            ) : null}
           </div>
         </div>
       </div>

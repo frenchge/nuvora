@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { cookies, headers } from "next/headers";
 import {
   ArrowRight,
   Check,
@@ -10,18 +9,15 @@ import {
 } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SiteHeader } from "@/components/marketing/site-header";
+import { MarketingMoney } from "@/components/marketing/marketing-money";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { ProviderLogoMarquee } from "@/components/marketing/app-mockup";
 import { ImpactMap } from "@/components/marketing/impact-map";
 import { Button } from "@/components/ui/button";
 import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
 import { Link } from "@/i18n/navigation";
-import {
-  CURRENCY_COOKIE_NAME,
-  resolveCurrencyPreference,
-} from "@/lib/currency";
 import { PLAN_DISPLAY, PLAN_ORDER } from "@/lib/plans";
-import { formatCredits, formatMoney } from "@/lib/utils";
+import { formatCredits } from "@/lib/utils";
 import { buildPageMetadata } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 
@@ -58,11 +54,6 @@ export default async function LandingPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Home");
-  const cookieStore = await cookies();
-  const displayCurrency = resolveCurrencyPreference({
-    cookieValue: cookieStore.get(CURRENCY_COOKIE_NAME)?.value ?? null,
-    headers: await headers(),
-  });
 
   return (
     <>
@@ -277,7 +268,7 @@ export default async function LandingPage({
                     </div>
                   </div>
                   <div className="text-3xl font-semibold tracking-tight">
-                    {formatMoney(plan.price, displayCurrency, { precision: 0 })}
+                    <MarketingMoney amount={plan.price} precision={0} />
                     <span className="ml-1 text-sm font-normal text-muted-foreground">
                       {t("planPerMonth")}
                     </span>

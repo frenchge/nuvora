@@ -5,7 +5,10 @@ import { usePathname as useRawPathname } from "next/navigation";
 import {
   CURRENCIES,
   CURRENCY_COOKIE_NAME,
+  DEFAULT_CURRENCY,
+  detectCurrencyFromNavigator,
   currencySymbol,
+  isCurrency,
   type Currency,
 } from "@/lib/currency";
 import { cn } from "@/lib/utils";
@@ -20,16 +23,31 @@ const CURRENCY_META: Record<
   GBP: { code: "GBP", label: "British pound", symbol: "£" },
 };
 
-export function FloatingCurrencySwitcher({
-  initialCurrency,
-}: {
-  initialCurrency: Currency;
-}) {
+function resolveClientCurrency(): Currency {
+  if (typeof document !== "undefined") {
+    const cookieValue = document.cookie
+      .split("; ")
+      .find((entry) => entry.startsWith(`${CURRENCY_COOKIE_NAME}=`))
+      ?.split("=")[1];
+    if (cookieValue && isCurrency(cookieValue)) {
+      return cookieValue;
+    }
+  }
+
+  if (typeof navigator !== "undefined") {
+    const preferredLanguage = navigator.languages?.[0] ?? navigator.language;
+    return detectCurrencyFromNavigator(preferredLanguage);
+  }
+
+  return DEFAULT_CURRENCY;
+}
+
+export function FloatingCurrencySwitcher() {
   const router = useRouter();
   const rawPathname = useRawPathname();
   const [open, setOpen] = useState(false);
   const [pending, startTransition] = useTransition();
-  const [selectedCurrency, setSelectedCurrency] = useState<Currency>(initialCurrency);
+  const [selectedCurrency, setSelectedCurrency] = useState<Currency>(DEFAULT_CURRENCY);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const pathnameWithoutLocale = rawPathname.replace(/^\/[a-z]{2}(?=\/|$)/, "") || "/";
@@ -50,8 +68,8 @@ export function FloatingCurrencySwitcher({
   }
 
   useEffect(() => {
-    setSelectedCurrency(initialCurrency);
-  }, [initialCurrency]);
+    setSelectedCurrency(resolveClientCurrency());
+  }, []);
 
   useEffect(() => {
     if (!open) return;

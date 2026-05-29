@@ -4,7 +4,6 @@ import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
-import { cookies, headers } from "next/headers";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import { FloatingCurrencySwitcher } from "@/components/floating-currency-switcher";
@@ -12,10 +11,6 @@ import { FloatingLocaleSwitcher } from "@/components/floating-locale-switcher";
 import { ThemeProvider } from "@/components/theme-provider";
 import { JsonLd } from "@/components/seo/json-ld";
 import { routing, type Locale } from "@/i18n/routing";
-import {
-  CURRENCY_COOKIE_NAME,
-  resolveCurrencyPreference,
-} from "@/lib/currency";
 import { getSiteUrl } from "@/lib/site";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import "../globals.css";
@@ -81,12 +76,6 @@ export default async function LocaleLayout({
   }
   setRequestLocale(locale);
   const messages = await getMessages();
-  const cookieStore = await cookies();
-  const headerStore = await headers();
-  const initialCurrency = resolveCurrencyPreference({
-    cookieValue: cookieStore.get(CURRENCY_COOKIE_NAME)?.value ?? null,
-    headers: headerStore,
-  });
 
   const typedLocale = locale as Locale;
   return (
@@ -104,7 +93,7 @@ export default async function LocaleLayout({
           <NextIntlClientProvider locale={locale} messages={messages}>
             <ThemeProvider>
               {children}
-              <FloatingCurrencySwitcher initialCurrency={initialCurrency} />
+              <FloatingCurrencySwitcher />
               <FloatingLocaleSwitcher />
             </ThemeProvider>
           </NextIntlClientProvider>

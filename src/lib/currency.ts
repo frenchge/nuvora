@@ -68,6 +68,20 @@ export function detectCurrencyFromHeaders(headers: Headers): Currency {
   return DEFAULT_CURRENCY;
 }
 
+export function detectCurrencyFromNavigator(
+  language: string | null | undefined,
+): Currency {
+  const primary = language?.split(",")[0]?.trim().toLowerCase() ?? "";
+  if (!primary) return DEFAULT_CURRENCY;
+
+  const [lang, region] = primary.split("-");
+  if (region && USD_COUNTRIES.has(region.toUpperCase())) return "USD";
+  if (region && GBP_COUNTRIES.has(region.toUpperCase())) return "GBP";
+  if (region && EUR_COUNTRIES.has(region.toUpperCase())) return "EUR";
+  if (lang && LANG_TO_CURRENCY[lang] === "EUR") return "EUR";
+  return DEFAULT_CURRENCY;
+}
+
 export function resolveCurrencyPreference({
   cookieValue,
   headers,

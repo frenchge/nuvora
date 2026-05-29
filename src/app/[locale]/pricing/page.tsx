@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
-import { cookies, headers } from "next/headers";
 import { ArrowRight, Check, Leaf } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildPageMetadata } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
+import {
+  MarketingMoney,
+  MarketingPerMonthText,
+} from "@/components/marketing/marketing-money";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import {
-  CURRENCY_COOKIE_NAME,
-  resolveCurrencyPreference,
-} from "@/lib/currency";
 import { CREDIT_ADDONS, PLAN_DISPLAY, PLAN_ORDER } from "@/lib/plans";
-import { formatCredits, formatMoney } from "@/lib/utils";
+import { formatCredits } from "@/lib/utils";
 
 export async function generateMetadata({
   params,
@@ -38,23 +37,14 @@ export default async function PricingPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Pricing");
-  const cookieStore = await cookies();
-  const displayCurrency = resolveCurrencyPreference({
-    cookieValue: cookieStore.get(CURRENCY_COOKIE_NAME)?.value ?? null,
-    headers: await headers(),
-  });
 
   const comparisonRows = [
     {
       label: t("rows.price"),
-      values: PLAN_ORDER.map((plan) =>
+      values: PLAN_ORDER.map<React.ReactNode>((plan) =>
         plan === "free"
           ? t("values.free")
-          : t("values.perMonth", {
-              value: formatMoney(PLAN_DISPLAY[plan].price, displayCurrency, {
-                precision: 0,
-              }),
-            }),
+          : <MarketingPerMonthText amount={PLAN_DISPLAY[plan].price} precision={0} />,
       ),
     },
     {
@@ -246,7 +236,7 @@ export default async function PricingPage({
                   {formatCredits(addon.credits)}
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  {formatMoney(addon.price, displayCurrency)}
+                  <MarketingMoney amount={addon.price} />
                 </div>
                 <Button className="mt-4 w-full" variant="outline" asChild>
                   <Link href={`/billing?addon=${addon.key}`}>
