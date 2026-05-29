@@ -1,3 +1,4 @@
+import type { Currency } from "./currency";
 import type { PlanName } from "./types";
 
 export const PLAN_ORDER: PlanName[] = ["free", "basic", "starter", "pro"];
@@ -90,13 +91,24 @@ export const CREDIT_ADDONS: CreditAddon[] = [
   { key: "50k", credits: 50_000, price: 45, envVar: "STRIPE_PRICE_CREDITS_50K" },
 ];
 
-export function planEnvPriceVar(plan: PlanName): string | null {
+export function planEnvPriceVar(
+  plan: PlanName,
+  currency: Currency = "EUR",
+): string | null {
+  const suffix = currency === "EUR" ? "" : `_${currency}`;
   switch (plan) {
-    case "basic": return "STRIPE_PRICE_BASIC";
-    case "starter":  return "STRIPE_PRICE_STARTER";
-    case "pro":   return "STRIPE_PRICE_PRO";
+    case "basic": return `STRIPE_PRICE_BASIC${suffix}`;
+    case "starter":  return `STRIPE_PRICE_STARTER${suffix}`;
+    case "pro":   return `STRIPE_PRICE_PRO${suffix}`;
     default: return null;
   }
+}
+
+export function addonEnvPriceVar(
+  envVar: string,
+  currency: Currency = "EUR",
+): string {
+  return currency === "EUR" ? envVar : `${envVar}_${currency}`;
 }
 
 export function isPaidPlan(plan: PlanName): boolean {

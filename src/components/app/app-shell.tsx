@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "@convex/_generated/api";
 import { AppSidebar } from "@/components/app/app-sidebar";
+import { CurrencyOnboardingWatcher } from "@/components/app/currency-onboarding-watcher";
 import { PaymentGraceBanner } from "@/components/app/payment-grace-banner";
 import { PlanWelcomeWatcher } from "@/components/app/plan-welcome-watcher";
 import { UpgradeBadge } from "@/components/app/upgrade-badge";
@@ -25,6 +26,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative flex h-screen overflow-hidden bg-card text-foreground">
       <PaymentGraceBanner />
+      <CurrencyOnboardingWatcher />
       <PlanWelcomeWatcher />
       <TopRightControls />
       <AppSidebar

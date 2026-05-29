@@ -18,23 +18,37 @@ import {
   requireWebhookSecret,
 } from "./helpers";
 import {
+  addonEnvPriceVar,
   CREDIT_ADDONS,
   PLAN_DISPLAY,
   PLAN_ORDER,
   getPlanContributionUsd,
+  planEnvPriceVar,
 } from "../src/lib/plans";
+import { CURRENCIES } from "../src/lib/currency";
 import type { PlanName } from "../src/lib/types";
 
 function planForPriceId(priceId: string | undefined): PlanName | null {
   if (!priceId) return null;
-  if (priceId === process.env.STRIPE_PRICE_BASIC) return "basic";
-  if (priceId === process.env.STRIPE_PRICE_STARTER) return "starter";
-  if (priceId === process.env.STRIPE_PRICE_PRO) return "pro";
+
+  for (const plan of ["basic", "starter", "pro"] as const) {
+    for (const currency of CURRENCIES) {
+      const envVar = planEnvPriceVar(plan, currency);
+      if (envVar && process.env[envVar] === priceId) {
+        return plan;
+      }
+    }
+  }
+
   return null;
 }
 
 function addonCreditsForPriceId(priceId: string | undefined): number | null {
-  const addon = CREDIT_ADDONS.find((row) => process.env[row.envVar] === priceId);
+  const addon = CREDIT_ADDONS.find((row) =>
+    CURRENCIES.some(
+      (currency) => process.env[addonEnvPriceVar(row.envVar, currency)] === priceId,
+    ),
+  );
   return addon?.credits ?? null;
 }
 

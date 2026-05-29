@@ -1,7 +1,7 @@
 /**
  * Currency selection.
  *
- * We support exactly two display + billing currencies for now: USD and EUR.
+ * We support three display + billing currencies: USD, EUR, and GBP.
  * Numeric values are kept identical across currencies — i.e. $19 ≡ €19 — so
  * we don't need a live FX rate. This is the same model Notion / Linear use.
  *
@@ -9,14 +9,17 @@
  *   1. Explicit user preference stored on `users_profile.currency`
  *   2. `x-vercel-ip-country` / `cf-ipcountry` (geo-IP from the edge)
  *   3. `Accept-Language` country tag (e.g. `en-US`, `de-DE`)
- *   4. Fallback: USD
+ *   4. Fallback: EUR
  *
  * Each currency maps to its own Stripe Price ID per plan/add-on.
  */
 
-export const CURRENCIES = ["USD", "EUR"] as const;
+export const CURRENCIES = ["USD", "EUR", "GBP"] as const;
 export type Currency = (typeof CURRENCIES)[number];
-export const DEFAULT_CURRENCY: Currency = "USD";
+export const DEFAULT_CURRENCY: Currency = "EUR";
+
+const USD_COUNTRIES = new Set(["US", "PR", "GU", "VI", "AS", "MP"]);
+const GBP_COUNTRIES = new Set(["GB", "IM", "GG", "JE"]);
 
 const EUR_COUNTRIES = new Set([
   // Eurozone
@@ -36,8 +39,8 @@ const LANG_TO_CURRENCY: Record<string, Currency> = {
   fi: "EUR", sv: "EUR", da: "EUR", pl: "EUR", cs: "EUR",
   sk: "EUR", sl: "EUR", lt: "EUR", lv: "EUR", et: "EUR",
   hr: "EUR", hu: "EUR", ro: "EUR", bg: "EUR",
-  // Spanish & Portuguese speakers are split (Spain vs LATAM, Portugal vs BR).
-  // We default these to USD; the Accept-Language country tag will override.
+  pt: "EUR",
+  es: "EUR",
 };
 
 export function detectCurrencyFromHeaders(headers: Headers): Currency {
@@ -47,8 +50,9 @@ export function detectCurrencyFromHeaders(headers: Headers): Currency {
     headers.get("x-country-code") ??
     ""
   ).toUpperCase();
+  if (country && USD_COUNTRIES.has(country)) return "USD";
+  if (country && GBP_COUNTRIES.has(country)) return "GBP";
   if (country && EUR_COUNTRIES.has(country)) return "EUR";
-  if (country) return "USD"; // explicit non-EUR country wins
 
   const accept = headers.get("accept-language") ?? "";
   // Take the first weighted preference: e.g. "de-DE,de;q=0.9,en;q=0.5"
@@ -56,6 +60,8 @@ export function detectCurrencyFromHeaders(headers: Headers): Currency {
   if (!primary) return DEFAULT_CURRENCY;
 
   const [lang, region] = primary.split("-");
+  if (region && USD_COUNTRIES.has(region.toUpperCase())) return "USD";
+  if (region && GBP_COUNTRIES.has(region.toUpperCase())) return "GBP";
   if (region && EUR_COUNTRIES.has(region.toUpperCase())) return "EUR";
   if (lang && LANG_TO_CURRENCY[lang] === "EUR") return "EUR";
   return DEFAULT_CURRENCY;
@@ -70,10 +76,14 @@ export function normalizeCurrency(v: unknown): Currency {
 }
 
 export function currencySymbol(c: Currency): string {
-  return c === "EUR" ? "€" : "$";
+  if (c === "EUR") return "€";
+  if (c === "GBP") return "£";
+  return "$";
 }
 
 /** Locale we hand to Intl for grouping and decimal style per currency. */
 export function localeFor(c: Currency): string {
-  return c === "EUR" ? "de-DE" : "en-US";
+  if (c === "EUR") return "en-IE";
+  if (c === "GBP") return "en-GB";
+  return "en-US";
 }

@@ -1,5 +1,6 @@
 import { SignOutButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
+import { headers } from "next/headers";
 import {
   CreditCard,
   Leaf,
@@ -12,13 +13,18 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "@/i18n/navigation";
+import {
+  detectCurrencyFromHeaders,
+  normalizeCurrency,
+  type Currency,
+} from "@/lib/currency";
 import { PLAN_DISPLAY, PLAN_ORDER } from "@/lib/plans";
 import {
   fetchAction,
   fetchQuery,
   getRequiredConvexToken,
 } from "@/lib/convex-server";
-import { cn, formatCredits, formatEur } from "@/lib/utils";
+import { cn, formatCredits, formatMoney } from "@/lib/utils";
 import {
   CancelSubscriptionButton,
   CheckoutButton,
@@ -62,6 +68,7 @@ type BillingAddon = {
 type BillingPayment = {
   id: string;
   amount: number;
+  currency: string;
   status: string;
   type: string;
   description?: string | null;
@@ -90,6 +97,7 @@ export default async function SettingsPage({
   const justCanceled = params?.canceled === "1";
   const sessionId = params?.session_id;
   const PLAN_KEYS: PlanName[] = ["free", "basic", "starter", "pro"];
+  const displayCurrencyFromHeaders = detectCurrencyFromHeaders(await headers());
   const subscribedPlan = PLAN_KEYS.includes(params?.plan as PlanName)
     ? (params!.plan as PlanName)
     : null;
@@ -123,6 +131,10 @@ export default async function SettingsPage({
   if (!profile) {
     throw new Error("Profile not found");
   }
+
+  const billingCurrency = (
+    profile.preferred_currency ?? displayCurrencyFromHeaders
+  ) as Currency;
 
   const currentPlan =
     PLAN_DISPLAY[profile.plan_name as keyof typeof PLAN_DISPLAY];
@@ -310,7 +322,7 @@ export default async function SettingsPage({
                               <p className="text-sm text-muted-foreground">
                                 {plan.price === 0
                                   ? "Free"
-                                  : `${formatEur(plan.price, { precision: 0 })} / month`}
+                                  : `${formatMoney(plan.price, billingCurrency, { precision: 0 })} / month`}
                                 {" · "}
                                 {formatCredits(plan.credits)} credits each month
                               </p>
@@ -364,7 +376,7 @@ export default async function SettingsPage({
                               {formatCredits(addon.credits)} credits
                             </div>
                             <div className="text-sm text-muted-foreground">
-                              {formatEur(addon.price)}
+                              {formatMoney(addon.price, billingCurrency)}
                             </div>
                           </div>
                           <div className="w-full sm:w-40">
@@ -406,7 +418,10 @@ export default async function SettingsPage({
                                 {payment.status}
                               </Badge>
                               <span className="font-medium">
-                                {formatEur(Number(payment.amount))}
+                                {formatMoney(
+                                  Number(payment.amount),
+                                  normalizeCurrency(payment.currency.toUpperCase()),
+                                )}
                               </span>
                             </div>
                           </div>

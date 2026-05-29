@@ -10,6 +10,7 @@ export default defineSchema({
     full_name: v.optional(v.string()),
     email: v.optional(v.string()),
     preferred_language: v.optional(v.string()),
+    preferred_currency: v.optional(v.string()),
     plan_name: v.string(), // "free" | "basic" | "starter" | "pro"
     stripe_customer_id: v.optional(v.string()),
     is_admin: v.boolean(),

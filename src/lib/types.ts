@@ -1,3 +1,5 @@
+import type { Currency } from "./currency";
+
 export type PlanName = "free" | "basic" | "starter" | "pro";
 export type ModelCategory =
   | "small"
@@ -27,6 +29,7 @@ export interface UserProfile {
   full_name: string | null;
   email: string | null;
   preferred_language: string;
+  preferred_currency: Currency | null;
   plan_name: PlanName;
   stripe_customer_id: string | null;
   is_admin: boolean;

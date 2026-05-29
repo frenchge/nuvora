@@ -3,9 +3,10 @@ import { z } from "zod";
 import Stripe from "stripe";
 import { api } from "@convex/_generated/api";
 import { requireUser, HttpError } from "@/lib/auth";
+import { detectCurrencyFromHeaders } from "@/lib/currency";
 import { fetchMutation, getRequiredConvexToken } from "@/lib/convex-server";
 import { getStripe } from "@/lib/stripe";
-import { CREDIT_ADDONS, planEnvPriceVar } from "@/lib/plans";
+import { addonEnvPriceVar, CREDIT_ADDONS, planEnvPriceVar } from "@/lib/plans";
 
 export const runtime = "nodejs";
 
@@ -80,6 +81,8 @@ export async function POST(req: NextRequest) {
     const body = Body.parse(await req.json());
     const stripe = getStripe();
     const token = await getRequiredConvexToken();
+    const checkoutCurrency =
+      profile.preferred_currency ?? detectCurrencyFromHeaders(req.headers);
 
     // Ensure a Stripe customer exists.
     let customerId = profile.stripe_customer_id;
@@ -108,7 +111,7 @@ export async function POST(req: NextRequest) {
     let metadata: Record<string, string>;
 
     if (body.type === "subscription") {
-      const envVar = planEnvPriceVar(body.plan)!;
+      const envVar = planEnvPriceVar(body.plan, checkoutCurrency)!;
       const check = readPriceEnv(envVar);
       if (!check.ok) return missingPriceResponse(check);
       priceId = check.value;
@@ -117,11 +120,12 @@ export async function POST(req: NextRequest) {
         clerk_user_id: profile.user_id,
         kind: "subscription",
         plan: body.plan,
+        currency: checkoutCurrency,
       };
     } else {
       const addon = CREDIT_ADDONS.find((a) => a.key === body.addon);
       if (!addon) return NextResponse.json({ error: "Unknown add-on" }, { status: 400 });
-      const check = readPriceEnv(addon.envVar);
+      const check = readPriceEnv(addonEnvPriceVar(addon.envVar, checkoutCurrency));
       if (!check.ok) return missingPriceResponse(check);
       priceId = check.value;
       mode = "payment";
@@ -130,6 +134,7 @@ export async function POST(req: NextRequest) {
         kind: "addon",
         addon: addon.key,
         credits: String(addon.credits),
+        currency: checkoutCurrency,
       };
     }
 

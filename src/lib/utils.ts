@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { localeFor, type Currency } from "./currency";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -10,18 +11,21 @@ export function formatCredits(n: number): string {
 }
 
 export function formatUsd(n: number, opts: { precision?: number } = {}): string {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: opts.precision ?? 2,
-    maximumFractionDigits: opts.precision ?? 2,
-  }).format(n);
+  return formatMoney(n, "USD", opts);
 }
 
 export function formatEur(n: number, opts: { precision?: number } = {}): string {
-  return new Intl.NumberFormat("en-US", {
+  return formatMoney(n, "EUR", opts);
+}
+
+export function formatMoney(
+  n: number,
+  currency: Currency,
+  opts: { precision?: number } = {},
+): string {
+  return new Intl.NumberFormat(localeFor(currency), {
     style: "currency",
-    currency: "EUR",
+    currency,
     minimumFractionDigits: opts.precision ?? 2,
     maximumFractionDigits: opts.precision ?? 2,
   }).format(n);

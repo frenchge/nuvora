@@ -1,6 +1,7 @@
 import { ConvexError } from "convex/values";
 import type { QueryCtx, MutationCtx, ActionCtx } from "./_generated/server";
 import type { Doc, Id } from "./_generated/dataModel";
+import type { Currency } from "../src/lib/currency";
 import {
   DEFAULT_MODELS,
   defaultPlanConfig,
@@ -109,7 +110,13 @@ export async function getUserIdByStripeCustomer(
 /** Idempotently create a profile + grant the free signup credits. */
 export async function ensureProfile(
   ctx: MutationCtx,
-  args: { userId: string; email?: string; fullName?: string; preferredLanguage?: string },
+  args: {
+    userId: string;
+    email?: string;
+    fullName?: string;
+    preferredLanguage?: string;
+    preferredCurrency?: string;
+  },
 ): Promise<Doc<"users_profile">> {
   const existing = await getProfileM(ctx, args.userId);
   if (existing) {
@@ -129,6 +136,7 @@ export async function ensureProfile(
     email: args.email,
     full_name: args.fullName,
     preferred_language: args.preferredLanguage,
+    preferred_currency: args.preferredCurrency,
     plan_name: "free",
     is_admin: isAdminCandidate(args),
   });
@@ -302,12 +310,16 @@ export function toIso(ms: number | undefined): string | null {
 }
 
 export function mapProfile(profile: Doc<"users_profile">) {
+  const preferredCurrency =
+    (profile.preferred_currency as Currency | undefined) ?? null;
+
   return {
     id: profile._id,
     user_id: profile.user_id,
     full_name: profile.full_name ?? null,
     email: profile.email ?? null,
     preferred_language: profile.preferred_language ?? "en",
+    preferred_currency: preferredCurrency,
     plan_name: profile.plan_name as PlanName,
     stripe_customer_id: profile.stripe_customer_id ?? null,
     is_admin: profile.is_admin,

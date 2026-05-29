@@ -9,6 +9,11 @@ import {
 } from "./helpers";
 
 const MANUAL_ADMIN_EMAILS = new Set(["lahmerselim@gmail.com"]);
+const currencyValidator = v.union(
+  v.literal("USD"),
+  v.literal("EUR"),
+  v.literal("GBP"),
+);
 
 function shouldBeAdmin(userId: string, email?: string | null) {
   const adminIds = (process.env.ADMIN_USER_IDS ?? "")
@@ -206,5 +211,26 @@ export const clearPendingPlanWelcome = mutation({
       pending_plan_welcome: undefined,
     });
     return null;
+  },
+});
+
+export const setPreferredCurrency = mutation({
+  args: { currency: currencyValidator },
+  handler: async (ctx, args) => {
+    const identity = await requireIdentity(ctx);
+    const existing = await getProfileM(ctx, identity.subject);
+    if (!existing) {
+      throw new Error("Profile not found");
+    }
+
+    await ctx.db.patch(existing._id, {
+      preferred_currency: args.currency,
+    });
+
+    const updated = await getProfileM(ctx, identity.subject);
+    if (!updated) {
+      throw new Error("Profile not found after currency update");
+    }
+    return mapProfile(updated);
   },
 });

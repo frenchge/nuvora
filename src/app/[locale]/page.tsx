@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import {
   ArrowRight,
   Check,
@@ -15,8 +16,9 @@ import { ImpactMap } from "@/components/marketing/impact-map";
 import { Button } from "@/components/ui/button";
 import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
 import { Link } from "@/i18n/navigation";
+import { detectCurrencyFromHeaders } from "@/lib/currency";
 import { PLAN_DISPLAY, PLAN_ORDER } from "@/lib/plans";
-import { formatCredits, formatEur } from "@/lib/utils";
+import { formatCredits, formatMoney } from "@/lib/utils";
 import { buildPageMetadata } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 
@@ -53,6 +55,7 @@ export default async function LandingPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Home");
+  const displayCurrency = detectCurrencyFromHeaders(await headers());
 
   return (
     <>
@@ -270,7 +273,7 @@ export default async function LandingPage({
                     </div>
                   </div>
                   <div className="text-3xl font-semibold tracking-tight">
-                    {formatEur(plan.price, { precision: 0 })}
+                    {formatMoney(plan.price, displayCurrency, { precision: 0 })}
                     <span className="ml-1 text-sm font-normal text-muted-foreground">
                       {t("planPerMonth")}
                     </span>
