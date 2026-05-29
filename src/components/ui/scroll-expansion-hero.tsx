@@ -209,6 +209,10 @@ const ScrollExpandMedia = ({
                 objectPosition: 'center',
               }}
               priority
+              // Let Next/Image serve a viewport-sized variant from its
+              // optimizer instead of a 1280×2560 master at every breakpoint.
+              sizes='100vw'
+              quality={70}
             />
             <div className='absolute inset-0 bg-black/10' />
           </motion.div>
@@ -255,19 +259,39 @@ const ScrollExpandMedia = ({
                     </div>
                   ) : (
                     <div className='pointer-events-none relative h-full w-full'>
-                      <video
-                        src={mediaSrc}
-                        poster={posterSrc}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload='auto'
-                        className='h-full w-full rounded-xl object-cover'
-                        controls={false}
-                        disablePictureInPicture
-                        disableRemotePlayback
-                      />
+                      {/* On mobile we skip the video entirely and show the
+                          poster image. The full clip is ~1.8 MB and pushed
+                          LCP past 17s on phones; the poster covers the same
+                          design surface for ~50 KB. */}
+                      {isMobileState ? (
+                        posterSrc ? (
+                          /* eslint-disable-next-line @next/next/no-img-element */
+                          <img
+                            src={posterSrc}
+                            alt={title || 'Hero background'}
+                            fetchPriority='high'
+                            decoding='async'
+                            className='h-full w-full rounded-xl object-cover'
+                          />
+                        ) : null
+                      ) : (
+                        <video
+                          src={mediaSrc}
+                          poster={posterSrc}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          // preload="metadata" keeps the header parse cost
+                          // tiny — the full bytes only fetch once the user
+                          // is actually here and the autoplay kicks in.
+                          preload='metadata'
+                          className='h-full w-full rounded-xl object-cover'
+                          controls={false}
+                          disablePictureInPicture
+                          disableRemotePlayback
+                        />
+                      )}
                       <div className='absolute inset-0 z-10' style={{ pointerEvents: 'none' }} />
                       <motion.div
                         className='absolute inset-0 rounded-xl bg-black/30'

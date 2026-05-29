@@ -1,19 +1,11 @@
 import type { Metadata } from "next";
-import {
-  ArrowRight,
-  HelpCircle,
-  Leaf,
-  Mail,
-  MessageCircle,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight, HelpCircle, Leaf, Mail, MessageCircle } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildPageMetadata } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
-import { Button } from "@/components/ui/button";
-import { Link } from "@/i18n/navigation";
+import { ContactForm } from "./_contact-form";
 
 const LANES = [
   { key: "general", icon: Mail, address: "hello@vercilio.ai" },
@@ -103,60 +95,32 @@ export default async function ContactPage({
             {t("formSubtitle")}
           </p>
 
-          <form
-            className="mt-8 grid gap-5"
-            action="mailto:hello@vercilio.ai"
-            method="post"
-            encType="text/plain"
-          >
-            <div className="grid gap-5 sm:grid-cols-2">
-              <Field
-                label={t("form.nameLabel")}
-                name="name"
-                placeholder={t("form.namePlaceholder")}
-                required
+          {(() => {
+            const rawNote = t("form.privacyNote");
+            const linkMatch = rawNote.match(/<link>(.*?)<\/link>/);
+            const linkText = linkMatch?.[1] ?? "privacy policy";
+            const [privacyPrefix = "", privacySuffix = ""] = rawNote.split(
+              /<link>.*?<\/link>/,
+            );
+            return (
+              <ContactForm
+                copy={{
+                  nameLabel: t("form.nameLabel"),
+                  namePlaceholder: t("form.namePlaceholder"),
+                  emailLabel: t("form.emailLabel"),
+                  emailPlaceholder: t("form.emailPlaceholder"),
+                  subjectLabel: t("form.subjectLabel"),
+                  subjectPlaceholder: t("form.subjectPlaceholder"),
+                  messageLabel: t("form.messageLabel"),
+                  messagePlaceholder: t("form.messagePlaceholder"),
+                  privacyPrefix,
+                  privacyLinkText: linkText,
+                  privacySuffix,
+                  submit: t("form.submit"),
+                }}
               />
-              <Field
-                label={t("form.emailLabel")}
-                name="email"
-                type="email"
-                placeholder={t("form.emailPlaceholder")}
-                required
-              />
-            </div>
-            <Field
-              label={t("form.subjectLabel")}
-              name="subject"
-              placeholder={t("form.subjectPlaceholder")}
-            />
-            <div className="grid gap-1.5">
-              <label className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                {t("form.messageLabel")}
-              </label>
-              <textarea
-                name="message"
-                rows={6}
-                placeholder={t("form.messagePlaceholder")}
-                required
-                className="w-full resize-y rounded-2xl border border-border/60 bg-background px-4 py-3 text-sm text-foreground outline-none ring-0 transition-colors focus:border-primary/40 focus:bg-background/95"
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <p className="text-xs text-muted-foreground">
-                {t.rich("form.privacyNote", {
-                  link: (chunks) => (
-                    <Link href="/legal/privacy" className="underline">
-                      {chunks}
-                    </Link>
-                  ),
-                })}
-              </p>
-              <Button type="submit" size="lg">
-                <Sparkles className="h-4 w-4" />
-                {t("form.submit")}
-              </Button>
-            </div>
-          </form>
+            );
+          })()}
         </div>
       </section>
 
@@ -165,31 +129,3 @@ export default async function ContactPage({
   );
 }
 
-function Field({
-  label,
-  name,
-  placeholder,
-  required,
-  type = "text",
-}: {
-  label: string;
-  name: string;
-  placeholder?: string;
-  required?: boolean;
-  type?: "text" | "email";
-}) {
-  return (
-    <div className="grid gap-1.5">
-      <label className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-        {label}
-      </label>
-      <input
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        required={required}
-        className="h-11 rounded-2xl border border-border/60 bg-background px-4 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary/40"
-      />
-    </div>
-  );
-}
