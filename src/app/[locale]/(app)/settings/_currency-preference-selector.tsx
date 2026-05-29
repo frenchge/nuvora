@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useMutation } from "convex/react";
-import { Check, DollarSign, Euro, PoundSterling } from "lucide-react";
+import { Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { api } from "@convex/_generated/api";
 import { Button } from "@/components/ui/button";
@@ -15,19 +15,15 @@ import { cn } from "@/lib/utils";
 
 const OPTIONS: Array<{
   value: Currency;
-  Icon: typeof DollarSign;
 }> = [
   {
     value: "USD",
-    Icon: DollarSign,
   },
   {
     value: "EUR",
-    Icon: Euro,
   },
   {
     value: "GBP",
-    Icon: PoundSterling,
   },
 ];
 
@@ -70,7 +66,7 @@ export function CurrencyPreferenceSelector({
       </div>
 
       <div className="grid gap-3 md:grid-cols-3">
-        {OPTIONS.map(({ value, Icon }) => {
+        {OPTIONS.map(({ value }) => {
           const active = selectedCurrency === value;
           return (
             <button
@@ -85,9 +81,7 @@ export function CurrencyPreferenceSelector({
               )}
             >
               <div className="flex items-start justify-between gap-3">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/12 text-primary">
-                  <Icon className="h-4 w-4" />
-                </span>
+                <span />
                 <span
                   className={cn(
                     "inline-flex h-6 w-6 items-center justify-center rounded-full border transition",
