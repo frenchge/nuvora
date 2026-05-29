@@ -3,9 +3,12 @@
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useConvexAuth, useQuery } from "convex/react";
+import { api } from "@convex/_generated/api";
 import { AppSidebar } from "@/components/app/app-sidebar";
 import { PaymentGraceBanner } from "@/components/app/payment-grace-banner";
 import { PlanWelcomeWatcher } from "@/components/app/plan-welcome-watcher";
+import { UpgradeBadge } from "@/components/app/upgrade-badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -23,7 +26,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <div className="relative flex h-screen overflow-hidden bg-card text-foreground">
       <PaymentGraceBanner />
       <PlanWelcomeWatcher />
-      <ThemeToggle className="fixed right-4 top-3 z-50 h-9 w-9 rounded-full border border-border/60 bg-background/85 shadow-sm backdrop-blur transition hover:bg-muted" />
+      <TopRightControls />
       <AppSidebar
         collapsed={sidebarCollapsed}
         mobileOpen={sidebarOpen}
@@ -47,5 +50,27 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </main>
       </div>
     </div>
+  );
+}
+
+// Theme toggle + (conditional) Upgrade pill in the top-right corner.
+// On free users the Upgrade pill sits to the right of the theme toggle so
+// the user reads "[sun][Upgrade]" at the edge of the screen. On paid users
+// the Upgrade pill is hidden and the theme toggle snaps to the rightmost
+// slot so we never leave dead space.
+function TopRightControls() {
+  const { isAuthenticated } = useConvexAuth();
+  const profile = useQuery(api.users.me, isAuthenticated ? {} : "skip");
+  const showUpgrade = profile?.plan_name === "free" || profile?.plan_name == null;
+
+  return (
+    <>
+      <ThemeToggle
+        className={`fixed top-3 z-50 h-9 w-9 rounded-full border border-border/60 bg-background/85 shadow-sm backdrop-blur transition hover:bg-muted ${
+          showUpgrade ? "right-28" : "right-4"
+        }`}
+      />
+      {showUpgrade && <UpgradeBadge />}
+    </>
   );
 }

@@ -19,7 +19,12 @@ import {
   getRequiredConvexToken,
 } from "@/lib/convex-server";
 import { cn, formatCredits, formatEur } from "@/lib/utils";
-import { CheckoutButton, PortalButton } from "../billing/_buttons";
+import {
+  CancelSubscriptionButton,
+  CheckoutButton,
+  PortalButton,
+  ResumeSubscriptionButton,
+} from "../billing/_buttons";
 import { ContributionChart } from "../contribution/_contribution-chart";
 import { SettingsShell } from "./_settings-shell";
 import { savePersonalInfo } from "./actions";
@@ -256,7 +261,26 @@ export default async function SettingsPage({
                           Pick the tier that fits how often you use the app.
                         </p>
                       </div>
-                      {profile.stripe_customer_id && <PortalButton />}
+                      <div className="flex flex-wrap items-center gap-2">
+                        {profile.stripe_customer_id && <PortalButton />}
+                        {currentSubscription &&
+                          ["active", "trialing", "past_due"].includes(
+                            currentSubscription.status,
+                          ) &&
+                          (currentSubscription.cancel_at_period_end ? (
+                            <ResumeSubscriptionButton />
+                          ) : (
+                            <CancelSubscriptionButton
+                              endsAt={
+                                currentSubscription.current_period_end
+                                  ? Date.parse(
+                                      currentSubscription.current_period_end,
+                                    )
+                                  : null
+                              }
+                            />
+                          ))}
+                      </div>
                     </div>
 
                     <div className="divide-y divide-border/50 border-y border-border/50">
