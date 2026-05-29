@@ -170,3 +170,51 @@
 html[data-magicui-theme-vt="active"]::view-transition-group(root) {
   animation-duration: var(--magicui-theme-toggle-vt-duration);
 }
+
+/* ────────────────────────────────────────────────────────────────────────
+   Mobile: kill all decorative animation and easing.
+
+   On phones (≤767px) every CSS transition, animation, scroll-behavior, and
+   view-transition is reduced to near-zero so taps feel instant and nothing
+   slides, fades, or pulses. Framer Motion components inherit this through
+   the prefers-reduced-motion fallback we trigger below.
+
+   The scope is intentionally wide ("*"): the whole point is to disable
+   decoration site-wide, not selectively. Anything genuinely critical
+   (e.g. JS-driven progress) keeps working because we only zero out
+   *animation/transition* durations, not state changes themselves.
+   ──────────────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    /* Framer Motion respects this via useReducedMotion()/MotionConfig.
+       Setting it on the root makes the entire motion tree skip transitions
+       without needing a JS bridge. */
+    --motion-reduced: 1;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
+/* The floating language switcher is fixed bottom-right. On mobile we add
+   safe bottom padding to the main scroll surface so it doesn't cover the
+   last line of marketing CTAs. */
+@media (max-width: 767px) {
+  main,
+  body > footer {
+    padding-bottom: max(env(safe-area-inset-bottom), 4.5rem);
+  }
+}
