@@ -63,10 +63,6 @@ export function FloatingCurrencySwitcher() {
     pathnameWithoutLocale === prefix || pathnameWithoutLocale.startsWith(`${prefix}/`),
   );
 
-  if (isAppRoute) {
-    return null;
-  }
-
   useEffect(() => {
     setSelectedCurrency(resolveClientCurrency());
   }, []);
@@ -110,6 +106,10 @@ export function FloatingCurrencySwitcher() {
 
   const current = CURRENCY_META[selectedCurrency];
   const options = CURRENCIES.filter((currency) => currency !== selectedCurrency);
+
+  if (isAppRoute) {
+    return null;
+  }
 
   return (
     <div
