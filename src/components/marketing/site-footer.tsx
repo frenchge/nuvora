@@ -1,4 +1,4 @@
-import { Github, Leaf, Linkedin, Twitter } from "lucide-react";
+import { Leaf, Twitter } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { BrandLogo } from "@/components/brand-logo";
 import { Link } from "@/i18n/navigation";
@@ -53,19 +53,9 @@ export async function SiteFooter() {
 
           <div className="mt-8 flex items-center gap-3 text-muted-foreground">
             <SocialLink
-              href="https://twitter.com/vercilio_ai"
+              href="https://x.com/vercilioai"
               label={t("social.twitter")}
               icon={Twitter}
-            />
-            <SocialLink
-              href="https://github.com/vercilio"
-              label={t("social.github")}
-              icon={Github}
-            />
-            <SocialLink
-              href="https://linkedin.com/company/vercilio"
-              label={t("social.linkedin")}
-              icon={Linkedin}
             />
           </div>
         </div>
