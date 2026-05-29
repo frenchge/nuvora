@@ -18,6 +18,12 @@ const ARTICLE_COPY = {
     back: "Back to blog",
     minRead: "min read",
     contents: "On this page",
+    ctaEyebrow: "Try Vercilio free",
+    ctaTitle: "Use the best AI models in one calm workspace.",
+    ctaBody:
+      "Start free, test the product with your own workflow, and see how much smoother multi-model work can feel.",
+    ctaPrimary: "Start free",
+    ctaSecondary: "See pricing",
     more: "More from the blog",
     quickRead: "This article is a quick read with no section jumps.",
     readNext: "Read next",
@@ -27,6 +33,12 @@ const ARTICLE_COPY = {
     back: "Retour au blog",
     minRead: "min de lecture",
     contents: "Sur cette page",
+    ctaEyebrow: "Essayer Vercilio gratuitement",
+    ctaTitle: "Utilisez les meilleurs modeles d'IA dans un espace calme.",
+    ctaBody:
+      "Commencez gratuitement, testez le produit avec votre propre flux de travail et voyez a quel point le multi-modele peut etre plus fluide.",
+    ctaPrimary: "Commencer gratuitement",
+    ctaSecondary: "Voir les tarifs",
     more: "À lire aussi",
     quickRead: "Cet article est court et ne comporte pas de sections de navigation.",
     readNext: "Lire ensuite",
@@ -36,6 +48,12 @@ const ARTICLE_COPY = {
     back: "Volver al blog",
     minRead: "min de lectura",
     contents: "En esta pagina",
+    ctaEyebrow: "Prueba Vercilio gratis",
+    ctaTitle: "Usa los mejores modelos de IA en un espacio de trabajo tranquilo.",
+    ctaBody:
+      "Empieza gratis, prueba el producto con tu propio flujo de trabajo y descubre lo comodo que puede ser trabajar con varios modelos.",
+    ctaPrimary: "Empezar gratis",
+    ctaSecondary: "Ver precios",
     more: "Mas del blog",
     quickRead: "Este articulo es breve y no necesita saltos de seccion.",
     readNext: "Seguir leyendo",
@@ -45,6 +63,12 @@ const ARTICLE_COPY = {
     back: "Zuruck zum Blog",
     minRead: "Min. Lesezeit",
     contents: "Auf dieser Seite",
+    ctaEyebrow: "Vercilio kostenlos testen",
+    ctaTitle: "Nutze die besten KI-Modelle in einem ruhigen Workspace.",
+    ctaBody:
+      "Starte kostenlos, teste das Produkt mit deinem eigenen Workflow und sieh, wie entspannt Arbeit mit mehreren Modellen sein kann.",
+    ctaPrimary: "Kostenlos starten",
+    ctaSecondary: "Preise ansehen",
     more: "Mehr aus dem Blog",
     quickRead: "Dieser Artikel ist kurz und braucht keine Abschnittssprunge.",
     readNext: "Weiterlesen",
@@ -54,6 +78,12 @@ const ARTICLE_COPY = {
     back: "Torna al blog",
     minRead: "min di lettura",
     contents: "In questa pagina",
+    ctaEyebrow: "Prova Vercilio gratis",
+    ctaTitle: "Usa i migliori modelli di IA in uno spazio di lavoro piu calmo.",
+    ctaBody:
+      "Inizia gratis, prova il prodotto con il tuo flusso di lavoro e scopri quanto puo essere piu fluido lavorare con piu modelli.",
+    ctaPrimary: "Inizia gratis",
+    ctaSecondary: "Vedi i prezzi",
     more: "Altri articoli del blog",
     quickRead: "Questo articolo e breve e non richiede salti tra sezioni.",
     readNext: "Continua a leggere",
@@ -63,6 +93,12 @@ const ARTICLE_COPY = {
     back: "Voltar ao blog",
     minRead: "min de leitura",
     contents: "Nesta pagina",
+    ctaEyebrow: "Experimente Vercilio gratis",
+    ctaTitle: "Use os melhores modelos de IA em um workspace mais calmo.",
+    ctaBody:
+      "Comece gratis, teste o produto com o seu proprio fluxo de trabalho e veja como o trabalho com varios modelos pode ser mais leve.",
+    ctaPrimary: "Comecar gratis",
+    ctaSecondary: "Ver planos",
     more: "Mais do blog",
     quickRead: "Este artigo e curto e nao precisa de saltos de secao.",
     readNext: "Ler a seguir",
@@ -212,6 +248,15 @@ export default async function BlogPostPage({
 
           <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,1fr)_250px]">
             <div>
+              {post.coverImageUrl ? (
+                <div className="mb-10 overflow-hidden rounded-[2rem]">
+                  <img
+                    src={post.coverImageUrl}
+                    alt={post.title}
+                    className="h-[320px] w-full object-cover md:h-[440px]"
+                  />
+                </div>
+              ) : null}
               <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">
                 <span>
                   {new Date(post.publishedAt ?? post.updatedAt).toLocaleDateString(locale, {
@@ -246,13 +291,13 @@ export default async function BlogPostPage({
                 ))}
               </div>
 
-              <div className="mt-10 rounded-[2rem] border border-border/60 bg-card/55 px-6 py-8 md:px-10 md:py-10">
+              <div className="mt-10">
                 <BlogMarkdown content={post.bodyMarkdown} />
               </div>
             </div>
 
             <aside className="lg:pt-24">
-              <div className="lg:sticky lg:top-28 rounded-[1.75rem] border border-border/60 bg-card/55 p-5">
+              <div className="lg:sticky lg:top-28 p-1">
                 <div className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
                   {copy.contents}
                 </div>
@@ -283,17 +328,56 @@ export default async function BlogPostPage({
         </div>
       </article>
 
+      <section className="container pb-8">
+        <div className="overflow-hidden rounded-[2.25rem] bg-gradient-to-br from-primary/14 via-primary/6 to-background px-8 py-12 md:px-12">
+          <div className="max-w-2xl">
+            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              {copy.ctaEyebrow}
+            </div>
+            <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
+              {copy.ctaTitle}
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground">
+              {copy.ctaBody}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/sign-up"
+                className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+              >
+                {copy.ctaPrimary}
+              </Link>
+              <Link
+                href="/pricing"
+                className="inline-flex items-center justify-center rounded-full border border-border/70 px-5 py-2.5 text-sm font-semibold text-foreground transition hover:bg-accent/45"
+              >
+                {copy.ctaSecondary}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {relatedPosts.length > 0 && (
         <section className="container pb-20">
-          <div className="rounded-[2rem] border border-border/60 bg-secondary/35 px-6 py-8 md:px-8">
+          <div className="px-1 py-8 md:px-0">
             <h2 className="text-2xl font-semibold tracking-tight">{copy.more}</h2>
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               {relatedPosts.map((entry) => (
                 <Link
                   key={entry.id}
                   href={`/blog/${entry.slug}`}
-                  className="group rounded-[1.5rem] border border-border/60 bg-background/80 p-5 transition hover:border-primary/30 hover:bg-background"
+                  className="group rounded-[1.5rem] p-1 transition hover:bg-background"
                 >
+                  {entry.coverImageUrl ? (
+                    <div className="overflow-hidden rounded-[1.25rem]">
+                      <img
+                        src={entry.coverImageUrl}
+                        alt={entry.title}
+                        className="h-40 w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+                      />
+                    </div>
+                  ) : null}
                   <div className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
                     {new Date(entry.publishedAt ?? entry.updatedAt).toLocaleDateString(
                       locale,
@@ -304,13 +388,13 @@ export default async function BlogPostPage({
                       },
                     )}
                   </div>
-                  <div className="mt-3 text-lg font-semibold tracking-tight">
+                  <div className="mt-3 text-lg font-semibold tracking-tight px-4">
                     {entry.title}
                   </div>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  <p className="mt-2 px-4 text-sm leading-6 text-muted-foreground">
                     {entry.excerpt}
                   </p>
-                  <div className="mt-4 inline-flex items-center gap-2 text-sm font-medium group-hover:text-primary">
+                  <div className="mt-4 px-4 inline-flex items-center gap-2 text-sm font-medium group-hover:text-primary">
                     {copy.readNext}
                     <ArrowRight className="h-4 w-4" />
                   </div>

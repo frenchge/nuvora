@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import {
   AnimatePresence,
   motion,
   useMotionValueEvent,
   useScroll,
 } from "motion/react";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 export function FloatingNav({

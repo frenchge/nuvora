@@ -168,46 +168,51 @@ export default async function BlogIndexPage({
         ) : (
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {posts.map((post) => (
-              <article
+              <Link
                 key={post.id}
-                className="group flex h-full flex-col rounded-[2rem] border border-border/60 bg-card/65 p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/30 hover:bg-card"
+                href={`/blog/${post.slug}`}
+                className="group block h-full rounded-[2rem] bg-card/65 p-3 shadow-sm transition hover:-translate-y-0.5 hover:bg-card"
               >
-                <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">
-                  <span>{new Date(post.publishedAt ?? post.updatedAt).toLocaleDateString(locale, { month: "short", day: "numeric", year: "numeric" })}</span>
-                  <span className="text-border">/</span>
-                  <span className="inline-flex items-center gap-1 text-muted-foreground">
-                    <Clock3 className="h-3 w-3" />
-                    {post.readingMinutes} {copy.minRead}
-                  </span>
-                </div>
-                <h2 className="mt-5 text-2xl font-semibold tracking-tight">
-                  <Link href={`/blog/${post.slug}`} className="transition group-hover:text-primary">
-                    {post.title}
-                  </Link>
-                </h2>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                  {post.excerpt}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {post.tags.slice(0, 3).map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-primary/10 px-3 py-1 text-[11px] font-medium text-primary"
-                    >
-                      {tag}
+                {post.coverImageUrl ? (
+                  <div className="overflow-hidden rounded-[1.5rem]">
+                    <img
+                      src={post.coverImageUrl}
+                      alt={post.title}
+                      className="h-56 w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+                    />
+                  </div>
+                ) : null}
+                <article className="flex h-full flex-col px-3 pb-3 pt-4">
+                  <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">
+                    <span>{new Date(post.publishedAt ?? post.updatedAt).toLocaleDateString(locale, { month: "short", day: "numeric", year: "numeric" })}</span>
+                    <span className="text-border">/</span>
+                    <span className="inline-flex items-center gap-1 text-muted-foreground">
+                      <Clock3 className="h-3 w-3" />
+                      {post.readingMinutes} {copy.minRead}
                     </span>
-                  ))}
-                </div>
-                <div className="mt-auto pt-8">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition group-hover:text-primary"
-                  >
+                  </div>
+                  <h2 className="mt-5 text-2xl font-semibold tracking-tight transition group-hover:text-primary">
+                    {post.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                    {post.excerpt}
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {post.tags.slice(0, 3).map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full bg-primary/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-primary"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="mt-auto pt-8 inline-flex items-center gap-2 text-sm font-medium text-foreground transition group-hover:text-primary">
                     {copy.readArticle}
                     <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </article>
+                  </div>
+                </article>
+              </Link>
             ))}
           </div>
         )}
