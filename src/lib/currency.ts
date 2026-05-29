@@ -17,6 +17,7 @@
 export const CURRENCIES = ["USD", "EUR", "GBP"] as const;
 export type Currency = (typeof CURRENCIES)[number];
 export const DEFAULT_CURRENCY: Currency = "EUR";
+export const CURRENCY_COOKIE_NAME = "NEXT_CURRENCY";
 
 const USD_COUNTRIES = new Set(["US", "PR", "GU", "VI", "AS", "MP"]);
 const GBP_COUNTRIES = new Set(["GB", "IM", "GG", "JE"]);
@@ -64,6 +65,27 @@ export function detectCurrencyFromHeaders(headers: Headers): Currency {
   if (region && GBP_COUNTRIES.has(region.toUpperCase())) return "GBP";
   if (region && EUR_COUNTRIES.has(region.toUpperCase())) return "EUR";
   if (lang && LANG_TO_CURRENCY[lang] === "EUR") return "EUR";
+  return DEFAULT_CURRENCY;
+}
+
+export function resolveCurrencyPreference({
+  cookieValue,
+  headers,
+  preferredCurrency,
+}: {
+  cookieValue?: string | null;
+  headers?: Headers;
+  preferredCurrency?: string | null;
+}): Currency {
+  if (preferredCurrency && isCurrency(preferredCurrency)) {
+    return preferredCurrency;
+  }
+  if (cookieValue && isCurrency(cookieValue)) {
+    return cookieValue;
+  }
+  if (headers) {
+    return detectCurrencyFromHeaders(headers);
+  }
   return DEFAULT_CURRENCY;
 }
 

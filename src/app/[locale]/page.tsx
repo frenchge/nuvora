@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import {
   ArrowRight,
   Check,
@@ -16,7 +16,10 @@ import { ImpactMap } from "@/components/marketing/impact-map";
 import { Button } from "@/components/ui/button";
 import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
 import { Link } from "@/i18n/navigation";
-import { detectCurrencyFromHeaders } from "@/lib/currency";
+import {
+  CURRENCY_COOKIE_NAME,
+  resolveCurrencyPreference,
+} from "@/lib/currency";
 import { PLAN_DISPLAY, PLAN_ORDER } from "@/lib/plans";
 import { formatCredits, formatMoney } from "@/lib/utils";
 import { buildPageMetadata } from "@/lib/seo";
@@ -55,7 +58,11 @@ export default async function LandingPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Home");
-  const displayCurrency = detectCurrencyFromHeaders(await headers());
+  const cookieStore = await cookies();
+  const displayCurrency = resolveCurrencyPreference({
+    cookieValue: cookieStore.get(CURRENCY_COOKIE_NAME)?.value ?? null,
+    headers: await headers(),
+  });
 
   return (
     <>

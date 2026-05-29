@@ -3,7 +3,10 @@ import { z } from "zod";
 import Stripe from "stripe";
 import { api } from "@convex/_generated/api";
 import { requireUser, HttpError } from "@/lib/auth";
-import { detectCurrencyFromHeaders } from "@/lib/currency";
+import {
+  CURRENCY_COOKIE_NAME,
+  resolveCurrencyPreference,
+} from "@/lib/currency";
 import { fetchMutation, getRequiredConvexToken } from "@/lib/convex-server";
 import { getStripe } from "@/lib/stripe";
 import { addonEnvPriceVar, CREDIT_ADDONS, planEnvPriceVar } from "@/lib/plans";
@@ -107,8 +110,11 @@ export async function POST(req: NextRequest) {
     const body = Body.parse(await req.json());
     const stripe = getStripe();
     const token = await getRequiredConvexToken();
-    const checkoutCurrency =
-      profile.preferred_currency ?? detectCurrencyFromHeaders(req.headers);
+    const checkoutCurrency = resolveCurrencyPreference({
+      preferredCurrency: profile.preferred_currency,
+      cookieValue: req.cookies.get(CURRENCY_COOKIE_NAME)?.value ?? null,
+      headers: req.headers,
+    });
 
     // Ensure a Stripe customer exists.
     let customerId = profile.stripe_customer_id;

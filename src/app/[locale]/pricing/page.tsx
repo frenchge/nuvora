@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { ArrowRight, Check, Leaf } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildPageMetadata } from "@/lib/seo";
@@ -8,7 +8,10 @@ import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import { detectCurrencyFromHeaders } from "@/lib/currency";
+import {
+  CURRENCY_COOKIE_NAME,
+  resolveCurrencyPreference,
+} from "@/lib/currency";
 import { CREDIT_ADDONS, PLAN_DISPLAY, PLAN_ORDER } from "@/lib/plans";
 import { formatCredits, formatMoney } from "@/lib/utils";
 
@@ -35,7 +38,11 @@ export default async function PricingPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Pricing");
-  const displayCurrency = detectCurrencyFromHeaders(await headers());
+  const cookieStore = await cookies();
+  const displayCurrency = resolveCurrencyPreference({
+    cookieValue: cookieStore.get(CURRENCY_COOKIE_NAME)?.value ?? null,
+    headers: await headers(),
+  });
 
   const comparisonRows = [
     {

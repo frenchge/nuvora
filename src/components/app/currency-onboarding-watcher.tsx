@@ -8,7 +8,12 @@ import { useLocale } from "next-intl";
 import { api } from "@convex/_generated/api";
 import type { Locale } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
-import { CURRENCIES, type Currency } from "@/lib/currency";
+import {
+  CURRENCIES,
+  CURRENCY_COOKIE_NAME,
+  currencySymbol,
+  type Currency,
+} from "@/lib/currency";
 import { cn } from "@/lib/utils";
 
 const EURO_REGIONS = new Set([
@@ -24,7 +29,6 @@ const COPY: Record<
     title: string;
     body: string;
     confirm: string;
-    labels: Record<Currency, string>;
   }
 > = {
   en: {
@@ -32,66 +36,36 @@ const COPY: Record<
     title: "Select a currency",
     body: "We'll use this for pricing and checkout throughout your account.",
     confirm: "Save currency",
-    labels: {
-      USD: "US dollars",
-      EUR: "Euros",
-      GBP: "British pounds",
-    },
   },
   fr: {
     eyebrow: "Configuration de paiement",
     title: "Choisissez une devise",
     body: "Nous l'utiliserons pour les prix et le checkout sur tout votre compte.",
     confirm: "Enregistrer la devise",
-    labels: {
-      USD: "Dollars americains",
-      EUR: "Euros",
-      GBP: "Livres sterling",
-    },
   },
   es: {
     eyebrow: "Configuracion de pago",
     title: "Selecciona una moneda",
     body: "La usaremos para los precios y el checkout en toda tu cuenta.",
     confirm: "Guardar moneda",
-    labels: {
-      USD: "Dolares estadounidenses",
-      EUR: "Euros",
-      GBP: "Libras esterlinas",
-    },
   },
   de: {
     eyebrow: "Zahlungseinrichtung",
     title: "Wahrung auswahlen",
     body: "Wir verwenden sie fur Preise und Checkout in deinem gesamten Konto.",
     confirm: "Wahrung speichern",
-    labels: {
-      USD: "US-Dollar",
-      EUR: "Euro",
-      GBP: "Britische Pfund",
-    },
   },
   it: {
     eyebrow: "Configurazione pagamento",
     title: "Seleziona una valuta",
     body: "La useremo per prezzi e checkout in tutto il tuo account.",
     confirm: "Salva valuta",
-    labels: {
-      USD: "Dollari statunitensi",
-      EUR: "Euro",
-      GBP: "Sterline britanniche",
-    },
   },
   pt: {
     eyebrow: "Configuracao de pagamento",
     title: "Selecione uma moeda",
     body: "Vamos usa-la para os precos e o checkout em toda a sua conta.",
     confirm: "Guardar moeda",
-    labels: {
-      USD: "Dolares americanos",
-      EUR: "Euros",
-      GBP: "Libras esterlinas",
-    },
   },
 };
 
@@ -133,10 +107,9 @@ export function CurrencyOnboardingWatcher() {
     () =>
       CURRENCIES.map((currency) => ({
         currency,
-        label: copy.labels[currency],
         Icon: CURRENCY_ICONS[currency],
       })),
-    [copy.labels],
+    [],
   );
 
   useEffect(() => {
@@ -176,7 +149,7 @@ export function CurrencyOnboardingWatcher() {
 
           <div className="space-y-5 px-7 py-6">
             <div className="grid gap-3">
-              {options.map(({ currency, label, Icon }) => {
+              {options.map(({ currency, Icon }) => {
                 const active = selectedCurrency === currency;
                 return (
                   <button
@@ -190,16 +163,16 @@ export function CurrencyOnboardingWatcher() {
                         : "border-border/60 bg-background hover:border-primary/45 hover:bg-primary/5",
                     )}
                   >
-                    <span className="flex items-center gap-3">
+                    <span className="flex items-center gap-4">
                       <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/12 text-primary">
                         <Icon className="h-4 w-4" />
                       </span>
-                      <span>
-                        <span className="block text-sm font-semibold text-foreground">
-                          {currency}
+                      <span className="flex items-center gap-2 text-base font-semibold text-foreground">
+                        <span className="text-lg leading-none text-primary">
+                          {currencySymbol(currency)}
                         </span>
-                        <span className="block text-sm text-muted-foreground">
-                          {label}
+                        <span>
+                          {currency}
                         </span>
                       </span>
                     </span>
@@ -231,6 +204,7 @@ export function CurrencyOnboardingWatcher() {
                 setSaving(true);
                 setError(null);
                 try {
+                  document.cookie = `${CURRENCY_COOKIE_NAME}=${selectedCurrency}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
                   await setPreferredCurrency({ currency: selectedCurrency });
                 } catch (mutationError) {
                   setError(

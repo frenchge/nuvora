@@ -1,6 +1,6 @@
 import { SignOutButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import {
   CreditCard,
   Leaf,
@@ -14,8 +14,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "@/i18n/navigation";
 import {
-  detectCurrencyFromHeaders,
+  CURRENCY_COOKIE_NAME,
   normalizeCurrency,
+  resolveCurrencyPreference,
   type Currency,
 } from "@/lib/currency";
 import { PLAN_DISPLAY, PLAN_ORDER } from "@/lib/plans";
@@ -98,7 +99,11 @@ export default async function SettingsPage({
   const justCanceled = params?.canceled === "1";
   const sessionId = params?.session_id;
   const PLAN_KEYS: PlanName[] = ["free", "basic", "starter", "pro"];
-  const displayCurrencyFromHeaders = detectCurrencyFromHeaders(await headers());
+  const cookieStore = await cookies();
+  const displayCurrencyFromRequest = resolveCurrencyPreference({
+    cookieValue: cookieStore.get(CURRENCY_COOKIE_NAME)?.value ?? null,
+    headers: await headers(),
+  });
   const subscribedPlan = PLAN_KEYS.includes(params?.plan as PlanName)
     ? (params!.plan as PlanName)
     : null;
@@ -134,7 +139,7 @@ export default async function SettingsPage({
   }
 
   const billingCurrency = (
-    profile.preferred_currency ?? displayCurrencyFromHeaders
+    profile.preferred_currency ?? displayCurrencyFromRequest
   ) as Currency;
 
   const currentPlan =

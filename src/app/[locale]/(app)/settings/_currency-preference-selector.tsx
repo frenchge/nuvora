@@ -6,31 +6,27 @@ import { Check, DollarSign, Euro, PoundSterling } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { api } from "@convex/_generated/api";
 import { Button } from "@/components/ui/button";
-import { type Currency } from "@/lib/currency";
+import {
+  CURRENCY_COOKIE_NAME,
+  currencySymbol,
+  type Currency,
+} from "@/lib/currency";
 import { cn } from "@/lib/utils";
 
 const OPTIONS: Array<{
   value: Currency;
-  label: string;
-  description: string;
   Icon: typeof DollarSign;
 }> = [
   {
     value: "USD",
-    label: "USD",
-    description: "US dollars",
     Icon: DollarSign,
   },
   {
     value: "EUR",
-    label: "EUR",
-    description: "Euros",
     Icon: Euro,
   },
   {
     value: "GBP",
-    label: "GBP",
-    description: "British pounds",
     Icon: PoundSterling,
   },
 ];
@@ -50,6 +46,7 @@ export function CurrencyPreferenceSelector({
     setError(null);
 
     try {
+      document.cookie = `${CURRENCY_COOKIE_NAME}=${selectedCurrency}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
       await setPreferredCurrency({ currency: selectedCurrency });
       startTransition(() => {
         router.refresh();
@@ -73,7 +70,7 @@ export function CurrencyPreferenceSelector({
       </div>
 
       <div className="grid gap-3 md:grid-cols-3">
-        {OPTIONS.map(({ value, label, description, Icon }) => {
+        {OPTIONS.map(({ value, Icon }) => {
           const active = selectedCurrency === value;
           return (
             <button
@@ -102,11 +99,11 @@ export function CurrencyPreferenceSelector({
                   <Check className="h-3.5 w-3.5" />
                 </span>
               </div>
-              <div className="mt-4 text-sm font-semibold text-foreground">
-                {label}
-              </div>
-              <div className="mt-1 text-sm text-muted-foreground">
-                {description}
+              <div className="mt-4 flex items-center gap-2 text-base font-semibold text-foreground">
+                <span className="text-lg leading-none text-primary">
+                  {currencySymbol(value)}
+                </span>
+                <span>{value}</span>
               </div>
             </button>
           );
