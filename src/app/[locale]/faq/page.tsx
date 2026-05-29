@@ -57,8 +57,8 @@ export default async function FaqPage({
       </section>
 
       <section className="container py-16">
-        <div className="grid gap-10 lg:grid-cols-[280px_minmax(0,1fr)]">
-          <div className="space-y-4 text-sm text-foreground/80">
+        <div className="grid items-start gap-10 lg:grid-cols-[280px_minmax(0,1fr)]">
+          <aside className="space-y-4 text-sm text-foreground/80 lg:sticky lg:top-28 lg:self-start">
             <div className="flex items-start gap-3">
               <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
               {t("sidebar.models")}
@@ -75,7 +75,7 @@ export default async function FaqPage({
               <Leaf className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
               {t("sidebar.tiers")}
             </div>
-          </div>
+          </aside>
 
           <div className="divide-y divide-border/60 border-y border-border/60">
             {FAQ_KEYS.map((key) => (

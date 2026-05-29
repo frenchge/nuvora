@@ -8,7 +8,7 @@ export async function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-32 border-t border-border/60 bg-[hsl(var(--secondary)/0.35)]">
+    <footer className="mt-32 border-t border-border/60 bg-[hsl(var(--accent)/0.45)]">
       <div className="container grid gap-12 py-20 md:grid-cols-12">
         {/* Brand + tagline + newsletter */}
         <div className="md:col-span-5">

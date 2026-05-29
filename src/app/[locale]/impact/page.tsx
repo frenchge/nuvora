@@ -96,7 +96,7 @@ export default async function ImpactPage({
 
       <section
         id="partners"
-        className="border-y border-border/60 bg-[hsl(var(--secondary)/0.4)]"
+        className="border-y border-border/60 bg-[hsl(var(--accent)/0.55)]"
       >
         <div className="container py-24">
           <div className="mx-auto max-w-2xl text-center">
@@ -158,7 +158,7 @@ export default async function ImpactPage({
         </ol>
       </section>
 
-      <section className="border-y border-border/60 bg-[hsl(var(--secondary)/0.4)]">
+      <section className="border-y border-border/60 bg-[hsl(var(--accent)/0.55)]">
         <div className="container py-24">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">
