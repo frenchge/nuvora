@@ -16,16 +16,20 @@ interface ScrollExpandMediaProps {
   children?: ReactNode;
 }
 
-// Hero block used on the desktop home page. Previously this intercepted
-// every wheel / touch event and locked `document.documentElement.overflow`
-// until the user scrolled enough to "fully expand" the media — visitors
-// experienced this as a frozen page for the first second or two.
+// Hero block on the desktop home page. Renders a small media frame that
+// grows into a wide expanded shape as the user scrolls — the parallax
+// effect they're used to seeing on the page.
 //
-// We dropped the scroll-lock entirely. The media is now rendered at its
-// final expanded size from first paint, the video starts loading
-// immediately with autoPlay, and the page scrolls normally. The hero
-// still acts as a tall, focused intro because the section is min-h-[100dvh],
-// but it never blocks input.
+// The previous implementation forced this by setting overflow:hidden on
+// <html> and hijacking every wheel/touch event until the animation
+// finished, which produced the 1-2 second scroll freeze. This version:
+//   • Lets the page scroll like normal (no preventDefault, no lock).
+//   • Provides ~120vh of scroll room (the outer section is taller than
+//     the viewport).
+//   • Sticks the visible area to the top while scrolling through that
+//     room (`position: sticky`).
+//   • Reads window.scrollY on each scroll (passive listener) and maps it
+//     to the 0→1 expansion progress.
 const ScrollExpandMedia = ({
   mediaType = "video",
   mediaSrc,
@@ -38,7 +42,8 @@ const ScrollExpandMedia = ({
   textBlend,
   children,
 }: ScrollExpandMediaProps) => {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [progress, setProgress] = useState<number>(0);
   const [isMobileState, setIsMobileState] = useState<boolean>(false);
 
   useEffect(() => {
@@ -50,17 +55,54 @@ const ScrollExpandMedia = ({
     return () => window.removeEventListener("resize", checkIfMobile);
   }, []);
 
-  // Title can be manually split with a "|" — anything before goes on the
-  // top line, anything after goes on the bottom line. Without a "|" we fall
-  // back to splitting at the first whitespace (legacy behavior).
+  useEffect(() => {
+    // The expand effect ignores mobile entirely; the mobile build of the
+    // home page renders a static hero instead and never instantiates this
+    // component below md anyway.
+    if (isMobileState) {
+      setProgress(1);
+      return;
+    }
+
+    let rafId = 0;
+    const compute = () => {
+      rafId = 0;
+      const node = sectionRef.current;
+      if (!node) return;
+      const rect = node.getBoundingClientRect();
+      // Section top is at 0 when we first reach it; we want progress to
+      // ramp from 0 → 1 as the section's top moves from 0 to -(scrollRoom).
+      const scrollRoom = rect.height - window.innerHeight;
+      if (scrollRoom <= 0) {
+        setProgress(1);
+        return;
+      }
+      const raw = -rect.top / scrollRoom;
+      const clamped = Math.min(Math.max(raw, 0), 1);
+      setProgress(clamped);
+    };
+
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(compute);
+    };
+
+    compute();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [isMobileState]);
+
+  // Title can be split with "|" to control which words land on each row.
   const { firstWord, restOfTitle } = (() => {
     if (!title) return { firstWord: "", restOfTitle: "" };
     if (title.includes("|")) {
       const [top, ...rest] = title.split("|");
-      return {
-        firstWord: top.trim(),
-        restOfTitle: rest.join("|").trim(),
-      };
+      return { firstWord: top.trim(), restOfTitle: rest.join("|").trim() };
     }
     const parts = title.split(" ");
     return {
@@ -69,162 +111,197 @@ const ScrollExpandMedia = ({
     };
   })();
 
+  // Width/height eased from the small starting frame to the wide expanded
+  // shape. The text shift is the same effect that lived in the old
+  // implementation — first word translates left, rest translates right.
+  const startW = isMobileState ? 300 : 360;
+  const startH = isMobileState ? 380 : 440;
+  const endW = isMobileState ? 950 : 1550;
+  const endH = isMobileState ? 600 : 800;
+  const mediaWidth = startW + progress * (endW - startW);
+  const mediaHeight = startH + progress * (endH - startH);
+  const textTranslateX = progress * (isMobileState ? 180 : 150);
+
   return (
-    <div ref={sectionRef} className="overflow-x-hidden">
-      <section className="relative flex min-h-[100dvh] flex-col items-center justify-start">
-        <div className="relative flex min-h-[100dvh] w-full flex-col items-center">
-          {/* Background image, dimmed slightly. No fade-out tied to scroll
-              progress — the hero just lives behind the media and content. */}
-          <div className="absolute inset-0 z-0 h-full">
-            <Image
-              src={bgImageSrc}
-              alt="Background"
-              width={1920}
-              height={1080}
-              className="h-screen w-screen"
-              style={{ objectFit: "cover", objectPosition: "center" }}
-              priority
-              sizes="100vw"
-              quality={52}
-            />
-            <div className="absolute inset-0 bg-black/10" />
+    <section
+      ref={sectionRef}
+      // Outer section is taller than the viewport — this is the scroll
+      // room that drives the expansion. The hero is "in motion" for the
+      // first 120dvh of scroll, then the rest of the page continues.
+      className="relative h-[220dvh] overflow-x-hidden"
+    >
+      <div className="sticky top-0 h-[100dvh] w-full">
+        {/* Background image behind everything. */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={bgImageSrc}
+            alt="Background"
+            width={1920}
+            height={1080}
+            className="h-full w-full"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+            priority
+            sizes="100vw"
+            quality={52}
+          />
+          <div className="absolute inset-0 bg-black/10" />
+        </div>
+
+        <div className="container relative z-10 mx-auto flex h-full flex-col items-center justify-center">
+          {/* Media frame, centered, growing with scroll progress. */}
+          <div
+            className="absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl"
+            style={{
+              width: `${mediaWidth}px`,
+              height: `${mediaHeight}px`,
+              maxWidth: "95vw",
+              maxHeight: "85vh",
+              boxShadow: "0px 0px 50px rgba(0, 0, 0, 0.3)",
+            }}
+          >
+            {mediaType === "video" ? (
+              mediaSrc.includes("youtube.com") ? (
+                <div className="pointer-events-none relative h-full w-full">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={
+                      mediaSrc.includes("embed")
+                        ? mediaSrc +
+                          (mediaSrc.includes("?") ? "&" : "?") +
+                          "autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1"
+                        : mediaSrc.replace("watch?v=", "embed/") +
+                          "?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playlist=" +
+                          mediaSrc.split("v=")[1]
+                    }
+                    className="h-full w-full rounded-xl"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                  <div
+                    className="absolute inset-0 z-10"
+                    style={{ pointerEvents: "none" }}
+                  />
+                  <div
+                    className="absolute inset-0 rounded-xl bg-black/30"
+                    style={{ opacity: 0.5 - progress * 0.3 }}
+                  />
+                </div>
+              ) : (
+                <div className="pointer-events-none relative h-full w-full">
+                  {/* Mobile renders a static hero in the parent page, so
+                      we never reach this branch below md. */}
+                  {isMobileState ? (
+                    posterSrc ? (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img
+                        src={posterSrc}
+                        alt={title || "Hero background"}
+                        fetchPriority="high"
+                        loading="eager"
+                        decoding="sync"
+                        className="h-full w-full rounded-xl object-cover"
+                      />
+                    ) : null
+                  ) : (
+                    <video
+                      src={mediaSrc}
+                      poster={posterSrc}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
+                      className="h-full w-full rounded-xl object-cover"
+                      controls={false}
+                      disablePictureInPicture
+                      disableRemotePlayback
+                    />
+                  )}
+                  <div
+                    className="absolute inset-0 z-10"
+                    style={{ pointerEvents: "none" }}
+                  />
+                  <div
+                    className="absolute inset-0 rounded-xl bg-black/30"
+                    style={{ opacity: 0.5 - progress * 0.3 }}
+                  />
+                </div>
+              )
+            ) : (
+              <div className="relative h-full w-full">
+                <Image
+                  src={mediaSrc}
+                  alt={title || "Media content"}
+                  width={1280}
+                  height={720}
+                  className="h-full w-full rounded-xl object-cover"
+                />
+                <div
+                  className="absolute inset-0 rounded-xl bg-black/50"
+                  style={{ opacity: 0.7 - progress * 0.3 }}
+                />
+              </div>
+            )}
+
+            <div className="relative z-10 mt-4 flex flex-col items-center text-center">
+              {date && (
+                <p
+                  className="text-2xl text-blue-200"
+                  style={{ transform: `translateX(-${textTranslateX}vw)` }}
+                >
+                  {date}
+                </p>
+              )}
+              {scrollToExpand && (
+                <p
+                  className="text-center font-medium text-blue-200"
+                  style={{ transform: `translateX(${textTranslateX}vw)` }}
+                >
+                  {scrollToExpand}
+                </p>
+              )}
+            </div>
           </div>
 
-          <div className="container relative z-10 mx-auto flex flex-col items-center justify-start">
-            <div className="relative flex h-[100dvh] w-full flex-col items-center justify-center">
-              {/* Media frame at full expanded size. */}
-              <div
-                className="absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl"
-                style={{
-                  width: isMobileState
-                    ? "min(950px, 95vw)"
-                    : "min(1550px, 92vw)",
-                  height: isMobileState
-                    ? "min(600px, 70vh)"
-                    : "min(800px, 78vh)",
-                  boxShadow: "0px 0px 50px rgba(0, 0, 0, 0.3)",
-                }}
+          {/* Title sits over the media at start, slides apart as it expands. */}
+          <div
+            className={`relative z-10 flex w-full flex-col items-center justify-center gap-4 text-center ${
+              textBlend ? "mix-blend-difference" : "mix-blend-normal"
+            }`}
+          >
+            <h2
+              className="text-4xl font-bold text-blue-200 md:text-5xl lg:text-6xl"
+              style={{ transform: `translateX(-${textTranslateX}vw)` }}
+            >
+              {firstWord}
+            </h2>
+            <h2
+              className="text-center text-4xl font-bold text-blue-200 md:text-5xl lg:text-6xl"
+              style={{ transform: `translateX(${textTranslateX}vw)` }}
+            >
+              {restOfTitle}
+            </h2>
+            {subtitle && (
+              <p
+                className="mt-2 max-w-xl text-balance text-center text-base font-medium text-blue-200/85 md:text-lg lg:text-xl"
+                style={{ opacity: 1 - progress }}
               >
-                {mediaType === "video" ? (
-                  mediaSrc.includes("youtube.com") ? (
-                    <div className="pointer-events-none relative h-full w-full">
-                      <iframe
-                        width="100%"
-                        height="100%"
-                        src={
-                          mediaSrc.includes("embed")
-                            ? mediaSrc +
-                              (mediaSrc.includes("?") ? "&" : "?") +
-                              "autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1"
-                            : mediaSrc.replace("watch?v=", "embed/") +
-                              "?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playlist=" +
-                              mediaSrc.split("v=")[1]
-                        }
-                        className="h-full w-full rounded-xl"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                      <div
-                        className="absolute inset-0 z-10"
-                        style={{ pointerEvents: "none" }}
-                      />
-                      <div className="absolute inset-0 rounded-xl bg-black/20" />
-                    </div>
-                  ) : (
-                    <div className="pointer-events-none relative h-full w-full">
-                      {/* Mobile: show the poster instead of pulling the
-                          1.8 MB clip. Desktop: video mounts immediately and
-                          starts loading with preload="auto" so it paints
-                          alongside the rest of the page. */}
-                      {isMobileState ? (
-                        posterSrc ? (
-                          /* eslint-disable-next-line @next/next/no-img-element */
-                          <img
-                            src={posterSrc}
-                            alt={title || "Hero background"}
-                            fetchPriority="high"
-                            loading="eager"
-                            decoding="sync"
-                            className="h-full w-full rounded-xl object-cover"
-                          />
-                        ) : null
-                      ) : (
-                        <video
-                          src={mediaSrc}
-                          poster={posterSrc}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          preload="auto"
-                          className="h-full w-full rounded-xl object-cover"
-                          controls={false}
-                          disablePictureInPicture
-                          disableRemotePlayback
-                        />
-                      )}
-                      <div
-                        className="absolute inset-0 z-10"
-                        style={{ pointerEvents: "none" }}
-                      />
-                      <div className="absolute inset-0 rounded-xl bg-black/20" />
-                    </div>
-                  )
-                ) : (
-                  <div className="relative h-full w-full">
-                    <Image
-                      src={mediaSrc}
-                      alt={title || "Media content"}
-                      width={1280}
-                      height={720}
-                      className="h-full w-full rounded-xl object-cover"
-                    />
-                    <div className="absolute inset-0 rounded-xl bg-black/30" />
-                  </div>
-                )}
-
-                <div className="relative z-10 mt-4 flex flex-col items-center text-center">
-                  {date && (
-                    <p className="text-2xl text-blue-200">{date}</p>
-                  )}
-                  {scrollToExpand && (
-                    <p className="text-center font-medium text-blue-200">
-                      {scrollToExpand}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {/* Title and subtitle overlay the media at expanded size. */}
-              <div
-                className={`relative z-10 flex w-full flex-col items-center justify-center gap-4 text-center ${
-                  textBlend ? "mix-blend-difference" : "mix-blend-normal"
-                }`}
-              >
-                <h2 className="text-4xl font-bold text-blue-200 md:text-5xl lg:text-6xl">
-                  {firstWord}
-                </h2>
-                <h2 className="text-center text-4xl font-bold text-blue-200 md:text-5xl lg:text-6xl">
-                  {restOfTitle}
-                </h2>
-                {subtitle && (
-                  <p className="mt-2 max-w-xl text-balance text-center text-base font-medium text-blue-200/85 md:text-lg lg:text-xl">
-                    {subtitle}
-                  </p>
-                )}
-              </div>
-            </div>
-
-            {/* Children (badge / hero title / CTA buttons) live below the
-                full-height media block and are visible immediately. */}
-            <section className="flex w-full flex-col px-8 py-10 md:px-16 lg:py-20">
-              {children}
-            </section>
+                {subtitle}
+              </p>
+            )}
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+
+      {/* Children (badge, hero title, CTAs) live in the bottom slice of
+          the section, below the sticky 100dvh. They come into view
+          naturally once the user has scrolled past the expansion phase. */}
+      <div className="relative z-20 flex w-full flex-col px-8 py-10 md:px-16 lg:py-20">
+        {children}
+      </div>
+    </section>
   );
 };
 
