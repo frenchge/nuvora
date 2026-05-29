@@ -180,7 +180,7 @@ export default async function BlogIndexPage({
               <Link
                 key={post.id}
                 href={`/blog/${post.slug}`}
-                className="group block h-full rounded-[2rem] bg-card/65 p-3 shadow-sm transition hover:-translate-y-0.5 hover:bg-card"
+                className="group block self-start rounded-[2rem] bg-card/65 p-3 shadow-sm transition hover:-translate-y-0.5 hover:bg-card"
               >
                 {post.coverImageUrl ? (
                   <div className="overflow-hidden rounded-[1.5rem]">
@@ -191,7 +191,7 @@ export default async function BlogIndexPage({
                     />
                   </div>
                 ) : null}
-                <article className="flex h-full flex-col px-3 pb-3 pt-4">
+                <article className="px-3 pb-3 pt-4">
                   <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">
                     <span>{new Date(post.publishedAt ?? post.updatedAt).toLocaleDateString(locale, { month: "short", day: "numeric", year: "numeric" })}</span>
                     <span className="text-border">/</span>
@@ -216,7 +216,7 @@ export default async function BlogIndexPage({
                       </span>
                     ))}
                   </div>
-                  <div className="mt-auto pt-8 inline-flex items-center gap-2 text-sm font-medium text-foreground transition group-hover:text-primary">
+                  <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-foreground transition group-hover:text-primary">
                     {copy.readArticle}
                     <ArrowRight className="h-4 w-4" />
                   </div>
