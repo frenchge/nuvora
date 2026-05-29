@@ -129,6 +129,17 @@ export function SiteHeader() {
                 }
                 asChild
               >
+                <Link href="/chat">{t("openApp")}</Link>
+              </Button>
+              <Button
+                variant="ghost"
+                className={
+                  heroTone
+                    ? "text-white/82 hover:bg-white/8 hover:text-white"
+                    : undefined
+                }
+                asChild
+              >
                 <Link href="/sign-in">{t("signIn")}</Link>
               </Button>
               <Button

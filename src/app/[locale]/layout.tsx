@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
@@ -89,35 +90,38 @@ export default async function LocaleLayout({
 
   const typedLocale = locale as Locale;
   return (
-    <html
-      lang={locale}
-      suppressHydrationWarning
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
-    >
-      <head>
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-      </head>
-      <body className="min-h-screen bg-background font-sans">
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <ThemeProvider>
-            {children}
-            <FloatingCurrencySwitcher initialCurrency={initialCurrency} />
-            <FloatingLocaleSwitcher />
-          </ThemeProvider>
-        </NextIntlClientProvider>
-        <JsonLd data={organizationJsonLd()} />
-        <JsonLd data={websiteJsonLd(typedLocale)} />
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="lazyOnload"
-        />
-        <Script id="ga-init" strategy="lazyOnload">
-          {`window.dataLayer = window.dataLayer || [];
+    <ClerkProvider>
+      <html
+        lang={locale}
+        suppressHydrationWarning
+        className={`${GeistSans.variable} ${GeistMono.variable}`}
+      >
+        <head>
+          <link rel="preconnect" href="https://www.googletagmanager.com" />
+          <link rel="dns-prefetch" href="https://clerk.vercilio.com" />
+        </head>
+        <body className="min-h-screen bg-background font-sans">
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <ThemeProvider>
+              {children}
+              <FloatingCurrencySwitcher initialCurrency={initialCurrency} />
+              <FloatingLocaleSwitcher />
+            </ThemeProvider>
+          </NextIntlClientProvider>
+          <JsonLd data={organizationJsonLd()} />
+          <JsonLd data={websiteJsonLd(typedLocale)} />
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+            strategy="lazyOnload"
+          />
+          <Script id="ga-init" strategy="lazyOnload">
+            {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${GA_MEASUREMENT_ID}');`}
-        </Script>
-      </body>
-    </html>
+          </Script>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
