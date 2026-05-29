@@ -67,7 +67,7 @@ export function FloatingNav({
         >
           <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
             {brand ? <div className="shrink-0">{brand}</div> : null}
-            <div className="flex min-w-0 items-center gap-0.5 sm:gap-1">
+            <div className="hidden min-w-0 items-center gap-0.5 md:flex sm:gap-1">
               {navItems.map((navItem, index) => (
                 <Link
                   key={`${navItem.link}-${index}`}
@@ -81,8 +81,7 @@ export function FloatingNav({
                   )}
                   aria-label={navItem.name}
                 >
-                  <span className="block md:hidden">{navItem.icon}</span>
-                  <span className="hidden md:block">{navItem.name}</span>
+                  <span>{navItem.name}</span>
                 </Link>
               ))}
             </div>
