@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useTransition } from "react";
-import { Check, ChevronUp } from "lucide-react";
-import { useMutation, useQuery, useConvexAuth } from "convex/react";
-import { api } from "@convex/_generated/api";
+import { ChevronUp } from "lucide-react";
 import {
   CURRENCIES,
   CURRENCY_COOKIE_NAME,
@@ -28,19 +26,14 @@ export function FloatingCurrencySwitcher({
   initialCurrency: Currency;
 }) {
   const router = useRouter();
-  const { isAuthenticated } = useConvexAuth();
-  const profile = useQuery(api.users.me, isAuthenticated ? {} : "skip");
-  const setPreferredCurrency = useMutation(api.users.setPreferredCurrency);
   const [open, setOpen] = useState(false);
   const [pending, startTransition] = useTransition();
   const [selectedCurrency, setSelectedCurrency] = useState<Currency>(initialCurrency);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const nextCurrency =
-      (profile?.preferred_currency as Currency | null | undefined) ?? initialCurrency;
-    setSelectedCurrency(nextCurrency);
-  }, [initialCurrency, profile?.preferred_currency]);
+    setSelectedCurrency(initialCurrency);
+  }, [initialCurrency]);
 
   useEffect(() => {
     if (!open) return;
@@ -70,19 +63,11 @@ export function FloatingCurrencySwitcher({
 
   function switchCurrency(nextCurrency: Currency) {
     setOpen(false);
-    if (nextCurrency === selectedCurrency && !isAuthenticated) return;
+    if (nextCurrency === selectedCurrency) return;
 
     startTransition(() => {
       writeCurrencyCookie(nextCurrency);
       setSelectedCurrency(nextCurrency);
-
-      if (isAuthenticated) {
-        void setPreferredCurrency({ currency: nextCurrency }).finally(() => {
-          router.refresh();
-        });
-        return;
-      }
-
       router.refresh();
     });
   }

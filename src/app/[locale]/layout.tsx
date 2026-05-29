@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
@@ -7,7 +6,6 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { cookies, headers } from "next/headers";
 import { notFound } from "next/navigation";
 import Script from "next/script";
-import { ConvexClientProvider } from "@/components/convex-client-provider";
 import { FloatingCurrencySwitcher } from "@/components/floating-currency-switcher";
 import { FloatingLocaleSwitcher } from "@/components/floating-locale-switcher";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -91,46 +89,38 @@ export default async function LocaleLayout({
 
   const typedLocale = locale as Locale;
   return (
-    <ClerkProvider>
-      <html
-        lang={locale}
-        suppressHydrationWarning
-        className={`${GeistSans.variable} ${GeistMono.variable}`}
-      >
-        <head>
-          {/* Preconnect to the third-party origins we load early on every
-              page so the browser can warm up DNS + TLS in parallel with
-              the first HTML chunk. Keep the list short — too many
-              preconnects compete with the actual page bytes. */}
-          <link rel="preconnect" href="https://me7aitdbxq.ufs.sh" crossOrigin="anonymous" />
-          <link rel="preconnect" href="https://cdn.simpleicons.org" crossOrigin="anonymous" />
-          <link rel="preconnect" href="https://www.googletagmanager.com" />
-          <link rel="dns-prefetch" href="https://clerk.vercilio.com" />
-        </head>
-        <body className="min-h-screen bg-background font-sans">
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            <ConvexClientProvider>
-              <ThemeProvider>
-                {children}
-                <FloatingCurrencySwitcher initialCurrency={initialCurrency} />
-                <FloatingLocaleSwitcher />
-              </ThemeProvider>
-            </ConvexClientProvider>
-          </NextIntlClientProvider>
-          <JsonLd data={organizationJsonLd()} />
-          <JsonLd data={websiteJsonLd(typedLocale)} />
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="ga-init" strategy="afterInteractive">
-            {`window.dataLayer = window.dataLayer || [];
+    <html
+      lang={locale}
+      suppressHydrationWarning
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+    >
+      <head>
+        {/* Keep third-party warmups short and relevant to the marketing shell. */}
+        <link rel="preconnect" href="https://me7aitdbxq.ufs.sh" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.simpleicons.org" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+      </head>
+      <body className="min-h-screen bg-background font-sans">
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <ThemeProvider>
+            {children}
+            <FloatingCurrencySwitcher initialCurrency={initialCurrency} />
+            <FloatingLocaleSwitcher />
+          </ThemeProvider>
+        </NextIntlClientProvider>
+        <JsonLd data={organizationJsonLd()} />
+        <JsonLd data={websiteJsonLd(typedLocale)} />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="lazyOnload"
+        />
+        <Script id="ga-init" strategy="lazyOnload">
+          {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${GA_MEASUREMENT_ID}');`}
-          </Script>
-        </body>
-      </html>
-    </ClerkProvider>
+        </Script>
+      </body>
+    </html>
   );
 }

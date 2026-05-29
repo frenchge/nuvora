@@ -9,7 +9,6 @@ import {
   WheelEvent,
 } from 'react';
 import Image from 'next/image';
-import { motion } from 'motion/react';
 
 interface ScrollExpandMediaProps {
   mediaType?: 'video' | 'image';
@@ -239,11 +238,9 @@ const ScrollExpandMedia = ({
     >
       <section className='relative flex min-h-[100dvh] flex-col items-center justify-start'>
         <div className='relative flex min-h-[100dvh] w-full flex-col items-center'>
-          <motion.div
+          <div
             className='absolute inset-0 z-0 h-full'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 - scrollProgress }}
-            transition={{ duration: 0.1 }}
+            style={{ opacity: 1 - scrollProgress }}
           >
             <Image
               src={bgImageSrc}
@@ -262,7 +259,7 @@ const ScrollExpandMedia = ({
               quality={52}
             />
             <div className='absolute inset-0 bg-black/10' />
-          </motion.div>
+          </div>
 
           <div className='container relative z-10 mx-auto flex flex-col items-center justify-start'>
             <div className='relative flex h-[100dvh] w-full flex-col items-center justify-center'>
@@ -297,11 +294,9 @@ const ScrollExpandMedia = ({
                         allowFullScreen
                       />
                       <div className='absolute inset-0 z-10' style={{ pointerEvents: 'none' }} />
-                      <motion.div
+                      <div
                         className='absolute inset-0 rounded-xl bg-black/30'
-                        initial={{ opacity: 0.7 }}
-                        animate={{ opacity: 0.5 - scrollProgress * 0.3 }}
-                        transition={{ duration: 0.2 }}
+                        style={{ opacity: 0.5 - scrollProgress * 0.3 }}
                       />
                     </div>
                   ) : (
@@ -340,11 +335,9 @@ const ScrollExpandMedia = ({
                         />
                       )}
                       <div className='absolute inset-0 z-10' style={{ pointerEvents: 'none' }} />
-                      <motion.div
+                      <div
                         className='absolute inset-0 rounded-xl bg-black/30'
-                        initial={{ opacity: 0.7 }}
-                        animate={{ opacity: 0.5 - scrollProgress * 0.3 }}
-                        transition={{ duration: 0.2 }}
+                        style={{ opacity: 0.5 - scrollProgress * 0.3 }}
                       />
                     </div>
                   )
@@ -357,11 +350,9 @@ const ScrollExpandMedia = ({
                       height={720}
                       className='h-full w-full rounded-xl object-cover'
                     />
-                    <motion.div
+                    <div
                       className='absolute inset-0 rounded-xl bg-black/50'
-                      initial={{ opacity: 0.7 }}
-                      animate={{ opacity: 0.7 - scrollProgress * 0.3 }}
-                      transition={{ duration: 0.2 }}
+                      style={{ opacity: 0.7 - scrollProgress * 0.3 }}
                     />
                   </div>
                 )}
@@ -391,39 +382,35 @@ const ScrollExpandMedia = ({
                   textBlend ? 'mix-blend-difference' : 'mix-blend-normal'
                 }`}
               >
-                <motion.h2
+                <h2
                   className='text-4xl font-bold text-blue-200 transition-none md:text-5xl lg:text-6xl'
                   style={{ transform: `translateX(-${textTranslateX}vw)` }}
                 >
                   {firstWord}
-                </motion.h2>
-                <motion.h2
+                </h2>
+                <h2
                   className='text-center text-4xl font-bold text-blue-200 transition-none md:text-5xl lg:text-6xl'
                   style={{ transform: `translateX(${textTranslateX}vw)` }}
                 >
                   {restOfTitle}
-                </motion.h2>
+                </h2>
                 {subtitle && (
-                  <motion.p
+                  <p
                     className='mt-2 max-w-xl text-balance text-center text-base font-medium text-blue-200/85 md:text-lg lg:text-xl'
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 - scrollProgress }}
-                    transition={{ duration: 0.2 }}
+                    style={{ opacity: 1 - scrollProgress }}
                   >
                     {subtitle}
-                  </motion.p>
+                  </p>
                 )}
               </div>
             </div>
 
-            <motion.section
-              className='flex w-full flex-col px-8 py-10 md:px-16 lg:py-20'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: showContent ? 1 : 0 }}
-              transition={{ duration: 0.7 }}
+            <section
+              className='flex w-full flex-col px-8 py-10 transition-opacity duration-700 md:px-16 lg:py-20'
+              style={{ opacity: showContent ? 1 : 0 }}
             >
               {children}
-            </motion.section>
+            </section>
           </div>
         </div>
       </section>
