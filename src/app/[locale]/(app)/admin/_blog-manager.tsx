@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState, useTransition } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 import { useMutation } from "convex/react";
-import { Loader2, Plus, Trash2 } from "lucide-react";
+import { Loader2, Plus, Trash2, X } from "lucide-react";
 import { useLocale } from "next-intl";
 import { api } from "@convex/_generated/api";
 import { Badge } from "@/components/ui/badge";
@@ -107,6 +108,8 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
     (initialPosts[0]?.sourceLocale as BlogLocale | undefined) ?? locale,
   );
   const [slugTouched, setSlugTouched] = useState(Boolean(initialPosts[0]));
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const selectedPost = useMemo(
     () => posts.find((post) => post.id === selectedId) ?? null,
@@ -195,17 +198,18 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
         setActiveLocale(activeLocale);
         setSlugTouched(true);
       } catch (error) {
-        alert((error as Error).message);
+        setErrorMessage((error as Error).message);
       }
     });
   }
 
+  function requestDeletePost() {
+    if (!selectedId) return;
+    setDeleteOpen(true);
+  }
+
   function deletePost() {
     if (!selectedId) return;
-    if (!window.confirm("Delete this blog post and all translations? This cannot be undone.")) {
-      return;
-    }
-
     startTransition(async () => {
       try {
         await removePost({ postId: selectedId as never });
@@ -221,8 +225,9 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
           setSelectedId(null);
           createNew();
         }
+        setDeleteOpen(false);
       } catch (error) {
-        alert((error as Error).message);
+        setErrorMessage((error as Error).message);
       }
     });
   }
@@ -553,7 +558,7 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
               <Button
                 type="button"
                 variant="outline"
-                onClick={deletePost}
+                onClick={requestDeletePost}
                 disabled={isPending}
               >
                 <Trash2 className="mr-2 h-4 w-4" />
@@ -574,6 +579,100 @@ export function BlogManager({ initialPosts }: { initialPosts: BlogPostRow[] }) {
           </div>
         </div>
       </div>
+
+      <Dialog.Root open={deleteOpen} onOpenChange={setDeleteOpen}>
+        <Dialog.Portal>
+          <Dialog.Overlay className="fixed inset-0 z-[80] bg-black/55 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in" />
+          <Dialog.Content className="fixed left-1/2 top-1/2 z-[81] w-[calc(100vw-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[2rem] border border-border/60 bg-background shadow-2xl outline-none data-[state=open]:animate-in data-[state=open]:fade-in data-[state=open]:zoom-in-95">
+            <div className="border-b border-border/50 bg-[linear-gradient(180deg,rgba(255,94,94,0.09),rgba(255,94,94,0))] px-6 py-5 md:px-7">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <Dialog.Title className="text-xl font-semibold tracking-tight">
+                    Delete this blog post?
+                  </Dialog.Title>
+                  <Dialog.Description className="mt-2 text-sm leading-6 text-muted-foreground">
+                    This will permanently remove the post, all translations, and
+                    its SEO content. This action cannot be undone.
+                  </Dialog.Description>
+                </div>
+                <Dialog.Close asChild>
+                  <button
+                    type="button"
+                    aria-label="Close"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </Dialog.Close>
+              </div>
+            </div>
+            <div className="space-y-5 px-6 py-6 md:px-7">
+              <div className="rounded-2xl border border-border/60 bg-secondary/40 px-4 py-3 text-sm leading-6 text-foreground/80">
+                {selectedPost
+                  ? `You are deleting "${selectedPost.translations[selectedPost.sourceLocale as BlogLocale].title || selectedPost.slug}".`
+                  : "This post will be deleted permanently."}
+              </div>
+              <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+                <Dialog.Close asChild>
+                  <Button variant="outline" className="rounded-xl" disabled={isPending}>
+                    Keep post
+                  </Button>
+                </Dialog.Close>
+                <Button
+                  variant="destructive"
+                  className="rounded-xl"
+                  disabled={isPending}
+                  onClick={deletePost}
+                >
+                  {isPending ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  ) : null}
+                  Delete permanently
+                </Button>
+              </div>
+            </div>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
+
+      <Dialog.Root
+        open={Boolean(errorMessage)}
+        onOpenChange={(open) => {
+          if (!open) setErrorMessage(null);
+        }}
+      >
+        <Dialog.Portal>
+          <Dialog.Overlay className="fixed inset-0 z-[82] bg-black/55 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in" />
+          <Dialog.Content className="fixed left-1/2 top-1/2 z-[83] w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[2rem] border border-border/60 bg-background shadow-2xl outline-none data-[state=open]:animate-in data-[state=open]:fade-in data-[state=open]:zoom-in-95">
+            <div className="border-b border-border/50 bg-[linear-gradient(180deg,rgba(255,94,94,0.09),rgba(255,94,94,0))] px-6 py-5">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <Dialog.Title className="text-xl font-semibold tracking-tight">
+                    Action couldn&apos;t be completed
+                  </Dialog.Title>
+                  <Dialog.Description className="mt-2 text-sm leading-6 text-muted-foreground">
+                    {errorMessage}
+                  </Dialog.Description>
+                </div>
+                <Dialog.Close asChild>
+                  <button
+                    type="button"
+                    aria-label="Close"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </Dialog.Close>
+              </div>
+            </div>
+            <div className="flex justify-end px-6 py-5">
+              <Dialog.Close asChild>
+                <Button className="rounded-xl">Close</Button>
+              </Dialog.Close>
+            </div>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
     </section>
   );
 }

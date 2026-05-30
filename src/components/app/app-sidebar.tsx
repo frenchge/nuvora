@@ -23,6 +23,8 @@ import {
   Shield,
   X,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { InstantTooltip } from "@/components/ui/tooltip";
 import { api } from "@convex/_generated/api";
 import {
@@ -142,6 +144,13 @@ export function AppSidebar({
     id: string;
     title: string;
   } | null>(null);
+  const [renameTarget, setRenameTarget] = useState<{
+    id: string;
+    title: string;
+  } | null>(null);
+  const [renameDraft, setRenameDraft] = useState("");
+  const [renameBusy, setRenameBusy] = useState(false);
+  const [renameError, setRenameError] = useState<string | null>(null);
 
   const allChats = useMemo(() => chats ?? [], [chats]);
 
@@ -166,10 +175,33 @@ export function AppSidebar({
     return recentChats.filter((c) => c.title.toLowerCase().includes(q));
   }, [recentChats, searchQuery]);
 
-  async function onRename(chatId: string) {
-    const next = window.prompt(t("renamePrompt"), "");
-    if (!next || !next.trim()) return;
-    await renameChat({ chatId: chatId as never, title: next.trim() });
+  function onRename(chatId: string) {
+    const chat = allChats.find((entry) => entry.id === chatId);
+    setRenameTarget({
+      id: chatId,
+      title: chat?.title || "",
+    });
+    setRenameDraft(chat?.title || "");
+    setRenameError(null);
+  }
+
+  async function confirmRename() {
+    if (!renameTarget) return;
+    const next = renameDraft.trim();
+    if (!next) {
+      setRenameError("Enter a conversation name.");
+      return;
+    }
+    setRenameBusy(true);
+    setRenameError(null);
+    try {
+      await renameChat({ chatId: renameTarget.id as never, title: next });
+      setRenameTarget(null);
+      setRenameDraft("");
+    } catch (error) {
+      setRenameError((error as Error).message);
+      setRenameBusy(false);
+    }
   }
 
   async function onDelete(chatId: string) {
@@ -592,6 +624,65 @@ export function AppSidebar({
               >
                 {t("deleteDialog.confirm")}
               </button>
+            </div>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
+
+      <Dialog.Root
+        open={renameTarget !== null}
+        onOpenChange={(open) => {
+          if (!open) {
+            setRenameTarget(null);
+            setRenameDraft("");
+            setRenameError(null);
+            setRenameBusy(false);
+          }
+        }}
+      >
+        <Dialog.Portal>
+          <Dialog.Overlay className="fixed inset-0 z-[72] bg-black/35 backdrop-blur-sm" />
+          <Dialog.Content className="fixed left-1/2 top-1/2 z-[73] w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-[1.75rem] border border-border/60 bg-background p-6 shadow-2xl">
+            <Dialog.Title className="text-xl font-semibold tracking-tight">
+              {t("rename")}
+            </Dialog.Title>
+            <Dialog.Description className="mt-2 text-sm leading-6 text-muted-foreground">
+              {t("renamePrompt")}
+            </Dialog.Description>
+
+            <div className="mt-5 space-y-3">
+              <Input
+                value={renameDraft}
+                onChange={(event) => {
+                  setRenameDraft(event.target.value);
+                  if (renameError) setRenameError(null);
+                }}
+                placeholder={t("untitled")}
+                disabled={renameBusy}
+                className="h-12 rounded-2xl"
+              />
+              {renameError ? (
+                <div className="rounded-2xl border border-destructive/30 bg-destructive/8 px-4 py-3 text-sm text-destructive">
+                  {renameError}
+                </div>
+              ) : null}
+            </div>
+
+            <div className="mt-6 flex items-center justify-end gap-3">
+              <Dialog.Close asChild>
+                <Button variant="outline" className="rounded-xl" disabled={renameBusy}>
+                  {t("deleteDialog.cancel")}
+                </Button>
+              </Dialog.Close>
+              <Button
+                className="rounded-xl"
+                disabled={renameBusy}
+                onClick={() => {
+                  void confirmRename();
+                }}
+              >
+                {renameBusy ? "Saving…" : t("rename")}
+              </Button>
             </div>
           </Dialog.Content>
         </Dialog.Portal>
