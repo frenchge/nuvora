@@ -42,7 +42,6 @@ export const metadata: Metadata = {
     "reforestation",
     "tree planting",
     "environmental impact",
-    "OpenRouter",
   ],
   openGraph: {
     type: "website",

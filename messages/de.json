@@ -454,7 +454,7 @@
       },
       "auto": {
         "title": "Auto-Router",
-        "body": "Lassen Sie Vercilio für jede Nachricht das passende Modell wählen. Der Router nutzt OpenRouter-Livebewertungen, um Ihnen pro Runde die beste Option zu senden."
+        "body": "Lassen Sie Vercilio für jede Nachricht das passende Modell wählen. Unser Router nutzt Live-Leistungssignale, um Ihnen pro Runde die beste Option zu senden."
       },
       "tools": {
         "title": "Werkzeugnutzung",
@@ -587,7 +587,7 @@
       {
         "title": "5. Die KI-Modelle",
         "paragraphs": [
-          "Vercilio gibt Ihnen Zugang zu KI-Modellen von Drittanbietern (wie denen von OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity und anderen) über OpenRouter. Diese Modelle können Fehler machen, Dinge erfinden und Ergebnisse liefern, die Sie nicht erwarten würden. Sie sollten sich nicht auf die Ausgabe eines Modells als Ersatz für professionelle Beratung (rechtlich, medizinisch, finanziell oder anderweitig) verlassen.",
+          "Vercilio gibt Ihnen Zugang zu KI-Modellen von Drittanbietern (wie denen von OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity und anderen). Diese Modelle können Fehler machen, Dinge erfinden und Ergebnisse liefern, die Sie nicht erwarten würden. Sie sollten sich nicht auf die Ausgabe eines Modells als Ersatz für professionelle Beratung (rechtlich, medizinisch, finanziell oder anderweitig) verlassen.",
           "Einige Anfragen, die Sie senden, können an den zugrundeliegenden Modellanbieter weitergeleitet werden, damit dieser eine Antwort generiert. Wir übermitteln ihnen die Nachricht und alle Anhänge, die Sie beifügen; Ihre Abrechnungsinformationen oder Ihre E-Mail-Adresse teilen wir nicht."
         ]
       },
@@ -695,7 +695,7 @@
           "Clerk (USA) — Authentifizierung und Sitzungsverwaltung.",
           "Convex (USA) — Hosting der Anwendungsdatenbank.",
           "Vercel (USA) — Anwendungs-Hosting und Edge-Delivery.",
-          "OpenRouter (USA) und die KI-Modell-Anbieter, zu denen es weiterleitet (dazu können OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity usw. gehören) — zur Generierung von Antworten auf die von Ihnen gesendeten Nachrichten.",
+          "Unsere KI-Modell-Anbieter (dazu können OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity usw. gehören) — zur Generierung von Antworten auf die von Ihnen gesendeten Nachrichten.",
           "Stripe (USA / EU) — Zahlungsabwicklung.",
           "Google (USA) — aggregierte Analysen über Google Analytics 4.",
           "Wir verkaufen Ihre persönlichen Daten nicht. Wir teilen sie nicht mit Werbetreibenden."

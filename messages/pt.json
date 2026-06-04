@@ -454,7 +454,7 @@
       },
       "auto": {
         "title": "Roteador automático",
-        "body": "Deixe o Vercilio escolher o modelo certo para cada mensagem. O roteador usa avaliações ao vivo do OpenRouter para enviar a melhor opção a cada turno."
+        "body": "Deixe o Vercilio escolher o modelo certo para cada mensagem. Nosso roteador usa sinais de desempenho ao vivo para enviar a melhor opção a cada turno."
       },
       "tools": {
         "title": "Uso de ferramentas",
@@ -587,7 +587,7 @@
       {
         "title": "5. Os modelos de IA",
         "paragraphs": [
-          "A Vercilio oferece acesso a modelos de IA de terceiros (como os fornecidos pela OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity e outros) por meio do OpenRouter. Esses modelos podem errar, inventar informações e gerar resultados inesperados. Você não deve confiar na saída de um modelo como substituto de aconselhamento profissional (jurídico, médico, financeiro ou de outra natureza).",
+          "A Vercilio oferece acesso a modelos de IA de terceiros (como os fornecidos pela OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity e outros). Esses modelos podem errar, inventar informações e gerar resultados inesperados. Você não deve confiar na saída de um modelo como substituto de aconselhamento profissional (jurídico, médico, financeiro ou de outra natureza).",
           "Algumas consultas que você enviar podem ser transmitidas ao provedor do modelo subjacente para que ele gere uma resposta. Enviamos a eles a mensagem e quaisquer anexos que você incluir; não compartilhamos suas informações de cobrança nem seu e-mail."
         ]
       },
@@ -695,7 +695,7 @@
           "Clerk (EUA) — autenticação e gerenciamento de sessão.",
           "Convex (EUA) — hospedagem do banco de dados da aplicação.",
           "Vercel (EUA) — hospedagem da aplicação e entrega na borda.",
-          "OpenRouter (EUA) e os provedores de modelos de IA para os quais ele encaminha (que podem incluir OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity, etc.) — para gerar respostas às mensagens que você envia.",
+          "Nossos provedores de modelos de IA (que podem incluir OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity, etc.) — para gerar respostas às mensagens que você envia.",
           "Stripe (EUA / UE) — processamento de pagamentos.",
           "Google (EUA) — análises agregadas por meio do Google Analytics 4.",
           "Não vendemos suas informações pessoais. Não as compartilhamos com anunciantes."

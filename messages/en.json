@@ -454,7 +454,7 @@
       },
       "auto": {
         "title": "Auto-router",
-        "body": "Let Vercilio pick the right model for each message. The router uses OpenRouter's live evaluations to send you the best fit per turn."
+        "body": "Let Vercilio pick the right model for each message. Our router uses live performance signals to send you the best fit per turn."
       },
       "tools": {
         "title": "Tool use",
@@ -587,7 +587,7 @@
       {
         "title": "5. The AI models",
         "paragraphs": [
-          "Vercilio gives you access to third-party AI models (such as those provided by OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity, and others) through OpenRouter. These models can be wrong, can make things up, and can produce outputs you wouldn't expect. You should not rely on a model output as a substitute for professional advice (legal, medical, financial, or otherwise).",
+          "Vercilio gives you access to third-party AI models (such as those provided by OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity, and others). These models can be wrong, can make things up, and can produce outputs you wouldn't expect. You should not rely on a model output as a substitute for professional advice (legal, medical, financial, or otherwise).",
           "Some queries you send may be transmitted to the underlying model provider for them to generate a response. We pass them the message and any attachments you include; we do not share your billing information or your email."
         ]
       },
@@ -695,7 +695,7 @@
           "Clerk (US) — authentication and session management.",
           "Convex (US) — application database hosting.",
           "Vercel (US) — application hosting and edge delivery.",
-          "OpenRouter (US) and the AI model providers it routes to (which may include OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity, etc.) — to generate responses to the messages you send.",
+          "Our AI model providers (which may include OpenAI, Anthropic, Google, Meta, xAI, Mistral, DeepSeek, Cohere, Perplexity, etc.) — to generate responses to the messages you send.",
           "Stripe (US / EU) — payment processing.",
           "Google (US) — aggregated analytics through Google Analytics 4.",
           "We do not sell your personal information. We do not share it with advertisers."

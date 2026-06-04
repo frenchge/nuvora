@@ -119,7 +119,7 @@ export const COST_PER_TREE_EUR = 0.8;
 
 /**
  * How many USD we retain from every subscription payment after covering
- * the user's OpenRouter usage budget. The remainder funds restoration
+ * the user's model usage budget. The remainder funds restoration
  * contributions via the Good API.
  *
  *   contribution = price - monthly_api_budget_usd - KEEP_USD

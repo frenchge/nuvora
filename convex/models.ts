@@ -49,7 +49,7 @@ const PROVIDER_SLUG_MAP: Record<string, string> = {
   "01-ai": "01.AI",
   cohere: "Cohere",
   nvidia: "NVIDIA",
-  openrouter: "OpenRouter",
+  openrouter: "Vercilio",
   perplexity: "Perplexity",
   perplexityai: "Perplexity",
   amazon: "Amazon",

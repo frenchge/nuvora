@@ -1,6 +1,6 @@
 # Vercilio
 
-Multi-model chat with Clerk auth, Convex data, Stripe billing, and OpenRouter streaming.
+Multi-model chat with Clerk auth, Convex data, Stripe billing, and real-time model streaming.
 
 ## Stack
 
@@ -8,7 +8,6 @@ Multi-model chat with Clerk auth, Convex data, Stripe billing, and OpenRouter st
 - Clerk
 - Convex
 - Stripe
-- OpenRouter
 - Tailwind + Radix UI
 
 ## Quick start

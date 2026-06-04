@@ -50,7 +50,7 @@ interface Props {
   initialMessages: Message[];
   models: AppModel[];
   initialBalance: number;
-  defaultModelId: string;
+  defaultModelId?: string;
 }
 
 interface MessageCitation {
@@ -111,7 +111,7 @@ export function ChatClient({
   initialMessages,
   models,
   initialBalance,
-  defaultModelId,
+  defaultModelId = "",
 }: Props) {
   const [chatId, setChatId] = useState<string | null>(initialChatId);
   const [messages, setMessages] = useState<UiMessage[]>(
@@ -308,6 +308,7 @@ export function ChatClient({
   const canSend =
     !streaming &&
     input.trim().length > 0 &&
+    !!selectedModel &&
     !hasUnsupportedImageAttachment &&
     !hasUnsupportedPdfAttachment &&
     (isFreeModel || balance >= cost);
@@ -325,15 +326,11 @@ export function ChatClient({
   );
 
   useEffect(() => {
-    if (!selectedModel) {
-      setModelId(defaultModelId);
-      return;
-    }
+    if (!selectedModel) return;
     if (!supportsReasoning && reasoningEffort !== "none") {
       setReasoningEffort("none");
     }
   }, [
-    defaultModelId,
     reasoningEffort,
     selectedModel,
     supportsReasoning,
@@ -990,7 +987,7 @@ export function ChatClient({
 
           {/* Toolbar row */}
           <div className="flex min-w-0 items-center gap-1">
-            {/* Model selector hides smoothly when Auto is on; OpenRouter
+            {/* Model selector hides smoothly when Auto is on; the router
                 picks the model so showing one would be misleading. */}
             <div
               className={cn(
