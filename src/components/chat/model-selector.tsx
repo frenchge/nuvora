@@ -89,11 +89,9 @@ function costTone(tier: 1 | 2 | 3, idx: number) {
 }
 
 
-function formatUsdCost(cost: number) {
-  if (cost === 0) return "$0.0000";
-  if (cost < 0.001) return `$${cost.toFixed(4)}`;
-  if (cost < 0.01) return `$${cost.toFixed(3)}`;
-  return `$${cost.toFixed(2)}`;
+function formatCreditCost(credits: number) {
+  const rounded = Math.round(credits * 100) / 100;
+  return `${rounded} ${rounded === 1 ? "credit" : "credits"} per message`;
 }
 
 export function ModelSelector({
@@ -217,7 +215,7 @@ export function ModelSelector({
           )}
         >
           <span className="truncate font-medium">
-            {selected?.display_name ?? "Select model"}
+            {selected?.display_name ?? "Select a model"}
           </span>
           {selected && inline && (
             selected.is_free ? (
@@ -226,7 +224,7 @@ export function ModelSelector({
               </span>
             ) : (
               <InstantTooltip
-                content={`${formatUsdCost(selected.estimated_cost_per_message_usd)} per message`}
+                content={formatCreditCost(selected.credit_cost_per_message)}
               >
                 <span className="flex shrink-0 items-center gap-0 text-xs opacity-70">
                   {[0, 1, 2].map((idx) => {
@@ -535,7 +533,7 @@ function ModelRow({
             </span>
           ) : (
             <InstantTooltip
-              content={`${formatUsdCost(model.estimated_cost_per_message_usd)} per message`}
+              content={formatCreditCost(model.credit_cost_per_message)}
             >
               <span>
                 <CostDots model={model} />
