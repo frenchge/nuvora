@@ -1,5 +1,8 @@
 import { routing, type Locale } from "@/i18n/routing";
 
+/** Public contact address shown across the site and app. */
+export const CONTACT_EMAIL = "contact@vercilio.com";
+
 export function getSiteUrl(): string {
   return (process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000").replace(
     /\/$/,

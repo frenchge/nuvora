@@ -1,7 +1,8 @@
-import { Leaf, Twitter } from "lucide-react";
+import { Leaf, Mail, Twitter } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { BrandLogo } from "@/components/brand-logo";
 import { Link } from "@/i18n/navigation";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export async function SiteFooter() {
   const t = await getTranslations("Footer");
@@ -21,6 +22,14 @@ export async function SiteFooter() {
           <p className="mt-5 max-w-sm text-sm leading-7 text-muted-foreground">
             {t("tagline")}
           </p>
+
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="mt-5 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <Mail className="h-4 w-4 text-primary" />
+            {CONTACT_EMAIL}
+          </a>
 
           <div className="mt-8 max-w-sm rounded-[1.5rem] border border-border/60 bg-background/55 p-5">
             <div className="text-xs font-semibold uppercase tracking-[0.16em] text-foreground/80">

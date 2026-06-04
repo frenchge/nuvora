@@ -1,10 +1,11 @@
 "use client";
 
 import { useMemo, useState, useTransition } from "react";
-import { CreditCard, Leaf, Shield, UserRound } from "lucide-react";
+import { CreditCard, Leaf, Mail, Shield, UserRound } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { usePathname, useRouter } from "@/i18n/navigation";
+import { CONTACT_EMAIL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type TabDef = {
@@ -131,6 +132,17 @@ export function SettingsShell({
             <div className="py-6">
               {notifications}
               {isPending ? <SettingsTabSkeleton /> : activeSection}
+            </div>
+
+            <div className="mt-2 flex flex-wrap items-center gap-1.5 border-t border-border/50 pt-6 text-sm text-muted-foreground">
+              <Mail className="h-4 w-4 text-primary" />
+              <span>Need help? Reach us at</span>
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="font-medium text-foreground transition-colors hover:text-primary"
+              >
+                {CONTACT_EMAIL}
+              </a>
             </div>
           </div>
         </div>

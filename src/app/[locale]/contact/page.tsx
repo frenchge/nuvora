@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArrowRight, HelpCircle, Leaf, Mail, MessageCircle } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildPageMetadata } from "@/lib/seo";
+import { CONTACT_EMAIL } from "@/lib/site";
 import type { Locale } from "@/i18n/routing";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
@@ -56,6 +57,13 @@ export default async function ContactPage({
           <p className="mx-auto mt-6 max-w-xl text-balance text-base leading-7 text-muted-foreground md:text-lg">
             {t("heroBody")}
           </p>
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="mx-auto mt-8 inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-primary/40 hover:text-primary"
+          >
+            <Mail className="h-4 w-4 text-primary" />
+            {CONTACT_EMAIL}
+          </a>
         </div>
       </section>
 
