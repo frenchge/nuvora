@@ -68,10 +68,6 @@ export default async function PricingPage({
       ),
     },
     {
-      label: t("rows.daily"),
-      values: PLAN_ORDER.map((plan) => t(`values.daily.${plan}`)),
-    },
-    {
       label: t("rows.contribution"),
       values: PLAN_ORDER.map((plan) => {
         if (plan === "free") return t("values.freeTrees");

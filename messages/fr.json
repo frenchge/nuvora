@@ -7,6 +7,7 @@
     "credits": "Crédits",
     "impact": "Impact",
     "faq": "FAQ",
+    "contact": "Contact",
     "signIn": "Se connecter",
     "startFree": "Commencer gratuitement",
     "openApp": "Ouvrir l'app",
@@ -84,26 +85,11 @@
   "Contact": {
     "metaTitle": "Contact — Vercilio",
     "metaDescription": "Parlez à une vraie personne chez Vercilio — questions de facturation, idées de partenariat, ou juste pour dire bonjour.",
-    "heroEyebrow": "On est une petite équipe — des humains répondent.",
+    "heroEyebrow": "Contactez-nous",
     "heroTitle": "Dites <accent>bonjour.</accent>",
-    "heroBody": "Choisissez la boîte qui correspond, ou utilisez le formulaire ci-dessous. Nous lisons chaque message et essayons de répondre sous un jour ouvré.",
-    "lanes": {
-      "general": {
-        "label": "Général",
-        "helper": "Tout ce qui ne rentre pas ailleurs — nous répondons en général sous un jour."
-      },
-      "support": {
-        "label": "Support",
-        "helper": "Bloqué sur un point précis ? Envoyez l'ID de chat ou une capture si possible."
-      },
-      "partnerships": {
-        "label": "Partenariats",
-        "helper": "Partenaires de restauration, fournisseurs de modèles, organisations durables — parlons-en."
-      }
-    },
-    "openMail": "Ouvrir le mail",
-    "formTitle": "Ou laissez-nous un mot",
-    "formSubtitle": "Dites-nous sur quoi vous travaillez. Nous l'orienterons vers la bonne personne.",
+    "heroBody": "Questions, demandes d'assistance, idées de partenariat ou tout autre sujet en tête. Vous pouvez nous écrire directement par e-mail et nous répondons généralement sous un jour ouvré.",
+    "emailTitle": "Écrivez-nous",
+    "emailBody": "Que vous ayez besoin d'aide pour votre compte, que vous souhaitiez parler de partenariats ou que vous ayez simplement une question sur Vercilio, écrivez-nous et nous veillerons à ce que votre message parvienne à la bonne personne.",
     "form": {
       "nameLabel": "Nom",
       "namePlaceholder": "Avery Hale",
@@ -185,7 +171,6 @@
       "credits": "Crédits par mois",
       "models": "Accès aux modèles",
       "uploads": "Fichiers, images et recherche web",
-      "daily": "Usage quotidien",
       "contribution": "Contribution environnementale",
       "bestFor": "Idéal pour",
       "cta": "Commencer"
@@ -199,12 +184,6 @@
       "paidUploads": "Inclus",
       "freeTrees": "Non inclus",
       "paidTrees": "{count} arbres",
-      "daily": {
-        "free": "20 / jour",
-        "basic": "150 / jour",
-        "starter": "350 / jour",
-        "pro": "700 / jour"
-      },
       "bestFor": {
         "free": "Découvrir le produit",
         "basic": "Travail solo quotidien",

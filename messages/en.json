@@ -7,6 +7,7 @@
     "credits": "Credits",
     "impact": "Impact",
     "faq": "FAQ",
+    "contact": "Contact",
     "signIn": "Sign in",
     "startFree": "Start free",
     "openApp": "Open app",
@@ -84,26 +85,11 @@
   "Contact": {
     "metaTitle": "Contact — Vercilio",
     "metaDescription": "Talk to a real person about Vercilio — billing questions, partnership ideas, or just to say hi.",
-    "heroEyebrow": "We're a small team — humans answer.",
+    "heroEyebrow": "Contact us",
     "heroTitle": "Say <accent>hi.</accent>",
-    "heroBody": "Pick the inbox that fits, or use the form below. We read every message and try to reply within one working day.",
-    "lanes": {
-      "general": {
-        "label": "General",
-        "helper": "Anything that doesn't fit elsewhere — we usually reply within a day."
-      },
-      "support": {
-        "label": "Support",
-        "helper": "Stuck on something specific? Send the chat ID or a screenshot if you can."
-      },
-      "partnerships": {
-        "label": "Partnerships",
-        "helper": "Restoration partners, model providers, sustainability orgs — let's talk."
-      }
-    },
-    "openMail": "Open mail",
-    "formTitle": "Or drop us a note",
-    "formSubtitle": "Tell us what you're working on. We'll route it to the right person.",
+    "heroBody": "Questions, support requests, partnership ideas, or anything else on your mind. You can reach us directly by email and we'll usually reply within one working day.",
+    "emailTitle": "Get in touch",
+    "emailBody": "Whether you need help with your account, want to talk partnerships, or just have a question about Vercilio, send us a note and we'll make sure it reaches the right person.",
     "form": {
       "nameLabel": "Name",
       "namePlaceholder": "Avery Hale",
@@ -185,7 +171,6 @@
       "credits": "Credits each month",
       "models": "Model access",
       "uploads": "Files, images, and web search",
-      "daily": "Daily usage",
       "contribution": "Environmental contribution",
       "bestFor": "Best for",
       "cta": "Get started"
@@ -199,12 +184,6 @@
       "paidUploads": "Included",
       "freeTrees": "Not included",
       "paidTrees": "{count} trees",
-      "daily": {
-        "free": "20 / day",
-        "basic": "150 / day",
-        "starter": "350 / day",
-        "pro": "700 / day"
-      },
       "bestFor": {
         "free": "Trying the product",
         "basic": "Daily solo work",

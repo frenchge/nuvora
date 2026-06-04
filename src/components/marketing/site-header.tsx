@@ -11,6 +11,7 @@ import {
   CircleHelp,
   House,
   Leaf,
+  Mail,
   Menu,
   Tag,
   X,
@@ -93,6 +94,11 @@ export function SiteHeader() {
       name: t("faq"),
       link: "/faq",
       icon: <CircleHelp className="h-4 w-4 text-muted-foreground" />,
+    },
+    {
+      name: t("contact"),
+      link: "/contact",
+      icon: <Mail className="h-4 w-4 text-muted-foreground" />,
     },
   ];
 

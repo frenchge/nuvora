@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
-import { ArrowRight, HelpCircle, Leaf, Mail, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildPageMetadata } from "@/lib/seo";
 import { CONTACT_EMAIL } from "@/lib/site";
 import type { Locale } from "@/i18n/routing";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
-import { ContactForm } from "./_contact-form";
-
-const LANES = [
-  { key: "general", icon: Mail },
-  { key: "support", icon: HelpCircle },
-  { key: "partnerships", icon: Leaf },
-] as const;
 
 export async function generateMetadata({
   params,
@@ -66,70 +59,6 @@ export default async function ContactPage({
           </a>
         </div>
       </section>
-
-      <section className="container pb-12">
-        <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
-          {LANES.map(({ key, icon: Icon }) => (
-            <div
-              key={key}
-              className="rounded-3xl border border-border/60 bg-card/60 p-6"
-            >
-              <div className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/12 text-primary">
-                <Icon className="h-4 w-4" />
-              </div>
-              <div className="mt-4 text-xs uppercase tracking-wide text-muted-foreground">
-                {t(`lanes.${key}.label`)}
-              </div>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                {t(`lanes.${key}.helper`)}
-              </p>
-              <div className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-primary">
-                {t("formTitle")}
-                <ArrowRight className="h-3 w-3" />
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="container pb-24">
-        <div className="mx-auto max-w-2xl rounded-[2rem] border border-border/60 bg-card/40 p-8 sm:p-10">
-          <h2 className="text-balance text-2xl font-semibold tracking-tight">
-            {t("formTitle")}
-          </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            {t("formSubtitle")}
-          </p>
-
-          {(() => {
-            const rawNote = t("form.privacyNote");
-            const linkMatch = rawNote.match(/<link>(.*?)<\/link>/);
-            const linkText = linkMatch?.[1] ?? "privacy policy";
-            const [privacyPrefix = "", privacySuffix = ""] = rawNote.split(
-              /<link>.*?<\/link>/,
-            );
-            return (
-              <ContactForm
-                copy={{
-                  nameLabel: t("form.nameLabel"),
-                  namePlaceholder: t("form.namePlaceholder"),
-                  emailLabel: t("form.emailLabel"),
-                  emailPlaceholder: t("form.emailPlaceholder"),
-                  subjectLabel: t("form.subjectLabel"),
-                  subjectPlaceholder: t("form.subjectPlaceholder"),
-                  messageLabel: t("form.messageLabel"),
-                  messagePlaceholder: t("form.messagePlaceholder"),
-                  privacyPrefix,
-                  privacyLinkText: linkText,
-                  privacySuffix,
-                  submit: t("form.submit"),
-                }}
-              />
-            );
-          })()}
-        </div>
-      </section>
-
       <SiteFooter />
     </>
   );

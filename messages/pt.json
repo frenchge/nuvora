@@ -7,6 +7,7 @@
     "credits": "Créditos",
     "impact": "Impacto",
     "faq": "FAQ",
+    "contact": "Contato",
     "signIn": "Entrar",
     "startFree": "Comece grátis",
     "openApp": "Abrir app",
@@ -84,26 +85,11 @@
   "Contact": {
     "metaTitle": "Contato — Vercilio",
     "metaDescription": "Converse com uma pessoa real sobre Vercilio — dúvidas sobre faturamento, ideias de parceria ou apenas para dizer oi.",
-    "heroEyebrow": "Somos uma equipe pequena — humanos respondem.",
+    "heroEyebrow": "Fale conosco",
     "heroTitle": "Diga <accent>oi.</accent>",
-    "heroBody": "Escolha a caixa de entrada que combina, ou use o formulário abaixo. Lemos todas as mensagens e tentamos responder em até um dia útil.",
-    "lanes": {
-      "general": {
-        "label": "Geral",
-        "helper": "Qualquer coisa que não se encaixe em outro lugar — geralmente respondemos em até um dia."
-      },
-      "support": {
-        "label": "Suporte",
-        "helper": "Preso em algo específico? Envie o ID do chat ou uma captura de tela, se puder."
-      },
-      "partnerships": {
-        "label": "Parcerias",
-        "helper": "Parceiros de restauração, fornecedores de modelos, organizações de sustentabilidade — vamos conversar."
-      }
-    },
-    "openMail": "Abrir email",
-    "formTitle": "Ou deixe uma mensagem",
-    "formSubtitle": "Conte-nos no que você está trabalhando. Encaminharemos para a pessoa certa.",
+    "heroBody": "Dúvidas, pedidos de suporte, ideias de parceria ou qualquer outra coisa em mente. Você pode falar com a gente diretamente por e-mail e normalmente respondemos em até um dia útil.",
+    "emailTitle": "Entre em contato",
+    "emailBody": "Seja para obter ajuda com sua conta, falar sobre parcerias ou apenas tirar uma dúvida sobre o Vercilio, escreva para a gente e cuidaremos para que sua mensagem chegue à pessoa certa.",
     "form": {
       "nameLabel": "Nome",
       "namePlaceholder": "Avery Hale",
@@ -185,7 +171,6 @@
       "credits": "Créditos por mês",
       "models": "Acesso a modelos",
       "uploads": "Arquivos, imagens e busca na web",
-      "daily": "Uso diário",
       "contribution": "Contribuição ambiental",
       "bestFor": "Ideal para",
       "cta": "Comece agora"
@@ -199,12 +184,6 @@
       "paidUploads": "Incluído",
       "freeTrees": "Não incluído",
       "paidTrees": "{count} árvores",
-      "daily": {
-        "free": "20 / dia",
-        "basic": "150 / dia",
-        "starter": "350 / dia",
-        "pro": "700 / dia"
-      },
       "bestFor": {
         "free": "Testar o produto",
         "basic": "Trabalho solo diário",
