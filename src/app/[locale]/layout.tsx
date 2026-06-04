@@ -54,9 +54,9 @@ export const metadata: Metadata = {
     site: "@vercilio_ai",
     creator: "@vercilio_ai",
   },
-  icons: {
-    icon: "/icon.png",
-  },
+  // Icons are generated automatically from the file-based conventions
+  // (src/app/favicon.ico, icon.png, apple-icon.png). Next.js emits the
+  // <link rel="icon"> / apple-touch-icon tags, so no manual config is needed.
 };
 
 export function generateStaticParams() {
