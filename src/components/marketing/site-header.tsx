@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import {
   BookOpen,
   Bot,
+  Briefcase,
   CircleHelp,
   House,
   Leaf,
@@ -99,6 +100,11 @@ export function SiteHeader() {
       name: t("contact"),
       link: "/contact",
       icon: <Mail className="h-4 w-4 text-muted-foreground" />,
+    },
+    {
+      name: t("careers"),
+      link: "/careers",
+      icon: <Briefcase className="h-4 w-4 text-muted-foreground" />,
     },
   ];
 

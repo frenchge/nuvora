@@ -15,6 +15,7 @@ const MARKETING_PATHS = [
   "/pricing",
   "/impact",
   "/about",
+  "/careers",
   "/contact",
   "/faq",
 ] as const;

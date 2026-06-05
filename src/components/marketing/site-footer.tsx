@@ -80,6 +80,7 @@ export async function SiteFooter() {
           className="md:col-span-2"
           links={[
             { href: "/about", label: t("links.about") },
+            { href: "/careers", label: t("links.careers") },
             { href: "/contact", label: t("links.contact") },
           ]}
         />
