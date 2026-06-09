@@ -127,6 +127,19 @@ function isAppLocale(value: string | undefined): value is AppLocale {
   return typeof value === "string" && routing.locales.includes(value as AppLocale);
 }
 
+// Search-engine + AI crawlers. Google explicitly recommends against
+// auto-redirecting crawlers based on perceived locale: it stops them from
+// reaching every localized URL and makes the canonical (unprefixed, English)
+// pages look like "Page with redirect" in Search Console. We let bots through
+// to the exact URL they requested; hreflang in the sitemap tells them about
+// the other locales.
+const CRAWLER_UA =
+  /(googlebot|google-inspectiontool|storebot-google|bingbot|slurp|duckduckbot|baiduspider|yandex|sogou|exabot|facebot|facebookexternalhit|ia_archiver|applebot|petalbot|bytespider|gptbot|oai-searchbot|chatgpt-user|claudebot|claude-web|anthropic-ai|ccbot|perplexitybot|twitterbot|linkedinbot|telegrambot|whatsapp|discordbot)/i;
+
+function isSearchEngineBot(req: NextRequest): boolean {
+  return CRAWLER_UA.test(req.headers.get("user-agent") ?? "");
+}
+
 function getPreferredLocale(req: NextRequest): AppLocale {
   const fromCookie = req.cookies.get(LOCALE_COOKIE_NAME)?.value;
   if (isAppLocale(fromCookie)) {
@@ -216,7 +229,12 @@ export default clerkMiddleware(async (auth, req: NextRequest) => {
   const existingLocaleCookie = req.cookies.get(LOCALE_COOKIE_NAME)?.value;
   const preferredLocale = getPreferredLocale(req);
 
-  if (!hasLocalePrefix && !existingLocaleCookie && preferredLocale !== routing.defaultLocale) {
+  if (
+    !hasLocalePrefix &&
+    !existingLocaleCookie &&
+    !isSearchEngineBot(req) &&
+    preferredLocale !== routing.defaultLocale
+  ) {
     const url = req.nextUrl.clone();
     url.pathname =
       path === "/" ? `/${preferredLocale}` : `/${preferredLocale}${path}`;
