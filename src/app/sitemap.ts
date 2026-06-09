@@ -3,6 +3,7 @@ import { api } from "@convex/_generated/api";
 import { fetchQuery } from "@/lib/convex-server";
 import { routing, type Locale } from "@/i18n/routing";
 import { getAbsoluteUrl, getLocaleAlternates } from "@/lib/site";
+import { CAREER_ROLES } from "@/lib/careers";
 
 // Regenerate every hour so newly published blog posts get crawled within
 // an hour instead of waiting for a redeploy.
@@ -38,6 +39,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       alternates: {
         languages: getLocaleAlternates(path),
       },
+    })),
+  );
+
+  // Individual job listings. They're indexable and only otherwise reachable
+  // via internal links from /careers, which leaves them stuck in "Discovered
+  // – currently not indexed". Listing them (with hreflang) gives Google a
+  // direct discovery path for every locale variant.
+  const careerPages = routing.locales.flatMap((locale) =>
+    CAREER_ROLES.map((role) => ({
+      url: getAbsoluteUrl(locale as Locale, `/careers/${role.slug}`),
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+      alternates: { languages: getLocaleAlternates(`/careers/${role.slug}`) },
     })),
   );
 
@@ -80,5 +95,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("[sitemap] Failed to load blog posts", error);
   }
 
-  return [...pages, ...legalPages, ...blogPages];
+  return [...pages, ...careerPages, ...legalPages, ...blogPages];
 }
