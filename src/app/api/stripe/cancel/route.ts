@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { api } from "@convex/_generated/api";
 import { requireUser, HttpError } from "@/lib/auth";
+import { fetchAction, getRequiredConvexToken } from "@/lib/convex-server";
 import { getStripe } from "@/lib/stripe";
 
 export const runtime = "nodejs";
@@ -60,23 +62,30 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (active.cancel_at_period_end === !resume) {
-      // Already in the requested state; no-op.
-      return NextResponse.json({
-        cancel_at_period_end: active.cancel_at_period_end,
-        current_period_end: active.current_period_end,
-      });
+    // If Stripe is already in the requested state we skip the write, but we
+    // still re-sync Convex below — our local copy may be the thing that's
+    // stale (the original bug: cancel succeeded on Stripe, app never updated).
+    const current =
+      active.cancel_at_period_end === !resume
+        ? active
+        : await stripe.subscriptions.update(active.id, {
+            cancel_at_period_end: !resume,
+          });
+
+    // Don't wait on the customer.subscription.updated webhook (which can lag
+    // or be misconfigured) — push the new state into Convex now so the billing
+    // UI reflects it on the immediate reload. Best-effort: the webhook stays a
+    // fallback, so a sync failure here shouldn't fail the request.
+    try {
+      const token = await getRequiredConvexToken();
+      await fetchAction(api.stripe.syncMySubscription, {}, { token });
+    } catch (syncError) {
+      console.error("[stripe/cancel] direct Convex sync failed", syncError);
     }
 
-    const updated = await stripe.subscriptions.update(active.id, {
-      cancel_at_period_end: !resume,
-    });
-
-    // Stripe will fire customer.subscription.updated → our webhook syncs
-    // the row in Convex so the UI reflects the new state on next refresh.
     return NextResponse.json({
-      cancel_at_period_end: updated.cancel_at_period_end,
-      current_period_end: updated.current_period_end,
+      cancel_at_period_end: current.cancel_at_period_end,
+      current_period_end: current.current_period_end,
     });
   } catch (e) {
     const err = e as HttpError;

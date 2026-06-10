@@ -13,6 +13,7 @@ import type * as blog from "../blog.js";
 import type * as chats from "../chats.js";
 import type * as contributions from "../contributions.js";
 import type * as credits from "../credits.js";
+import type * as crons from "../crons.js";
 import type * as defaults from "../defaults.js";
 import type * as helpers from "../helpers.js";
 import type * as messages from "../messages.js";
@@ -34,6 +35,7 @@ declare const fullApi: ApiFromModules<{
   chats: typeof chats;
   contributions: typeof contributions;
   credits: typeof credits;
+  crons: typeof crons;
   defaults: typeof defaults;
   helpers: typeof helpers;
   messages: typeof messages;

@@ -574,6 +574,55 @@ export const applySubscriptionStatus = internalMutation({
   },
 });
 
+// Pull the customer's current subscription straight from Stripe and sync it
+// into Convex. Called right after a cancel/resume so the change is reflected
+// immediately instead of waiting on the customer.subscription.updated webhook
+// (which can lag or be misconfigured). Mirrors how checkout success bypasses
+// the webhook via syncCheckoutSession.
+export const syncMySubscription = action({
+  args: {},
+  handler: async (
+    ctx,
+  ): Promise<{ synced: boolean; cancelAtPeriodEnd: boolean }> => {
+    await requireIdentity(ctx);
+    const profile = await ctx.runQuery(api.users.me, {});
+    if (!profile?.stripe_customer_id) {
+      return { synced: false, cancelAtPeriodEnd: false };
+    }
+
+    const key = process.env.STRIPE_SECRET_KEY;
+    if (!key) {
+      throw new Error("STRIPE_SECRET_KEY is not set");
+    }
+    const stripe = new Stripe(key, {
+      apiVersion: "2024-11-20.acacia" as Stripe.LatestApiVersion,
+    });
+
+    const list = await stripe.subscriptions.list({
+      customer: profile.stripe_customer_id,
+      status: "all",
+      limit: 10,
+    });
+    // Prefer a live subscription; otherwise fall back to the most recent so a
+    // fully-cancelled customer still gets synced down to free.
+    const sub =
+      list.data.find((s) =>
+        ["active", "trialing", "past_due"].includes(s.status),
+      ) ?? list.data.sort((a, b) => b.created - a.created)[0];
+    if (!sub) {
+      return { synced: false, cancelAtPeriodEnd: false };
+    }
+
+    await ctx.runMutation(internal.stripe.applySubscriptionStatus, {
+      subscription: sub,
+    });
+    return {
+      synced: true,
+      cancelAtPeriodEnd: Boolean(sub.cancel_at_period_end),
+    };
+  },
+});
+
 export const recordAddonCheckout = internalMutation({
   args: {
     sessionId: v.string(),
